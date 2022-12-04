@@ -1,0 +1,43 @@
+on:
+  # The issues event below is only needed for the default (auto) mode,
+  # you can remove it otherwise
+  issues:
+    types: [ assigned ]
+  # The issue_comment event below is only needed for the ChatOps mode,
+  # you can remove it otherwise
+  issue_comment:
+    types: [ created ]
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  create_issue_branch_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue Branch
+        uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     - name: Echo branch name
+          run: echo ${{ steps.Create_Issue_Branch.outputs.branchName }}
+ 
+ branchName: tiny
+ autoCloseIssue: true
+ commentMessage: '${issue.title} 이슈에 대한 새로운 브랜치 ${branchName}가 생성되었습니다!'
+branches:
+  - label: bug
+    prefix: bug/
+  - label: docs
+    prefix: docs/
+  - label: etc
+    prefix: etc/
+  - label: feat
+    prefix: feat/
+  - label: help wanted
+    prefix: help/
+  - label: markup
+    prefix: markup/
+  - label: refactor
+    prefix: refactor/
+  - label: style
+    prefix: style/
