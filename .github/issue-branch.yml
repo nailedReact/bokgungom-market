@@ -1,0 +1,19 @@
+branchName: short
+autoCloseIssue: true
+branches:
+  - label: docs
+    prefix: docs/
+  - label: bug
+    prefix: bug/
+  - label: etc
+    prefix: etc/
+  - label: feat
+    prefix: feat/
+  - label: help wanted
+    prefix: help/
+  - label: markup
+    prefix: markup/
+  - label: refactor
+    prefix: refactor/
+  - label: sytle
+    prefix: style/
