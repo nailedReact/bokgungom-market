@@ -1,3 +1,4 @@
+name: Create Issue Branch
 on:
   # The issues event below is only needed for the default (auto) mode,
   # you can remove it otherwise
@@ -18,4 +19,5 @@ jobs:
         uses: robvanderleek/create-issue-branch@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Echo branch name
+        run: echo ${{ steps.Create_Issue_Branch.outputs.branchName }}
