@@ -17,4 +17,9 @@ branches:
     prefix: refactor/
   - label: sytle
     prefix: style/
-commentMessage: '이슈 ${issue.title}에 대한 새로운 브랜치 ${branchName}이 생성되었습니다!'
+commentMessage: 'Branch ${branchName} created for issue: ${issue.title}'
+copyIssueDescriptionToPR: true
+copyIssueLabelsToPR: true
+copyIssueAssigneeToPR: true
+copyIssueProjectsToPR: true
+copyIssueMilestoneToPR: true
