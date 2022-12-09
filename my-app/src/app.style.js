@@ -4,7 +4,6 @@ import reset from "styled-reset";
 export const GlobalStyle = createGlobalStyle`
     ${reset}
 
-    /* reset에 border-box가 없는거 같아서 이렇게 추가했는데, 추가해도 괜찮을까요? */
     * {
         box-sizing: border-box;
     }
