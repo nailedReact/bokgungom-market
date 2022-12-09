@@ -11,4 +11,11 @@ export const GlobalStyle = createGlobalStyle`
         height: 1px;
         overflow: hidden;
     }
+    button {
+        border: none;
+        cursor: pointer;
+        :disabled {
+            cursor: default;
+        }
+    }
 `;
