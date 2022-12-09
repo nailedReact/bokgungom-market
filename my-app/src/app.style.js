@@ -4,6 +4,10 @@ import reset from "styled-reset";
 export const GlobalStyle = createGlobalStyle`
     ${reset}
 
+    * {
+        box-sizing: border-box;
+    }
+
     .ir {
         position: absolute;
         clip-path: inset(50%);
