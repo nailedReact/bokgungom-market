@@ -1,7 +1,7 @@
 import { StyledLink } from "./navBarItem.style";
 
 export default function NavBarItem({ linkSrc, iconSrc, navTxt, currentPath }) {
-    if (currentPath === linkSrc) {
+    if (currentPath.includes(linkSrc)) {
         return (
             <StyledLink
                 to={linkSrc}
