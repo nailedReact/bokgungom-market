@@ -1,5 +1,8 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import Button1 from "./Button1"
+import iconArrowLeft from "../assets/icon/icon-arrow-left.png"
+import iconSearch from "../assets/icon/icon-search.png"
+import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
 
 const TopBarCont = styled.div`
     background-color: gainsboro;
@@ -11,41 +14,49 @@ const TopBarCont = styled.div`
 const LeftCont = styled.div`
     display: flex;
     gap: 10px;
+    align-items: center;
 `
+const RightCont = styled.div``
+
+const BtnIcon = styled.button`
+    ${({action}) => action === "back" && css`
+        background: url(${iconArrowLeft});
+    `};
+    ${({action}) => action === "more" && css`
+        background: url(${iconMoreVertical});
+    `};
+    ${({action}) => action === "search" && css`
+        background: url(${iconSearch});
+    `};
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+`;
+
 export default function TopBar({type, title}) {
+    // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
     const [TypeLeft, TypeRight] = type.split('')
-    // console.log(TypeLeft);
-    // console.log(TypeRight);
     return (
         <TopBarCont>
             <LeftCont>
-                {TypeLeft === "A" && !title ? <div>뒤로가기</div> : <></>}
+                {TypeLeft === "A" && !title ? <BtnIcon action="back"/> : <></>}
                 {TypeLeft === "B" && title ? <div>{title}</div> : <></>}
                 {TypeLeft === "A" && title ?
                 <>
-                    <div>뒤로가기</div>
+                    <BtnIcon action="back"/>
                     <div>{title}</div>
                 </> :
                 <></>}
             </LeftCont>
-            <div className='right'>
+            <RightCont>
                 {TypeRight === "0"  && <></>}
-                {TypeRight === "1"  && <div>미트볼버튼</div>}
+                {TypeRight === "1"  && <BtnIcon action="more"/>}
                 {TypeRight === "2"  && <input placeholder="검색어 입력"/>}
-                {TypeRight === "3"  && <div>돋보기 아이콘</div>}
+                {TypeRight === "3"  && <BtnIcon action="search"/>}
                 {TypeRight === "4"  && <Button1 className="ms">저장</Button1>}
-            </div>
+            </RightCont>
         </TopBarCont>
     )
 }
-// 왼쪽
-// - 뒤로가기 A
-// - 텍스트 B
-// - 뒤로가기 + 텍스트 A + text
-
-// 오른쪽
-// - 옵션버튼 1
-// - 검색창(인풋) 2
-// - 검색 아이콘 3
-// - 저장 버튼 4
-//   무 0
