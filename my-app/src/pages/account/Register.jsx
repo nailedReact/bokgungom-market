@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router';
 import Button from '../../components/Button';
+import UserInput from '../../components/userinput/UserInput';
+import Inp from '../../components/userinput/Inp';
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
@@ -89,29 +91,33 @@ export default function Register() {
     <>
       <h1>이메일로 회원가입</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="id">이메일</label>
-        <input 
-          type="email"
-          id="email"
-          ref={idInput}
-          placeholder="이메일 주소를 입력해주세요."
-          onBlur={checkValid}
-          required>
-        </input>
+        <UserInput inputId="email" label="이메일">
+          <Inp
+            type="email"
+            id="email"
+            ref={idInput}
+            placeholder="이메일 주소를 입력해주세요."
+            onBlur={checkValid}
+            required
+          >
+          </Inp>
+        </UserInput>
         <span
           ref={idAlertMsg}
           style={{color: "red", display:"none"}}>
           이메일 안내 메시지
         </span>
-        <label htmlFor="pw">비밀번호</label>
-        <input
-          type="password"
-          id="pw"
-          ref={pwInput}
-          placeholder="비밀번호를 설정해주세요."
-          onBlur={checkValid}
-          required>
-        </input>
+        <UserInput inputId="pw" label="비밀번호">
+          <Inp
+            type="password"
+            id="pw"
+            ref={pwInput}
+            placeholder="비밀번호를 설정해주세요."
+            onBlur={checkValid}
+            required
+          >
+          </Inp>
+        </UserInput>
         <span
           ref={pwAlertMsg}
           style={{color: "red", display:"none"}}>
