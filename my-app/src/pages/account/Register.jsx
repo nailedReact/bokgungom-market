@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router';
+import Button from '../../components/Button';
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
@@ -115,7 +116,7 @@ export default function Register() {
           ref={pwAlertMsg}
           style={{color: "red", display:"none"}}>
         * 비밀번호는 6자 이상이어야 합니다.</span>
-        <button type="submit" disabled={isDisable}>다음</button>
+        <Button type="submit" className="large" disabled={isDisable}>다음</Button>
       </form>
     </>
   );

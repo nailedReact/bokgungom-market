@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import Button1 from "./Button1"
+import Button from "./Button"
 import iconArrowLeft from "../assets/icon/icon-arrow-left.png"
 import iconSearch from "../assets/icon/icon-search.png"
 import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
@@ -55,7 +55,7 @@ export default function TopBar({type, title}) {
                 {TypeRight === "1"  && <BtnIcon action="more"/>}
                 {TypeRight === "2"  && <input placeholder="검색어 입력"/>}
                 {TypeRight === "3"  && <BtnIcon action="search"/>}
-                {TypeRight === "4"  && <Button1 className="ms">저장</Button1>}
+                {TypeRight === "4"  && <Button className="ms">저장</Button>}
             </RightCont>
         </TopBarCont>
     )
