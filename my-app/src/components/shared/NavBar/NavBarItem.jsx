@@ -5,7 +5,7 @@ export default function NavBarItem({ linkSrc, iconSrc, navTxt, currentPath }) {
         <StyledLink
             to={linkSrc}
             icon={iconSrc}
-            className={`${currentPath.includes(linkSrc) ? "activated" : ""}`}
+            className={currentPath.includes(linkSrc) ? "activated" : ""}
         >
             {navTxt}
         </StyledLink>
