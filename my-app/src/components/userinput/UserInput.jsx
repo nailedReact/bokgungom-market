@@ -1,9 +1,17 @@
+import styled from "styled-components";
+
+const InpLabel = styled.label`
+    font-size: 12px;
+    color: #767676;
+    font-weight: 500;
+    margin-bottom: 10px;
+`
 export default function UserInput(props) {
     return (
         <>
-            <label htmlFor={props.inputId}>
+            <InpLabel htmlFor={props.inputId}>
                 {props.label}
-            </label>
+            </InpLabel>
             {props.children}
         </>
     )
