@@ -40,8 +40,8 @@ export default function Login() {
 
       // 로그인이 성공하면 로컬스토리지에 토큰 저장
       const token = json.user["token"]
-      localStorage.setItem("token",token);
-      };
+      localStorage.setItem("Authorization","Bearer " + token);
+    };
     fetchData()
   }
   
