@@ -34,8 +34,8 @@ useEffect(() => {
   }, [resMsg])
   
     return (
-        <>
+        <ul>
          {followerArr}
-        </>
+        </ul>
   )
 }
