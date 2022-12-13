@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import { useLocation } from "react-router";
+import { useLocation } from "react-router";
 import InitialHeading from "../../components/shared/InitialHeading/InitialHeading";
 import ProfileSetInpsTemp from "../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
 import Button from "../../components/Button";
@@ -8,24 +8,11 @@ import axios from "axios";
 export default function EditProfileSignUp() {
     const [userData, setUserData] = useState(null);
     const [isDisabled, setIsDisabled] = useState(true);
-    // const location = useLocation();
-
-    // 회원가입 페이지에서 데이터를 잘 받아왔을 때 데이터의 형태
-    const testData = {
-        user: {
-            username: null,
-            email: "semintest@test17.com",
-            password: "123123",
-            accountname: null,
-            intro: null,
-            image: "https://mandarin.api.weniv.co.kr/Ellipse.png",
-        },
-    };
+    const location = useLocation();
 
     useEffect(() => {
-        // setUserData(location.state);
-        setUserData(testData);
-    }, []);
+        setUserData(location.state);
+    }, [location.state]);
 
     // 제출 버튼을 비활성화 하는 함수: 하위 컴포넌트에 내려줄 거임
     const onInvalidFunc = () => {
@@ -41,7 +28,7 @@ export default function EditProfileSignUp() {
     const onSubmitFunc = async (submitted) => {
         // 원본 데이터를 훼손하지 않기 위해 스프레드 기법 + 새로운 변수를 만듦, 기존 데이터 건들지 않는 방향으로
         const edited = {
-            ...testData.user,
+            ...userData.user,
             accountname: submitted.current.accountname,
             image: submitted.current.image,
             intro: submitted.current.intro,
@@ -60,7 +47,7 @@ export default function EditProfileSignUp() {
                         "Content-type": "application/json",
                     },
                 }
-            );  
+            );
 
             // 회원가입 후 바로 로그인이 가능하도록 토큰 저장
             const loginRes = await axios.post(
