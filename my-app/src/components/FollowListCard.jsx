@@ -33,7 +33,7 @@ export default function FollowListCard({data}) {
         width: 240px;
     `;
 
-    const Cont = styled.div`
+    const Cont = styled.li`
         display: flex;  
         padding: 8px 16px;
     `;
