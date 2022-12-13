@@ -1,27 +1,31 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
+import ImageUpload from "../ImageUpload/ImageUpload.jsx";
+import { ProfileImgSetCont } from "./profileImageSet.style.js";
 
 export default function ProfileImageSet() {
     const image = useRef(null);
 
-    const handleFiles = (e) => {
-        const selectedFile = [...e.target.files];
-        const fileReader = new FileReader();
-
-        fileReader.readAsDataURL(selectedFile[0]);
+    const handleFiles = (files, fileReader) => {
+        fileReader.readAsDataURL(files[0]);
 
         fileReader.onload = function () {
             image.current.src = fileReader.result;
-        }
-    }
+        };
+    };
     return (
-        <label>
-            <span>프로필 사진 이미지 설정</span>
-            <img src={require(`../../../assets/basic-profile-img.png`)} alt="" ref={image} />
-            <input 
-                type="file" 
-                accept="image/*"
-                onChange={handleFiles}
+        <ProfileImgSetCont>
+            <span className={"ir"}>프로필 사진 이미지 설정</span>
+            <img
+                className={"profileImg"}
+                src={require(`../../../assets/basic-profile-img.png`)}
+                alt=""
+                ref={image}
             />
-        </label>
+            <ImageUpload
+                className={"fileUpload"}
+                btnStyle={"orange small"}
+                onChangeByUpper={handleFiles}
+            />
+        </ProfileImgSetCont>
     );
 }

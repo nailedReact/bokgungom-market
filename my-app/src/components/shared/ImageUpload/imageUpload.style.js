@@ -5,16 +5,22 @@ import imgButton from "../../../assets/img-button.png";
 export const ImgUploadIcon = styled.label`
     display: inline-block;
 
-    &.orange {
+    &.big {
         width: 50px;
         height: 50px;
+    }
+
+    &.small {
+        width: 36px;
+        height: 36px;
+    }
+
+    &.orange {
         background-size: cover;
         background-image: url(${uploadFile});
     }
 
     &.gray {
-        width: 36px;
-        height: 36px;
         background-size: cover;
         background-image: url(${imgButton});
     }

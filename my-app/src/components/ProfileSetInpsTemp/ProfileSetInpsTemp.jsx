@@ -2,7 +2,6 @@ import React from "react";
 import ProfileImageSet from "../shared/ProfileImageSet/ProfileImageSet";
 import InfoInput from "../shared/InfoInput/InfoInput";
 import BlurInpWarn from "../BlurInpWarn/BlurInpWarn";
-import "./profileSetInpsTemp.css";
 
 export default function ProfileSetInpsTemp({ formId }) {
     return (
