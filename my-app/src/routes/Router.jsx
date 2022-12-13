@@ -3,7 +3,6 @@ import Login from "../pages/account/Login";
 import Register from "../pages/account/Register";
 // import EditProfile from "../pages/account/EditProfile"
 import EditProfileSignUp from "../pages/account/EditProfileSignUp";
-import EditProfileLogIn from "../pages/account/EditProfileLogIn";
 import Splash from "../pages/splash/Splash";
 import HomeFeed from "../pages/feed/HomeFeed";
 import PostDetail from "../pages/feed/PostDetail";
@@ -21,10 +20,6 @@ export default function Router() {
                     <Route path="login/" element={<Login />} />
                     <Route path="register/" element={<Register />} />
                     <Route path="profile/" element={<EditProfileSignUp />} />
-                    <Route
-                        path="profile/onLogin/"
-                        element={<EditProfileLogIn />}
-                    />
                 </Route>
                 <Route path="/post/*" element={<Outlet />}>
                     <Route path="" element={<HomeFeed />} />
