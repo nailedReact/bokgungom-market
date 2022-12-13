@@ -12,7 +12,7 @@ export default function PostList() {
     const getMsg = async () => {
       const res = await axios.get('https://mandarin.api.weniv.co.kr/post/hyejee/userpost', {
         headers: {
-          Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY4ZjYwMTdhZTY2NjU4MWMzMjMyNiIsImV4cCI6MTY3NTk5NTc3MSwiaWF0IjoxNjcwODExNzcxfQ.bD2PQEEpzGKw9_-1fCXss79KsMIxzm_lmZQwIe7clZE"
+          Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
         }
     });
       setResMsg(res.data.post);
