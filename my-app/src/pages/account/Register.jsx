@@ -4,53 +4,50 @@ import { useNavigate } from 'react-router';
 import Button from '../../components/Button';
 import UserInput from '../../components/userinput/UserInput';
 import Inp from '../../components/userinput/Inp';
-import Warning from '../../components/shared/Warning/Warning';
+import Warning from '../../components/Warning';
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
+  const idAlertMsg = useRef(null);
+  const pwAlertMsg = useRef(null);
   const idInput = useRef(null);
   const pwInput = useRef(null);
   const [userEmail, setUserEmail] = useState(null);
   const [resMsg, setResMsg] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null)
   const navigate = useNavigate();
-  const [idWarn, setIdWarn] = useState('이메일 경고 메시지');
-  const [pwWarn, setPwWarn] = useState('비밀번호는 6자 이상이어야 합니다.');
-  const [isActiveIdWarn, setIsActiveIdWarn] = useState(false);
-  const [isActivePwWarn, setIsActivePwWarn] = useState(false);
-
 
   const checkValid = (e) => {
     if (e.target.id === "email"){
       if (e.target.validity.valueMissing){
-        setIdWarn("값을 입력해주세요.")
+        idAlertMsg.current.textContent = "*값을 입력해주세요.";
         setIdValid(false);
       }
       else if (e.target.validity.typeMismatch){
-        setIdWarn("알맞은 형식을 입력해주세요.")
+        idAlertMsg.current.textContent = "*알맞은 형식을 입력해주세요.";
         setIdValid(false);
       }
       else if (resMsg.message === "이미 가입된 이메일 주소 입니다."){
-        setIdWarn("이미 가입된 이메일 주소입니다.")
+        idAlertMsg.current.textContent = "*이미 가입된 이메일 주소입니다.";
         setIdValid(false);
       }
       else {
         e.target.setCustomValidity('')
-        setIsActiveIdWarn(false);
+        idAlertMsg.current.style.display = "none";
         setIdValid(true);
         return;
       }
-      setIsActiveIdWarn(true);
+      idAlertMsg.current.style.display = "block";
     }
     else if (e.target.id === "pw"){
       if (e.target.value.length < 6){
-        setIsActivePwWarn(true);
+        pwAlertMsg.current.style.display = "block";
         setPwValid(false);
       }
       else {
-        setIsActivePwWarn(false);
+        pwAlertMsg.current.style.display = "none";
         setPwValid(true);
       }
     }
@@ -77,7 +74,7 @@ export default function Register() {
         setResMsg(res.data);
       }
       getMsg();
-  }, [userEmail, resMsg, isActiveIdWarn])
+  }, [userEmail, resMsg])
 
   useEffect(() => {
     idValid && pwValid ? setIsDisable(false) : setIsDisable(true);
@@ -106,7 +103,9 @@ export default function Register() {
           >
           </Inp>
         </UserInput>
-        <Warning message={idWarn} visible={isActiveIdWarn}></Warning>
+        <Warning ref={idAlertMsg}>
+          이메일 안내 메시지
+        </Warning>
         <UserInput inputId="pw" label="비밀번호">
           <Inp
             type="password"
@@ -118,7 +117,7 @@ export default function Register() {
           >
           </Inp>
         </UserInput>
-        <Warning message={pwWarn} visible={isActivePwWarn}></Warning>
+        <Warning ref={pwAlertMsg}>* 비밀번호는 6자 이상이어야 합니다.</Warning>
         <Button type="submit" className="large" disabled={isDisable}>다음</Button>
       </form>
     </>
