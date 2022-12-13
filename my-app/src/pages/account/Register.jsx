@@ -29,7 +29,7 @@ export default function Register() {
         idAlertMsg.current.textContent = "*알맞은 형식을 입력해주세요.";
         setIdValid(false);
       }
-      else if (resMsg.message === "이미 가입된 이메일 주소 입니다."){
+      else if (resMsg && resMsg.message === "이미 가입된 이메일 주소 입니다."){
         idAlertMsg.current.textContent = "*이미 가입된 이메일 주소입니다.";
         setIdValid(false);
       }
@@ -51,6 +51,7 @@ export default function Register() {
         setPwValid(true);
       }
     }
+    setUserEmail(idInput.current.value);
     setUserData({
       "user": {
           "username": null,
@@ -71,10 +72,12 @@ export default function Register() {
               "email": userEmail
           }
         })
-        setResMsg(res.data);
+        .then(res => setResMsg(res.data))
+        .catch(err => console.log(err))
+        console.log('aßß')
       }
       getMsg();
-  }, [userEmail, resMsg])
+  }, [userEmail])
 
   useEffect(() => {
     idValid && pwValid ? setIsDisable(false) : setIsDisable(true);
@@ -84,7 +87,7 @@ export default function Register() {
     e.preventDefault(); // 새로고침 막기
     // console.log(email, password,displayName);
     
-    // navigate('../profile', { state: userData });
+    navigate('../profile', { state: userData });
     // console.log(userData)
   }
 
