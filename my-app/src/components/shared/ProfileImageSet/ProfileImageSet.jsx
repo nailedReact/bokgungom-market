@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload.jsx";
 import { ProfileImgSetCont } from "./profileImageSet.style.js";
 
-export default function ProfileImageSet() {
+export default function ProfileImageSet({ onChangeByUpper }) {
     const image = useRef(null);
 
     const handleFiles = (files, fileReader) => {
@@ -10,6 +10,7 @@ export default function ProfileImageSet() {
 
         fileReader.onload = function () {
             image.current.src = fileReader.result;
+            onChangeByUpper(files[0]);
         };
     };
     return (
