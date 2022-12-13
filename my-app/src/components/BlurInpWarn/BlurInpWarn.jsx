@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InfoInput from "../shared/InfoInput/InfoInput";
-import Warning from "../shared/Warning/Warning";
+import Warning from "../Warning";
 
 export default function BlurInpWarn({
     type,

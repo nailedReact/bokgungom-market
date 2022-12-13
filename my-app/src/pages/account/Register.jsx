@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import Button from '../../components/Button';
 import UserInput from '../../components/userinput/UserInput';
 import Inp from '../../components/userinput/Inp';
+import Warning from '../../components/Warning';
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
@@ -102,11 +103,9 @@ export default function Register() {
           >
           </Inp>
         </UserInput>
-        <span
-          ref={idAlertMsg}
-          style={{color: "red", display:"none"}}>
+        <Warning ref={idAlertMsg}>
           이메일 안내 메시지
-        </span>
+        </Warning>
         <UserInput inputId="pw" label="비밀번호">
           <Inp
             type="password"
@@ -118,10 +117,7 @@ export default function Register() {
           >
           </Inp>
         </UserInput>
-        <span
-          ref={pwAlertMsg}
-          style={{color: "red", display:"none"}}>
-        * 비밀번호는 6자 이상이어야 합니다.</span>
+        <Warning ref={pwAlertMsg}>* 비밀번호는 6자 이상이어야 합니다.</Warning>
         <Button type="submit" className="large" disabled={isDisable}>다음</Button>
       </form>
     </>
