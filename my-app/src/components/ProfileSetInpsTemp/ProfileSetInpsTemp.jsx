@@ -97,29 +97,40 @@ export default function ProfileSetInpsTemp({
     const ImgChangeHandle = async (imgdata) => {
         const formData = new FormData();
         formData.append("image", imgdata);
-        try {
-            const res = await fetch(
-                "https://mandarin.api.weniv.co.kr/image/uploadfile",
-                {
-                    method: "POST",
-                    body: formData,
-                }
-            );
-            const json = await res.json();
-            submitData.current["image"] =
-                "https://mandarin.api.weniv.co.kr/" + json.filename;
-        } catch (err) {
-            console.log(err);
-        }
+        submitData.current["imageBeforeSubmit"] = formData;
     };
 
     // 폼 제출시 동작하는 함수
-    const onSubmitHandle = (e) => {
+    const onSubmitHandle = async (e) => {
         e.preventDefault();
-        submitData.current["username"] = accountName.current.value;
-        submitData.current["accountname"] = accountId.current.value;
-        submitData.current["intro"] = about.current.value;
-        onSubmitByUpper(submitData);
+
+        if (submitData.current.imageBeforeSubmit) {
+            try {
+                const res = await fetch(
+                    "https://mandarin.api.weniv.co.kr/image/uploadfile",
+                    {
+                        method: "POST",
+                        body: submitData.current.imageBeforeSubmit,
+                    }
+                );
+                const json = await res.json();
+    
+                submitData.current["image"] =
+                    "https://mandarin.api.weniv.co.kr/" + json.filename;
+                submitData.current["username"] = accountName.current.value;
+                submitData.current["accountname"] = accountId.current.value;
+                submitData.current["intro"] = about.current.value;
+                onSubmitByUpper(submitData);
+                console.log("회원가입 성공 - 1");
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            submitData.current["username"] = accountName.current.value;
+            submitData.current["accountname"] = accountId.current.value;
+            submitData.current["intro"] = about.current.value;
+            onSubmitByUpper(submitData);
+        }
     };
 
     return (

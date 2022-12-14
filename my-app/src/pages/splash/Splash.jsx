@@ -5,8 +5,6 @@ export default function Splash() {
     const data = useAuth();
     console.log(data)
     return (
-        <>
-            <div>Splash</div>
-        </>
+        <div>splash</div>
     )
 }

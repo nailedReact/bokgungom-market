@@ -27,13 +27,25 @@ export default function EditProfileSignUp() {
     // 폼이 제출될 때 실행되는 함수
     const onSubmitFunc = async (submitted) => {
         // 원본 데이터를 훼손하지 않기 위해 스프레드 기법 + 새로운 변수를 만듦, 기존 데이터 건들지 않는 방향으로
-        const edited = {
-            ...userData.user,
-            accountname: submitted.current.accountname,
-            image: submitted.current.image,
-            intro: submitted.current.intro,
-            username: submitted.current.username,
-        };
+        let edited;
+
+        if (submitted.current.image) {
+            edited = {
+                ...userData.user,
+                accountname: submitted.current.accountname,
+                image: submitted.current.image,
+                intro: submitted.current.intro,
+                username: submitted.current.username,
+            };
+        } else {
+            edited = {
+                ...userData.user,
+                accountname: submitted.current.accountname,
+                intro: submitted.current.intro,
+                username: submitted.current.username,
+            };
+        }
+
         const finalEdited = {
             user: edited,
         };
@@ -61,6 +73,8 @@ export default function EditProfileSignUp() {
             );
 
             localStorage.setItem("token", loginRes.data.user.token);
+
+            console.log("회원가입 및 로그인 성공");
         } catch (err) {
             console.log(err);
         }
