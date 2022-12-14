@@ -35,7 +35,7 @@ const BtnIcon = styled.button`
     height: 24px;
 `;
 
-export default function TopBar({type, title}) {
+export default function TopBar({type, title, right4Ctrl}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
     const [TypeLeft, TypeRight] = type.split('')
     return (
@@ -55,7 +55,7 @@ export default function TopBar({type, title}) {
                 {TypeRight === "1"  && <BtnIcon action="more"/>}
                 {TypeRight === "2"  && <input placeholder="검색어 입력"/>}
                 {TypeRight === "3"  && <BtnIcon action="search"/>}
-                {TypeRight === "4"  && <Button className="ms">저장</Button>}
+                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled}>저장</Button>}
             </RightCont>
         </TopBarCont>
     )
