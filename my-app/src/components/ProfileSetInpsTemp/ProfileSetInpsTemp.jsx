@@ -97,29 +97,34 @@ export default function ProfileSetInpsTemp({
     const ImgChangeHandle = async (imgdata) => {
         const formData = new FormData();
         formData.append("image", imgdata);
+        submitData.current["imageBeforeSubmit"] = formData;
+    };
+
+    // 폼 제출시 동작하는 함수
+    const onSubmitHandle = async (e) => {
+        e.preventDefault();
+
+        // 폼 제출 시 이미지 서버에 등록
         try {
             const res = await fetch(
                 "https://mandarin.api.weniv.co.kr/image/uploadfile",
                 {
                     method: "POST",
-                    body: formData,
+                    body: submitData.current.imageBeforeSubmit,
                 }
             );
             const json = await res.json();
+
             submitData.current["image"] =
                 "https://mandarin.api.weniv.co.kr/" + json.filename;
+            submitData.current["username"] = accountName.current.value;
+            submitData.current["accountname"] = accountId.current.value;
+            submitData.current["intro"] = about.current.value;
+            onSubmitByUpper(submitData);
+            console.log("이미지 등록 성공");
         } catch (err) {
             console.log(err);
         }
-    };
-
-    // 폼 제출시 동작하는 함수
-    const onSubmitHandle = (e) => {
-        e.preventDefault();
-        submitData.current["username"] = accountName.current.value;
-        submitData.current["accountname"] = accountId.current.value;
-        submitData.current["intro"] = about.current.value;
-        onSubmitByUpper(submitData);
     };
 
     return (
