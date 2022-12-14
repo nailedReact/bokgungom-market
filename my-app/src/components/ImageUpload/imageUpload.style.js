@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import uploadFile from "../../../assets/upload-file.png";
-import imgButton from "../../../assets/img-button.png";
+import uploadFile from "../../assets/upload-file.png";
+import imgButton from "../../assets/img-button.png";
 
 export const ImgUploadIcon = styled.label`
     display: inline-block;
