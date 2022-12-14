@@ -130,7 +130,6 @@ export default function ProfileSetInpsTemp({
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-            console.log("회원가입 성공 - 2")
         }
     };
 
