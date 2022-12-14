@@ -104,26 +104,33 @@ export default function ProfileSetInpsTemp({
     const onSubmitHandle = async (e) => {
         e.preventDefault();
 
-        // 폼 제출 시 이미지 서버에 등록
-        try {
-            const res = await fetch(
-                "https://mandarin.api.weniv.co.kr/image/uploadfile",
-                {
-                    method: "POST",
-                    body: submitData.current.imageBeforeSubmit,
-                }
-            );
-            const json = await res.json();
-
-            submitData.current["image"] =
-                "https://mandarin.api.weniv.co.kr/" + json.filename;
+        if (submitData.current.imageBeforeSubmit) {
+            try {
+                const res = await fetch(
+                    "https://mandarin.api.weniv.co.kr/image/uploadfile",
+                    {
+                        method: "POST",
+                        body: submitData.current.imageBeforeSubmit,
+                    }
+                );
+                const json = await res.json();
+    
+                submitData.current["image"] =
+                    "https://mandarin.api.weniv.co.kr/" + json.filename;
+                submitData.current["username"] = accountName.current.value;
+                submitData.current["accountname"] = accountId.current.value;
+                submitData.current["intro"] = about.current.value;
+                onSubmitByUpper(submitData);
+                console.log("회원가입 성공 - 1");
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
             submitData.current["username"] = accountName.current.value;
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-            console.log("이미지 등록 성공");
-        } catch (err) {
-            console.log(err);
+            console.log("회원가입 성공 - 2")
         }
     };
 
