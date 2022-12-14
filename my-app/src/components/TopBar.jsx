@@ -55,7 +55,7 @@ export default function TopBar({type, title, right4Ctrl}) {
                 {TypeRight === "1"  && <BtnIcon action="more"/>}
                 {TypeRight === "2"  && <input placeholder="검색어 입력"/>}
                 {TypeRight === "3"  && <BtnIcon action="search"/>}
-                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled}>저장</Button>}
+                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled.isBtnVisible}>저장</Button>}
             </RightCont>
         </TopBarCont>
     )
