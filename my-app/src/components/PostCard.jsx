@@ -1,12 +1,12 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import  heart_active  from '../assets/icon/icon-heart-active.png';
 import  heart  from '../assets/icon/icon-heart.png';
 import comment from '../assets/icon/icon-message-circle.png';
 import styled from 'styled-components';
-
-
+import axios from 'axios';
+import Heart from './Heart';
 
 export default function PostCard({data}) {
     
@@ -78,13 +78,28 @@ export default function PostCard({data}) {
         color: #767676;
         margin-top: 18px;
     `;
+
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.posthearts);
 
+    // useEffect(() => {
+    //     const getPostid = async () => {
+    //       const res = await axios.post(`https://mandarin.api.weniv.co.kr/post/${data.id}/heart`, {
+    //         headers: {
+    //         Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+    //         }
+    //     });
+    //         console.log(res);
+    //     }
+    //     getPostid();
+    // }, "")
+
     const heartchange = () => {
         if(myheart === false){
+           
+
           setMyheart(true);
-          setMyposthearts(data.heartCount+1);
+          setMyposthearts(data.heartCount-1);
         }else{
           setMyheart(false);
         }
@@ -105,15 +120,17 @@ export default function PostCard({data}) {
                         myheart ? 
                         <>
                           <Heartimg src={heart_active} alt="채워진 하트" /> 
-                          <Count>{myposthearts}</Count>
+                          <Count>{data.heartCount}</Count>
                         </>
                         : 
                         <>
-                          <Heartimg src={heart} alt="비워진 하트"/> 
-                          <Count>{data.heartCount}</Count>
+                          <Heartimg src={heart} alt="비워진 하트"/>
+                          <Count>{myposthearts}</Count> 
+                          
                         </>
                         }
                     </span>
+                    <Heart />
                     <span>
                         <Commentimg src={comment} alt="댓글 아이콘"/>
                         <Count>{data.commentCount}</Count>
