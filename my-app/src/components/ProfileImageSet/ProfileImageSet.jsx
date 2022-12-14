@@ -18,7 +18,7 @@ export default function ProfileImageSet({ onChangeByUpper }) {
             <span className={"ir"}>프로필 사진 이미지 설정</span>
             <img
                 className={"profileImg"}
-                src={require(`../../../assets/basic-profile-img.png`)}
+                src={require(`../../assets/basic-profile-img.png`)}
                 alt=""
                 ref={image}
             />

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import axios from "axios";
-import ProfileImageSet from "../shared/ProfileImageSet/ProfileImageSet";
+import ProfileImageSet from "../ProfileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../../components/userinput/Inp";
 import ProfileSetCont from "./profileSetINpsTemp.style";

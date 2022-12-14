@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import InitialHeading from "../../components/shared/InitialHeading/InitialHeading";
+import InitialHeading from "../../components/InitialHeading/InitialHeading";
 import ProfileSetInpsTemp from "../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
 import Button from "../../components/Button";
 import axios from "axios";
