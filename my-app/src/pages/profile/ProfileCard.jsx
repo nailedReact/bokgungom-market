@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import Button from '../components/Button'
+import Button from '../../components/Button'
 import {useNavigate } from 'react-router-dom';
-import chat from '../assets/icon/icon-message-circle.png';
-import share from '../assets/icon/icon-share.png'
+import chat from '../../assets/icon/icon-message-circle.png';
+import share from '../../assets/icon/icon-share.png'
 
 export default function ProfileCard() {
 
