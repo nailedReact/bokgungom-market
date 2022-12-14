@@ -61,6 +61,8 @@ export default function EditProfileSignUp() {
             );
 
             localStorage.setItem("token", loginRes.data.user.token);
+
+            console.log("회원가입 및 로그인 성공");
         } catch (err) {
             console.log(err);
         }
