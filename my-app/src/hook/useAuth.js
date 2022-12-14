@@ -13,7 +13,7 @@ export default function useAuth() {
                     }
                 })
                 // console.log(res.data)
-                setData(res.data)
+                setData(res.data.user)
             })()
         }
     } catch (error) {
