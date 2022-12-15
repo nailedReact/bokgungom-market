@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import modalIcon from "../../../assets/icon/icon-modal.png";
+import modalIcon from "../../assets/icon/icon-modal.png";
 
 export const OptionLayout = styled.article`
-    width: 390px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
     padding: 16px 0 10px;
     border-radius: 10px 10px 0 0;
     background-color: white;

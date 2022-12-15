@@ -10,28 +10,32 @@ import UploadPost from "../pages/feed/UploadPost";
 import UploadProduct from "../pages/feed/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
-import Search from "../pages/feed/Search";
+import Error from "../pages/error/Error";
 
 export default function Router() {
     return (
         <BrowserRouter basename="">
             <Routes>
                 <Route path="/" element={<Splash />} />
-                <Route path="/account/*" element={<Outlet />}>
+                <Route path="/account/" element={<Outlet />}>
                     <Route path="login/" element={<Login />} />
                     <Route path="register/" element={<Register />} />
                     <Route path="profile/" element={<EditProfileSignUp />} />
+                    <Route path="*" element={<Error />}/>
                 </Route>
-                <Route path="/post/*" element={<Outlet />}>
+                <Route path="/post/" element={<Outlet />}>
                     <Route path="" element={<HomeFeed />} />
                     <Route path=":id/" element={<PostDetail />} />
                     <Route path="upload/" element={<UploadPost />} />
                     <Route path="upload/product" element={<UploadProduct />} />
+                    <Route path="*" element={<Error />}/>
                 </Route>
-                <Route path="/chat/*" element={<Outlet />}>
+                <Route path="/chat/" element={<Outlet />}>
                     <Route path="" element={<ChatList />} />
                     <Route path=":id/" element={<ChattingRoom />} />
+                    <Route path="*" element={<Error />}/>
                 </Route>
+                <Route path="/*" element={<Error />}/>
             </Routes>
         </BrowserRouter>
     );
