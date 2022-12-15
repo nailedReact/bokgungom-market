@@ -1,0 +1,99 @@
+{
+    "chat": [{
+        "id": "1",
+        "caller": {
+            "username": "애월읍 위니브 감귤농장",
+            "isOnline": true,
+            "image": "https://mandarin.api.weniv.co.kr/1670995495481.png"
+        },
+        "chatData": [{
+            "id": "1",
+            "isIncoming": true,
+            "content": "옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:39:00"
+        }, {
+            "id": "2",
+            "isIncoming": true,
+            "content": "안녕하세요. 감귤 사고싶어요요요요요",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:41:00"
+        }, {
+            "id": "3",
+            "isIncoming": false,
+            "content": "네 말씀하세요.",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:50:00"
+        }, {
+            "id": "4",
+            "isIncoming": false,
+            "content": "https://mandarin.api.weniv.co.kr/1670995495481.png",
+            "typeOfContent": "image",
+            "date": "2022-12-15 12:51:00"
+        }]
+    }, {
+        "id": "2",
+        "caller": {
+            "username": "제주감귤마을",
+            "isOnline": true,
+            "image": "https://mandarin.api.weniv.co.kr/Ellipse.png"
+        },
+        "chatData": [{
+            "id": "1",
+            "isIncoming": true,
+            "content": "옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:39:00"
+        }, {
+            "id": "2",
+            "isIncoming": true,
+            "content": "안녕하세요. 감귤 사고싶어요요요요요",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:41:00"
+        }, {
+            "id": "3",
+            "isIncoming": false,
+            "content": "네 말씀하세요.",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:50:00"
+        }, {
+            "id": "4",
+            "isIncoming": true,
+            "content": "깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지를 만나보세요!",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:51:00"
+        }]
+    }, {
+        "id": "3",
+        "caller": {
+            "username": "누구네 농장 친환경 한라봉",
+            "isOnline": false,
+            "image": "https://mandarin.api.weniv.co.kr/Ellipse.png"
+        },
+        "chatData": [{
+            "id": "1",
+            "isIncoming": true,
+            "content": "옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:39:00"
+        }, {
+            "id": "2",
+            "isIncoming": true,
+            "content": "안녕하세요. 감귤 사고싶어요요요요요",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:41:00"
+        }, {
+            "id": "3",
+            "isIncoming": false,
+            "content": "네 말씀하세요.",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:50:00"
+        }, {
+            "id": "4",
+            "isIncoming": true,
+            "content": "내 차는 내가 평가한다. 오픈 이벤트에 참여 하세요!",
+            "typeOfContent": "text",
+            "date": "2022-12-15 12:51:00"
+        }]
+    }]
+}
