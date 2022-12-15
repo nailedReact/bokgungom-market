@@ -35,6 +35,7 @@ export default function ChatList() {
     return (
         <>
             <TopBar type={"A1"} />
+            <h1 className={"ir"}>채팅 리스트</h1>
             <ul>{chatData}</ul>
             <NavBar />
         </>
