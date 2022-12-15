@@ -10,13 +10,16 @@ export default function ProfileCard() {
 
   const Cont = styled.div`
     text-align: center;
-
+    border: 0.5px solid #DBDBDB;
+    background: #FFFFFF;
   `;
 
   const ProfileCont = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items:center;
+    margin-top:30px;
+    gap: 40px;
   `;
 
   const Profileimg = styled.img`
@@ -91,7 +94,7 @@ export default function ProfileCard() {
   `;
 
     const [profileData, setProfileData] = useState({});
-    const navigete = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getprofile = async () => {
@@ -107,14 +110,14 @@ export default function ProfileCard() {
 
 
     const followlist = (data) => {
-      if(data === "followers") navigete('/Follower')
-      else if(data === "followings") navigete('/Following')
+      if(data === "followers") navigate('/Follower')
+      else if(data === "followings") navigate('/Following')
     }
 
     const chatorshare = (data) => {
 
-      if(data === "chat") navigete(`/chat/${profileData.accountname}`)
-      else if(data === "share") navigete('/share')
+      if(data === "chat") navigate(`/chat/${profileData.accountname}`)
+      else if(data === "share") navigate('/share')
     }
   return (
     <Cont>
@@ -136,7 +139,7 @@ export default function ProfileCard() {
 
         <ButtonCont>
           <Chatimg src={chat} alt="채팅하기" onClick={()=> {chatorshare("chat")}}/>
-          <Button className='medium'>{profileData.isfollow ? "취소" : "팔로우"}</Button>
+          <Button className='medium' active={profileData.isfollow} >{profileData.isfollow ? "취소" : "팔로우"}</Button>
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
 
