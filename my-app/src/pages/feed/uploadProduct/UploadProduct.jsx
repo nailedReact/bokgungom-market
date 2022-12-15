@@ -1,10 +1,10 @@
 import {useState, useRef} from 'react'
-import Inp from '../../components/userinput/Inp';
-import UserInput from '../../components/userinput/UserInput';
-import Button from '../../components/Button';
-import ImageUpload from "../../components/ImageUpload/ImageUpload";
+import Inp from '../../../components/userinput/Inp';
+import UserInput from '../../../components/userinput/UserInput';
+import Button from '../../../components/Button';
+import ImageUpload from "../../../components/ImageUpload/ImageUpload";
 // import ImgUploadIcon from "../../components/ImageUpload/ImageUpload";
-import {ProfileImgSetCont} from "../../components/ProfileImageSet/profileImageSet.style"
+import {ProfileImgSetCont} from "../../../components/ProfileImageSet/profileImageSet.style"
 // import { ProductSampleImg } from "./UploadProduct.style";
 
 export default function UploadProduct({onChangeByUpper}) {
@@ -85,7 +85,7 @@ export default function UploadProduct({onChangeByUpper}) {
             <span className={"ir"}>상품 이미지 설정</span>
             <img
                 className={"productSampleImage"}
-                src={require(`../../assets/product-img-empty.png`)}
+                src={require(`../../../assets/product-img-empty.png`)}
                 alt=""
                 ref={imagePre}
             />

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import Button from '../../components/Button'
-import {useNavigate } from 'react-router-dom';
-import chat from '../../assets/icon/icon-message-circle.png';
-import share from '../../assets/icon/icon-share.png'
+import Button from '../../../components/Button'
+import { useNavigate } from 'react-router-dom';
+import chat from '../../../assets/icon/icon-message-circle.png';
+import share from '../../../assets/icon/icon-share.png'
 
 export default function ProfileCard() {
 
@@ -100,7 +100,7 @@ export default function ProfileCard() {
         const getprofile = async () => {
           const res = await axios.get('https://mandarin.api.weniv.co.kr/profile/hyejee', {
             headers: {
-              Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+              Authorization : localStorage.getItem("Authorization")
             }
         });
         setProfileData(res.data.profile);
