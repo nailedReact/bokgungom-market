@@ -15,7 +15,7 @@ export default function PostCard({data}) {
         margin-top: 20px;
     `;
     const Username = styled.h2`
-        font-weight: 500;
+        font-weight: 600;
         font-size: 14px;
         line-height: 18px;
     `;
@@ -24,7 +24,7 @@ export default function PostCard({data}) {
         font-weight: 400;
         font-size: 12px;
         line-height: 14px;
-        color: #767676
+        color: #767676;
         margin-top: 2px;
     `;
 

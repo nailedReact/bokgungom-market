@@ -34,9 +34,34 @@ const BtnIcon = styled.button`
     width: 24px;
     height: 24px;
 `;
+const SearchBtn = styled.button`
+    background: url(${iconSearch});
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 17px;
+`;
+    const Searchinput = styled.input`
+        font-size: 14px;
+        line-height: 18px;
+        background: #F2F2F2;
+        border-radius: 32px;
+        border: 0;
+        height: 32px;
+        width: 300px;
+        left: 58px;
+        padding-left: 10px;
+        margin-right: 30px;
 
-export default function TopBar({type, title, right4Ctrl}) {
+
+    `;
+
+export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
+
     const [TypeLeft, TypeRight] = type.split('')
     return (
         <TopBarCont>
@@ -53,10 +78,16 @@ export default function TopBar({type, title, right4Ctrl}) {
             <RightCont>
                 {TypeRight === "0"  && <></>}
                 {TypeRight === "1"  && <BtnIcon action="more"/>}
-                {TypeRight === "2"  && <input placeholder="검색어 입력"/>}
+                {TypeRight === "2"  && <>
+                <Searchinput
+                    type="text"
+                    placeholder="계정 검색"
+                    onKeyUp ={onChangeByUpper}/>
+                <SearchBtn onClick={onClickGetMsg}></SearchBtn>
+                </>}
                 {TypeRight === "3"  && <BtnIcon action="search"/>}
                 {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled.isBtnVisible}>저장</Button>}
             </RightCont>
         </TopBarCont>
     )
-}
+} 
