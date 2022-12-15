@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import ProfileCard from './ProfileCard';
 import SaledProductCard from './SaledProductCard';
+import PostList from '../../components/PostList'
 
 export default function Profile() {
     const Cont = styled.div`
@@ -11,10 +12,19 @@ export default function Profile() {
           background: #DBDBDB;
     `;
   
+    const PostCont =styled.div`
+      background: white;
+      border: 0.5px solid #DBDBDB;
+    `;
+  
     return (
     <Cont>
         <ProfileCard />
         <SaledProductCard />
+        <PostCont>
+          <PostList/>
+        </PostCont>
+        
     </Cont>
   )
 }

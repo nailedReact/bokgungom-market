@@ -10,6 +10,7 @@ import UploadPost from "../pages/feed/UploadPost";
 import UploadProduct from "../pages/feed/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
+import Search from "../pages/feed/Search";
 
 export default function Router() {
     return (

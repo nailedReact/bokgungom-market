@@ -6,7 +6,7 @@ export default function Splash() {
      const data = useAuth();
      console.log(data)
     return (
-        // 곰이 안보여서 임시로 배경 적용
+        //곰이 안보여서 임시로 배경 적용
         <BgTemp>
             <Bear></Bear>
         </BgTemp>
