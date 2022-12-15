@@ -6,7 +6,7 @@ import  heart  from '../assets/icon/icon-heart.png';
 import comment from '../assets/icon/icon-message-circle.png';
 import styled from 'styled-components';
 import axios from 'axios';
-import Heart from './Heart';
+// import Heart from './Heart';
 
 export default function PostCard({data}) {
     
@@ -81,23 +81,16 @@ export default function PostCard({data}) {
 
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.posthearts);
-
-    // useEffect(() => {
-    //     const getPostid = async () => {
-    //       const res = await axios.post(`https://mandarin.api.weniv.co.kr/post/${data.id}/heart`, {
-    //         headers: {
-    //         Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
-    //         }
-    //     });
-    //         console.log(res);
-    //     }
-    //     getPostid();
-    // }, "")
-
-    const heartchange = () => {
+    
+    const heartchange = async () => {
         if(myheart === false){
-           
-
+            
+                const res = await axios.post(`https://mandarin.api.weniv.co.kr/post/${data.id}/heart`, {
+                  headers: {
+                  Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+                  }
+              });
+                console.log(res);
           setMyheart(true);
           setMyposthearts(data.heartCount-1);
         }else{
@@ -130,7 +123,6 @@ export default function PostCard({data}) {
                         </>
                         }
                     </span>
-                    <Heart />
                     <span>
                         <Commentimg src={comment} alt="댓글 아이콘"/>
                         <Count>{data.commentCount}</Count>
