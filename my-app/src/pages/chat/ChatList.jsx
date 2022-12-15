@@ -22,7 +22,6 @@ export default function ChatList() {
                     image={e.caller.image}
                     isOnline={e.caller.isOnline}
                     username={e.caller.username}
-                    data={e.chatData}
                     lastChat={lastChat}
                     date={e.chatData[lastIndex].date}
                 />
