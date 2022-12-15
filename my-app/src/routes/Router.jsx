@@ -7,10 +7,14 @@ import Splash from "../pages/splash/Splash";
 import HomeFeed from "../pages/feed/HomeFeed";
 import PostDetail from "../pages/feed/PostDetail";
 import UploadPost from "../pages/feed/UploadPost";
-import UploadProduct from "../pages/feed/UploadProduct";
+import UploadProduct from "../pages/feed/uploadProduct/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
 import Error from "../pages/error/Error";
+import Profile from "../pages/profile/userprofile/Profile";
+import EditProfile from "../pages/profile/follow/EditProfile";
+import Follower from "../pages/profile/follow/Follower";
+import Following from "../pages/profile/follow/Following";
 
 export default function Router() {
     return (
@@ -20,7 +24,13 @@ export default function Router() {
                 <Route path="/account/" element={<Outlet />}>
                     <Route path="login/" element={<Login />} />
                     <Route path="register/" element={<Register />} />
-                    <Route path="profile/" element={<EditProfileSignUp />} />
+                    <Route path="register/profile" element={<EditProfileSignUp />} />
+                    <Route path="profile/:username/" element={<Outlet />}>
+                        <Route path="" element={<Profile />} />
+                        <Route path="follower/" element={<Follower />} />
+                        <Route path="following/" element={<Following />} />
+                        <Route path="edit/" element={<EditProfile />} />
+                    </Route>
                     <Route path="*" element={<Error />}/>
                 </Route>
                 <Route path="/post/" element={<Outlet />}>

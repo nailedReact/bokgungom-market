@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Inp from '../../components/userinput/Inp';
 import UserInput from '../../components/userinput/UserInput';
 import Button from '../../components/Button';
@@ -11,7 +12,6 @@ export default function Login() {
     const [pwVal, setPwVal] = useState("");
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [emailValid, setEmailValid] = useState(false);
-    const [resStat, setResStat] = useState();
     const AlertMsg = useRef(null);
 
     // 이메일 형식이 유효하고 &&  비밀번호가 6자리 이상이면 버튼 활성화
@@ -94,11 +94,11 @@ export default function Login() {
                 </Warning>
                 <Button
                     type="button"
-                    className="large"
+                    className="large max"
                     disabled={isBtnDisable}
                     onClick={handleLogin}
                 >다음</Button>
-                <button className="btn_join">이메일로 회원가입</button>
+                <Link to="../register">이메일로 회원가입</Link>
             </form>
         </main>
     )

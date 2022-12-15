@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-    background-color: #F26E22; // 변경 예정
+    background-color: #4583A3; // 변경 예정
     color: #FFFFFF;
 
     &.small {
@@ -24,14 +24,17 @@ const Button = styled.button`
     
     &.large {
         font-size: 14px;
-        padding: 13px 0px;
+        padding: 13px 35px;
         border-radius: 44px;
+        
+    }
+    &.max {
         width: 100%;
     }
 
     // <Button className="large" active={false}>follow</Button>
     &.small, &.medium {
-        background-color: ${(props) => (props.active ? '#F26E22' : '#fff')};
+        background-color: ${(props) => (props.active ? '#4583A3' : '#fff')};
         color: ${(props) => (props.active ? '#fff' : '#767676')};
         box-shadow: ${(props) => (props.active ? 'none' : '0 0 0 1px inset #DBDBDB;')};
     }

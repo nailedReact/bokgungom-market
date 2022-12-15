@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import TopBar from "../../components/TopBar";
-import ProfileSetInpsTemp from "../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
+import TopBar from "../../../components/TopBar";
+import ProfileSetInpsTemp from "../../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
 
 export default function EditProfile() {
     const token = localStorage.getItem("token");

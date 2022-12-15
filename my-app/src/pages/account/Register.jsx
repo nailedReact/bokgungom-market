@@ -100,7 +100,7 @@ export default function Register() {
     e.preventDefault(); // 새로고침 막기
     console.log(userData);
     
-    navigate('../profile', { state: userData });
+    navigate('./profile', { state: userData });
     // console.log(userData)
   }
 
@@ -136,7 +136,7 @@ export default function Register() {
           </Inp>
         </UserInput>
         <Warning ref={pwAlertMsg}>* 비밀번호는 6자 이상이어야 합니다.</Warning>
-        <Button type="submit" className="large" disabled={isDisable}>다음</Button>
+        <Button type="submit" className="large max" disabled={isDisable}>다음</Button>
       </form>
     </>
   );
