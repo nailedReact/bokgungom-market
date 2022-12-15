@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import ProfileCard from './ProfileCard';
 import SaledProductCard from './SaledProductCard';
-import PostList from '../../components/PostList'
+import PostList from '../../../components/PostList'
 
 export default function Profile() {
     const Cont = styled.div`
