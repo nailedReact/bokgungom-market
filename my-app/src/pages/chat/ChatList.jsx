@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TopBar from "../../components/TopBar";
-import ChatItem from "./chat/ChatItem";
+import ChatItem from "./chat/ChatItem/ChatItem";
 import NavBar from "../../components/NavBar/NavBar";
 import data from "./chat/chatdata.json";
 
