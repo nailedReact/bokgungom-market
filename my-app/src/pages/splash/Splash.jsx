@@ -30,6 +30,8 @@ export default function Splash() {
         }
     }
     return (
+
+
         <BgCont onClick={handleModal} id="back">
             <Bear id="bear"></Bear>
             <SplashModal ref={modalRef}>
@@ -49,5 +51,6 @@ export default function Splash() {
                 </LoginRegister>
             </SplashModal>
         </BgCont>
+
     )
 }
