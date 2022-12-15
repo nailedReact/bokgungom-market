@@ -12,13 +12,13 @@ const CharacterAni = keyframes`
     }
 `
 
-export const BgTemp = styled.div`
-    background-color: #4583A3;
-    width: 100vw;
-    height: 100vh;
+export const BgCont = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #4583A3;
+    width: 100vw;
+    height: 100vh;
 `
 export const Bear = styled.div`
     width: 305px;
@@ -31,15 +31,17 @@ export const SplashModal = styled.article`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
     position: absolute;
     bottom: 0;
+    width: 100%;
     padding: 50px 34px;
-    border-radius: 10px 10px 0 0;
     background-color: white;
     color: #767676;
     font-size: 14px;
+    border-radius: 10px 10px 0 0;
+    transform: translate3d(0, 100%, 0);
     transition: 1s;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 `
 
 export const BtnSocialLogin = styled.button`
@@ -108,6 +110,5 @@ export const LoginRegister = styled.div`
     justify-content: center;
     align-items: center;
     gap: 12px;
-    /* color: inherit; */
     padding: 20px;
 `
