@@ -22,4 +22,9 @@ export const GlobalStyle = createGlobalStyle`
             cursor: default;
         }
     }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 `;
