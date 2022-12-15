@@ -7,7 +7,6 @@ export default function ChatItem({
     image,
     isOnline,
     username,
-    data,
     lastChat,
     date,
 }) {
@@ -18,7 +17,7 @@ export default function ChatItem({
     // 링크 클릭시 해당 데이터를 그 페이지에 전달하도록 했습니다.
     return (
         <ChatItemCont>
-            <Link className={"link"} to={chatLink} state={{chatData: data}}>
+            <Link className={"link"} to={chatLink}>
                 <div className={isOnline ? "profileImgWrapper online" : "profileImgWrapper"}>
                     {/* 스크린 리더 사용자를 위해 온라인 오프라인 표시를 했습니다. */}
                     <span className={"ir"}>{isOnline ? "온라인" : "오프라인"}</span>
