@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
 import Button from '../../../components/Button'
 import { useNavigate } from 'react-router-dom';
 import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'
+import { UserNameContext } from "./Profile"
 
-export default function ProfileCard() {
 
   const Cont = styled.div`
     text-align: center;
@@ -54,6 +54,7 @@ export default function ProfileCard() {
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
+    cursor: pointer;
   `;
 
   const Following = styled.div`
@@ -61,6 +62,7 @@ export default function ProfileCard() {
     font-size: 18px;
     line-height: 23px;
     color: #767676;
+    cursor: pointer;
   `;
 
   const FollowTxt = styled.p`
@@ -92,15 +94,16 @@ export default function ProfileCard() {
     border-radius: 30px;
     padding: 9px;
   `;
-
+export default function ProfileCard() {
     const [profileData, setProfileData] = useState({});
     const [checkFollowing, setCheckFollowing] = useState(profileData.isfollow)
     const navigate = useNavigate();
-
+    const { username, isMyProfile } = useContext(UserNameContext);
+    console.log(isMyProfile)
     useEffect(() => {
         const getprofile = async () => {
-          // 여기 URL을 props로 받아와야합니다.
-          const res = await axios.get('https://mandarin.api.weniv.co.kr/profile/sjtest', {
+          const URL = "https://mandarin.api.weniv.co.kr/profile/" + username;
+          const res = await axios.get(URL, {
             headers: {
               Authorization : localStorage.getItem("Authorization")
               // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
@@ -113,8 +116,9 @@ export default function ProfileCard() {
 
 
     const followlist = (data) => {
-      if(data === "followers") navigate('/Follower')
-      else if(data === "followings") navigate('/Following')
+      console.log(data)
+      if(data === "followers") navigate('./follower/')
+      else if(data === "followings") navigate('./following')
     }
 
     const chatorshare = (data) => {
@@ -162,18 +166,19 @@ export default function ProfileCard() {
           <FollowTxt>followings</FollowTxt>
         </div>
       </ProfileCont>
-    
         <Username>{profileData.username}</Username>
         <Accountname>@ {profileData.accountname}</Accountname>
         <Intro>{profileData.intro}</Intro>
-
         <ButtonCont>
           <Chatimg src={chat} alt="채팅하기" onClick={()=> {chatorshare("chat")}}/>
+          {isMyProfile ? 
+          <>
+          <Button className='medium' onClick={()=> navigate("./edit/")}>프로필 수정</Button>
+          <Button className='medium' onClick={()=> navigate("../../post/upload/product")}>상품등록</Button>
+          </> :
           <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"}</Button>
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
-
-
     </Cont>
     
     

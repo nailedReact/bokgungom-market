@@ -8,10 +8,7 @@ import comment from '../assets/icon/icon-message-circle.png';
 import styled from 'styled-components';
 import axios from 'axios';
 // import Heart from './Heart';
-
-export default function PostCard({data}) {
-    
-    const Cont = styled.div`
+const Cont = styled.div`
         display: flex;
         margin-top: 20px;
     `;
@@ -79,6 +76,13 @@ export default function PostCard({data}) {
         color: #767676;
         margin-top: 18px;
     `;
+    const ProfilePicSmall = styled.img`
+        width: 42px;
+        height: 42px;
+    `
+export default function PostCard({data, myProfile}) {
+    
+    
 
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
@@ -107,13 +111,14 @@ export default function PostCard({data}) {
             setMyposthearts(heartfalse.data.post.heartCount);
         }
     }
-
+    console.log(data)
     return (
         <Cont>
-            {/* <img src= {data.userimage} alt="글쓴이프로필사진" /> */}
+            <ProfilePicSmall src= {data.author.image} alt="글쓴이프로필사진" />
             <ContentCont>
                 <Username>{data.author.username}</Username>
                 <Accountname>@ {data.author.accountname}</Accountname>
+                {myProfile ? <button>수정</button> : <></>}
                 <Content>{data.content}</Content>
                 {(data.image) ? <Contentimg src={data.image} alt="컨텐츠 사진" />
                  : null}
