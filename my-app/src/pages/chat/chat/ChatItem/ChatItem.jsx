@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ChatItemCont } from "./chatItem.style";
+import { formattedDateFunc } from "../../dateFormat";
 
 export default function ChatItem({
     linkSrc,
@@ -10,8 +11,9 @@ export default function ChatItem({
     lastChat,
     date,
 }) {
-    const formattedDate = `${date.slice(0, 4)}.${date.slice(5, 7)}.${date.slice(8, 10)}`;
+    // const formattedDate = `${date.slice(0, 4)}.${date.slice(5, 7)}.${date.slice(8, 10)}`;
 
+    const formattedDate =  formattedDateFunc(date);
     const chatLink = "/chat/" + linkSrc;
 
     // 링크 클릭시 해당 데이터를 그 페이지에 전달하도록 했습니다.
@@ -27,7 +29,7 @@ export default function ChatItem({
                     <h2 className={"userName"}>{username}</h2>
                     <p className={"lastChat"}>{lastChat}</p>
                 </div>
-                <time className={"date"} dateTime={date}>{formattedDate}</time>
+                <time className={"date"} dateTime={formattedDate.dateTime}>{formattedDate.formatted}</time>
             </Link>
         </ChatItemCont>
     );
