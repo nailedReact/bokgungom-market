@@ -141,6 +141,7 @@ export default function ProfileCard() {
               }
               });
           console.log(unfollow.data);
+          
       }else{
           setCheckFollowing(true);
           const follow = await axios.post(

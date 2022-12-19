@@ -15,6 +15,7 @@ import Profile from "../pages/profile/userprofile/Profile";
 import EditProfile from "../pages/profile/follow/EditProfile";
 import Follower from "../pages/profile/follow/Follower";
 import Following from "../pages/profile/follow/Following";
+import Search from "../pages/feed/Search";
 
 export default function Router() {
     return (
@@ -33,6 +34,7 @@ export default function Router() {
                     </Route>
                     <Route path="*" element={<Error />}/>
                 </Route>
+                <Route path="/search" element={<Search />}/>
                 <Route path="/post/" element={<Outlet />}>
                     <Route path="" element={<HomeFeed />} />
                     <Route path=":id/" element={<PostDetail />} />

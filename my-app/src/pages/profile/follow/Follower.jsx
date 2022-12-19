@@ -1,19 +1,20 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import axios from 'axios'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import FollowListCard from './FollowListCard'
+import { UserNameContext } from '../userprofile/Profile'
 
 export default function Following() {   
     const [resMsg, setResMsg] = useState([]);
     const [followerArr, setFollowerArr] = useState([]);;
-
+    const { username, isMyProfile } = useContext(UserNameContext);
     //accountname을 props로 받아와서 url에 넣어야합니다, 개인 토큰도 넣어야합니다.
   
     useEffect(() => {
         const getFollowinglist = async () => {
-          const res = await axios.get(`https://mandarin.api.weniv.co.kr/profile/hyejee/follower`, {
+          const URL = "https://mandarin.api.weniv.co.kr/profile/" + username + "/follower"
+          const res = await axios.get(URL, {
             headers: {
             // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
             Authorization: localStorage.getItem("Authorization")
