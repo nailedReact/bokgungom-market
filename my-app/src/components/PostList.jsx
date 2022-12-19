@@ -38,6 +38,7 @@ export default function PostList({isProfilePage}) {
   const [postArr, setPostArr] = useState([]);
   const [view, setView] = useState("list");
   const { username, isMyProfile } = useContext(UserNameContext);
+
   useEffect(() => {
     const getMsg = async () => {
       const URL = "https://mandarin.api.weniv.co.kr/post/" + username + "/userpost"
@@ -56,7 +57,12 @@ export default function PostList({isProfilePage}) {
       resMsg.forEach((item) => {
           setPostArr((postArr) => {
             // console.log(postArr);
-            return [...postArr, <PostCard key={item.id} data={item}/>];
+            if (isMyProfile){
+              return [...postArr, <PostCard key={item.id} data={item} myProfile={true}/>];
+            }
+            else {
+              return [...postArr, <PostCard key={item.id} data={item} myProfile={false}/>];
+            }
           })
       })
     }
