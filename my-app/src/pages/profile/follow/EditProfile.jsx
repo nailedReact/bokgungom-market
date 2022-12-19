@@ -7,7 +7,7 @@ export default function EditProfile() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);
     const [prevData, setPrevData] = useState({});
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Authorization");
 
     const onInvalidFunc = () => {
         setIsBtnVisible(true);
