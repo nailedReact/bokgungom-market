@@ -1,24 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import TopBar from "../../../components/TopBar";
-import ProfileSetInpsTemp from "../../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
+import ProfileSetInpsTempLogIn from "../../../components/ProfileSetInpsTemp/ProfileSetInpsTempLogIn";
 
 export default function EditProfile() {
+    const [isBtnVisible, setIsBtnVisible] = useState(false);
+    const [prevData, setPrevData] = useState({});
+
     const token = localStorage.getItem("token");
 
-    const [isBtnVisible, setIsBtnVisible] = useState(true);
-
-    // 제출 버튼을 비활성화 하는 함수: 하위 컴포넌트에 내려줄 거임
     const onInvalidFunc = () => {
         setIsBtnVisible(true);
     };
 
-    // 제출 버튼을 활성화 하는 함수: 하위 컴포넌트에 내려줄 거임
     const onValidFunc = () => {
         setIsBtnVisible(false);
     };
 
-    // 폼이 제출될 때 실행되는 함수
     const onSubmitFunc = async (submitted) => {
         // 원본 데이터를 훼손하지 않기 위해 스프레드 기법 + 새로운 변수를 만듦, 기존 데이터 건들지 않는 방향으로
         let edited;
@@ -42,11 +40,11 @@ export default function EditProfile() {
             const loginRes = await axios.put(
                 "https://mandarin.api.weniv.co.kr/user",
                 {
-                    "user":edited
+                    user: edited,
                 },
                 {
                     headers: {
-                        "Authorization": `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`,
                         "Content-type": "application/json",
                     },
                 }
@@ -58,14 +56,43 @@ export default function EditProfile() {
         }
     };
 
+    // 페이지 로드시 기존 정보를 가져오기 위함
+    const getPrevData = useCallback(async () => {
+        try {
+            const res = await axios.get(
+                "https://mandarin.api.weniv.co.kr/user/myinfo",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            // 기존 정보를 가져온 뒤 prevData에 값을 넣음
+            setPrevData({
+                username: res.data.user.username,
+                accountname: res.data.user.accountname,
+                intro: res.data.user.intro,
+                image: res.data.user.image
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }, [token]);
+
+    useEffect(() => {
+        getPrevData();
+    }, [getPrevData]);
+
     return (
         <>
             <TopBar
                 type={"A4"}
-                right4Ctrl={{ form: "login", isDisabled: { isBtnVisible } }}
+                right4Ctrl={{ form: "logined", isDisabled: { isBtnVisible } }}
             />
-            <ProfileSetInpsTemp
-                formId={"login"}
+            <ProfileSetInpsTempLogIn
+                formId={"logined"}
+                prev={prevData}
                 onInValidByUpper={onInvalidFunc}
                 onValidByUpper={onValidFunc}
                 onSubmitByUpper={onSubmitFunc}

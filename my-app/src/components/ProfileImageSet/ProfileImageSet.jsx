@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload.jsx";
 import { ProfileImgSetCont } from "./profileImageSet.style.js";
 
-export default function ProfileImageSet({ onChangeByUpper }) {
+export default function ProfileImageSet({ onChangeByUpper, initial }) {
     const image = useRef(null);
 
     const handleFiles = (files, fileReader) => {
@@ -18,7 +18,7 @@ export default function ProfileImageSet({ onChangeByUpper }) {
             <span className={"ir"}>프로필 사진 이미지 설정</span>
             <img
                 className={"profileImg"}
-                src={require(`../../assets/basic-profile-img.png`)}
+                src={initial || require(`../../assets/basic-profile-img.png`)}
                 alt=""
                 ref={image}
             />
