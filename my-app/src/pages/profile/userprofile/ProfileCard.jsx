@@ -145,8 +145,8 @@ export default function ProfileCard() {
           <Chatimg src={chat} alt="채팅하기" onClick={()=> {chatorshare("chat")}}/>
           {isMyProfile ? 
           <>
-          <Button className='medium'>프로필 수정</Button>
-          <Button className='medium'>상품등록</Button>
+          <Button className='medium' onClick={()=> navigate("./edit/")}>프로필 수정</Button>
+          <Button className='medium' onClick={()=> navigate("../../post/upload/product")}>상품등록</Button>
           </> :
           <Button className='medium' active={profileData.isfollow} >{profileData.isfollow ? "취소" : "팔로우"}</Button>}
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
