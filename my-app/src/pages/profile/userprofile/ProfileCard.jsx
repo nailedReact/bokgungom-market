@@ -54,6 +54,7 @@ import { UserNameContext } from "./Profile"
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
+    cursor: pointer;
   `;
 
   const Following = styled.div`
@@ -61,6 +62,7 @@ import { UserNameContext } from "./Profile"
     font-size: 18px;
     line-height: 23px;
     color: #767676;
+    cursor: pointer;
   `;
 
   const FollowTxt = styled.p`
@@ -113,8 +115,9 @@ export default function ProfileCard() {
 
 
     const followlist = (data) => {
-      if(data === "followers") navigate('/Follower')
-      else if(data === "followings") navigate('/Following')
+      console.log(data)
+      if(data === "followers") navigate('./follower/')
+      else if(data === "followings") navigate('./following')
     }
 
     const chatorshare = (data) => {
@@ -148,8 +151,6 @@ export default function ProfileCard() {
           <Button className='medium' active={profileData.isfollow} >{profileData.isfollow ? "취소" : "팔로우"}</Button>}
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
-        
-
     </Cont>
     
     
