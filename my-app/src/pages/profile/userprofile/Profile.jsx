@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 import ProfileCard from './ProfileCard';
 import SaledProductCard from './SaledProductCard';
 import PostList from '../../../components/PostList'
-import useAuth from "../../../hook/useAuth"
-
+import useAuth from "../../../hook/useAuth";
 
 const Cont = styled.div`
   display:flex;
@@ -55,7 +54,8 @@ export default function Profile() {
           <ProfileCard/>
           <SaledProductCard/>
           <PostCont>
-            <PostList/>
+            
+            <PostList isProfilePage={true}/>
           </PostCont>
       </Cont>
     </UserNameContext.Provider>
