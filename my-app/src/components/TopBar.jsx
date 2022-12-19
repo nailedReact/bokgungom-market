@@ -3,6 +3,7 @@ import Button from "./Button"
 import iconArrowLeft from "../assets/icon/icon-arrow-left.png"
 import iconSearch from "../assets/icon/icon-search.png"
 import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
+import { useNavigate } from 'react-router-dom';
 
 const TopBarCont = styled.div`
     background-color: gainsboro;
@@ -62,7 +63,9 @@ const SearchBtn = styled.button`
 export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg, onClickModal}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
 
-    const [TypeLeft, TypeRight] = type.split('')
+    const [TypeLeft, TypeRight] = type.split('');
+    const navigate = useNavigate();
+
     return (
         <TopBarCont>
             <LeftCont>
@@ -85,7 +88,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                     onKeyUp ={onChangeByUpper}/>
                 <SearchBtn onClick={onClickGetMsg}></SearchBtn>
                 </>}
-                {TypeRight === "3"  && <BtnIcon action="search"/>}
+                {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}/>}
                 {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled.isBtnVisible}>저장</Button>}
             </RightCont>
         </TopBarCont>

@@ -79,11 +79,9 @@ const Cont = styled.div`
     const ProfilePicSmall = styled.img`
         width: 42px;
         height: 42px;
+        margin-right: 12px;
     `
 export default function PostCard({data, myProfile}) {
-    
-    
-
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
     
