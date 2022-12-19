@@ -1,5 +1,10 @@
+/* eslint-disable */
+import PostList from "../../components/PostList"
+
+
 export default function HomeFeed() {
     return (
-        <div>HomeFeed</div>
+        <PostList/>
+        // <div>HomeFeed</div>
     )
 }

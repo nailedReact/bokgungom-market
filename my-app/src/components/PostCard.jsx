@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable array-callback-return */
 import React from 'react'
 import { useState, useEffect } from 'react';
@@ -80,21 +81,30 @@ export default function PostCard({data}) {
     `;
 
     const [myheart, setMyheart] = useState(data.hearted);
-    const [myposthearts, setMyposthearts] = useState(data.posthearts);
+    const [myposthearts, setMyposthearts] = useState(data.heartCount);
     
+    // console.log(data);
     const heartchange = async () => {
         if(myheart === false){
-            
-                const res = await axios.post(`https://mandarin.api.weniv.co.kr/post/${data.id}/heart`, {
-                  headers: {
-                  Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
-                  }
-              });
-                console.log(res);
           setMyheart(true);
-          setMyposthearts(data.heartCount-1);
+          const hearttrue = await axios.post(
+            `https://mandarin.api.weniv.co.kr/post/${data.id}/heart`,{},{
+            headers: {
+                // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+              Authorization: localStorage.getItem("Authorization")
+                }
+            });
+          setMyposthearts(hearttrue.data.post.heartCount);
         }else{
           setMyheart(false);
+          const heartfalse = await axios.delete(
+            `https://mandarin.api.weniv.co.kr/post/${data.id}/unheart`,{
+            headers: {
+                // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+              Authorization: localStorage.getItem("Authorization")
+                }
+            });
+            setMyposthearts(heartfalse.data.post.heartCount);
         }
     }
 
@@ -113,7 +123,7 @@ export default function PostCard({data}) {
                         myheart ? 
                         <>
                           <Heartimg src={heart_active} alt="채워진 하트" /> 
-                          <Count>{data.heartCount}</Count>
+                          <Count>{myposthearts}</Count>
                         </>
                         : 
                         <>
