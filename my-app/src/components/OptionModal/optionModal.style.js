@@ -7,6 +7,7 @@ export const OptionLayout = styled.article`
     bottom: 0;
     padding: 16px 0 10px;
     border-radius: 10px 10px 0 0;
+    z-index: 100;
     background-color: white;
 
     &::before {
