@@ -50,14 +50,13 @@ export default function Profile() {
   else {
     return (
       <UserNameContext.Provider value={{username : accountNameInURL, isMyProfile: isMyProfile}}>
-      <Cont>
-          <ProfileCard/>
-          <SaledProductCard/>
-          <PostCont>
-            
-            <PostList isProfilePage={true}/>
-          </PostCont>
-      </Cont>
+        <Cont>
+            <ProfileCard/>
+            <SaledProductCard/>
+            <PostCont>
+              <PostList isProfilePage={true}/>
+            </PostCont>
+        </Cont>
     </UserNameContext.Provider>
   )
   }
