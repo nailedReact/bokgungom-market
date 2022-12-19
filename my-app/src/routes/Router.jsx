@@ -7,7 +7,7 @@ import Splash from "../pages/splash/Splash";
 import HomeFeed from "../pages/feed/HomeFeed";
 import PostDetail from "../pages/feed/PostDetail";
 import UploadPost from "../pages/feed/UploadPost";
-import UploadProduct from "../pages/feed/uploadProduct/UploadProduct";
+import UploadProduct from "../pages/feed/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
 import Error from "../pages/error/Error";
