@@ -176,12 +176,10 @@ export default function ProfileCard() {
           <Button className='medium' onClick={()=> navigate("./edit/")}>프로필 수정</Button>
           <Button className='medium' onClick={()=> navigate("../../post/upload/product")}>상품등록</Button>
           </> :
-          <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"}</Button>
+          <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"}</Button>}
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
     </Cont>
-    
-    
   )
 }
 
