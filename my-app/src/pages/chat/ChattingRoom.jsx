@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import data from "./chat/chatdata.json";
 import ChatModal from "./chat/ChatModal/ChatModal";
 import TopBar from "../../components/TopBar";
@@ -61,7 +61,9 @@ export default function ChattingRoom() {
         <>
             {modalVisible && (
                 <ChatModal onConfirm={onConfirm}>
-                    <li><button type={"button"}>채팅방 나가기</button></li>
+                    <li>
+                        <Link to={"/chat"}>채팅방 나가기</Link>
+                    </li>
                 </ChatModal>
             )}
             <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
