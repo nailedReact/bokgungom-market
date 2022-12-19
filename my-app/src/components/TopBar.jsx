@@ -59,7 +59,7 @@ const SearchBtn = styled.button`
 
     `;
 
-export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg}) {
+export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg, onClickModal}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
 
     const [TypeLeft, TypeRight] = type.split('')
@@ -77,7 +77,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
             </LeftCont>
             <RightCont>
                 {TypeRight === "0"  && <></>}
-                {TypeRight === "1"  && <BtnIcon action="more"/>}
+                {TypeRight === "1"  && <BtnIcon action="more" onClick={onClickModal}/>}
                 {TypeRight === "2"  && <>
                 <Searchinput
                     type="text"

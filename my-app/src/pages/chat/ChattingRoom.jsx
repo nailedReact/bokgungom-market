@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import data from "./chat/chatdata.json";
+import ChatModal from "./chat/ChatModal/ChatModal";
 import TopBar from "../../components/TopBar";
 import Outgoing from "./chat/Outgoing/Outgoing";
 import Incoming from "./chat/Incoming/Incoming";
@@ -13,6 +14,7 @@ export default function ChattingRoom() {
     const [eachChat, setEachChat] = useState();
     const [title, setTitle] = useState();
     const id = location.pathname.split("/")[2];
+    const [modalVisible, setModalVisible] = useState(false);
 
     const filtered = useRef();
 
@@ -47,9 +49,24 @@ export default function ChattingRoom() {
         setEachChat(chatItems);
     }, [id]);
 
+    const onConfirm = () => {
+        setModalVisible(false);
+    };
+
+    const onClickModal = () => {
+        setModalVisible(true);
+    };
+
     return (
         <>
-            <TopBar type={"A1"} title={title} />
+            {modalVisible && (
+                <ChatModal onConfirm={onConfirm}>
+                    <li>
+                        <Link to={"/chat"}>채팅방 나가기</Link>
+                    </li>
+                </ChatModal>
+            )}
+            <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
             <h1 className={"ir"}>{title}님과의 채팅방 입니다.</h1>
             <ul>{eachChat}</ul>
             <ChatInput />
