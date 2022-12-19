@@ -100,6 +100,7 @@ export default function ProfileCard() {
     const navigate = useNavigate();
     const { username, isMyProfile } = useContext(UserNameContext);
     console.log(isMyProfile)
+
     useEffect(() => {
         const getprofile = async () => {
           const URL = "https://mandarin.api.weniv.co.kr/profile/" + username;
@@ -114,15 +115,7 @@ export default function ProfileCard() {
         getprofile();
     }, [])
 
-
-    const followlist = (data) => {
-      console.log(data)
-      if(data === "followers") navigate('./follower/')
-      else if(data === "followings") navigate('./following')
-    }
-
     const chatorshare = (data) => {
-
       if(data === "chat") navigate(`/chat/${profileData.accountname}`)
       else if(data === "share") navigate('/share')
     }
@@ -158,17 +151,22 @@ export default function ProfileCard() {
     <Cont>
       <ProfileCont>
         <div>
-          <Follower className='follower' onClick={(e) => {followlist("followers", e)}}>{profileData.followerCount}</Follower>
+          <Follower className='follower' onClick={(e) => {
+            navigate('./follower/', { state: profileData})}}>
+            {profileData.followerCount}
+          </Follower>
           <FollowTxt>followers</FollowTxt>
         </div>
         <Profileimg src={profileData.image} alt="프로필 사진 이미지" />
         <div>
-          <Following onClick={() => {followlist("followings")}}>{profileData.followingCount}</Following>
+          <Following onClick={(e) => {navigate('./following/', { state: profileData})}}>
+            {profileData.followingCount}
+          </Following>
           <FollowTxt>followings</FollowTxt>
         </div>
       </ProfileCont>
         <Username>{profileData.username}</Username>
-        <Accountname>@ {profileData.accountname}</Accountname>
+        <Accountname>@{profileData.accountname}</Accountname>
         <Intro>{profileData.intro}</Intro>
         <ButtonCont>
           <Chatimg src={chat} alt="채팅하기" onClick={()=> {chatorshare("chat")}}/>

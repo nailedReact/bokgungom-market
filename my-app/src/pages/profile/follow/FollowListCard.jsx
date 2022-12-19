@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Button from '../../../components/Button';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 //취소버튼을 누르면 팔로우 취소가 된 데이터가 넘어가야합니다! - 구현예정
 export default function FollowListCard({data}) {
@@ -37,6 +38,7 @@ export default function FollowListCard({data}) {
     const Cont = styled.li`
         display: flex;  
         padding: 8px 16px;
+        align-items: center;
     `;
 
     const [checkFollowing, setCheckFollowing] = useState(data.isfollow)
@@ -73,8 +75,7 @@ export default function FollowListCard({data}) {
             <Username>{data.username}</Username>
             <Intro>{data.intro}</Intro>
         </TxtCont>
-        <Button className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
+    <Button className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
     </Cont>
-    
   )
 }
