@@ -8,13 +8,13 @@ import { UserNameContext } from "../pages/profile/userprofile/Profile";
 export default function PostList() {
   const [resMsg, setResMsg] = useState([]);
   const [postArr, setPostArr] = useState([]);
-  const { username } = useContext(UserNameContext)
+  const { username, isMyProfile } = useContext(UserNameContext);
   useEffect(() => {
     const getMsg = async () => {
       const URL = "https://mandarin.api.weniv.co.kr/post/" + username + "/userpost"
       const res = await axios.get(URL, {
         headers: {
-          Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+          Authorization : localStorage.getItem("Authorization")
         }
     });
       setResMsg(res.data.post);

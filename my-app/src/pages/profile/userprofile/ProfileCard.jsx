@@ -7,6 +7,7 @@ import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'
 import { UserNameContext } from "./Profile"
 
+
   const Cont = styled.div`
     text-align: center;
     border: 0.5px solid #DBDBDB;
@@ -93,8 +94,10 @@ import { UserNameContext } from "./Profile"
   `;
 export default function ProfileCard() {
     const [profileData, setProfileData] = useState({});
+    
     const navigate = useNavigate();
-    const { username } = useContext(UserNameContext)
+    const { username, isMyProfile } = useContext(UserNameContext);
+    console.log(isMyProfile)
     useEffect(() => {
         const getprofile = async () => {
           const URL = "https://mandarin.api.weniv.co.kr/profile/" + username;
@@ -132,17 +135,20 @@ export default function ProfileCard() {
           <FollowTxt>followings</FollowTxt>
         </div>
       </ProfileCont>
-    
         <Username>{profileData.username}</Username>
         <Accountname>@ {profileData.accountname}</Accountname>
         <Intro>{profileData.intro}</Intro>
-
         <ButtonCont>
           <Chatimg src={chat} alt="채팅하기" onClick={()=> {chatorshare("chat")}}/>
-          <Button className='medium' active={profileData.isfollow} >{profileData.isfollow ? "취소" : "팔로우"}</Button>
+          {isMyProfile ? 
+          <>
+          <Button className='medium'>프로필 수정</Button>
+          <Button className='medium'>상품등록</Button>
+          </> :
+          <Button className='medium' active={profileData.isfollow} >{profileData.isfollow ? "취소" : "팔로우"}</Button>}
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
-
+        
 
     </Cont>
     
