@@ -96,7 +96,7 @@ import { UserNameContext } from "./Profile"
   `;
 export default function ProfileCard() {
     const [profileData, setProfileData] = useState({});
-    
+    const [checkFollowing, setCheckFollowing] = useState(profileData.isfollow)
     const navigate = useNavigate();
     const { username, isMyProfile } = useContext(UserNameContext);
     console.log(isMyProfile)
@@ -106,6 +106,7 @@ export default function ProfileCard() {
           const res = await axios.get(URL, {
             headers: {
               Authorization : localStorage.getItem("Authorization")
+              // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
             }
         });
         setProfileData(res.data.profile);
@@ -124,6 +125,33 @@ export default function ProfileCard() {
 
       if(data === "chat") navigate(`/chat/${profileData.accountname}`)
       else if(data === "share") navigate('/share')
+    }
+
+    const followingchange = async(e) => {
+      console.log(e.target.value);
+      if(e.target.value === "true"){
+          setCheckFollowing(false)
+          const unfollow = await axios.delete(
+              `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/unfollow`,{
+              headers: {
+                  //테스트시 아래 주석 해제하고 하세용
+                  // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+                  // 
+                  Authorization: localStorage.getItem("Authorization")
+              }
+              });
+          console.log(unfollow.data);
+      }else{
+          setCheckFollowing(true);
+          const follow = await axios.post(
+              `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/follow`,{},{
+              headers: {
+                  // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
+                  Authorization: localStorage.getItem("Authorization")
+                  }
+              });
+          console.log(follow.data);
+      }
     }
   return (
     <Cont>
@@ -148,7 +176,7 @@ export default function ProfileCard() {
           <Button className='medium' onClick={()=> navigate("./edit/")}>프로필 수정</Button>
           <Button className='medium' onClick={()=> navigate("../../post/upload/product")}>상품등록</Button>
           </> :
-          <Button className='medium' active={profileData.isfollow} >{profileData.isfollow ? "취소" : "팔로우"}</Button>}
+          <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"}</Button>
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
     </Cont>
