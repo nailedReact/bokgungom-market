@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
 import Button from '../../../components/Button'
 import { useNavigate } from 'react-router-dom';
 import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'
-
-export default function ProfileCard() {
+import { UserNameContext } from "./Profile"
 
   const Cont = styled.div`
     text-align: center;
@@ -92,13 +91,14 @@ export default function ProfileCard() {
     border-radius: 30px;
     padding: 9px;
   `;
-
+export default function ProfileCard() {
     const [profileData, setProfileData] = useState({});
     const navigate = useNavigate();
-
+    const { username } = useContext(UserNameContext)
     useEffect(() => {
         const getprofile = async () => {
-          const res = await axios.get('https://mandarin.api.weniv.co.kr/profile/hyejee', {
+          const URL = "https://mandarin.api.weniv.co.kr/profile/" + username;
+          const res = await axios.get(URL, {
             headers: {
               Authorization : localStorage.getItem("Authorization")
             }

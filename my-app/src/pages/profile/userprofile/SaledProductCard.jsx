@@ -1,65 +1,63 @@
 import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { UserNameContext } from "./Profile"
 
-export default function SaledProductCard() {
-    
-    const Cont = styled.div`
+const Cont = styled.div`
         background: #ffffff;
         padding: 20px;
         border: 0.5px solid #DBDBDB;
     `;
     
-    const Window = styled.div`
-        overflow: hidden;
-        height: 140px;
-    `;
+const Window = styled.div`
+    overflow: hidden;
+    height: 140px;
+`;
 
-    const SaledProduct = styled.h2`
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 16px;
-    `;
+const SaledProduct = styled.h2`
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 16px;
+`;
 
-    const Productlist = styled.ul`
-        display: flex;
-        gap: 10px;
-        /* 자동 캐러셀 부분 - 아직 구현 완료 못함 */
-        transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')};
-        transform: ${(props) => 'translateX(-' + props.count * 140 + 'px)'};
-    `;
+const Productlist = styled.ul`
+    display: flex;
+    gap: 10px;
+    /* 자동 캐러셀 부분 - 아직 구현 완료 못함 */
+    /* transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; */
+    /* transform: ${(props) => 'translateX(-' + props.count * 140 + 'px)'}; */
+`;
 
-    const ProductCont = styled.li`
-        width: 140px;
-        height: 132px;
-        flex-shrink: 0;
-        list-style: none;
-    `;
+const ProductCont = styled.li`
+    width: 140px;
+    height: 132px;
+    flex-shrink: 0;
+    list-style: none;
+`;
 
-    const Productimg = styled.img`
-        width: 140px;
-        height: 90px;
-        border-radius: 8px;
-    `;
+const Productimg = styled.img`
+    width: 140px;
+    height: 90px;
+    border-radius: 8px;
+`;
 
-    const ItemName = styled.h3`
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
-        margin: 6px 0px;
-    `;
+const ItemName = styled.h3`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 6px 0px;
+`;
 
-    const ItemPrice = styled.p`
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 15px;
-        color: #F26E22;
-    `;  
+const ItemPrice = styled.p`
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: #F26E22;
+`;  
+export default function SaledProductCard() {
 
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
@@ -68,11 +66,13 @@ const navigate = useNavigate();
 const TOTAL_SLIDES = 4;
 const [count, setCount] = useState(0);
 const slideRef = useRef(null);
+const { username } = useContext(UserNameContext);
 
 //판매중인 상품 데이터를 받아오는 부분입니다.
 useEffect(() => {
     const getprofile = async () => {
-      const res = await axios.get('https://mandarin.api.weniv.co.kr/product/hyejee', {
+        const URL = "https://mandarin.api.weniv.co.kr/product/" + username;
+      const res = await axios.get(URL, {
         headers: {
           Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
         }
@@ -91,10 +91,10 @@ const handlelink = (link) => {
 // 상품을 뿌려주는 역할을 하는 부분입니다.
 useEffect(() => {
     if (resMsg.length !== 0){
-        resMsg.forEach((item) => {
+        resMsg.forEach((item, index) => {
             setProductData((productData) => {
             return [...productData, 
-            <ProductCont onClick={() => handlelink(item.link)}>
+            <ProductCont onClick={() => handlelink(item.link)} key={index}>
                 <Productimg src={item.itemImage} alt="상품 이미지"/>
                 <ItemName>{item.itemName}</ItemName>
                 <ItemPrice>{item.price}원</ItemPrice>
