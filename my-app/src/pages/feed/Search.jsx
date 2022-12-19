@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import FollowListCard from '../profile/FollowListCard';
+import FollowListCard from '../profile/follow/FollowListCard';
 import TopBar from '../../components/TopBar';
 
 export default function Search() {
