@@ -82,11 +82,13 @@ const Cont = styled.div`
         height: 42px;
         margin-right: 12px;
     `
-export default function PostCard({data, myProfile, postDetailSrc}) {
+
+export default function PostCard({data, myProfile, view, postDetailSrc}) {
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
     
-    // console.log(data);
+    console.log(myProfile);
+    console.log(view);
     const heartchange = async () => {
         if(myheart === false){
           setMyheart(true);

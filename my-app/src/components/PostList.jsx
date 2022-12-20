@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PostCard from './PostCard';
+import PostAlbum from "./PostAlbum"
 import { UserNameContext } from "../pages/profile/userprofile/Profile";
 
 import IconListOn from "../assets/icon/icon-post-list-on.png"
@@ -31,11 +32,24 @@ const BtnOption = styled.button`
     &.album {
       background-image: ${(props) => (props.view === 'list'? `url(${IconAlbumOff})` : `url(${IconAlbumOn})`)};
     }
-    
 `
+
+const AlbumCont = styled.div`
+  display: grid; 
+  grid-template-rows: repeat(auto-fill, minmax(144px, 1fr));
+  grid-gap: 1em;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: stretch; 
+  align-items: stretch;
+  position: relative;
+	width: 100%;
+	height: 0; 
+`;
+
 export default function PostList({isProfilePage}) {
   const [resMsg, setResMsg] = useState([]);
-  const [postArr, setPostArr] = useState([]);
+  const [postArrList, setPostArrList] = useState([]);
+  const [postArrAlbum, setPostArrAlbum] = useState([]);
   const [view, setView] = useState("list");
   const { username, isMyProfile } = useContext(UserNameContext);
 
@@ -52,25 +66,45 @@ export default function PostList({isProfilePage}) {
     getMsg();
 }, [])
 
+
+
   useEffect(() => {
     if (resMsg.length !== 0){
       resMsg.forEach((item) => {
-          console.log(item);
-          setPostArr((postArr) => {
-            // console.log(postArr);
+          setPostArrList((postArrList) => {
             if (isMyProfile){
-              return [...postArr, <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
+              return [...postArrList, <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
             }
             else {
-              return [...postArr, <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`}/>];
+              return [...postArrList, <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />];
             }
           })
       })
     }
   }, [resMsg])
+
+
+  const arr = [];
+
+  useEffect(() => {
+    if (resMsg.length !== 0){
+      resMsg.forEach((item) => {
+        setPostArrAlbum((postArrAlbum) => {
+          // arr.push(item.image);
+            if (isMyProfile){
+              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={true}/>];
+            }
+            else {
+              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={false}/>];
+            }
+          })
+      })
+    }
+  }, [resMsg])
+
   const handleChangeView = (e) => {
     const type = e.target.className.split(' ').pop();
-    setView(type)
+    setView(type);
   }
   return (
     <>
@@ -80,7 +114,8 @@ export default function PostList({isProfilePage}) {
           <BtnOption className='album' onClick={handleChangeView} view={view}></BtnOption>
         </PostViewCont>
       : <></>}
-      {postArr}
+      {view === "list" ? postArrList : <AlbumCont> {postArrAlbum}</AlbumCont>}
+
     </>
   )
 }
