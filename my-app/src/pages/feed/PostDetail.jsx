@@ -8,6 +8,8 @@ import CommentInp from "../../components/CommentInp/CommentInp";
 import OptionModal from "../../components/OptionModal/OptionModal";
 import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import { formattedDate } from "./feed/dateformat";
+import useAuth from "../../hook/useAuth";
+import basicImg from "../../assets/basic-profile-img.png";
 
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
@@ -16,6 +18,8 @@ export default function PostDetail() {
     const [modalNotMe, setModalNotMe] = useState(false); // 내가 작성한 댓글이 아닌 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [deleteConfirm, setDeleteConfirm] = useState(false); // 삭제 여부를 선택하는 모달창이 보이는지 여부
+    const data = useAuth();
+    console.log(data);
 
     const userId = useRef(null); // 페이지를 접속한 user의 id
     const inpRef = useRef(null); // 댓글 입력 input
@@ -236,7 +240,7 @@ export default function PostDetail() {
             <CommentInp onSubmit={onCommentSubmitHandle}>
                 {postMsg && (
                     <img
-                        src={postMsg.author.image}
+                        src={data ? data.image : basicImg}
                         alt={"작성자 프로필 사진"}
                     />
                 )}
