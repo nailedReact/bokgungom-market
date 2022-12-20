@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useState, useContext, useEffect } from 'react'
 import FollowListCard from './FollowListCard'
 import { useParams } from 'react-router';
+import NoFollowerFollowing from './NoFollowerFollowing';
 
 export default function Following() {   
     const [resMsg, setResMsg] = useState([]);
@@ -35,9 +36,10 @@ useEffect(() => {
     }
   }, [resMsg])
   
-    return (
-        <ul>
-         {followingArr}
-        </ul>
-  )
+
+  return (followingArr.length === 0) ?
+    <NoFollowerFollowing page="following"/> :
+    <ul>
+      {followingArr}
+    </ul>
 }

@@ -69,11 +69,11 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
     return (
         <TopBarCont>
             <LeftCont>
-                {TypeLeft === "A" && !title ? <BtnIcon action="back"/> : <></>}
+                {TypeLeft === "A" && !title ? <BtnIcon action="back" onClick={() => navigate(-1)}/> : <></>}
                 {TypeLeft === "B" && title ? <div>{title}</div> : <></>}
                 {TypeLeft === "A" && title ?
                 <>
-                    <BtnIcon action="back"/>
+                    <BtnIcon action="back" onClick={() => navigate(-1)}/>
                     <div>{title}</div>
                 </> :
                 <></>}

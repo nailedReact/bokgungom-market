@@ -12,8 +12,8 @@ const Cont = styled.div`
     `;
     
 const Window = styled.div`
-    overflow: hidden;
-    height: 140px;
+    overflow: scroll;
+    height: 150px;
 `;
 
 const SaledProduct = styled.h2`
