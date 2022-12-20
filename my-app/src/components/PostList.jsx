@@ -92,10 +92,10 @@ export default function PostList({isProfilePage}) {
         setPostArrAlbum((postArrAlbum) => {
           // arr.push(item.image);
             if (isMyProfile){
-              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={true}/>];
+              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
             }
             else {
-              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={false}/>];
+              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />];
             }
           })
       })

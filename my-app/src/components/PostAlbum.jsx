@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 
-export default function PostAlbum({data, myProfile}) {
+export default function PostAlbum({data, myProfile, postDetailSrc}) {
     
   const Contentimg = styled.img`
     width: 100%;
@@ -11,7 +12,7 @@ export default function PostAlbum({data, myProfile}) {
 
   return (
     <>
-      { data.image ? <Contentimg src={data.image} alt="컨텐츠 사진입니다." /> : null}
+      { data.image ? <Link to={postDetailSrc}><Contentimg src={data.image} alt="컨텐츠 사진입니다." /></Link> : null}
     </>
   )
 }
