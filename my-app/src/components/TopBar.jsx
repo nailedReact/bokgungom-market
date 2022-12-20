@@ -85,8 +85,9 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 <Searchinput
                     type="text"
                     placeholder="계정 검색"
-                    onKeyUp ={onChangeByUpper}/>
-                <SearchBtn onClick={onClickGetMsg}></SearchBtn>
+                    onChange ={onChangeByUpper[0]}
+                    onKeyUp = {onChangeByUpper[1]}></Searchinput>
+                {/* <SearchBtn onClick={onClickGetMsg}></SearchBtn> */}
                 </>}
                 {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}/>}
                 {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled.isBtnVisible}>저장</Button>}

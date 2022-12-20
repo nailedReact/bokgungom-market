@@ -9,7 +9,15 @@ export default function Search() {
 
     const onChangeSearch = (e) => {
         e.preventDefault();
+        console.log("바뀜");
         setSearch(e.target.value);
+    }
+
+    const handletimeout = (e) => {
+      console.log(
+"들어옴"
+      );
+      console.log(e.target.value);
     }
     
    
@@ -37,7 +45,7 @@ export default function Search() {
 
   return (
     <div>
-        <input placeholder="검색어를 입력하세요." type="text" onChange={onChangeSearch}></input>
+        <input placeholder="검색어를 입력하세요." type="text" onChange={onChangeSearch} onKeyUp={handletimeout}></input>
         <button onClick={getMsg}></button>
         {resultArr}
     </div>
