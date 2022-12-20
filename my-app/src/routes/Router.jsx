@@ -16,6 +16,7 @@ import EditProfile from "../pages/profile/follow/EditProfile";
 import Follower from "../pages/profile/follow/Follower";
 import Following from "../pages/profile/follow/Following";
 import Search from "../pages/feed/Search";
+import Loading from "../pages/error/Loading";
 
 export default function Router() {
     return (

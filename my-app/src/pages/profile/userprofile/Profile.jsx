@@ -5,6 +5,7 @@ import ProfileCard from './ProfileCard';
 import SaledProductCard from './SaledProductCard';
 import PostList from '../../../components/PostList'
 import useAuth from "../../../hook/useAuth";
+import Loading from '../../error/Loading';
 
 const Cont = styled.div`
   display:flex;
@@ -45,7 +46,7 @@ export default function Profile() {
   // console.log(isMyProfile);
     
   if (!data && !isMyProfile && !accoutName){
-    return <div>로딩중</div>
+    return <Loading />
   }
   else {
     return (
