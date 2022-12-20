@@ -116,7 +116,7 @@ export default function PostCard({data, myProfile, view, postDetailSrc}) {
     console.log(data)
 
     function handleClickProfile(){
-        navigate("../account/profile/" + data.author.accountname);
+        navigate("../../account/profile/" + data.author.accountname);
     }
     return (
         <Cont>

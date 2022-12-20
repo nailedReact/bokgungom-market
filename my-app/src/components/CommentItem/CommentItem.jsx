@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 import { CommentItemCont } from "./commentItem.style";
 import iconMoreVertical from "../../assets/icon/icon-more-vertical.png";
 import { formattedDate } from "../../pages/feed/feed/dateformat";
@@ -15,6 +16,12 @@ const BtnIcon = styled.button`
 
 export default function CommentItem({ refer, onClickHandle, initialTime }) {
     const [createdAt, setCreatedAt] = useState(initialTime);
+    const navigate = useNavigate();
+
+    // 댓글 단 사람의 프로필 클릭 시 그 사람의 프로필로 이동
+    function handleClickProfile(){
+        navigate("../../account/profile/" + refer.author.accountname);
+    }
 
     // 시간에 따라 렌더링 다르게 하기 위함.
     useEffect(() => {
@@ -53,8 +60,8 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
 
     return (
         <CommentItemCont>
-            <img src={refer.author.image} alt={"댓글 작성자 프로필 사진"} />
-            <h2>{refer.author.username}</h2>
+            <img src={refer.author.image} alt={"댓글 작성자 프로필 사진"} onClick={handleClickProfile}/>
+            <h2 onClick={handleClickProfile}>{refer.author.username}</h2>
             <span>{createdAt}</span>
             <p>{refer.content}</p>
             <BtnIcon
