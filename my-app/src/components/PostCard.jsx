@@ -1,14 +1,14 @@
 /* eslint-disable */
 /* eslint-disable array-callback-return */
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import OptionModal from "./OptionModal/OptionModal";
-import heart_active from "../assets/icon/icon-heart-active.png";
-import heart from "../assets/icon/icon-heart.png";
-import comment from "../assets/icon/icon-message-circle.png";
-import styled from "styled-components";
-import axios from "axios";
+import React from 'react'
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import  heart_active  from '../assets/icon/icon-heart-active.png';
+import  heart  from '../assets/icon/icon-heart.png';
+import comment from '../assets/icon/icon-message-circle.png';
+import styled from 'styled-components';
+import axios from 'axios';
+
 // import Heart from './Heart';
 const Cont = styled.div`
     display: flex;
@@ -86,6 +86,7 @@ const ProfilePicSmall = styled.img`
 export default function PostCard({ data, myProfile, view, postDetailSrc }) {
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
+    const navigate = useNavigate();
     const [isOptionVisible, setIsOptionVisible] = useState(false);
 
     console.log(myProfile);
@@ -117,59 +118,46 @@ export default function PostCard({ data, myProfile, view, postDetailSrc }) {
             );
             setMyposthearts(heartfalse.data.post.heartCount);
         }
-    };
-    console.log(data);
+    }
+    console.log(data)
+
+    function handleClickProfile(){
+        navigate("../../account/profile/" + data.author.accountname);
+    }
     return (
-        <>
-            {isOptionVisible && (
-                <OptionModal onConfirm={() => setIsOptionVisible(false)}>
-                    <li>삭제</li>
-                    <li>
-                        <Link to={`/post/${data.id}/edit`}>수정</Link>
-                    </li>
-                </OptionModal>
-            )}
-            <Cont>
-                <ProfilePicSmall
-                    src={data.author.image}
-                    alt="글쓴이프로필사진"
-                />
-                <ContentCont>
-                    <Username>{data.author.username}</Username>
-                    <Accountname>@ {data.author.accountname}</Accountname>
-                    {myProfile ? <button onClick={() => setIsOptionVisible(true)}>수정</button> : <></>}
-                    <Content>{data.content}</Content>
-                    {data.image ? (
-                        <Contentimg src={data.image} alt="컨텐츠 사진" />
-                    ) : null}
-                    <HeartCommentCont>
-                        <span onClick={heartchange}>
-                            {myheart ? (
-                                <>
-                                    <Heartimg
-                                        src={heart_active}
-                                        alt="채워진 하트"
-                                    />
-                                    <Count>{myposthearts}</Count>
-                                </>
-                            ) : (
-                                <>
-                                    <Heartimg src={heart} alt="비워진 하트" />
-                                    <Count>{myposthearts}</Count>
-                                </>
-                            )}
-                        </span>
-                        <Link to={postDetailSrc}>
-                            <span className={"ir"}>
-                                게시글 상세 페이지로 이동
-                            </span>
-                            <Commentimg src={comment} alt="댓글 아이콘" />
-                            <Count>{data.commentCount}</Count>
-                        </Link>
-                    </HeartCommentCont>
-                    <Createdate>{data.createdAt.slice(0, 10)}</Createdate>
-                </ContentCont>
-            </Cont>
-        </>
-    );
+        <Cont>
+            <ProfilePicSmall src= {data.author.image} alt="글쓴이프로필사진" onClick={handleClickProfile}/>
+            <ContentCont>
+                <Username onClick={handleClickProfile}>{data.author.username}</Username>
+                <Accountname onClick={handleClickProfile}>@ {data.author.accountname}</Accountname>
+                {myProfile ? <button>수정</button> : <></>}
+                <Content>{data.content}</Content>
+                {(data.image) ? <Contentimg src={data.image} alt="컨텐츠 사진" />
+                 : null}
+                <HeartCommentCont>
+                    <span onClick={heartchange}>
+                        {
+                        myheart ? 
+                        <>
+                          <Heartimg src={heart_active} alt="채워진 하트" /> 
+                          <Count>{myposthearts}</Count>
+                        </>
+                        : 
+                        <>
+                          <Heartimg src={heart} alt="비워진 하트"/>
+                          <Count>{myposthearts}</Count> 
+                          
+                        </>
+                        }
+                    </span>
+                    <Link to={postDetailSrc}>
+                        <span className={"ir"}>게시글 상세 페이지로 이동</span>
+                        <Commentimg src={comment} alt="댓글 아이콘"/>
+                        <Count>{data.commentCount}</Count>
+                    </Link>
+                </HeartCommentCont>
+                <Createdate>{data.createdAt.slice(0,10)}</Createdate>
+            </ContentCont>
+        </Cont>        
+    )
 }
