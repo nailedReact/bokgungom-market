@@ -4,6 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import OptionModal from "./OptionModal/OptionModal";
+import ConfirmModal from "./ConfirmModal/ConfirmModal";
 import heart_active from "../assets/icon/icon-heart-active.png";
 import heart from "../assets/icon/icon-heart.png";
 import comment from "../assets/icon/icon-message-circle.png";
@@ -83,10 +84,18 @@ const ProfilePicSmall = styled.img`
     margin-right: 12px;
 `;
 
-export default function PostCard({ data, myProfile, view, postDetailSrc }) {
+export default function PostCard({
+    data,
+    myProfile,
+    view,
+    postDetailSrc,
+    deleteByUpper,
+}) {
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
     const [isOptionVisible, setIsOptionVisible] = useState(false);
+    const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     console.log(myProfile);
     console.log(view);
@@ -119,57 +128,107 @@ export default function PostCard({ data, myProfile, view, postDetailSrc }) {
         }
     };
     console.log(data);
+
+    const deleteSelectedHandle = () => {
+        setIsOptionVisible(false);
+        setIsConfirmVisible(true);
+    };
+
+    const deleteConfirmedHandle = async () => {
+        const URL = `https://mandarin.api.weniv.co.kr/post/${data.id}`;
+        try {
+            const res = await axios.delete(URL, {
+                headers: {
+                    Authorization: localStorage.getItem("Authorization"),
+                    "Content-type": "application/json",
+                }
+            });
+            console.log(res.data);
+            setIsConfirmVisible(false);
+            setIsDeleted(true);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <>
             {isOptionVisible && (
                 <OptionModal onConfirm={() => setIsOptionVisible(false)}>
-                    <li>삭제</li>
+                    <li>
+                        <button type="button" onClick={deleteSelectedHandle}>
+                            삭제
+                        </button>
+                    </li>
                     <li>
                         <Link to={`/post/${data.id}/edit`}>수정</Link>
                     </li>
                 </OptionModal>
             )}
-            <Cont>
-                <ProfilePicSmall
-                    src={data.author.image}
-                    alt="글쓴이프로필사진"
+            {isConfirmVisible && (
+                <ConfirmModal
+                    confirmMsg={"삭제하시겠습니까?"}
+                    onCancle={() => setIsConfirmVisible(false)}
+                    onConfirm={() => setIsConfirmVisible(false)}
+                    buttonRight={
+                        <button type="button" onClick={deleteConfirmedHandle}>
+                            삭제
+                        </button>
+                    }
                 />
-                <ContentCont>
-                    <Username>{data.author.username}</Username>
-                    <Accountname>@ {data.author.accountname}</Accountname>
-                    {myProfile ? <button onClick={() => setIsOptionVisible(true)}>수정</button> : <></>}
-                    <Content>{data.content}</Content>
-                    {data.image ? (
-                        <Contentimg src={data.image} alt="컨텐츠 사진" />
-                    ) : null}
-                    <HeartCommentCont>
-                        <span onClick={heartchange}>
-                            {myheart ? (
-                                <>
-                                    <Heartimg
-                                        src={heart_active}
-                                        alt="채워진 하트"
-                                    />
-                                    <Count>{myposthearts}</Count>
-                                </>
-                            ) : (
-                                <>
-                                    <Heartimg src={heart} alt="비워진 하트" />
-                                    <Count>{myposthearts}</Count>
-                                </>
-                            )}
-                        </span>
-                        <Link to={postDetailSrc}>
-                            <span className={"ir"}>
-                                게시글 상세 페이지로 이동
+            )}
+            {!isDeleted && (
+                <Cont>
+                    <ProfilePicSmall
+                        src={data.author.image}
+                        alt="글쓴이프로필사진"
+                    />
+                    <ContentCont>
+                        <Username>{data.author.username}</Username>
+                        <Accountname>@ {data.author.accountname}</Accountname>
+                        {myProfile ? (
+                            <button onClick={() => setIsOptionVisible(true)}>
+                                수정
+                            </button>
+                        ) : (
+                            <></>
+                        )}
+                        <Content>{data.content}</Content>
+                        {data.image ? (
+                            <Contentimg src={data.image} alt="컨텐츠 사진" />
+                        ) : null}
+                        <HeartCommentCont>
+                            <span onClick={heartchange}>
+                                {myheart ? (
+                                    <>
+                                        <Heartimg
+                                            src={heart_active}
+                                            alt="채워진 하트"
+                                        />
+                                        <Count>{myposthearts}</Count>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Heartimg
+                                            src={heart}
+                                            alt="비워진 하트"
+                                        />
+                                        <Count>{myposthearts}</Count>
+                                    </>
+                                )}
                             </span>
-                            <Commentimg src={comment} alt="댓글 아이콘" />
-                            <Count>{data.commentCount}</Count>
-                        </Link>
-                    </HeartCommentCont>
-                    <Createdate>{data.createdAt.slice(0, 10)}</Createdate>
-                </ContentCont>
-            </Cont>
+                            <Link to={postDetailSrc}>
+                                <span className={"ir"}>
+                                    게시글 상세 페이지로 이동
+                                </span>
+                                <Commentimg src={comment} alt="댓글 아이콘" />
+                                <Count>{data.commentCount}</Count>
+                            </Link>
+                        </HeartCommentCont>
+                        <Createdate>{data.createdAt.slice(0, 10)}</Createdate>
+                    </ContentCont>
+                </Cont>
+            )}
         </>
     );
 }

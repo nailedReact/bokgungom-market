@@ -228,7 +228,7 @@ export default function PostDetail() {
                     onCancle={() => setDeleteConfirm(false)}
                     onConfirm={() => setDeleteConfirm(false)}
                     buttonRight={
-                        <button type={"click"} onClick={deleteCommentFunc}>
+                        <button type={"button"} onClick={deleteCommentFunc}>
                             삭제
                         </button>
                     }
