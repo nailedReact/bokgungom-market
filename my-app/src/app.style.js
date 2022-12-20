@@ -4,8 +4,14 @@ import reset from "styled-reset";
 export const GlobalStyle = createGlobalStyle`
     ${reset}
 
+    :root {
+        --color-primary: #4583A3;
+        --color-text: #3F3F46;
+    }
+
     * {
         box-sizing: border-box;
+        color: var(--color-text);
     }
 
     .ir {

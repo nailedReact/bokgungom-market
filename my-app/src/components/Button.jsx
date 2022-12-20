@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-    background-color: #4583A3; // 변경 예정
+    background-color: var(--color-primary); // 변경 예정
     color: #FFFFFF;
 
     &.small {
@@ -34,7 +34,7 @@ const Button = styled.button`
 
     // <Button className="large" active={false}>follow</Button>
     &.small, &.medium {
-        background-color: ${(props) => (props.active ? '#4583A3' : '#fff')};
+        background-color: ${(props) => (props.active ? "var(--color-primary)" : '#fff')};
         color: ${(props) => (props.active ? '#fff' : '#767676')};
         box-shadow: ${(props) => (props.active ? 'none' : '0 0 0 1px inset #DBDBDB;')};
     }
