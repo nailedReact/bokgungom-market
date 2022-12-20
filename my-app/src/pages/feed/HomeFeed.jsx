@@ -31,7 +31,7 @@ export default function HomeFeed() {
         if (resMsg.length !== 0){
           resMsg.forEach((item) => {
               setPostArr((postArr) => {
-                  return [...postArr, <FeedFollower key={item.id} data={item}/>];
+                  return [...postArr, <FeedFollower key={item.id} data={item} postDetailSrc={`/post/${item.id}`} />];
                 })
           })
         }

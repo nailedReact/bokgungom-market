@@ -55,13 +55,14 @@ export default function PostList({isProfilePage}) {
   useEffect(() => {
     if (resMsg.length !== 0){
       resMsg.forEach((item) => {
+          console.log(item);
           setPostArr((postArr) => {
             // console.log(postArr);
             if (isMyProfile){
-              return [...postArr, <PostCard key={item.id} data={item} myProfile={true}/>];
+              return [...postArr, <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
             }
             else {
-              return [...postArr, <PostCard key={item.id} data={item} myProfile={false}/>];
+              return [...postArr, <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`}/>];
             }
           })
       })
