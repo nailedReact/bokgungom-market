@@ -7,11 +7,15 @@ import UserInput from '../../components/userinput/UserInput';
 import Button from '../../components/Button';
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
+import Warning from '../../components/Warning';
 
 export default function UploadProduct() {
     const [productName, setProductName] = useState('')
     const [productPrice, setProductPrice] = useState('')
     const [productLink, setProductLink] = useState('')
+    const nameAlertMsg = useRef(null);
+    const priceAlertMsg = useRef(null);
+    const linkAlertMsg = useRef(null);
     const imagePre = useRef(null)
     const handleInpName = (e) => {
         setProductName(e.target.value)
@@ -76,7 +80,23 @@ export default function UploadProduct() {
                 });
                 const json = await response.json();
                 console.log(json);
-                console.log("상품 등록 완료");
+
+                if (json.message === "필수 입력사항을 입력해주세요."){
+                    (!productName) ? 
+                        nameAlertMsg.current.style.display = "block" : 
+                        nameAlertMsg.current.style.display = "none";
+
+                    (!productPrice) ? 
+                        priceAlertMsg.current.style.display = "block":
+                        priceAlertMsg.current.style.display = "none";
+                    
+                    (!productLink) ? 
+                        linkAlertMsg.current.style.display = "block" : 
+                        linkAlertMsg.current.style.display = "none";
+                }
+                else {
+                    console.log("상품 등록 완료");
+                }
             }());
         } catch (err) {
             console.log(err);
@@ -115,6 +135,7 @@ export default function UploadProduct() {
                 >
                 </Inp>
             </UserInput>
+            <Warning ref={nameAlertMsg}>* 상품명을 입력해주세요.</Warning>
             <UserInput inputId="productPrice" label="가격">
                 <Inp
                     type="number"
@@ -125,6 +146,7 @@ export default function UploadProduct() {
                 >
                 </Inp>
             </UserInput>
+            <Warning ref={priceAlertMsg}>* 가격을 입력해주세요.</Warning>
             <UserInput inputId="productLink" label="판매링크">
                 <Inp
                     type="url"
@@ -135,6 +157,7 @@ export default function UploadProduct() {
                 >
                 </Inp>
             </UserInput>
+            <Warning ref={linkAlertMsg}>* 판매 링크를 입력해주세요.</Warning>
             <Button
                 type="button"
                 className="ms"
