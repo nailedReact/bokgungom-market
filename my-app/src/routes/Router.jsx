@@ -48,7 +48,7 @@ export default function Router() {
                     <Route path=":id/" element={<ChattingRoom />} />
                     <Route path="*" element={<Error />}/>
                 </Route>
-                <Route path="/*" element={<Loading />}/>
+                <Route path="/*" element={<Error />}/>
             </Routes>
         </BrowserRouter>
     );
