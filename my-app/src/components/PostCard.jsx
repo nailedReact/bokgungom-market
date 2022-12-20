@@ -2,12 +2,13 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import  heart_active  from '../assets/icon/icon-heart-active.png';
 import  heart  from '../assets/icon/icon-heart.png';
 import comment from '../assets/icon/icon-message-circle.png';
 import styled from 'styled-components';
 import axios from 'axios';
+
 // import Heart from './Heart';
 const Cont = styled.div`
         display: flex;
@@ -86,7 +87,7 @@ const Cont = styled.div`
 export default function PostCard({data, myProfile, view, postDetailSrc}) {
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
-    
+    const navigate = useNavigate();
     console.log(myProfile);
     console.log(view);
     const heartchange = async () => {
@@ -113,12 +114,16 @@ export default function PostCard({data, myProfile, view, postDetailSrc}) {
         }
     }
     console.log(data)
+
+    function handleClickProfile(){
+        navigate("../account/profile/" + data.author.accountname);
+    }
     return (
         <Cont>
-            <ProfilePicSmall src= {data.author.image} alt="글쓴이프로필사진" />
+            <ProfilePicSmall src= {data.author.image} alt="글쓴이프로필사진" onClick={handleClickProfile}/>
             <ContentCont>
-                <Username>{data.author.username}</Username>
-                <Accountname>@ {data.author.accountname}</Accountname>
+                <Username onClick={handleClickProfile}>{data.author.username}</Username>
+                <Accountname onClick={handleClickProfile}>@ {data.author.accountname}</Accountname>
                 {myProfile ? <button>수정</button> : <></>}
                 <Content>{data.content}</Content>
                 {(data.image) ? <Contentimg src={data.image} alt="컨텐츠 사진" />
