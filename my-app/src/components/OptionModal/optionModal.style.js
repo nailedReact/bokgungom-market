@@ -3,7 +3,8 @@ import modalIcon from "../../assets/icon/icon-modal.png";
 
 export const OptionLayout = styled.article`
     width: 100%;
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     bottom: 0;
     padding: 16px 0 10px;
     border-radius: 10px 10px 0 0;

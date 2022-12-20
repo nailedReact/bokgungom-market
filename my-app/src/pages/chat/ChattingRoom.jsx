@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import data from "./chat/chatdata.json";
-import ChatModal from "./chat/ChatModal/ChatModal";
+import OptionModal from "../../components/OptionModal/OptionModal";
 import TopBar from "../../components/TopBar";
 import Outgoing from "./chat/Outgoing/Outgoing";
 import Incoming from "./chat/Incoming/Incoming";
@@ -60,11 +60,11 @@ export default function ChattingRoom() {
     return (
         <>
             {modalVisible && (
-                <ChatModal onConfirm={onConfirm}>
+                <OptionModal onConfirm={onConfirm}>
                     <li>
                         <Link to={"/chat"}>채팅방 나가기</Link>
                     </li>
-                </ChatModal>
+                </OptionModal>
             )}
             <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
             <h1 className={"ir"}>{title}님과의 채팅방 입니다.</h1>

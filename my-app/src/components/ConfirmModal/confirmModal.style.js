@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
 export const ConfirmlLayout = styled.article`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 252px;
     border-radius: 10px;
     background-color: white;
+    z-index: 200;
 
     & h2 {
         padding: 22px 0;
