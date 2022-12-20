@@ -2,15 +2,40 @@ import { useState, useRef } from "react";
 import Button from '../../components/Button';
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
 import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
+import Textarea from "../../components/Textarea/Textarea"
+import styled from 'styled-components';
+
+const Contentimg = styled.img`
+        width: 304px;
+        height: 228px;
+        border: 0.5px solid #DBDBDB;
+        border-radius: 10px;
+        margin-top: 16px;
+    `;
 
 export default function UploadPost() {
     const [showImages, setShowImages] = useState([]);
-    const [contentText, setContentText] = useState("")
+    const [contentText, setContentText] = useState("");
     const submitData = useRef({});
-    const imagePre = useRef(null)
+    const imagePre = useRef(null);
+    const textarea = useRef()
 
+    // textarea 자동 높이 조절
     const handleTextarea = (e) => {
-        setContentText(e.target.value)
+        setContentText(e.target.value);
+        textarea.current.style.height = 'auto';
+        textarea.current.style.height = textarea.current.scrollHeight + 'px';
+
+        // 글자 수 제한 테스트 중입니다.
+        let text = e.target.value
+        let text_length = text.length
+        setContentText(text)
+
+        let max_length = 100;
+        if (text_length > max_length) {
+            text = text.substring(0, 100);
+            alert(100+"자 이상 작성할 수 없습니다.")
+        }
     }
     
     // 이미지 브라우저 화면에 업로드 & FormData 형식으로 변환
@@ -31,8 +56,8 @@ export default function UploadPost() {
             };
         }
 
-        if (imageUrlLists.length > 10) {
-            imageUrlLists = imageUrlLists.slice(0, 10);
+        if (imageUrlLists.length > 3) {
+            imageUrlLists = imageUrlLists.slice(0, 3);
         }
 
         setShowImages(imageUrlLists);
@@ -94,18 +119,22 @@ export default function UploadPost() {
         <div className="App">
             <form action="">
             <ProductImgSetCont htmlFor="productImg">
-                <textarea 
+                <Textarea 
                     placeholder="게시글 입력하기..."
                     onChange={handleTextarea}
                     value={contentText}
+                    ref={textarea}
+                    rows={1}
                 />
             
                 {showImages.map((image, id) => (
                     <div key={id}>
-                        <img src={image} alt={`${image}-${id}`} ref={imagePre}/>
+                        <Contentimg src={image} alt={`${image}-${id}`} ref={imagePre}/>
                         <span onClick={() => handleDeleteImage(id)}>x</span>
                     </div>
                 ))}
+            
+            </ProductImgSetCont>
             <ImgUploadIcon className={"orange small"}>
             <span className="ir">이미지 첨부</span>
             <input
@@ -115,8 +144,6 @@ export default function UploadPost() {
                 onChange={handleAddImages}
             />
             </ImgUploadIcon>
-            
-            </ProductImgSetCont>
             <Button
                 type="submit"
                 className="ms"
