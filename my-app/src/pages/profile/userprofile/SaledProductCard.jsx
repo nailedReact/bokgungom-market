@@ -85,8 +85,8 @@ useEffect(() => {
 
 // 판매중인 상품의 링크로 넘어가는 부분입니다.
 const handlelink = (link) => {
-        navigate(link);
-    }  
+        window.open("http://" + link, '_blank')
+}  
 
 // 상품을 뿌려주는 역할을 하는 부분입니다.
 useEffect(() => {
