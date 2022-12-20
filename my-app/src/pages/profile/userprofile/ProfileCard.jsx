@@ -94,12 +94,14 @@ import { UserNameContext } from "./Profile"
     border-radius: 30px;
     padding: 9px;
   `;
+
 export default function ProfileCard() {
     const [profileData, setProfileData] = useState({});
     const [checkFollowing, setCheckFollowing] = useState(profileData.isfollow)
     const navigate = useNavigate();
     const { username, isMyProfile } = useContext(UserNameContext);
-    console.log(isMyProfile)
+    // console.log(isMyProfile)
+    const [temp, setTemp] = useState(1);
 
     useEffect(() => {
         const getprofile = async () => {
@@ -113,7 +115,7 @@ export default function ProfileCard() {
         setProfileData(res.data.profile);
         }
         getprofile();
-    }, [])
+    }, [temp, checkFollowing])
 
     const chatorshare = (data) => {
       if(data === "chat") navigate(`/chat/${profileData.accountname}`)
@@ -121,30 +123,27 @@ export default function ProfileCard() {
     }
 
     const followingchange = async(e) => {
+      setTemp(temp => temp + 1)
       console.log(e.target.value);
       if(e.target.value === "true"){
-          setCheckFollowing(false)
           const unfollow = await axios.delete(
               `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/unfollow`,{
               headers: {
-                  //테스트시 아래 주석 해제하고 하세용
-                  // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
-                  // 
                   Authorization: localStorage.getItem("Authorization")
               }
               });
           console.log(unfollow.data);
+          setCheckFollowing(false)
           
       }else{
-          setCheckFollowing(true);
-          const follow = await axios.post(
-              `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/follow`,{},{
-              headers: {
-                  // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
-                  Authorization: localStorage.getItem("Authorization")
-                  }
-              });
+        const follow = await axios.post(
+          `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/follow`,{},{
+            headers: {
+              Authorization: localStorage.getItem("Authorization")
+            }
+          });
           console.log(follow.data);
+          setCheckFollowing(true);
       }
     }
   return (
