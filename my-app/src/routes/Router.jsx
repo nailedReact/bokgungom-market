@@ -7,6 +7,7 @@ import Splash from "../pages/splash/Splash";
 import HomeFeed from "../pages/feed/HomeFeed";
 import PostDetail from "../pages/feed/PostDetail";
 import UploadPost from "../pages/feed/UploadPost";
+import PostEdit from "../pages/feed/PostEdit";
 import UploadProduct from "../pages/feed/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
@@ -38,6 +39,7 @@ export default function Router() {
                 <Route path="/post/" element={<Outlet />}>
                     <Route path="" element={<HomeFeed />} />
                     <Route path=":id/" element={<PostDetail />} />
+                    <Route path=":id/edit" element={<PostEdit />} />
                     <Route path="upload/" element={<UploadPost />} />
                     <Route path="upload/product" element={<UploadProduct />} />
                     <Route path="*" element={<Error />}/>
