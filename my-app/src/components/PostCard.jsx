@@ -2,6 +2,7 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import  heart_active  from '../assets/icon/icon-heart-active.png';
 import  heart  from '../assets/icon/icon-heart.png';
 import comment from '../assets/icon/icon-message-circle.png';
@@ -81,7 +82,8 @@ const Cont = styled.div`
         height: 42px;
         margin-right: 12px;
     `
-export default function PostCard({data, myProfile, view}) {
+
+export default function PostCard({data, myProfile, view, postDetailSrc}) {
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
     
@@ -137,10 +139,11 @@ export default function PostCard({data, myProfile, view}) {
                         </>
                         }
                     </span>
-                    <span>
+                    <Link to={postDetailSrc}>
+                        <span className={"ir"}>게시글 상세 페이지로 이동</span>
                         <Commentimg src={comment} alt="댓글 아이콘"/>
                         <Count>{data.commentCount}</Count>
-                    </span>
+                    </Link>
                 </HeartCommentCont>
                 <Createdate>{data.createdAt.slice(0,10)}</Createdate>
             </ContentCont>

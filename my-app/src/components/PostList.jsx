@@ -73,10 +73,10 @@ export default function PostList({isProfilePage}) {
       resMsg.forEach((item) => {
           setPostArrList((postArrList) => {
             if (isMyProfile){
-              return [...postArrList, <PostCard key={item.id} data={item} myProfile={true}/>];
+              return [...postArrList, <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
             }
             else {
-              return [...postArrList, <PostCard key={item.id} data={item} myProfile={false}/>];
+              return [...postArrList, <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />];
             }
           })
       })
