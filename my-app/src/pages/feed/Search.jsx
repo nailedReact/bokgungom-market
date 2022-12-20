@@ -5,6 +5,7 @@ import FollowListCard from '../profile/follow/FollowListCard';
 import TopBar from '../../components/TopBar';
 import symbolimg from "../../assets/symbol-logo-gray.png";
 import styled from 'styled-components';
+import NavBar from '../../components/NavBar/NavBar';
 
 
 const Symbolimg = styled.img`
@@ -95,6 +96,7 @@ export default function Search() {
         <div>
             {resultArr}
         </div>
+        <NavBar/>
     </>
     
   )

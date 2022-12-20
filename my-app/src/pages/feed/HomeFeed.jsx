@@ -5,6 +5,7 @@ import axios from "axios";
 import FeedFollower from "../feed/FeedFollower";
 import FeedNoFollower from "../feed/FeedNoFollower";
 import { useState } from "react";
+import NavBar from "../../components/NavBar/NavBar";
 
 
 /* eslint-disable */
@@ -43,6 +44,7 @@ export default function HomeFeed() {
             { resMsg.length === 0 ? 
             <FeedNoFollower /> : postArr
             }
+            <NavBar/>
         </>
     )
 }

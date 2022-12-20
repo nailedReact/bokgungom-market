@@ -6,6 +6,8 @@ import SaledProductCard from './SaledProductCard';
 import PostList from '../../../components/PostList'
 import useAuth from "../../../hook/useAuth";
 import Loading from '../../error/Loading';
+import TopBar from '../../../components/TopBar';
+import NavBar from '../../../components/NavBar/NavBar';
 
 const Cont = styled.div`
   display:flex;
@@ -52,11 +54,13 @@ export default function Profile() {
     return (
       <UserNameContext.Provider value={{username : accountNameInURL, isMyProfile: isMyProfile}}>
         <Cont>
+            <TopBar type="A1"/>
             <ProfileCard/>
             <SaledProductCard/>
             <PostCont>
               <PostList isProfilePage={true}/>
             </PostCont>
+            <NavBar/>
         </Cont>
     </UserNameContext.Provider>
   )

@@ -5,6 +5,8 @@ import { useState, useContext, useEffect } from 'react'
 import FollowListCard from './FollowListCard'
 import { useParams } from 'react-router';
 import NoFollowerFollowing from './NoFollowerFollowing';
+import NavBar from '../../../components/NavBar/NavBar';
+import TopBar from '../../../components/TopBar';
 
 export default function Following() {   
     const [resMsg, setResMsg] = useState([]);
@@ -39,7 +41,11 @@ useEffect(() => {
 
   return (followingArr.length === 0) ?
     <NoFollowerFollowing page="following"/> :
-    <ul>
-      {followingArr}
-    </ul>
+    <>
+      <TopBar type="A0" title="Followings"/>
+      <ul>
+        {followingArr}
+      </ul>
+      <NavBar />
+    </>
 }
