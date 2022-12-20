@@ -1,8 +1,9 @@
 /* eslint-disable */
 /* eslint-disable array-callback-return */
+
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OptionModal from "./OptionModal/OptionModal";
 import ConfirmModal from "./ConfirmModal/ConfirmModal";
 import heart_active from "../assets/icon/icon-heart-active.png";
@@ -10,6 +11,7 @@ import heart from "../assets/icon/icon-heart.png";
 import comment from "../assets/icon/icon-message-circle.png";
 import styled from "styled-components";
 import axios from "axios";
+
 // import Heart from './Heart';
 const Cont = styled.div`
     display: flex;
@@ -93,6 +95,7 @@ export default function PostCard({
 }) {
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
+    const navigate = useNavigate();
     const [isOptionVisible, setIsOptionVisible] = useState(false);
     const [isConfirmVisible, setIsConfirmVisible] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
@@ -150,6 +153,10 @@ export default function PostCard({
             console.log(err);
         }
     };
+ 
+    function handleClickProfile(){
+        navigate("../../account/profile/" + data.author.accountname);
+    }
 
     return (
         <>
@@ -182,10 +189,11 @@ export default function PostCard({
                     <ProfilePicSmall
                         src={data.author.image}
                         alt="글쓴이프로필사진"
+                        onClick={handleClickProfile}
                     />
                     <ContentCont>
-                        <Username>{data.author.username}</Username>
-                        <Accountname>@ {data.author.accountname}</Accountname>
+                        <Username onClick={handleClickProfile}>{data.author.username}</Username>
+                        <Accountname onClick={handleClickProfile}>@ {data.author.accountname}</Accountname>
                         {myProfile ? (
                             <button onClick={() => setIsOptionVisible(true)}>
                                 수정
@@ -231,4 +239,3 @@ export default function PostCard({
             )}
         </>
     );
-}

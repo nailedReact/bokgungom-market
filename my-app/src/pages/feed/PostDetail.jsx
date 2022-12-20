@@ -26,7 +26,7 @@ export default function PostDetail() {
     const deleteTarget = useRef(null); // 삭제할 댓글 id
 
     const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
-
+    
     // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = (deleteComment, author) => {
         // deleteComment: 삭제할 댓글의 id
@@ -186,7 +186,8 @@ export default function PostDetail() {
             console.log(err);
         }
     };
-
+    
+    
     return (
         <>
             {modalNotMe && (
