@@ -7,6 +7,7 @@ export const IncomingCont = styled.li`
     & .profileImg {
         width: 42px;
         height: 42px;
+        margin-right: 12px;
         border-radius: 50%;
     }
 
@@ -14,5 +15,10 @@ export const IncomingCont = styled.li`
         ${sharedTxtMsg}
         background-color: white;
         border: 1px solid #C4C4C4;
+        border-radius: 0 10px 10px 10px;
+    }
+
+    & .time {
+        margin-left: 6px;
     }
 `

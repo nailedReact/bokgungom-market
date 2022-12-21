@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import ImageUpload from "../../../../components/ImageUpload/ImageUpload";
-import { FormCont } from "./chatInput.style";
+import { CommentInpCont } from "../../../../components/CommentInp/commentInp.style";
 
 export default function ChatInput() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);
@@ -43,7 +43,7 @@ export default function ChatInput() {
     };
 
     return (
-        <FormCont onSubmit={onSubmitHandle}>
+        <CommentInpCont onSubmit={onSubmitHandle} isBtnActivated={isBtnVisible}>
             <ImageUpload
                 btnStyle={"gray small"}
                 onChangeByUpper={onImgChangeHanlde}
@@ -55,12 +55,11 @@ export default function ChatInput() {
                 onChange={onChangeHandle}
             />
             <button
-                className={isBtnVisible ? "submitBtn abled" : "submitBtn"}
                 type={"submit"}
                 disabled={isBtnVisible ? false : true}
             >
                 전송
             </button>
-        </FormCont>
+        </CommentInpCont>
     );
 }

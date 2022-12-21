@@ -6,13 +6,17 @@ export const CommentInpCont = styled.form`
     /* max-width: 390px; */
     padding: 12px 16px;
 
+    & img,
+    label {
+        flex-shrink: 0;
+        margin-right: 18px;
+    }
+
     & img {
         width: 36px;
         height: 36px;
         border-radius: 50%;
         object-fit: cover;
-        flex-shrink: 0;
-        margin-right: 18px;
     }
 
     & input {
@@ -24,7 +28,7 @@ export const CommentInpCont = styled.form`
     }
 
     & input::placeholder {
-        color: #C4C4C4;
+        color: #c4c4c4;
     }
 
     & button {
