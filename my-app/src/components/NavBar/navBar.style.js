@@ -7,14 +7,20 @@ export const NavBarCont = styled.div`
     position: fixed;
     bottom : 0;
     background-color: white;
-    
     @media screen and (min-width: 768px){
         left : 0;
-        width: 30%;
+        width: 240px;
         border-top: none;
         border: 0.5px solid #DBDBDB;
         height: 100%;
         padding-top: 50px;
+    }
+    li {
+        @media screen and (max-width: 768px){
+            &.desktop {
+                display: none
+            }
+    }
     }
 `;
 export const NavBarUl = styled.ul`
