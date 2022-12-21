@@ -4,6 +4,31 @@ import Inp from '../../components/userinput/Inp';
 import UserInput from '../../components/userinput/UserInput';
 import Button from '../../components/Button';
 import Warning from '../../components/Warning';
+import styled from 'styled-components';
+
+const Container = styled.main`
+        width: 87%;
+        max-width: 500px;
+        margin: 30px auto;
+`;
+
+const Form = styled.form`
+        display: flex;
+        flex-direction: column;
+`;
+
+const Title = styled.h1`
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+`
+
+const JoinLink = styled.a`
+    margin-top: 20px;
+    color: #767676;
+    font-size: 12px;
+    text-align: center;
+`
 
 export default function Login() {
     const emailInp = useRef(null);
@@ -66,9 +91,9 @@ export default function Login() {
     }
     
     return (
-        <main className="container">
-            <h1 className="tit_login">로그인</h1>
-            <form>
+        <Container>
+            <Title>로그인</Title>
+            <Form>
                 <UserInput inputId="email" label="이메일">
                     <Inp
                         type="email"
@@ -98,8 +123,8 @@ export default function Login() {
                     disabled={isBtnDisable}
                     onClick={handleLogin}
                 >다음</Button>
-                <Link to="../register">이메일로 회원가입</Link>
-            </form>
-        </main>
+                <JoinLink><Link to="../register">이메일로 회원가입</Link></JoinLink>
+            </Form>
+        </Container>
     )
 }

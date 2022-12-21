@@ -8,10 +8,11 @@ const ProfileSetCont = styled.form`
         padding-bottom: 2px;
         border-bottom: 1px solid #DBDBDB;
         outline: none;
+        width: 100%;
     }
 
     & .inp:focus {
-        border-color: #f26e22;
+        border-color: #4583A3;
     }
 `;
 

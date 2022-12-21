@@ -5,6 +5,8 @@ const InpLabel = styled.label`
     color: #767676;
     font-weight: 500;
     margin-bottom: 10px;
+    display: block;
+    margin-top: 40px;
 `
 export default function UserInput(props) {
     return (

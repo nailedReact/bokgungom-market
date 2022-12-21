@@ -26,7 +26,8 @@ const Button = styled.button`
         font-size: 14px;
         padding: 13px 35px;
         border-radius: 44px;
-        
+        height: 44px;
+        margin-top: 30px;
     }
     &.max {
         width: 100%;
