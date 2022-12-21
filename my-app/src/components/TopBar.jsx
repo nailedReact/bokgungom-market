@@ -51,14 +51,16 @@ const SearchBtn = styled.button`
     top: 17px;
 `;
     const Searchinput = styled.input`
+    position: absolute;
         font-size: 14px;
         line-height: 18px;
         background: #F2F2F2;
         border-radius: 32px;
         border: 0;
         height: 32px;
-        width: 300px;
-        left: 58px;
+        width: 70%;
+        top: 10px;
+        right: 10px;
         padding-left: 10px;
         margin-right: 30px;
 

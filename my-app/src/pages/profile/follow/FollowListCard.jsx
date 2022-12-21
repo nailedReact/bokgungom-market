@@ -26,13 +26,14 @@ const Followingimg = styled.img`
     `;
 
     const TxtCont = styled.div`
+    
         margin-left: 12px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 6px;
-        width: 150px;
-        /* margin-right: 100px; */
+        width: 60%;
+       
     `;
 
     const Cont = styled.li`
@@ -40,6 +41,8 @@ const Followingimg = styled.img`
         padding: 8px 16px;
         align-items: center;
         width:100%;
+        margin-left: auto;
+        justify-content: space-around;
         /* justify-content: center; */
     `;
 

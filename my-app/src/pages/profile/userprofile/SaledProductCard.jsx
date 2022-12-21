@@ -15,6 +15,23 @@ const Window = styled.div`
     overflow-x: scroll;
     overflow-y: hidden;
     height: 100%;
+    
+    ::-webkit-scrollbar {
+    height: 10px;
+
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #DBDBDB;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    height: 5px;
+   
+    ::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 2px white;
+  }
 
 `;
 
