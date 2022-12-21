@@ -46,6 +46,11 @@ const AlbumCont = styled.div`
 	height: 0; 
 `;
 
+const PostCont =styled.div`
+  background: white;
+  border: 0.5px solid #DBDBDB;
+`;
+
 export default function PostList({isProfilePage}) {
   const [resMsg, setResMsg] = useState([]);
   const [postArrList, setPostArrList] = useState([]);
@@ -66,8 +71,6 @@ export default function PostList({isProfilePage}) {
     getMsg();
 }, [])
 
-
-
   useEffect(() => {
     if (resMsg.length !== 0){
       resMsg.forEach((item) => {
@@ -82,9 +85,6 @@ export default function PostList({isProfilePage}) {
       })
     }
   }, [resMsg])
-
-
-  const arr = [];
 
   useEffect(() => {
     if (resMsg.length !== 0){
@@ -108,6 +108,7 @@ export default function PostList({isProfilePage}) {
   }
   return (
     <>
+    { resMsg.length === 0 ? null : <PostCont>
       {isProfilePage ?
         <PostViewCont>
           <BtnOption className='list' onClick={handleChangeView} view={view}></BtnOption>
@@ -115,7 +116,7 @@ export default function PostList({isProfilePage}) {
         </PostViewCont>
       : <></>}
       {view === "list" ? postArrList : <AlbumCont> {postArrAlbum}</AlbumCont>}
-
+    </PostCont>}
     </>
   )
 }

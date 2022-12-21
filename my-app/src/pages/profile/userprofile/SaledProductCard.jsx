@@ -12,8 +12,10 @@ const Cont = styled.div`
     `;
     
 const Window = styled.div`
-    overflow: scroll;
-    height: 150px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 100%;
+
 `;
 
 const SaledProduct = styled.h2`
@@ -26,6 +28,8 @@ const SaledProduct = styled.h2`
 const Productlist = styled.ul`
     display: flex;
     gap: 10px;
+    height: 100%;
+    padding-bottom: 20px;
     /* 자동 캐러셀 부분 - 아직 구현 완료 못함 */
     /* transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; */
     /* transform: ${(props) => 'translateX(-' + props.count * 140 + 'px)'}; */
@@ -36,6 +40,7 @@ const ProductCont = styled.li`
     height: 132px;
     flex-shrink: 0;
     list-style: none;
+    padding: 10px 0;
 `;
 
 const Productimg = styled.img`
@@ -118,13 +123,17 @@ useEffect(() => {
     }, [count]);
 
   return (
+    <>
+    {resMsg.length === 0 ? null:
     <Cont>
-        <SaledProduct>판매 중인 상품</SaledProduct>
-        <Window>
-            <Productlist ref={slideRef} count={count}>
-                {productData}
-            </Productlist>
-        </Window>
-    </Cont>
+    <SaledProduct>판매 중인 상품</SaledProduct>
+    <Window>
+        <Productlist ref={slideRef} count={count}>
+            {productData}
+        </Productlist>
+    </Window>
+</Cont>
+    }
+    </>
   )
 }
