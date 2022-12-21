@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { CommentItemCont } from "./commentItem.style";
 import iconMoreVertical from "../../assets/icon/icon-more-vertical.png";
 import { formattedDate } from "../../pages/feed/feed/dateformat";
@@ -19,7 +19,7 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
     const navigate = useNavigate();
 
     // 댓글 단 사람의 프로필 클릭 시 그 사람의 프로필로 이동
-    function handleClickProfile(){
+    function handleClickProfile() {
         navigate("../../account/profile/" + refer.author.accountname);
     }
 
@@ -30,7 +30,7 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
                 console.log("useeffect - 1");
                 setCreatedAt((prev) => {
                     console.log("실행 - 1");
-                    return formattedDate(refer.createdAt);;
+                    return formattedDate(refer.createdAt);
                 });
             }, [1000]);
 
@@ -40,7 +40,7 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
                 console.log("useeffect - 2");
                 setCreatedAt((prev) => {
                     console.log("실행 - 2");
-                    return formattedDate(refer.createdAt);;
+                    return formattedDate(refer.createdAt);
                 });
             }, [60000]);
 
@@ -50,7 +50,7 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
                 console.log("useeffect - 3");
                 setCreatedAt((prev) => {
                     console.log("실행 - 3");
-                    return formattedDate(refer.createdAt);;
+                    return formattedDate(refer.createdAt);
                 });
             }, [3600000]);
 
@@ -60,11 +60,19 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
 
     return (
         <CommentItemCont>
-            <img src={refer.author.image} alt={"댓글 작성자 프로필 사진"} onClick={handleClickProfile}/>
-            <h2 onClick={handleClickProfile}>{refer.author.username}</h2>
-            <span>{createdAt}</span>
-            <p>{refer.content}</p>
+            <img
+                className="comment-profile-img"
+                src={refer.author.image}
+                alt={"댓글 작성자 프로필 사진"}
+                onClick={handleClickProfile}
+            />
+            <div className="comment-main">
+                <h2 onClick={handleClickProfile}>{refer.author.username}</h2>
+                <span>{`· ${createdAt}`}</span>
+                <p>{refer.content}</p>
+            </div>
             <BtnIcon
+                className="comment-more-btn"
                 type={"button"}
                 onClick={() => {
                     onClickHandle(refer.id, refer.author._id);
