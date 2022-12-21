@@ -15,7 +15,7 @@ import axios from "axios";
 // import Heart from './Heart';
 const Cont = styled.div`
     display: flex;
-    margin-top: 20px;
+    margin: 30px;
 `;
 const Username = styled.h2`
     font-weight: 600;
@@ -78,7 +78,7 @@ const Createdate = styled.span`
     font-size: 10px;
     line-height: 12px;
     color: #767676;
-    margin-top: 18px;
+    margin-top: 25px;
 `;
 const ProfilePicSmall = styled.img`
     width: 42px;

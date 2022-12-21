@@ -16,16 +16,19 @@ const Cont = styled.div`
   background: #DBDBDB;
 `;
 
-const PostCont =styled.div`
-  background: white;
-  border: 0.5px solid #DBDBDB;
-`;
+ 
+
+// const PostCont =styled.div`
+//   background: white;
+//   border: 0.5px solid #DBDBDB;
+// `;
 
 export const UserNameContext = createContext();
 
 export default function Profile() {
   const [accoutName, setAccountName] = useState();
   const [isMyProfile, setIsMyProfile] = useState();
+  // const [checkProduct, setCheckProduct] = useState(false);
   const accountNameInURL = useParams().username;
   console.log(accountNameInURL, "accountNameInURL")
   const data = useAuth();
@@ -57,9 +60,7 @@ export default function Profile() {
             <TopBar type="A1"/>
             <ProfileCard/>
             <SaledProductCard/>
-            <PostCont>
-              <PostList isProfilePage={true}/>
-            </PostCont>
+            <PostList isProfilePage={true}/> 
             <NavBar/>
         </Cont>
     </UserNameContext.Provider>

@@ -8,6 +8,23 @@ import Button from '../../components/Button';
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
 import Warning from '../../components/Warning';
+import TopBar from '../../components/TopBar';
+import NavBar from '../../components/NavBar/NavBar';
+import styled from 'styled-components';
+
+const FormCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center
+    /* gap:20px; */
+`;
+
+const Cont = styled.div`
+    /* text-align: center; */
+`
+const TextCont = styled.div`
+    margin-top: 15px; 
+`
 
 export default function UploadProduct() {
     const [productName, setProductName] = useState('')
@@ -105,67 +122,81 @@ export default function UploadProduct() {
 
 
     return (
-        <form>
-            <ProductImgSetCont htmlFor="productImg">
-                <UserInput label="이미지 업로드">
-                    <img
-                        className={"productSampleImage"}
-                        src={require(`../../assets/product-img-empty.png`)}
-                        alt="상품 이미지 미리보기"
-                        ref={imagePre}
-                    />
-                    <ImageUpload
-                        id={"productImg"}
-                        className={"fileUpload"}
-                        btnStyle={"orange small"}
-                        onChangeByUpper={fileOnChange}
-                    />
-                </UserInput>
-            </ProductImgSetCont>
-
-            <UserInput inputId="productName" label="상품명">
-                <Inp
-                    type="text"
-                    id="productName"
-                    onChange={handleInpName}
-                    value={productName}
-                    minLength={"2"}
-                    maxLength={"15"}
-                    required
-                >
-                </Inp>
-            </UserInput>
-            <Warning ref={nameAlertMsg}>* 상품명을 입력해주세요.</Warning>
-            <UserInput inputId="productPrice" label="가격">
-                <Inp
-                    type="number"
-                    id="productPrice"
-                    onChange={handleInpPrice}
-                    value={productPrice}
-                    required
-                >
-                </Inp>
-            </UserInput>
-            <Warning ref={priceAlertMsg}>* 가격을 입력해주세요.</Warning>
-            <UserInput inputId="productLink" label="판매링크">
-                <Inp
-                    type="url"
-                    id="productLink"
-                    onChange={handleInpLink}
-                    value={productLink}
-                    required
-                >
-                </Inp>
-            </UserInput>
-            <Warning ref={linkAlertMsg}>* 판매 링크를 입력해주세요.</Warning>
-            <Button
-                type="button"
-                className="ms"
-                // disabled={isBtnDisable}
-                onClick={onClickSave}
-            >저장
-            </Button>
-        </form>
+        <Cont>
+            <TopBar type="A4" right4Ctrl="form_upload" // disabled={isBtnDisable}
+            onClickGetMsg={onClickSave}/>
+            
+                <form id='form_upload'>
+                <FormCont>
+                    <ProductImgSetCont htmlFor="productImg">
+                        <UserInput label="이미지 업로드">
+                            <img
+                                className={"productSampleImage"}
+                                src={require(`../../assets/product-img-empty.png`)}
+                                alt="상품 이미지 미리보기"
+                                ref={imagePre}
+                            />
+                            <ImageUpload
+                                id={"productImg"}
+                                className={"fileUpload"}
+                                btnStyle={"orange small"}
+                                onChangeByUpper={fileOnChange}
+                            />
+                        </UserInput>
+                    </ProductImgSetCont>
+        
+                    <TextCont>
+                        <UserInput inputId="productName" label="상품명">
+                            <Inp
+                                type="text"
+                                id="productName"
+                                onChange={handleInpName}
+                                value={productName}
+                                minLength={"2"}
+                                maxLength={"15"}
+                                required
+                                placeholder='2~15자 이내여야 합니다.'
+                            >
+                            </Inp>
+                        </UserInput>
+                        <Warning ref={nameAlertMsg}>* 상품명을 입력해주세요.</Warning>
+                        <UserInput inputId="productPrice" label="가격">
+                            <Inp
+                                type="number"
+                                id="productPrice"
+                                onChange={handleInpPrice}
+                                value={productPrice}
+                                required
+                                placeholder='숫자만 입력 가능합니다.'
+                            >
+                            </Inp>
+                        </UserInput>
+                        <Warning ref={priceAlertMsg}>* 가격을 입력해주세요.</Warning>
+                        <UserInput inputId="productLink" label="판매링크">
+                            <Inp
+                                type="url"
+                                id="productLink"
+                                onChange={handleInpLink}
+                                value={productLink}
+                                required
+                                placeholder='URL을 입력해 주세요.'
+                            >
+                            </Inp>
+                        </UserInput>
+                        <Warning ref={linkAlertMsg}>* 판매 링크를 입력해주세요.</Warning>
+                    </TextCont>
+                    {/* <Button
+                        type="button"
+                        className="ms"
+                        // disabled={isBtnDisable}
+                        onClick={onClickSave}
+                    >저장
+                    </Button> */}
+                    </FormCont>
+                </form>
+            
+            <NavBar/>
+ </Cont>
 
     )
 }

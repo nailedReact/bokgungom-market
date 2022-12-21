@@ -2,6 +2,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import TopBar from "../../../components/TopBar";
 import ProfileSetInpsTempLogIn from "../../../components/ProfileSetInpsTemp/ProfileSetInpsTempLogIn";
+import styled from "styled-components";
+
+
 
 export default function EditProfile() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);
