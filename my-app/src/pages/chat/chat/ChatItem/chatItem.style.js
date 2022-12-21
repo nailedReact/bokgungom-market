@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const ChatItemCont = styled.li`
-    
-    width: 358px;
+    margin-bottom: 20px;
 
-    & * {
-        flex-shrink: 0;
+    &:last-child {
+        margin-bottom: 0;
     }
 
     & .link {
+        position: relative;
         text-decoration: none;
         display: flex;
         color: initial;
@@ -20,6 +20,8 @@ export const ChatItemCont = styled.li`
         height: 42px;
         margin-right: 12px;
         border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
     }
 
     & .profileImgWrapper.online::before {
@@ -29,7 +31,7 @@ export const ChatItemCont = styled.li`
         content: "";
         width: 12px;
         height: 12px;
-        background-color: #F26E22;
+        background-color: var(--color-primary);
         border-radius: 50%;
     }
 
@@ -39,31 +41,30 @@ export const ChatItemCont = styled.li`
     }
 
     & .userNameAndLastChat {
-        width: 238px;
+        width: calc(100% - 100px);
     }
 
     & .userNameAndLastChat .userName {
-        margin-top: 2px;
         margin-bottom: 4px;
         font-size: 14px;
-        font-weight: 400;
-        line-height: 17.53px;
+        line-height: 18px;
+        color: #000000;
     }
 
     & .userNameAndLastChat .lastChat {
         font-size: 12px;
-        font-weight: 400;
-        line-height: 15.02px;
+        line-height: 15px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     & .date {
-        align-self: flex-end;
-        margin-left: auto;
+        position: absolute;
+        right: 0;
+        bottom: 0;
         font-size: 10px;
-        line-height: 12.52px;
+        line-height: 13px;
         color: #dbdbdb;
     }
 `;
