@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const ProductImgSetCont = styled.label`
-    display: inline-block;
+    display: block;
     position: relative;
+    height: 100%;
+    /* overflow-y: scroll; */
 
     & .productSampleImage {
         width: 322px;
@@ -16,5 +18,25 @@ export const ProductImgSetCont = styled.label`
         position: absolute;
         bottom: 12px;
         right: 12px;
+    }
+
+    & .each-image-cont {
+        position: relative;
+        margin-top: 16px;
+    }
+
+    & .each-image-cont .delete-btn {
+        position: absolute;
+        top: 11.5px;
+        right: 11.5px;
+        width: 11px;
+        height: 11px;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    & .each-image-cont .delete-btn img {
+        width: 100%;
+        object-fit: cover;
     }
 `;

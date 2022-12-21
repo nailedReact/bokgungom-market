@@ -24,4 +24,10 @@ export const ImgUploadIcon = styled.label`
         background-size: cover;
         background-image: url(${imgButton});
     }
+
+    &.location {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+    }
 `;

@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
 const Textarea = styled.textarea`
-    width: 304px;
+    display: block;
     resize: none;
+    width: calc(100% - 55px);
+    // height: auto;
+    // /* overflow-y: scroll; */
+    // overflow: scroll;
     padding: 10px;
     box-sizing: border-box;
     font-size: 14px;
@@ -11,7 +15,7 @@ const Textarea = styled.textarea`
 
     :focus {
         outline: none;
-        border-bottom: 1px solid #DBDBDB;
+        // border-bottom: 1px solid #DBDBDB;
     }
 `
 
