@@ -14,9 +14,11 @@ const Cont = styled.div`
   flex-direction: column;
   gap: 6px;
   background: #DBDBDB;
+  @media screen and (min-width: 768px){
+        margin-left: 240px;
+    }
 `;
 
- 
 
 // const PostCont =styled.div`
 //   background: white;
@@ -56,13 +58,13 @@ export default function Profile() {
   else {
     return (
       <UserNameContext.Provider value={{username : accountNameInURL, isMyProfile: isMyProfile}}>
-        <Cont>
             <TopBar type="A1"/>
+        <Cont>
             <ProfileCard/>
             <SaledProductCard/>
             <PostList isProfilePage={true}/> 
-            <NavBar/>
         </Cont>
+            <NavBar/>
     </UserNameContext.Provider>
   )
   }
