@@ -6,11 +6,13 @@ import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
 import { useNavigate } from 'react-router-dom';
 
 const TopBarCont = styled.div`
-    background-color: gainsboro;
+    max-width: 390px;
+    background-color: #FFFFFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 12px 12px 16px;
+    border-bottom: 0.5px solid #DBDBDB;
 `
 const LeftCont = styled.div`
     display: flex;
@@ -32,6 +34,7 @@ const BtnIcon = styled.button`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    display: block;
     width: 24px;
     height: 24px;
 `;
