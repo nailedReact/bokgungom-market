@@ -8,7 +8,7 @@ const Inp = styled.input`
     border-bottom: 1px solid #DBDBDB;
     outline: none;
 
-    width:322px;
+    /* width:322px; */
     ::placeholder{
         color: #DBDBDB;
     }
