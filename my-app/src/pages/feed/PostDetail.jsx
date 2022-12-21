@@ -13,14 +13,19 @@ import useAuth from "../../hook/useAuth";
 import basicImg from "../../assets/basic-profile-img.png";
 
 const CommentListBox = styled.ul`
-    max-width: 390px;
+    /* max-width: 390px; */
     border-top: 1px solid #dbdbdb;
     padding: 20px 16px;
 `;
 
 const PostContentBox = styled.div`
-    max-width: 390px;
+    /* max-width: 390px; */
     padding: 20px 16px;
+`;
+
+const Wrapper = styled.div`
+    max-width: 390px;
+    margin: 0 auto;
 `;
 
 export default function PostDetail() {
@@ -200,7 +205,7 @@ export default function PostDetail() {
     };
 
     return (
-        <>
+        <Wrapper>
             {modalNotMe && (
                 <OptionModal
                     onConfirm={() => {
@@ -269,6 +274,6 @@ export default function PostDetail() {
                     게시
                 </button>
             </CommentInp>
-        </>
+        </Wrapper>
     );
 }

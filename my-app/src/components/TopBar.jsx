@@ -6,7 +6,7 @@ import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
 import { useNavigate } from 'react-router-dom';
 
 const TopBarCont = styled.div`
-    max-width: 390px;
+    /* max-width: 390px; */
     background-color: #FFFFFF;
     display: flex;
     justify-content: space-between;

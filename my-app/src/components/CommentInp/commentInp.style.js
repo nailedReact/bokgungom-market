@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CommentInpCont = styled.form`
     display: flex;
     border-top: 0.5px solid #dbdbdb;
-    max-width: 390px;
+    /* max-width: 390px; */
     padding: 12px 16px;
 
     & img {
