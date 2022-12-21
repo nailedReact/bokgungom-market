@@ -238,4 +238,5 @@ export default function PostCard({
                 </Cont>
             )}
         </>
-    );
+    )
+                                }

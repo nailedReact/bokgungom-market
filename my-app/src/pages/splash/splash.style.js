@@ -16,7 +16,7 @@ export const BgCont = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #4583A3;
+    background-color: var(--color-primary);
     width: 100vw;
     height: 100vh;
 `
