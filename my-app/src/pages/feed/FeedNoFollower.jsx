@@ -23,6 +23,7 @@ const FeedNoFollower = () => {
 
     const Cont = styled.div`
         text-align: center;
+        height: 100%;
     `;
 
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const FeedNoFollower = () => {
     <Cont>
         <Symbolimg src={symbolimg} alt="" />
         <SearchText>유저를 검색해 팔로우를 해보세요!</SearchText>
-        <Button className="small" active="true" onClick={movesearch}>검색하기</Button>
+        <Button className="large" active="true" onClick={movesearch}>검색하기</Button>
     </Cont>    
 )}
 

@@ -6,7 +6,9 @@ import FeedFollower from "../feed/FeedFollower";
 import FeedNoFollower from "../feed/FeedNoFollower";
 import { useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
-
+import {
+  FeedCont
+} from "./homeFeed.style"
 
 /* eslint-disable */
 
@@ -39,12 +41,15 @@ export default function HomeFeed() {
       }, [resMsg])
     
     return (
-        <>
-            <TopBar type="B3" title="감귤마켓 피드"/>
-            { resMsg.length === 0 ? 
-            <FeedNoFollower /> : postArr
-            }
-            <NavBar/>
-        </>
+      <>
+        <TopBar type="B3" title="감귤마켓 피드"/>
+        <FeedCont>
+        { resMsg.length === 0 ? 
+        <FeedNoFollower /> : postArr
+        }
+        </FeedCont>
+        <NavBar/>
+      </>
+        
     )
 }
