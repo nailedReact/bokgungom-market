@@ -15,11 +15,15 @@ const ProfileSetCont = styled.form`
         border-bottom: 1px solid #DBDBDB;
         outline: none;
 
+
         display: flex;
+
+        width: 100%;
+
     }
 
     & .inp:focus {
-        border-color: #f26e22;
+        border-color: #4583A3;
     }
 `;
 

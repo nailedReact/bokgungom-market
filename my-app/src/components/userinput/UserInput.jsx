@@ -4,7 +4,12 @@ const InpLabel = styled.label`
     font-size: 12px;
     color: #767676;
     font-weight: 500;
+
     margin-bottom: 15px;
+
+    display: block;
+    margin-top: 40px;
+
 `
 
 const Cont = styled.div`

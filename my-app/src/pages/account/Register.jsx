@@ -5,6 +5,24 @@ import Button from '../../components/Button';
 import UserInput from '../../components/userinput/UserInput';
 import Inp from '../../components/userinput/Inp';
 import Warning from '../../components/Warning';
+import styled from 'styled-components';
+
+const Container = styled.main`
+      width: 87%;
+      max-width: 500px;
+      margin: 30px auto;
+    `;
+
+const Form = styled.form`
+      display: flex;
+      flex-direction: column;
+    `;
+
+const Title = styled.h1`
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    `
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
@@ -105,9 +123,9 @@ export default function Register() {
   }
 
   return (
-    <>
-      <h1>이메일로 회원가입</h1>
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <Title>이메일로 회원가입</Title>
+      <Form onSubmit={handleSubmit}>
         <UserInput inputId="email" label="이메일">
           <Inp
             type="email"
@@ -137,7 +155,7 @@ export default function Register() {
         </UserInput>
         <Warning ref={pwAlertMsg}>* 비밀번호는 6자 이상이어야 합니다.</Warning>
         <Button type="submit" className="large max" disabled={isDisable}>다음</Button>
-      </form>
-    </>
+      </Form>
+    </Container>
   );
 }

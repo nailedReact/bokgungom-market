@@ -9,9 +9,9 @@ import NavBar from '../../components/NavBar/NavBar';
 
 
 const Symbolimg = styled.img`
-width: 75px;
-height: 75px;
-margin-top: 225px;
+  width: 120px;
+  height: 120px;
+  margin-top: 225px;
 `;
 
 const SearchText = styled.p`
@@ -24,7 +24,7 @@ margin: 25px 0px;
 `;
 
 const Cont = styled.div`
-text-align: center;
+  text-align: center;
 `;
 
 export default function Search() {

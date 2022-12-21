@@ -4,6 +4,13 @@ import InitialHeading from "../../components/InitialHeading/InitialHeading";
 import ProfileSetInpsTemp from "../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
 import Button from "../../components/Button";
 import axios from "axios";
+import styled from "styled-components";
+
+const Container = styled.main`
+        width: 87%;
+        max-width: 500px;
+        margin: 30px auto;
+    `;
 
 export default function EditProfileSignUp() {
     const [userData, setUserData] = useState(null);
@@ -81,9 +88,9 @@ export default function EditProfileSignUp() {
     };
 
     return (
-        <>
-            <InitialHeading text={"프로필 설정"} />
-            <p>나중에 언제든지 변경할 수 있습니다.</p>
+        <Container>
+            <InitialHeading text={"프로필 설정"} info={"나중에 언제든지 변경할 수 있습니다."}/>
+            {/* <p>나중에 언제든지 변경할 수 있습니다.</p> */}
             <ProfileSetInpsTemp
                 formId={"signUp"}
                 onInValidByUpper={onInvalidFunc}
@@ -92,12 +99,12 @@ export default function EditProfileSignUp() {
             />
             <Button
                 form={"signUp"}
-                className={"large"}
+                className={"large max"}
                 type={"submit"}
                 disabled={isDisabled}
             >
                 감귤마켓 시작하기
             </Button>
-        </>
+        </Container>
     );
 }
