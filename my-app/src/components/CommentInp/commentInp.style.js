@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const CommentInpCont = styled.form`
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
     display: flex;
     border-top: 0.5px solid #dbdbdb;
     /* max-width: 390px; */
@@ -38,5 +42,11 @@ export const CommentInpCont = styled.form`
         flex-shrink: 0;
         margin-left: auto;
         color: ${(props) => (props.isBtnActivated ? "#4583A3" : "#C4C4C4")};
+    }
+
+    @media screen and (min-width: 768px) {
+        & input, button {
+            font-size: 16px;
+        }
     }
 `;

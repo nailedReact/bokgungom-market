@@ -12,10 +12,6 @@ export const OutgoingCont = styled.li`
         border-radius: 10px 0 10px 10px;
     }
 
-    & .imgMsg {
-        width: 240px;
-    }
-
     & .time {
         margin-right: 6px;
     }
