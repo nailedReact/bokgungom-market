@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Button = styled.button`
     background-color: var(--color-primary); // 변경 예정
     color: #FFFFFF;
-
+    font-family: "Pretendard";
     &.small {
         font-size: 12px;
         padding: 7px 11px;
