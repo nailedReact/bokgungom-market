@@ -7,7 +7,7 @@ export default function NavBarItem({ linkSrc, iconSrc, navTxt, currentPath }) {
             icon={iconSrc}
             className={currentPath.includes(linkSrc) ? "activated" : ""}
         >
-            <Icon icon={iconSrc} className={currentPath ===linkSrc ? "activated" : ""}/>
+            <Icon icon={iconSrc} className={currentPath === linkSrc || currentPath === linkSrc + "/edit/" ? "activated" : ""}/>
             {navTxt}
         </StyledLink>
     );
