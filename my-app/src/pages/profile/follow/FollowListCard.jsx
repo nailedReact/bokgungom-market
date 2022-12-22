@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router';
 const Followingimg = styled.img`
         height: 50px;
         width: 50px;
-        border-radius: 0px;
-
+        border-radius: 50%;
+        border: 0.5px solid #C4C4C4;
     `;
 
     const Username = styled.h3`
@@ -38,12 +38,14 @@ const Followingimg = styled.img`
 
     const Cont = styled.li`
         display: flex;  
-        padding: 8px 16px;
+        padding: 10px;
         align-items: center;
-        width:100%;
         margin-left: auto;
         justify-content: space-around;
-        /* justify-content: center; */
+        @media screen and (min-width: 768px){
+            margin-left: 240px;
+            padding: 10px 20px;
+        }
     `;
 
     

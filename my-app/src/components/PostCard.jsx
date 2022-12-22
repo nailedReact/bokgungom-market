@@ -15,12 +15,18 @@ import plusimg from "../assets/icon/icon-more-vertical.png";
 
 const Cont = styled.div`
     display: flex;
-    margin: 30px;
+    padding: 20px;
+    justify-content: center;
+    background-color: white;
+    border-bottom: 0.5px solid #DBDBDB;
 `;
+
 const Username = styled.h2`
     font-weight: 500;
     font-size: 14px;
-    line-height: 18px;
+    @media screen and (min-width: 768px){
+        font-size: 16px;
+    }
 `;
 
 const Accountname = styled.p`
@@ -29,6 +35,9 @@ const Accountname = styled.p`
     line-height: 14px;
     color: #767676;
     margin-top: 2px;
+    @media screen and (min-width: 768px){
+        font-size: 14px;
+    }
 `;
 
 const Content = styled.p`
@@ -48,38 +57,47 @@ const Contentimg = styled.img`
 `;
 
 const ContentCont = styled.div`
-    max-width: 304px;
+    width: 304px;
+    @media screen and (min-width: 768px){
+        width: 400px;
+    }
 `;
 
 const Count = styled.span`
     font-weight: 400;
     font-size: 12px;
-    line-height: 12px;
     color: #767676;
     margin-left: 7px;
-    margin-bottom: 2px;
+    @media screen and (min-width: 768px){
+        font-size: 14px;
+    }
 `;
-
+const HeartComment = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+`
 const HeartCommentCont = styled.div`
-    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
 `;
-const Heartimg = styled.img`
+const HeartCommentimg = styled.img`
     width: 15px;
     height: 15px;
-`;
-
-const Commentimg = styled.img`
-    width: 15px;
-    height: 15px;
-    margin-left: 18px;
+    @media screen and (min-width: 768px){
+        width: 18px;
+        height: 18px;
+    }
 `;
 
 const Createdate = styled.span`
     font-weight: 400;
     font-size: 10px;
-    line-height: 12px;
     color: #767676;
-    margin-top: 16px;
+    @media screen and (min-width: 768px){
+        font-size: 12px;
+    }
 `;
 const ProfilePicSmall = styled.img`
     width: 42px;
@@ -87,6 +105,10 @@ const ProfilePicSmall = styled.img`
     margin-right: 12px;
     border-radius: 50%;
     object-fit: cover;
+    border: 0.5px solid #C4C4C4;
+    @media screen and (min-width: 768px){
+        margin-right: 16px;
+    }
 `;
 
 const Plusbutton = styled.button`
@@ -251,7 +273,7 @@ export default function PostCard({
                         <HeadCont>
                             <div>
                                 <Username onClick={handleClickProfile}>{data.author.username}</Username>
-                                <Accountname onClick={handleClickProfile}>@ {data.author.accountname}</Accountname>
+                                <Accountname onClick={handleClickProfile}>@{data.author.accountname}</Accountname>
                             </div>
                             {myProfile ? <Plusbutton onClick={handlemodal}/> : null}
                         </HeadCont>
@@ -268,34 +290,36 @@ export default function PostCard({
                                 <Contentimg src={data.image} alt="컨텐츠 사진" />
                             ) : null}
                         </div >
-                        <HeartCommentCont>
+                        <HeartComment>
                             <span onClick={heartchange}>
                                 {myheart ? (
-                                    <>
-                                        <Heartimg
+                                    <HeartCommentCont>
+                                        <HeartCommentimg
                                             src={heart_active}
                                             alt="채워진 하트"
                                         />
                                         <Count>{myposthearts}</Count>
-                                    </>
+                                    </HeartCommentCont>
                                 ) : (
-                                    <>
-                                        <Heartimg
+                                    <HeartCommentCont>
+                                        <HeartCommentimg
                                             src={heart}
                                             alt="비워진 하트"
                                         />
                                         <Count>{myposthearts}</Count>
-                                    </>
+                                    </HeartCommentCont>
                                 )}
                             </span>
                             <Link to={postDetailSrc}>
                                 <span className={"ir"}>
                                     게시글 상세 페이지로 이동
                                 </span>
-                                <Commentimg src={comment} alt="댓글 아이콘" />
-                                <Count>{data.commentCount}</Count>
+                                <HeartCommentCont>
+                                    <HeartCommentimg src={comment} alt="댓글 아이콘" />
+                                    <Count>{data.commentCount}</Count>
+                                </HeartCommentCont>
                             </Link>
-                        </HeartCommentCont>
+                        </HeartComment>
                         <Createdate>{data.createdAt.slice(0, 10)}</Createdate>
                     </ContentCont>
                 </Cont>
