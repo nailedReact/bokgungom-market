@@ -13,7 +13,7 @@ const Cont = styled.div`
   display:flex;
   flex-direction: column;
   gap: 6px;
-  background: #DBDBDB;
+  background: #F2F2F2;
   @media screen and (min-width: 768px){
     margin-left: 240px;
   }
