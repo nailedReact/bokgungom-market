@@ -33,6 +33,6 @@ export const ConfirmlLayout = styled.article`
 
     & .button-group :nth-child(2) {
         border-left: 0.5px solid #dbdbdb;
-        color: #F26E22;
+        color: var(--color-primary);
     }
 `;

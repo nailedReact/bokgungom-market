@@ -37,6 +37,7 @@ export const OptionLayout = styled.article`
         background-color: transparent;
         font-size: 100%;
         line-height: 18px;
+        padding: 0;
     }
 
     @media screen and (min-width: 768px){
