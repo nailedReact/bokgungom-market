@@ -9,27 +9,19 @@ import styled from "styled-components";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
 
-const Wrapper = styled.div`
-    position: relative;
-    max-width: 390px;
-    height: 844px;
-    ///* height:100%; */
-    overflow: auto;
-    margin: 0 auto;
-`;
-
 const ContentWrapper = styled.div`
     /* display: flex; */
     // overflow: hidden;
-    height: 100%;
+    /* height: 100%; */
     overflow: auto;
     gap: 12px;
-    margin: 20px 16px;
+    padding: 20px 16px;
 `;
 
 const Contentimg = styled.img`
-    width: 100%;
-    height: 228px;
+    margin-left: 42px;
+    width: calc(100% - 42px);
+    max-width: 600px;
     object-fit: cover;
     border: 0.5px solid #dbdbdb;
     border-radius: 10px;
@@ -147,7 +139,7 @@ export default function UploadPost() {
     };
 
     return (
-        <Wrapper>
+        <>
             <TopBar
                 type="A4"
                 right4Ctrl={{ form: "postUpload", isDisabled: false }}
@@ -196,6 +188,6 @@ export default function UploadPost() {
                     </ImgUploadIcon>
                 </form>
             </ContentWrapper>
-        </Wrapper>
+        </>
     );
 }
