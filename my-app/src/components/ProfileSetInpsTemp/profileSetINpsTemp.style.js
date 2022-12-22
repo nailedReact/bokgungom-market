@@ -8,7 +8,7 @@ const ProfileSetCont = styled.form`
     /* margin: 30px; */
 
     & .inp {
-        font-size: 20px;
+        font-size: 16px;
         background-color: none;
         border: none;
         padding-bottom: 2px;
@@ -16,9 +16,6 @@ const ProfileSetCont = styled.form`
         outline: none;
         display: flex;
         width: 100%;
-        @media screen and (max-width: 768px) {
-            font-size: 16px;
-        }
     }
 
     & .inp:focus {
