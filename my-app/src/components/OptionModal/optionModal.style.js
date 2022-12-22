@@ -2,7 +2,7 @@ import styled from "styled-components";
 import modalIcon from "../../assets/icon/icon-modal.png";
 
 export const OptionLayout = styled.article`
-    max-width: 390px;
+    /* max-width: 390px; */
     width: 100%;
     /* position: absolute; */
     position: fixed;
@@ -24,9 +24,7 @@ export const OptionLayout = styled.article`
     }
 
     & .modal-items > * {
-        padding-top: 14px;
-        padding-bottom: 14px;
-        padding-left: 26px;
+        padding: 14px 26px;
         font-size: 14px;
         font-weight: 400;
         line-height: 18px;
@@ -37,7 +35,19 @@ export const OptionLayout = styled.article`
         width: 100%;
         text-align: left;
         background-color: transparent;
-        font-size: 14px;
+        font-size: 100%;
         line-height: 18px;
+    }
+
+    @media screen and (min-width: 768px){
+
+        & .modal-items > * {
+            font-size: 18px;
+            padding: 18px 30px;
+        }
+
+        & .modal-items > :nth-child(1) {
+            padding-top: 60px;
+        }
     }
 `;
