@@ -164,12 +164,12 @@ export default function UploadPost() {
                             </div>
                         ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"}>
-                        <span className="ir">이미지 첨부</span>
-                        <input
+                     <ImgUploadIcon className={"orange small location"}>
+                         <span className="ir">이미지 첨부</span>
+                         <input
                             className="ir"
                             type="file"
-                            accept="image/*"
+                            accept="image/jpg, image/gif, image/png, image/jpeg, image/bmp, image/tif, image/heic"
                             onChange={handleAddImages}
                         />
                     </ImgUploadIcon>

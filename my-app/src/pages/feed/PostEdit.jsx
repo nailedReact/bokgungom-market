@@ -201,7 +201,7 @@ export default function PostEdit() {
                         <input
                             className="ir"
                             type="file"
-                            accept="image/*"
+                            accept="image/jpg, image/gif, image/png, image/jpeg, image/bmp, image/tif, image/heic"
                             onChange={handleAddImages}
                         />
                     </ImgUploadIcon>

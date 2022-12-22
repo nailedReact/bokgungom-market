@@ -4,6 +4,7 @@ import { ImgUploadIcon } from "./imageUpload.style";
 export default function ImageUpload({ btnStyle, onChangeByUpper }) {
     const handleFileChange = (event) => {
         const selectedFile = [...event.target.files];
+        console.log(selectedFile);
         const fileReader = new FileReader();
 
         onChangeByUpper(selectedFile, fileReader);
@@ -15,7 +16,7 @@ export default function ImageUpload({ btnStyle, onChangeByUpper }) {
             <input
                 className="ir"
                 type="file"
-                accept="image/*"
+                accept="image/jpg, image/gif, image/png, image/jpeg, image/bmp, image/tif, image/heic"
                 onChange={handleFileChange}
             />
         </ImgUploadIcon>
