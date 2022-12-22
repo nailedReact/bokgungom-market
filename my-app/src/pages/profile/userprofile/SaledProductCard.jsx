@@ -26,6 +26,7 @@ const Window = styled.div`
     background-clip: padding-box;
     border: 1px solid transparent;
     height: 5px;
+  }
    
     ::-webkit-scrollbar-track {
     background-color: grey;
@@ -103,7 +104,7 @@ useEffect(() => {
         setResMsg(res.data.product);
     }
     getprofile();
-}, [])
+}, [username])
 
 // 판매중인 상품의 링크로 넘어가는 부분입니다.
 const handlelink = (link) => {
@@ -113,17 +114,15 @@ const handlelink = (link) => {
 // 상품을 뿌려주는 역할을 하는 부분입니다.
 useEffect(() => {
     if (resMsg.length !== 0){
-        resMsg.forEach((item, index) => {
-            setProductData((productData) => {
-            return [...productData, 
-            <ProductCont onClick={() => handlelink(item.link)} key={index}>
+        const products = resMsg.map((item) => (
+            <ProductCont onClick={() => handlelink(item.link)} key={item.id}>
                 <Productimg src={item.itemImage} alt="상품 이미지"/>
                 <ItemName>{item.itemName}</ItemName>
                 <ItemPrice>{item.price}원</ItemPrice>
             </ProductCont>
-            ];
-          })
-      })
+        ));
+
+        setProductData(products);
     }
   }, [resMsg])
 

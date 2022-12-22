@@ -69,38 +69,30 @@ export default function PostList({isProfilePage}) {
       setResMsg(res.data.post);
     }
     getMsg();
-}, [])
+}, [username])
 
   useEffect(() => {
     if (resMsg.length !== 0){
-      resMsg.forEach((item) => {
-          setPostArrList((postArrList) => {
-            if (isMyProfile){
-              return [...postArrList, <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
-            }
-            else {
-              return [...postArrList, <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />];
-            }
-          })
-      })
-    }
-  }, [resMsg])
+      const postLists = resMsg.map((item) => {
+        if (isMyProfile) {
+          return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+        } else {
+          return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
+        }
+      });
 
-  useEffect(() => {
-    if (resMsg.length !== 0){
-      resMsg.forEach((item) => {
-        setPostArrAlbum((postArrAlbum) => {
-          // arr.push(item.image);
-            if (isMyProfile){
-              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />];
-            }
-            else {
-              return [...postArrAlbum, <PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />];
-            }
-          })
-      })
+      const postPhotos = resMsg.map((item) => {
+        if (isMyProfile) {
+          return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+        } else {
+          return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+        }
+      });
+
+      setPostArrList(postLists);
+      setPostArrAlbum(postPhotos);
     }
-  }, [resMsg])
+  }, [resMsg]);
 
   const handleChangeView = (e) => {
     const type = e.target.className.split(' ').pop();
