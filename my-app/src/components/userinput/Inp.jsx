@@ -1,16 +1,12 @@
 import styled from "styled-components";
 
 const Inp = styled.input`
-    font-size: 20px;
+    font-size: 16px;
     background-color: none;
     border: none;
     padding-bottom: 2px;
     border-bottom: 1px solid #DBDBDB;
     outline: none;
-
-    @media screen and (max-width: 768px) {
-        font-size: 16px;
-    }
 
     /* width:322px; */
     ::placeholder{
