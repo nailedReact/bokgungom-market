@@ -15,15 +15,22 @@ import styled from 'styled-components';
 const FormCont = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center
-    /* gap:20px; */
 `;
 
 const Cont = styled.div`
-    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media screen and (min-width: 768px){
+        margin-left: 240px;
+        /* width: 100%; */
+    }
 `
 const TextCont = styled.div`
-    margin-top: 15px; 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `
 
 export default function UploadProduct() {
@@ -122,10 +129,10 @@ export default function UploadProduct() {
 
 
     return (
-        <Cont>
+        <>
             <TopBar type="A4" right4Ctrl="form_upload" // disabled={isBtnDisable}
             onClickGetMsg={onClickSave}/>
-            
+        <Cont>
                 <form id='form_upload'>
                 <FormCont>
                     <ProductImgSetCont htmlFor="productImg">
@@ -144,7 +151,6 @@ export default function UploadProduct() {
                             />
                         </UserInput>
                     </ProductImgSetCont>
-        
                     <TextCont>
                         <UserInput inputId="productName" label="상품명">
                             <Inp
@@ -194,9 +200,8 @@ export default function UploadProduct() {
                     </Button> */}
                     </FormCont>
                 </form>
-            
-            <NavBar/>
  </Cont>
-
+            <NavBar/>
+ </>
     )
 }

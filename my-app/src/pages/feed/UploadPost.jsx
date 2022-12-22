@@ -10,6 +10,7 @@ import { Contentimg } from "../../components/postEditContentImg.style";
 // import {basicImg} from "../../assets/basic-profile-img-small.png";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
+import NavBar from "../../components/NavBar/NavBar";
 
 export default function UploadPost() {
     const [showImages, setShowImages] = useState([]);
@@ -163,6 +164,7 @@ export default function UploadPost() {
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
+            <NavBar/>
         </>
     );
 }
