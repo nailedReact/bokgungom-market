@@ -47,7 +47,7 @@ export default function EditProfile() {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: token,
                         "Content-type": "application/json",
                     },
                 }
@@ -66,7 +66,7 @@ export default function EditProfile() {
                 "https://mandarin.api.weniv.co.kr/user/myinfo",
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: token,
                     },
                 }
             );
