@@ -1,48 +1,15 @@
 import { useState, useRef } from "react";
 import Button from "../../components/Button";
 import TopBar from "../../components/TopBar";
+import { PostEditWrapper } from "../../components/postEditWrapper.style";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
 import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
+import { UserProfileImg } from "../../components/postEditUserProfile.style";
 import Textarea from "../../components/Textarea/Textarea";
-import styled from "styled-components";
+import { Contentimg } from "../../components/postEditContentImg.style";
 // import {basicImg} from "../../assets/basic-profile-img-small.png";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
-
-const Wrapper = styled.div`
-    position: relative;
-    max-width: 390px;
-    height: 844px;
-    ///* height:100%; */
-    overflow: auto;
-    margin: 0 auto;
-`;
-
-const ContentWrapper = styled.div`
-    /* display: flex; */
-    // overflow: hidden;
-    height: 100%;
-    overflow: auto;
-    gap: 12px;
-    margin: 20px 16px;
-`;
-
-const Contentimg = styled.img`
-    width: 100%;
-    height: 228px;
-    object-fit: cover;
-    border: 0.5px solid #dbdbdb;
-    border-radius: 10px;
-`;
-
-const UserProfileImg = styled.img`
-    /* display: inline-block; */
-    float: left;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
-`;
 
 export default function UploadPost() {
     const [showImages, setShowImages] = useState([]);
@@ -147,12 +114,12 @@ export default function UploadPost() {
     };
 
     return (
-        <Wrapper>
+        <>
             <TopBar
                 type="A4"
                 right4Ctrl={{ form: "postUpload", isDisabled: false }}
             />
-            <ContentWrapper>
+            <PostEditWrapper>
                 <UserProfileImg
                     src={basicImg}
                     alt="게시글 작성자 프로필 사진"
@@ -195,7 +162,7 @@ export default function UploadPost() {
                         />
                     </ImgUploadIcon>
                 </form>
-            </ContentWrapper>
-        </Wrapper>
+            </PostEditWrapper>
+        </>
     );
 }

@@ -6,6 +6,12 @@ const sharedTxtMsg = css`
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;
+
+    @media screen and (min-width: 768px){
+        font-size: 16px;
+        line-height: 20px;
+        padding: 14px;
+    }
 `;
 
 const sharedLayout = css`
@@ -14,6 +20,12 @@ const sharedLayout = css`
 
     &:nth-child(1) {
         margin-top: 0;
+    }
+
+    & .imgMsg {
+        width: 240px;
+        max-height: 600px;
+        object-fit: cover;
     }
 `;
 

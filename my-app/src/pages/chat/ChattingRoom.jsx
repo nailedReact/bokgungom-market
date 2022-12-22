@@ -10,18 +10,14 @@ import Incoming from "./chat/Incoming/Incoming";
 import ChatInput from "./chat/ChatInput/ChatInput";
 import { formattedTimeFunc } from "./dateFormat";
 
-const Wrapper = styled.div`
-    max-width: 390px;
-    margin: 0 auto;
-`;
-
 const ChatContBack = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 772px;
+    /* height: 772px; */
+    height: calc(100vh - 60.5px);
     background-color: #f2f2f2;
-    padding: 20px 16px;
+    padding: 20px 16px 60.5px 16px;
 `;
 
 const ChatCont = styled.ul`
@@ -77,7 +73,7 @@ export default function ChattingRoom() {
     };
 
     return (
-        <Wrapper>
+        <>
             {modalVisible && (
                 <OptionModal onConfirm={onConfirm}>
                     <li>
@@ -91,6 +87,6 @@ export default function ChattingRoom() {
                 <ChatCont>{eachChat}</ChatCont>
             </ChatContBack>
             <ChatInput />
-        </Wrapper>
+        </>
     );
 }

@@ -21,6 +21,7 @@ export const ProductImgSetCont = styled.label`
     }
 
     & .each-image-cont {
+        display: inline-block;
         position: relative;
         margin-top: 16px;
     }

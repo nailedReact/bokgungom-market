@@ -1,9 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Button from "../../components/Button";
+import TopBar from "../../components/TopBar";
+import Textarea from "../../components/Textarea/Textarea";
 import axios from "axios";
+import { PostEditWrapper } from "../../components/postEditWrapper.style";
+import { Contentimg } from "../../components/postEditContentImg.style";
+import { UserProfileImg } from "../../components/postEditUserProfile.style";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
 import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
+import basicImg from "../../assets/basic-profile-img.png";
+import deleteIcon from "../../assets/icon/icon-delete.png";
 
 export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
@@ -11,7 +17,10 @@ export default function PostEdit() {
     const [isBtnDisable, setIsBtnDisable] = useState(false);
     const submitData = useRef({});
     const imagePre = useRef(null);
-    const URL = `https://mandarin.api.weniv.co.kr${useLocation().pathname.slice(0, -5)}`;
+    const URL = `https://mandarin.api.weniv.co.kr${useLocation().pathname.slice(
+        0,
+        -5
+    )}`;
 
     // 페이지 로드시 기존 게시글 정보 불러오기 위함
     useEffect(() => {
@@ -148,29 +157,46 @@ export default function PostEdit() {
     };
 
     return (
-        <div className="App">
-            <form action="">
-                <ProductImgSetCont htmlFor="productImg">
-                    <textarea
-                        placeholder="게시글 입력하기..."
-                        onChange={handleTextarea}
-                        value={contentText}
-                    />
+        <>
+            <TopBar
+                type="A4"
+                right4Ctrl={{ form: "postUpload", isDisabled: false }}
+            />
+            <PostEditWrapper>
+                <UserProfileImg
+                    src={basicImg}
+                    alt="게시글 작성자 프로필 사진"
+                />
+                <form action="" id={"postUpload"} onSubmit={onClickUpload}>
+                    <ProductImgSetCont htmlFor="productImg">
+                        <Textarea
+                            placeholder="게시글 입력하기..."
+                            onChange={handleTextarea}
+                            value={contentText}
+                        />
 
-                    {showImages &&
-                        showImages.map((image, id) => (
-                            <div key={id}>
-                                <img
-                                    src={image}
-                                    alt={`${image}-${id}`}
-                                    ref={imagePre}
-                                />
-                                <span onClick={() => handleDeleteImage(id)}>
-                                    x
-                                </span>
-                            </div>
-                        ))}
-                    <ImgUploadIcon className={"orange small"}>
+                        {showImages &&
+                            showImages.map((image, id) => (
+                                <div className="each-image-cont" key={id}>
+                                    <Contentimg
+                                        src={image}
+                                        alt={`${image}-${id}`}
+                                        ref={imagePre}
+                                    />
+                                    <button
+                                        className="delete-btn"
+                                        type="button"
+                                        onClick={() => handleDeleteImage(id)}
+                                    >
+                                        <img
+                                            src={deleteIcon}
+                                            alt="이미지 삭제"
+                                        />
+                                    </button>
+                                </div>
+                            ))}
+                    </ProductImgSetCont>
+                    <ImgUploadIcon className={"orange small location"}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             className="ir"
@@ -179,16 +205,8 @@ export default function PostEdit() {
                             onChange={handleAddImages}
                         />
                     </ImgUploadIcon>
-                </ProductImgSetCont>
-                <Button
-                    type="submit"
-                    className="ms"
-                    disabled={isBtnDisable}
-                    onClick={onClickUpload}
-                >
-                    업로드
-                </Button>
-            </form>
-        </div>
+                </form>
+            </PostEditWrapper>
+        </>
     );
 }

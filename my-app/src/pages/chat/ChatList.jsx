@@ -5,15 +5,17 @@ import ChatItem from "./chat/ChatItem/ChatItem";
 import NavBar from "../../components/NavBar/NavBar";
 import data from "./chat/chatdata.json";
 
-const Wrapper = styled.div`
-    max-width: 390px;
-    margin: 0 auto;
-`;
-
 const ChatCont = styled.ul`
-    height: 772px;
-    padding: 24px 16px;
-    overflow-y: scroll;
+    /* height: 772px; */
+    padding: 24px 16px 84.5px 16px;
+    /* overflow-y: scroll; */
+
+    @media screen and (min-width: 768px){
+        max-width: 1300px;
+        padding-left: 256px;
+        padding-top: 50px;
+        padding-bottom: 24px;
+    }
 `;
 
 export default function ChatList() {
@@ -44,11 +46,11 @@ export default function ChatList() {
     }, []);
     
     return (
-        <Wrapper>
+        <>
             <TopBar type={"A1"} />
             <h1 className={"ir"}>채팅 리스트</h1>
             <ChatCont>{chatData}</ChatCont>
             <NavBar />
-        </Wrapper>
+        </>
     );
 }

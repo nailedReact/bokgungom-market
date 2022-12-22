@@ -67,4 +67,16 @@ export const ChatItemCont = styled.li`
         line-height: 13px;
         color: #dbdbdb;
     }
+
+    @media screen and (min-width: 768px){
+        margin-bottom: 30px;
+
+        & .userNameAndLastChat .userName {
+            font-size: 16px;
+        }
+
+        & .userNameAndLastChat .lastChat {
+            font-size: 14px;
+        }
+    }
 `;
