@@ -115,7 +115,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 {/* <SearchBtn onClick={onClickGetMsg}></SearchBtn> */}
                 </>}
                 {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}/>}
-                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} onClick={onClickGetMsg}>저장</Button>}
+                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} onClick={onClickGetMsg} disabled={right4Ctrl.isDisabled}>저장</Button>}
                 {/* disabled={right4Ctrl.isDisabled.isBtnVisible} */}
             </RightCont>
         </TopBarCont>

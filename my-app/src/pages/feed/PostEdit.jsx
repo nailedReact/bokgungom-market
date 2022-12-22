@@ -160,7 +160,7 @@ export default function PostEdit() {
         <>
             <TopBar
                 type="A4"
-                right4Ctrl={{ form: "postUpload", isDisabled: false }}
+                right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
             <PostEditWrapper>
                 <UserProfileImg
