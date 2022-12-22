@@ -19,7 +19,7 @@ const TopBarCont = styled.div`
     align-items: center;
     padding: 12px 12px 12px 16px;
     border-bottom: 0.5px solid #DBDBDB;
-    transition: 1s;
+    transition: .3s;
     @media screen and (min-width: 768px){
         background-color: #C6D9E3;
         height: 60px;
