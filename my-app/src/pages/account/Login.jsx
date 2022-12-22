@@ -7,27 +7,33 @@ import Warning from '../../components/Warning';
 import styled from 'styled-components';
 
 const Container = styled.main`
-        width: 87%;
-        max-width: 500px;
-        margin: 30px auto;
+    width: 87%;
+    max-width: 500px;
+    margin: 100px auto;
 `;
 
 const Form = styled.form`
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Title = styled.h1`
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     text-align: center;
+    @media screen and (max-width: 768px) {
+        font-size: 24px;
+    }
 `
 
-const JoinLink = styled.a`
+const JoinLink = styled(Link)`
     margin-top: 20px;
     color: #767676;
-    font-size: 12px;
+    font-size: 18px;
     text-align: center;
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
 `
 
 export default function Login() {
