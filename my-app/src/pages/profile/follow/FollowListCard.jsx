@@ -40,13 +40,12 @@ const Followingimg = styled.img`
         display: flex;  
         padding: 10px;
         align-items: center;
-        width:100%;
         margin-left: auto;
         justify-content: space-around;
         @media screen and (min-width: 768px){
-            padding-left: 240px;
+            margin-left: 240px;
+            padding: 10px 20px;
         }
-        /* justify-content: center; */
     `;
 
     
