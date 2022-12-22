@@ -5,6 +5,8 @@ export const FeedCont = styled.div`
     flex-direction: column;
     /* justify-content: center; */
     /* align-items: center; */
+    background-color: #F2F2F2;
+    /* gap: 10px; */
 
     @media screen and (max-width: 768px){
         padding-bottom: 60px;
