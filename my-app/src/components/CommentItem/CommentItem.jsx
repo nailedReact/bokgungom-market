@@ -14,9 +14,20 @@ const BtnIcon = styled.button`
     height: 24px;
 `;
 
-export default function CommentItem({ refer, onClickHandle, initialTime }) {
-    const [createdAt, setCreatedAt] = useState(initialTime);
+export default function CommentItem({ refer, onClickHandle, initialTimeFormatted, initialTime }) {
+    const [createdAt, setCreatedAt] = useState(initialTimeFormatted);
     const navigate = useNavigate();
+
+    const timeRenderHandle = (createdAt, next, timeBase, nextBase = 59) => {
+        const parsed = createdAt.length === 4 ? parseInt(createdAt[0], 10) : parseInt(createdAt.slice(0, 2));
+        const newTime = parsed + 1;
+
+        if (parsed === nextBase) {
+            return next;
+        } else {
+            return `${newTime}${timeBase} 전`;
+        }
+    };
 
     // 댓글 단 사람의 프로필 클릭 시 그 사람의 프로필로 이동
     function handleClickProfile() {
@@ -25,12 +36,14 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
 
     // 시간에 따라 렌더링 다르게 하기 위함.
     useEffect(() => {
+        console.log(createdAt);
         if (createdAt.includes("초")) {
             const identifier = setInterval(() => {
                 console.log("useeffect - 1");
+                console.log(createdAt);
                 setCreatedAt((prev) => {
                     console.log("실행 - 1");
-                    return formattedDate(refer.createdAt);
+                    return timeRenderHandle(createdAt, "1분 전", "초");
                 });
             }, [1000]);
 
@@ -40,7 +53,8 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
                 console.log("useeffect - 2");
                 setCreatedAt((prev) => {
                     console.log("실행 - 2");
-                    return formattedDate(refer.createdAt);
+                    // return formattedDate(refer.createdAt);
+                    return timeRenderHandle(createdAt, "1시간 전", "분");
                 });
             }, [60000]);
 
@@ -50,13 +64,16 @@ export default function CommentItem({ refer, onClickHandle, initialTime }) {
                 console.log("useeffect - 3");
                 setCreatedAt((prev) => {
                     console.log("실행 - 3");
-                    return formattedDate(refer.createdAt);
+                    // return formattedDate(refer.createdAt);
+                    return timeRenderHandle(createdAt, formattedDate(initialTime), "시간", 23);
                 });
             }, [3600000]);
 
             return () => clearInterval(identifier);
+        } else {
+            return;
         }
-    }, [createdAt, setCreatedAt, refer.createdAt]);
+    }, [createdAt, setCreatedAt, refer.createdAt, initialTime]);
 
     return (
         <CommentItemCont>

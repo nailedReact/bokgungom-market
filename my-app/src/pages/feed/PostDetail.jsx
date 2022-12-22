@@ -92,7 +92,8 @@ export default function PostDetail() {
                                 key={e.id}
                                 refer={e}
                                 onClickHandle={onClickHandle}
-                                initialTime={formattedDate(e.createdAt)}
+                                initialTimeFormatted={formattedDate(e.createdAt)}
+                                initialTime={e.createdAt}
                             />
                         );
                     });
@@ -149,7 +150,8 @@ export default function PostDetail() {
                         key={res.data.comment.id}
                         refer={res.data.comment}
                         onClickHandle={onClickHandle}
-                        initialTime={formattedDate(res.data.comment.createdAt)}
+                        initialTimeFormatted={formattedDate(res.data.comment.createdAt)}
+                        initialTime={res.data.comment.createdAt}
                     />,
                     ...prev,
                 ];
