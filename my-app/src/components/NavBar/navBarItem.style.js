@@ -23,5 +23,9 @@ export const StyledLink = styled(Link)`
         flex-direction: row;
         gap: 20px;
         font-size: 16px;
+        &:hover {
+            background-color: #C6D9E3;
+            border-radius: 10px;
+        }
     }
 `;
