@@ -30,4 +30,10 @@ export const ImgUploadIcon = styled.label`
         bottom: 16px;
         right: 16px;
     }
+
+    @media screen and (max-width: 768px) {
+        &.location {
+            bottom: 76.5px;
+        }
+    }
 `;
