@@ -6,8 +6,12 @@ import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
 import { useNavigate } from 'react-router-dom';
 
 const TopBarCont = styled.div`
-    /* max-width: 390px; */
-    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+    background-color: white;
+    border-bottom: 0.5px solid #DBDBDB;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,14 +53,16 @@ const SearchBtn = styled.button`
     top: 17px;
 `;
     const Searchinput = styled.input`
+    position: absolute;
         font-size: 14px;
         line-height: 18px;
         background: #F2F2F2;
         border-radius: 32px;
         border: 0;
         height: 32px;
-        width: 300px;
-        left: 58px;
+        width: 70%;
+        top: 10px;
+        right: 10px;
         padding-left: 10px;
         margin-right: 30px;
 
@@ -93,7 +99,8 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 {/* <SearchBtn onClick={onClickGetMsg}></SearchBtn> */}
                 </>}
                 {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}/>}
-                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} disabled={right4Ctrl.isDisabled.isBtnVisible}>저장</Button>}
+                {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} onClick={onClickGetMsg}>저장</Button>}
+                {/* disabled={right4Ctrl.isDisabled.isBtnVisible} */}
             </RightCont>
         </TopBarCont>
     )

@@ -11,11 +11,11 @@ import heart from "../assets/icon/icon-heart.png";
 import comment from "../assets/icon/icon-message-circle.png";
 import styled from "styled-components";
 import axios from "axios";
+import plusimg from "../assets/icon/icon-more-vertical.png";
 
-// import Heart from './Heart';
 const Cont = styled.div`
     display: flex;
-    margin-top: 20px;
+    margin: 30px;
 `;
 const Username = styled.h2`
     font-weight: 500;
@@ -89,6 +89,21 @@ const ProfilePicSmall = styled.img`
     object-fit: cover;
 `;
 
+const Plusbutton = styled.button`
+    background-image: url(${plusimg});
+    width: 25px;
+    height: 25px;
+    background-color: inherit;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+`
+
+const HeadCont = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
 export default function PostCard({
     data,
     myProfile,
@@ -102,9 +117,19 @@ export default function PostCard({
     const [isOptionVisible, setIsOptionVisible] = useState(false);
     const [isConfirmVisible, setIsConfirmVisible] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
+    const [modalopen, setModalopen] = useState(false);
 
-    console.log(myProfile);
-    console.log(view);
+    // 포스트카드를 눌렀을 때 포스트디테일로 넘어가는 부분입니다.
+    const handlepostdetail = () => {
+        navigate(`/post/${data.id}`);
+    }
+
+    //플러스 버튼을 누르면 모달창을 띄우는 함수 입니다.
+    const handlemodal = () => {
+        setModalopen(true);
+    }
+
+    //하트를 누르면 서버에 통신하는 부분입니다.
     const heartchange = async () => {
         if (myheart === false) {
             setMyheart(true);
@@ -133,7 +158,6 @@ export default function PostCard({
             setMyposthearts(heartfalse.data.post.heartCount);
         }
     };
-    console.log(data);
 
     const deleteSelectedHandle = () => {
         setIsOptionVisible(false);
@@ -158,11 +182,40 @@ export default function PostCard({
     };
  
     function handleClickProfile(){
-        navigate("../../account/profile/" + data.author.accountname);
+        navigate(`../../account/profile/${data.author.accountname}`);
     }
 
     return (
-        <>
+        <div>
+        {modalopen && (
+                <OptionModal
+                    onConfirm={() => {
+                        setModalopen(false);
+                        deleteTarget.current = null;
+                    }}
+                >
+                    <li>
+                        <button
+                            type={"button"}
+                            onClick={() => {
+                                window.alert("게시물을 삭제하겠습니다.");
+                            }}
+                        >
+                            삭제
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type={"button"}
+                            onClick={() => {
+                                window.alert("게시글을 수정하겠습니다.");
+                            }}
+                        >
+                            수정
+                        </button>
+                    </li>
+                </OptionModal>
+            )} 
             {isOptionVisible && (
                 <OptionModal onConfirm={() => setIsOptionVisible(false)}>
                     <li>
@@ -195,8 +248,13 @@ export default function PostCard({
                         onClick={handleClickProfile}
                     />
                     <ContentCont>
-                        <Username onClick={handleClickProfile}>{data.author.username}</Username>
-                        <Accountname onClick={handleClickProfile}>@ {data.author.accountname}</Accountname>
+                        <HeadCont>
+                            <div>
+                                <Username onClick={handleClickProfile}>{data.author.username}</Username>
+                                <Accountname onClick={handleClickProfile}>@ {data.author.accountname}</Accountname>
+                            </div>
+                            {myProfile ? <Plusbutton onClick={handlemodal}/> : null}
+                        </HeadCont>
                         {myProfile ? (
                             <button onClick={() => setIsOptionVisible(true)}>
                                 수정
@@ -204,10 +262,12 @@ export default function PostCard({
                         ) : (
                             <></>
                         )}
-                        <Content>{data.content}</Content>
-                        {data.image ? (
-                            <Contentimg src={data.image} alt="컨텐츠 사진" />
-                        ) : null}
+                        <div onClick={handlepostdetail}>
+                            <Content>{data.content}</Content>
+                            {data.image ? (
+                                <Contentimg src={data.image} alt="컨텐츠 사진" />
+                            ) : null}
+                        </div >
                         <HeartCommentCont>
                             <span onClick={heartchange}>
                                 {myheart ? (
@@ -240,6 +300,6 @@ export default function PostCard({
                     </ContentCont>
                 </Cont>
             )}
-        </>
+        </div>
     )
                                 }

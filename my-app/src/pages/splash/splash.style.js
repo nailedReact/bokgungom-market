@@ -17,8 +17,9 @@ export const BgCont = styled.div`
     justify-content: center;
     align-items: center;
     background-color: var(--color-primary);
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    overflow: hidden;
 `
 export const Bear = styled.div`
     width: 305px;
@@ -29,19 +30,31 @@ export const Bear = styled.div`
 
 export const SplashModal = styled.article`
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     position: absolute;
-    bottom: 0;
-    width: 100%;
     padding: 50px 34px;
     background-color: white;
     color: #767676;
     font-size: 14px;
-    border-radius: 10px 10px 0 0;
-    transform: translate3d(0, 100%, 0);
     transition: 1s;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    bottom: 0;
+        width: 100%;
+        transform: translate3d(0, 100%, 0);
+        border-radius: 10px 10px 0 0;
+    /* @media screen and (max-width: 768px){
+        
+    }
+    @media screen and (min-width: 768px){
+        width: 30%;
+        left: 0;
+        border-radius: 0px 10px 10px 0;
+        height: 50%;
+        transform: translate3d(-100%, 0, 0);
+    } */
 `
 
 export const BtnSocialLogin = styled.button`

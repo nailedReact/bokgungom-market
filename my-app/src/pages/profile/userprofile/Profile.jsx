@@ -14,18 +14,23 @@ const Cont = styled.div`
   flex-direction: column;
   gap: 6px;
   background: #DBDBDB;
+  @media screen and (min-width: 768px){
+        margin-left: 240px;
+    }
 `;
 
-const PostCont =styled.div`
-  background: white;
-  border: 0.5px solid #DBDBDB;
-`;
+
+// const PostCont =styled.div`
+//   background: white;
+//   border: 0.5px solid #DBDBDB;
+// `;
 
 export const UserNameContext = createContext();
 
 export default function Profile() {
   const [accoutName, setAccountName] = useState();
   const [isMyProfile, setIsMyProfile] = useState();
+  // const [checkProduct, setCheckProduct] = useState(false);
   const accountNameInURL = useParams().username;
   console.log(accountNameInURL, "accountNameInURL")
   const data = useAuth();
@@ -53,15 +58,13 @@ export default function Profile() {
   else {
     return (
       <UserNameContext.Provider value={{username : accountNameInURL, isMyProfile: isMyProfile}}>
-        <Cont>
             <TopBar type="A1"/>
+        <Cont>
             <ProfileCard/>
             <SaledProductCard/>
-            <PostCont>
-              <PostList isProfilePage={true}/>
-            </PostCont>
-            <NavBar/>
+            <PostList isProfilePage={true}/> 
         </Cont>
+            <NavBar/>
     </UserNameContext.Provider>
   )
   }

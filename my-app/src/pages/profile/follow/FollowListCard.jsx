@@ -26,20 +26,27 @@ const Followingimg = styled.img`
     `;
 
     const TxtCont = styled.div`
+    
         margin-left: 12px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 6px;
-        width: 240px;
+        width: 60%;
+       
     `;
 
     const Cont = styled.li`
         display: flex;  
         padding: 8px 16px;
         align-items: center;
+        width:100%;
+        margin-left: auto;
+        justify-content: space-around;
+        /* justify-content: center; */
     `;
 
+    
 //취소버튼을 누르면 팔로우 취소가 된 데이터가 넘어가야합니다! - 구현예정
 export default function FollowListCard({data}) {
     const navigate = useNavigate();
@@ -81,7 +88,7 @@ export default function FollowListCard({data}) {
             <Username>{data.username}</Username>
             <Intro>{data.intro}</Intro>
         </TxtCont>
-    <Button className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
+    <Button style={{float:"right"}}className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
     </Cont>
   )
 }
