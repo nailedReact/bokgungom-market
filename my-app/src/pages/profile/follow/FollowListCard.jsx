@@ -38,11 +38,14 @@ const Followingimg = styled.img`
 
     const Cont = styled.li`
         display: flex;  
-        padding: 8px 16px;
+        padding: 10px;
         align-items: center;
         width:100%;
         margin-left: auto;
         justify-content: space-around;
+        @media screen and (min-width: 768px){
+            padding-left: 240px;
+        }
         /* justify-content: center; */
     `;
 
