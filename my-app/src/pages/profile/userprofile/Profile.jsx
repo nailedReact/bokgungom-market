@@ -15,8 +15,11 @@ const Cont = styled.div`
   gap: 6px;
   background: #DBDBDB;
   @media screen and (min-width: 768px){
-        margin-left: 240px;
-    }
+    margin-left: 240px;
+  }
+  @media screen and (max-width: 768px){
+    margin-bottom: 60px;
+  }
 `;
 
 
