@@ -14,6 +14,7 @@ import deleteIcon from "../../assets/icon/icon-delete.png";
 export default function UploadPost() {
     const [showImages, setShowImages] = useState([]);
     const [contentText, setContentText] = useState("");
+    const [isBtnDisable, setIsBtnDisable] = useState(true);
     const submitData = useRef({});
     const imagePre = useRef(null);
     const textarea = useRef();
@@ -23,6 +24,12 @@ export default function UploadPost() {
         setContentText(e.target.value);
         textarea.current.style.height = "auto";
         textarea.current.style.height = textarea.current.scrollHeight + "px";
+
+        if (e.target.value.length === 0 && showImages.length === 0) {
+            setIsBtnDisable(true);
+        } else if (e.target.value.length > 0) {
+            setIsBtnDisable(false);
+        }
 
         // 글자 수 제한 테스트 중입니다.
         // let text = e.target.value;
@@ -59,10 +66,14 @@ export default function UploadPost() {
         }
 
         setShowImages(imageUrlLists);
+        setIsBtnDisable(false);
     };
 
     const handleDeleteImage = (id) => {
         setShowImages(showImages.filter((_, index) => index !== id));
+        if (!contentText && showImages.length === 1) {
+            setIsBtnDisable(true);
+        }
     };
 
     // 업로드 버튼 클릭 시 텍스트, 이미지를 서버로 전송.
@@ -117,7 +128,7 @@ export default function UploadPost() {
         <>
             <TopBar
                 type="A4"
-                right4Ctrl={{ form: "postUpload", isDisabled: false }}
+                right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
             <PostEditWrapper>
                 <UserProfileImg
