@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router';
 const Followingimg = styled.img`
         height: 50px;
         width: 50px;
-        border-radius: 0px;
-
+        border-radius: 50%;
+        border: 0.5px solid #C4C4C4;
     `;
 
     const Username = styled.h3`
