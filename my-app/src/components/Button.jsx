@@ -23,11 +23,16 @@ const Button = styled.button`
     }
     
     &.large {
-        font-size: 14px;
+        font-size: 18px;
         padding: 13px 35px;
         border-radius: 44px;
-        height: 44px;
+        height: 48px;
         margin-top: 30px;
+
+        @media screen and (max-width: 768px) {
+        font-size: 14px;
+        height: 44px;
+    }
     }
     &.max {
         width: 100%;

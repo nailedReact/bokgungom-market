@@ -9,7 +9,11 @@ import styled from "styled-components";
 const Container = styled.main`
         width: 87%;
         max-width: 500px;
-        margin: 30px auto;
+        margin: 50px auto;
+        @media screen and (max-width: 768px) {
+            font-size: 24px;
+            margin: 30px auto;
+        }
     `;
 
 export default function EditProfileSignUp() {
