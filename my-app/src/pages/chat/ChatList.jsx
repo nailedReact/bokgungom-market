@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import TopBar from "../../components/TopBar";
 import ChatItem from "./chat/ChatItem/ChatItem";
 import NavBar from "../../components/NavBar/NavBar";
 import data from "./chat/chatdata.json";
+
+const Wrapper = styled.div`
+    max-width: 390px;
+    margin: 0 auto;
+`;
+
+const ChatCont = styled.ul`
+    height: 772px;
+    padding: 24px 16px;
+    overflow-y: scroll;
+`;
 
 export default function ChatList() {
     // 데이터를 가져온다는 가정으로 코드를 짜봤습니다.
@@ -32,11 +44,11 @@ export default function ChatList() {
     }, []);
     
     return (
-        <>
+        <Wrapper>
             <TopBar type={"A1"} />
             <h1 className={"ir"}>채팅 리스트</h1>
-            <ul>{chatData}</ul>
+            <ChatCont>{chatData}</ChatCont>
             <NavBar />
-        </>
+        </Wrapper>
     );
 }

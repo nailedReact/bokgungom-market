@@ -14,7 +14,7 @@ export default function Outgoing({type, content, time}) {
     return (
         <OutgoingCont>
             {msgContent}
-            <TimeCont dateTime={time}>
+            <TimeCont className="time" dateTime={time}>
                 {time}
             </TimeCont>
         </OutgoingCont>

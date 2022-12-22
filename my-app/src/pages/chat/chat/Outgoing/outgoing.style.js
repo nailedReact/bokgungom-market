@@ -7,7 +7,16 @@ export const OutgoingCont = styled.li`
 
     & .txtMsg {
         ${sharedTxtMsg}
-        background-color: #F26E22;
+        background-color: var(--color-primary);
         color: white;
+        border-radius: 10px 0 10px 10px;
+    }
+
+    & .imgMsg {
+        width: 240px;
+    }
+
+    & .time {
+        margin-right: 6px;
     }
 `

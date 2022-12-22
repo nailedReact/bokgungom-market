@@ -18,7 +18,7 @@ const Cont = styled.div`
     margin: 30px;
 `;
 const Username = styled.h2`
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     line-height: 18px;
 `;
@@ -39,15 +39,16 @@ const Content = styled.p`
 `;
 
 const Contentimg = styled.img`
-    width: 304px;
-    height: 228px;
+    width: 100%;
+    display: block;
+    /* height: 228px; */
     border: 0.5px solid #dbdbdb;
     border-radius: 10px;
     margin-top: 16px;
 `;
 
 const ContentCont = styled.div`
-    width: 304px;
+    max-width: 304px;
 `;
 
 const Count = styled.span`
@@ -60,7 +61,7 @@ const Count = styled.span`
 `;
 
 const HeartCommentCont = styled.div`
-    margin-top: 14px;
+    margin-top: 12px;
 `;
 const Heartimg = styled.img`
     width: 15px;
@@ -78,12 +79,14 @@ const Createdate = styled.span`
     font-size: 10px;
     line-height: 12px;
     color: #767676;
-    margin-top: 25px;
+    margin-top: 16px;
 `;
 const ProfilePicSmall = styled.img`
     width: 42px;
     height: 42px;
     margin-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
 `;
 
 const Plusbutton = styled.button`

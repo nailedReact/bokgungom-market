@@ -21,7 +21,7 @@ export default function Incoming({ imgSrc, type, content, time }) {
                 alt={"발신자 프로필 사진"}
             />
             {msgContent}
-            <TimeCont dateTime={time}>
+            <TimeCont className="time" dateTime={time}>
                 {time}
             </TimeCont>
         </IncomingCont>

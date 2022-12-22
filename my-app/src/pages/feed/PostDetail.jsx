@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
 import axios from "axios";
+import styled from "styled-components";
 import TopBar from "../../components/TopBar";
 import PostCard from "../../components/PostCard";
 import CommentItem from "../../components/CommentItem/CommentItem";
@@ -10,6 +11,22 @@ import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import { formattedDate } from "./feed/dateformat";
 import useAuth from "../../hook/useAuth";
 import basicImg from "../../assets/basic-profile-img.png";
+
+const CommentListBox = styled.ul`
+    /* max-width: 390px; */
+    border-top: 1px solid #dbdbdb;
+    padding: 20px 16px;
+`;
+
+const PostContentBox = styled.div`
+    /* max-width: 390px; */
+    padding: 20px 16px;
+`;
+
+const Wrapper = styled.div`
+    max-width: 390px;
+    margin: 0 auto;
+`;
 
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
@@ -26,7 +43,7 @@ export default function PostDetail() {
     const deleteTarget = useRef(null); // 삭제할 댓글 id
 
     const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
-    
+
     // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = (deleteComment, author) => {
         // deleteComment: 삭제할 댓글의 id
@@ -73,7 +90,7 @@ export default function PostDetail() {
                     },
                 });
                 console.log(res.data.comments);
-                
+
                 if (res.data.comments.length > 0) {
                     const comments = res.data.comments.map((e) => {
                         formattedDate(e.createdAt);
@@ -186,10 +203,9 @@ export default function PostDetail() {
             console.log(err);
         }
     };
-    
-    
+
     return (
-        <>
+        <Wrapper>
             {modalNotMe && (
                 <OptionModal
                     onConfirm={() => {
@@ -236,9 +252,13 @@ export default function PostDetail() {
                 />
             )}
             <TopBar type={"A1"} />
-            {postMsg && <PostCard data={postMsg} />}
-            {commentMsg && <ul>{commentMsg}</ul>}
-            <CommentInp onSubmit={onCommentSubmitHandle}>
+            {postMsg && (
+                <PostContentBox>
+                    <PostCard data={postMsg} />
+                </PostContentBox>
+            )}
+            {commentMsg && <CommentListBox>{commentMsg}</CommentListBox>}
+            <CommentInp onSubmit={onCommentSubmitHandle} isBtnActivated={!isBtnDisabled}>
                 {postMsg && (
                     <img
                         src={data ? data.image : basicImg}
@@ -254,6 +274,6 @@ export default function PostDetail() {
                     게시
                 </button>
             </CommentInp>
-        </>
+        </Wrapper>
     );
 }

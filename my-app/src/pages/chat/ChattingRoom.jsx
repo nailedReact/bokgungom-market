@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import data from "./chat/chatdata.json";
 import OptionModal from "../../components/OptionModal/OptionModal";
 import TopBar from "../../components/TopBar";
@@ -8,6 +9,24 @@ import Outgoing from "./chat/Outgoing/Outgoing";
 import Incoming from "./chat/Incoming/Incoming";
 import ChatInput from "./chat/ChatInput/ChatInput";
 import { formattedTimeFunc } from "./dateFormat";
+
+const Wrapper = styled.div`
+    max-width: 390px;
+    margin: 0 auto;
+`;
+
+const ChatContBack = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 772px;
+    background-color: #f2f2f2;
+    padding: 20px 16px;
+`;
+
+const ChatCont = styled.ul`
+    overflow-y: scroll;
+`;
 
 export default function ChattingRoom() {
     const location = useLocation();
@@ -58,7 +77,7 @@ export default function ChattingRoom() {
     };
 
     return (
-        <>
+        <Wrapper>
             {modalVisible && (
                 <OptionModal onConfirm={onConfirm}>
                     <li>
@@ -68,8 +87,10 @@ export default function ChattingRoom() {
             )}
             <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
             <h1 className={"ir"}>{title}님과의 채팅방 입니다.</h1>
-            <ul>{eachChat}</ul>
+            <ChatContBack>
+                <ChatCont>{eachChat}</ChatCont>
+            </ChatContBack>
             <ChatInput />
-        </>
+        </Wrapper>
     );
 }
