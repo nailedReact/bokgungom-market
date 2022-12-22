@@ -15,6 +15,7 @@ import Loading from "../../pages/error/Loading"
 import iconUserLogOut from "../../assets/icon/icon-user-logout.png"
 import iconBox from "../../assets/icon/icon-box.png";
 import iconBoxFill from "../../assets/icon/icon-box-fill.png";
+import { useNavigate } from "react-router";
 
 // 홈과 프로필의 링크 주소를 잘 모르겠어서 일단 만들어 놓은 페이지에 연결시켰습니다. 링크 연결 정확하지 않습니다!
 export default function NavBar() {
@@ -32,6 +33,18 @@ export default function NavBar() {
     // currentPath는 현재 브라우저 페이지를 나타냅니다.
     const location = useLocation();
     const currentPath = location.pathname;
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        if (localStorage.getItem("Authorization")){
+            localStorage.removeItem("Authorization");
+            navigate("../../../");
+            console.log("로그아웃");
+        }
+        else {
+            alert("로그아웃된 상태입니다!");
+        }
+    }
 if (data) {
     return (
         <NavBarCont>
@@ -76,7 +89,7 @@ if (data) {
                     navTxt={"내 프로필"}
                 />
             </li>
-            <li className="desktop">
+            <li className="desktop" onClick={handleLogout}>
                 <NavBarItem
                     linkSrc={""}
                     currentPath={currentPath}
