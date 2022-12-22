@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CommentInpCont = styled.form`
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: white;

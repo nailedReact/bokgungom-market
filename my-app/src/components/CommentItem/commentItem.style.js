@@ -51,4 +51,10 @@ export const CommentItemCont = styled.li`
         top: 0;
         right: 0;
     }
+
+    @media screen and (min-width: 768px){
+        & .comment-main {
+            font-size: 16px;
+        }
+    }
 `;
