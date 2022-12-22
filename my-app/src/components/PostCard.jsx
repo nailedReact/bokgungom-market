@@ -139,16 +139,10 @@ export default function PostCard({
     const [isOptionVisible, setIsOptionVisible] = useState(false);
     const [isConfirmVisible, setIsConfirmVisible] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
-    const [modalopen, setModalopen] = useState(false);
 
     // 포스트카드를 눌렀을 때 포스트디테일로 넘어가는 부분입니다.
     const handlepostdetail = () => {
         navigate(`/post/${data.id}`);
-    }
-
-    //플러스 버튼을 누르면 모달창을 띄우는 함수 입니다.
-    const handlemodal = () => {
-        setModalopen(true);
     }
 
     //하트를 누르면 서버에 통신하는 부분입니다.
@@ -209,35 +203,6 @@ export default function PostCard({
 
     return (
         <div>
-        {modalopen && (
-                <OptionModal
-                    onConfirm={() => {
-                        setModalopen(false);
-                        deleteTarget.current = null;
-                    }}
-                >
-                    <li>
-                        <button
-                            type={"button"}
-                            onClick={() => {
-                                window.alert("게시물을 삭제하겠습니다.");
-                            }}
-                        >
-                            삭제
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type={"button"}
-                            onClick={() => {
-                                window.alert("게시글을 수정하겠습니다.");
-                            }}
-                        >
-                            수정
-                        </button>
-                    </li>
-                </OptionModal>
-            )} 
             {isOptionVisible && (
                 <OptionModal onConfirm={() => setIsOptionVisible(false)}>
                     <li>
@@ -275,15 +240,8 @@ export default function PostCard({
                                 <Username onClick={handleClickProfile}>{data.author.username}</Username>
                                 <Accountname onClick={handleClickProfile}>@{data.author.accountname}</Accountname>
                             </div>
-                            {myProfile ? <Plusbutton onClick={handlemodal}/> : null}
+                            {myProfile ? <Plusbutton onClick={() => setIsOptionVisible(true)}/> : null}
                         </HeadCont>
-                        {myProfile ? (
-                            <button onClick={() => setIsOptionVisible(true)}>
-                                수정
-                            </button>
-                        ) : (
-                            <></>
-                        )}
                         <div onClick={handlepostdetail}>
                             <Content>{data.content}</Content>
                             {data.image ? (
