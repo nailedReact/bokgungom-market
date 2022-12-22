@@ -5,9 +5,7 @@ const Textarea = styled.textarea`
     resize: none;
     width: calc(100% - 42px);
     height: 100%;
-    // height: auto;
-    // /* overflow-y: scroll; */
-    // overflow: scroll;
+    font-family: "Pretendard";
     padding: 10px 10px 10px 13px;
     box-sizing: border-box;
     font-size: 14px;

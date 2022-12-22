@@ -16,6 +16,7 @@ const Cont = styled.div`
   flex-direction: column;
   gap: 6px;
   background: #F2F2F2;
+  /* width: fit-content; */
   @media screen and (min-width: 768px){
     margin-left: 240px;
   }
