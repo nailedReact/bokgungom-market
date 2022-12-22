@@ -42,7 +42,7 @@ export default function HomeFeed() {
     
     return (
       <>
-        <TopBar type="B3" title="북극곰마켓 피드"/>
+        <TopBar type="B3" title="피드"/>
         <FeedCont>
         { resMsg.length === 0 ? 
         <FeedNoFollower /> : postArr

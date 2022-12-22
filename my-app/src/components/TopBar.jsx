@@ -4,11 +4,13 @@ import iconArrowLeft from "../assets/icon/icon-arrow-left.png"
 import iconSearch from "../assets/icon/icon-search.png"
 import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
 import { useNavigate } from 'react-router-dom';
+import Logo from "../assets/logo.png"
 
 const TopBarCont = styled.div`
     position: sticky;
     top: 0;
     width: 100vw;
+    height: 55px;
     z-index: 10;
     background-color: white;
     border-bottom: 0.5px solid #DBDBDB;
@@ -17,11 +19,17 @@ const TopBarCont = styled.div`
     align-items: center;
     padding: 12px 12px 12px 16px;
     border-bottom: 0.5px solid #DBDBDB;
+    transition: 1s;
+    @media screen and (min-width: 768px){
+        background-color: #C6D9E3;
+        height: 60px;
+    }
 `
 const LeftCont = styled.div`
     display: flex;
     gap: 10px;
     align-items: center;
+
 `
 const RightCont = styled.div``
 
@@ -66,20 +74,27 @@ const SearchBtn = styled.button`
         padding-left: 10px;
         margin-right: 30px;
 
-
     `;
+    const LogoCont = styled.div`
+    background: url(${Logo});
+    background-size: cover;
+    width: 162px;
+    height: 40px;
+    @media screen and (max-width: 768px){
+        display: none;
+    }
+    `
 
 export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg, onClickModal}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
-
     const [TypeLeft, TypeRight] = type.split('');
     const navigate = useNavigate();
 
     return (
         <TopBarCont>
             <LeftCont>
-                {TypeLeft === "A" && !title ? <BtnIcon action="back" onClick={() => navigate(-1)}/> : <></>}
-                {TypeLeft === "B" && title ? <div>{title}</div> : <></>}
+                {TypeLeft === "A" && !title ? <><BtnIcon action="back" onClick={() => navigate(-1)}/><LogoCont/></> : <></>}
+                {TypeLeft === "B" && title ? <><LogoCont/><div>{title}</div></> : <></>}
                 {TypeLeft === "A" && title ?
                 <>
                     <BtnIcon action="back" onClick={() => navigate(-1)}/>
@@ -87,6 +102,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 </> :
                 <></>}
             </LeftCont>
+            
             <RightCont>
                 {TypeRight === "0"  && <></>}
                 {TypeRight === "1"  && <BtnIcon action="more" onClick={onClickModal}/>}
