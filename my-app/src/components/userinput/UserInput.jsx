@@ -1,22 +1,21 @@
 import styled from "styled-components";
 
 const InpLabel = styled.label`
-    font-size: 18px;
+    font-size: 16px;
     color: #767676;
     font-weight: 500;
     margin-bottom: 15px;
     display: block;
     margin-top: 40px;
-
     @media screen and (max-width: 768px) {
         font-size: 14px;
     }
 `
 
 const Cont = styled.div`
-  display: flex;
-  flex-direction: column;  
-  margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
 `;
 
 

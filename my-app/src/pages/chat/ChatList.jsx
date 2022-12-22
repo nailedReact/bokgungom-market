@@ -9,12 +9,15 @@ const ChatCont = styled.ul`
     /* height: 772px; */
     padding: 24px 16px 84.5px 16px;
     /* overflow-y: scroll; */
+    /* padding: 20px; */
 
     @media screen and (min-width: 768px){
         max-width: 1300px;
         padding-left: 256px;
         padding-top: 50px;
         padding-bottom: 24px;
+        padding: 30px 40px;
+        margin-left: 240px;
     }
 `;
 

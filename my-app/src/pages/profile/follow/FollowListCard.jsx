@@ -10,12 +10,14 @@ const Followingimg = styled.img`
         width: 50px;
         border-radius: 50%;
         border: 0.5px solid #C4C4C4;
+        flex-grow: 0;
     `;
 
     const Username = styled.h3`
         font-weight: 500;
         font-size: 14px;
         line-height: 18px;
+        flex-grow: 0;
     `;
 
     const Intro = styled.p`
@@ -26,28 +28,32 @@ const Followingimg = styled.img`
     `;
 
     const TxtCont = styled.div`
-    
         margin-left: 12px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 6px;
-        width: 60%;
+        /* width: 60%; */
+        flex-grow: 0;
        
     `;
 
     const Cont = styled.li`
-        display: flex;  
-        padding: 10px;
+        display: flex;
+        padding: 10px 30px;
+        justify-content: space-between;
         align-items: center;
-        margin-left: auto;
-        justify-content: space-around;
         @media screen and (min-width: 768px){
             margin-left: 240px;
-            padding: 10px 20px;
+            padding: 10px 100px;
         }
+        
     `;
 
+const ContLeft  = styled.div`
+    display: flex;
+    gap: 10px;
+`
     
 //취소버튼을 누르면 팔로우 취소가 된 데이터가 넘어가야합니다! - 구현예정
 export default function FollowListCard({data}) {
@@ -85,11 +91,13 @@ export default function FollowListCard({data}) {
 
   return (
     <Cont>
-        <Followingimg src={data.image} alt="팔로잉한 사람 프로필사진" onClick={handleClickProfile}/>
-        <TxtCont onClick={handleClickProfile}>
-            <Username>{data.username}</Username>
-            <Intro>{data.intro}</Intro>
-        </TxtCont>
+        <ContLeft>
+            <Followingimg src={data.image} alt="팔로잉한 사람 프로필사진" onClick={handleClickProfile}/>
+            <TxtCont onClick={handleClickProfile}>
+                <Username>{data.username}</Username>
+                <Intro>{data.intro}</Intro>
+            </TxtCont>
+        </ContLeft>
     <Button style={{float:"right"}}className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
     </Cont>
   )

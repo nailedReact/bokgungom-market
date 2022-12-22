@@ -7,7 +7,7 @@ export const NavBarCont = styled.div`
     position: fixed;
     bottom : 0;
     background-color: white;
-    transition: 1s;
+    transition: .5s;
     @media screen and (min-width: 768px){
         left : 0;
         width: 240px;

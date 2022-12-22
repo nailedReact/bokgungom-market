@@ -6,4 +6,8 @@ export const PostEditWrapper = styled.div`
     /* height: 100%; */
     overflow: auto;
     padding: 20px 16px;
+    @media screen and (min-width: 768px){
+        margin-left: 240px;
+        padding: 40px;
+    }
 `;

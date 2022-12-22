@@ -3,8 +3,15 @@ import axios from "axios";
 import TopBar from "../../../components/TopBar";
 import ProfileSetInpsTempLogIn from "../../../components/ProfileSetInpsTemp/ProfileSetInpsTempLogIn";
 import styled from "styled-components";
+import NavBar from "../../../components/NavBar/NavBar";
 
-
+const ProfileEditCont = styled.div`
+    padding: 40px;
+    @media screen and (min-width: 768px){
+        margin-left: 240px;
+    }
+    
+`
 
 export default function EditProfile() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);
@@ -93,6 +100,7 @@ export default function EditProfile() {
                 type={"A4"}
                 right4Ctrl={{ form: "logined", isDisabled: { isBtnVisible } }}
             />
+            <ProfileEditCont>
             <ProfileSetInpsTempLogIn
                 formId={"logined"}
                 prev={prevData}
@@ -100,6 +108,8 @@ export default function EditProfile() {
                 onValidByUpper={onValidFunc}
                 onSubmitByUpper={onSubmitFunc}
             />
+            </ProfileEditCont>
+            <NavBar/>
         </>
     );
 }
