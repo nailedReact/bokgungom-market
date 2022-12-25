@@ -15,10 +15,16 @@ export const formattedDate = (date) => {
         } else if (Math.floor(diff / (60 * 1000)) > 0) {
             res = `${Math.floor(diff / (60 * 1000))}분 전`;
         } else {
-            res = `${Math.floor(diff / 1000)}초 전`;
+            if (Math.floor(diff / 1000) === -1) {
+                res = "0초 전";
+            } else {
+                res = `${Math.floor(diff / 1000)}초 전`;
+            }
+            return res;
         }
     }
 
+    console.log(res);
     return res;
 };
 
@@ -26,3 +32,4 @@ export const formattedDate = (date) => {
 // 1ms = 0.001s
 // a / 1000
 // 60s = 1min
+      
