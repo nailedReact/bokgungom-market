@@ -106,6 +106,8 @@ export default function PostDetail() {
                 }
 
                 commentRes.data.comments.length >= 10 ? setNoComment(true) : setNoComment(false);
+            } else if (commentRes.data.comments.length === 0) {
+                setCommentMsg([]);
             }
         },
         [onClickHandle]
@@ -128,7 +130,7 @@ export default function PostDetail() {
                 "https://mandarin.api.weniv.co.kr/post/" +
                 currentId +
                 "/comments";
-            const res = await axios.post(
+            await axios.post(
                 URL,
                 {
                     comment: {
@@ -182,7 +184,7 @@ export default function PostDetail() {
             "/comments/" +
             deleteTarget.current;
         try {
-            const res = await axios.delete(URL, {
+            await axios.delete(URL, {
                 headers: {
                     Authorization: localStorage.getItem("Authorization"),
                     "Content-type": "application/json",
