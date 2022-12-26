@@ -56,7 +56,7 @@ export default function PostDetail() {
     }, [currentId]);
 
     const { data, userIdRef } = useAuth1();
-    const sendRequest = usePostDetail(reacts);
+    const { sendRequest, commentCountNum } = usePostDetail(reacts);
 
     const baseURL =
         "https://mandarin.api.weniv.co.kr/post/" +
@@ -82,7 +82,7 @@ export default function PostDetail() {
     // 댓글 불러오기, 추가, 삭제시 댓글 렌더링을 담당하는 함수
     const commentRenderHandle = useCallback(
         (commentRes, isCommentLoading) => {
-            if (commentRes.data.comments.length < 10) {
+            if (commentCountNum.current <= 10) {
                 setNoComment(false);
             }
 
@@ -104,13 +104,11 @@ export default function PostDetail() {
                 } else {
                     setCommentMsg(comments);
                 }
-
-                commentRes.data.comments.length >= 10 ? setNoComment(true) : setNoComment(false);
             } else if (commentRes.data.comments.length === 0) {
                 setCommentMsg([]);
             }
         },
-        [onClickHandle]
+        [onClickHandle, commentCountNum]
     );
 
     // 댓글 입력 인풋창 변할 때 함수 - 댓글 등록 버튼 활성화 비활성화 여부 정하기 위함
@@ -147,6 +145,10 @@ export default function PostDetail() {
 
             sendRequest(baseURL, commentRenderHandle, false);
 
+            if (commentCountNum.current > 10) {
+                setNoComment(true);
+            }
+
             commentLoadRef.current = 0;
 
             inpRef.current.value = "";
@@ -159,12 +161,19 @@ export default function PostDetail() {
     // 댓글 더 불러오기
     const handleMoreComment = () => {
         commentLoadRef.current += 10;
+        console.log(commentLoadRef.current, commentCountNum.current);
+        console.log(commentLoadRef.current - commentCountNum.current);
+
         const URL =
             "https://mandarin.api.weniv.co.kr/post/" +
             currentId +
             "/comments" +
             "?limit=10&skip=" +
             commentLoadRef.current;
+        
+        if (Math.abs(commentLoadRef.current - commentCountNum.current) <= 10) {
+            setNoComment(false);
+        }
 
         sendRequest(URL, commentRenderHandle, true);
     };
@@ -192,6 +201,10 @@ export default function PostDetail() {
             });
 
             sendRequest(baseURL, commentRenderHandle, false);
+
+            if (commentCountNum.current > 10) {
+                setNoComment(true);
+            }
 
             commentLoadRef.current = 0;
 

@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 export default function usePostDetail(reacts) {
     const {setPostMsg, currentId} = reacts;
+    const commentCountNum = useRef();
 
     const sendRequest = useCallback((URL, applyData, isCommentLoading) => {
         
@@ -18,6 +19,7 @@ export default function usePostDetail(reacts) {
                     },
                 });
                 setPostMsg(res.data.post);
+                commentCountNum.current = res.data.post.commentCount;
             } catch (err) {
                 console.log(err);
             }
@@ -42,5 +44,5 @@ export default function usePostDetail(reacts) {
         getComments();
     }, [currentId, setPostMsg]);
 
-    return sendRequest;
+    return { sendRequest, commentCountNum };
 }
