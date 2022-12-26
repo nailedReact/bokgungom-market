@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router";
 import TopBar from "../../components/TopBar";
 import Textarea from "../../components/Textarea/Textarea";
 import axios from "axios";
@@ -10,6 +11,8 @@ import { ProductImgSetCont } from "../../components/ProductImageSet/productImage
 import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
+import Toast from "../../components/Toast";
+import NavBar from "../../components/NavBar/NavBar";
 
 export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
@@ -21,6 +24,8 @@ export default function PostEdit() {
         0,
         -5
     )}`;
+    const navigate = useNavigate();
+    const toastRef = useRef(null);
 
     // 페이지 로드시 기존 게시글 정보 불러오기 위함
     useEffect(() => {
@@ -150,18 +155,30 @@ export default function PostEdit() {
                 const json = await response.json();
                 console.log(json);
                 console.log("게시글 수정 완료");
+                handleShowToast();
+                setTimeout(function(){
+                    navigate("/post/" + json.post.id);
+                }, 1000)
             })();
         } catch (err) {
             console.log(err);
         }
     };
-
+    const handleShowToast = () => {
+        console.log(toastRef)
+        toastRef.current.style.transform = "scale(1)";
+        setTimeout(function(){
+            toastRef.current.style.transform = "scale(0)";
+        }, 3000)
+        return;
+    }
     return (
         <>
             <TopBar
                 type="A4"
                 right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
+            <Toast ref={toastRef} msg="게시물이 수정 되었습니다!" />
             <PostEditWrapper>
                 <UserProfileImg
                     src={basicImg}
@@ -207,6 +224,7 @@ export default function PostEdit() {
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
+            <NavBar/>
         </>
     );
 }
