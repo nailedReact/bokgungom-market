@@ -25,6 +25,8 @@ import { UserNameContext } from "./Profile"
   const Profileimg = styled.img`
     height: 110px;
     width: 110px;
+    border-radius: 50%;
+    outline: 1px solid #C4C4C4;
   `;
 
   const Username = styled.h2`
@@ -100,8 +102,11 @@ export default function ProfileCard() {
     const [checkFollowing, setCheckFollowing] = useState(profileData.isfollow)
     const navigate = useNavigate();
     const { username, isMyProfile } = useContext(UserNameContext);
-    // console.log(isMyProfile)
     const [temp, setTemp] = useState(1);
+
+    useEffect(() => {
+      setCheckFollowing(profileData.isfollow)
+    }, [profileData])
 
     useEffect(() => {
         const getprofile = async () => {
@@ -109,7 +114,6 @@ export default function ProfileCard() {
           const res = await axios.get(URL, {
             headers: {
               Authorization : localStorage.getItem("Authorization")
-              // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
             }
         });
         setProfileData(res.data.profile);
@@ -146,6 +150,7 @@ export default function ProfileCard() {
           setCheckFollowing(true);
       }
     }
+
   return (
     <Cont>
       <ProfileCont>
@@ -174,7 +179,7 @@ export default function ProfileCard() {
           <Button className='medium' onClick={()=> navigate("./edit/")}>프로필 수정</Button>
           <Button className='medium' onClick={()=> navigate("../../post/upload/product")}>상품등록</Button>
           </> :
-          <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"}</Button>}
+          <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "팔로우 취소" : "팔로우"}</Button>}
           <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
         </ButtonCont>
     </Cont>
