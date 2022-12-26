@@ -5,27 +5,11 @@ import Button from '../../components/Button';
 import UserInput from '../../components/userinput/UserInput';
 import Inp from '../../components/userinput/Inp';
 import Warning from '../../components/Warning';
-import styled from 'styled-components';
-
-const Container = styled.main`
-  width: 87%;
-  max-width: 500px;
-  margin: 100px auto;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.h1`
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    @media screen and (max-width: 768px) {
-        font-size: 24px;
-    }
-`
+import {
+  Container,
+  Form,
+  Title
+} from "./loginRegister.style"
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
