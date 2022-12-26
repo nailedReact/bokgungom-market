@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Inp from '../../components/userinput/Inp';
 import UserInput from '../../components/userinput/UserInput';
 import Button from '../../components/Button';
@@ -44,6 +44,7 @@ export default function Login() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [emailValid, setEmailValid] = useState(false);
     const AlertMsg = useRef(null);
+    const navigate = useNavigate();
 
     // 이메일 형식이 유효하고 &&  비밀번호가 6자리 이상이면 버튼 활성화
     useEffect(() => {
@@ -91,6 +92,7 @@ export default function Login() {
                 const token = res.user["token"];
                 localStorage.setItem("Authorization","Bearer " + token);
                 AlertMsg.current.style.display = "none";
+                navigate("../../post");
             }
         }
         fetchData();
