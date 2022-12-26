@@ -9,6 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import {
   FeedCont
 } from "./homeFeed.style"
+import Loading from "../error/Loading";
 
 /* eslint-disable */
 
