@@ -11,6 +11,7 @@ import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import { formattedDate } from "./feed/dateformat";
 import useAuth from "../../hook/useAuth";
 import basicImg from "../../assets/basic-profile-img.png";
+import Button from "../../components/Button";
 
 const CommentListBox = styled.ul`
     border-top: 1px solid #dbdbdb;
@@ -21,6 +22,10 @@ const PostContentBox = styled.div`
     padding: 20px 16px;
 `;
 
+const NoComments = styled.div`
+    display: none;
+    transition: .4s;
+`
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
     const [commentMsg, setCommentMsg] = useState([]); // 댓글 API 응답 데이터 받아오는 곳
@@ -29,14 +34,14 @@ export default function PostDetail() {
     const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [deleteConfirm, setDeleteConfirm] = useState(false); // 삭제 여부를 선택하는 모달창이 보이는지 여부
     const data = useAuth();
-    console.log(data);
 
     const userId = useRef(null); // 페이지를 접속한 user의 id
     const inpRef = useRef(null); // 댓글 입력 input
     const deleteTarget = useRef(null); // 삭제할 댓글 id
 
     const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
-
+    const [commentLoad, setCommentLoad] = useState(0); // 불러올 댓글
+    const noComment = useRef(null);
     // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = (deleteComment, author) => {
         // deleteComment: 삭제할 댓글의 id
@@ -75,7 +80,9 @@ export default function PostDetail() {
                 const URL =
                     "https://mandarin.api.weniv.co.kr/post/" +
                     currentId +
-                    "/comments";
+                    "/comments" + 
+                    "?limit=10&skip=" + 
+                    commentLoad;
                 const res = await axios.get(URL, {
                     headers: {
                         Authorization: localStorage.getItem("Authorization"),
@@ -84,6 +91,10 @@ export default function PostDetail() {
                 });
                 console.log(res.data.comments);
 
+                // 새로 불러오는 댓글이 10개보다 적으면 댓글 더보기 버튼 보이지 않게 함
+                if (res.data.comments.length < 10){
+                    noComment.current.style.display = "none";
+                }
                 if (res.data.comments.length > 0) {
                     const comments = res.data.comments.map((e) => {
                         formattedDate(e.createdAt);
@@ -98,7 +109,8 @@ export default function PostDetail() {
                         );
                     });
 
-                    setCommentMsg(comments);
+                    // 댓글 더 불러오기 했을 때 기존 댓글들 뒤에 이어 붙이도록 함
+                    setCommentMsg((prev) => [...prev, comments]);
                 }
             } catch (err) {
                 console.log(err);
@@ -107,7 +119,7 @@ export default function PostDetail() {
 
         getProductDetail();
         getComments();
-    }, [currentId]);
+    }, [currentId, commentLoad]);
 
     // 댓글 입력 인풋창 변할 때 함수 - 댓글 등록 버튼 활성화 비활성화 여부 정하기 위함
     const onInpChangeHandle = (e) => {
@@ -171,6 +183,10 @@ export default function PostDetail() {
         setDeleteConfirm(true);
     };
 
+    // 댓글 더 불러오기
+    const handleMoreComment = () => {
+        setCommentLoad(commentLoad + 10);
+    }
     // 삭제 여부 묻는 confirm 모달창에서 최종적으로 삭제 버튼을 누를 때 동작하는 함수 => 동작시 댓글을 삭제한다.
     const deleteCommentFunc = async () => {
         const URL =
@@ -252,7 +268,10 @@ export default function PostDetail() {
                     <PostCard data={postMsg} />
                 </PostContentBox>
             )}
-            {commentMsg && <CommentListBox>{commentMsg}</CommentListBox>}
+            {commentMsg && <CommentListBox>
+                {commentMsg}
+                <Button className="small" onClick={handleMoreComment} ref={noComment}>+ 댓글 더보기</Button>
+                </CommentListBox>}
             <CommentInp
                 onSubmit={onCommentSubmitHandle}
                 isBtnActivated={!isBtnDisabled}
