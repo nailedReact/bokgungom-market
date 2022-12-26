@@ -31,7 +31,11 @@ const LeftCont = styled.div`
     align-items: center;
 
 `
-const RightCont = styled.div``
+const RightCont = styled.div`
+    display: flex;
+    width: 50%;
+    justify-content: right;
+`
 
 const BtnIcon = styled.button`
     ${({action}) => action === "back" && css`
@@ -50,6 +54,7 @@ const BtnIcon = styled.button`
     width: 24px;
     height: 24px;
 `;
+
 const SearchBtn = styled.button`
     background: url(${iconSearch});
     background-position: center;
@@ -60,31 +65,29 @@ const SearchBtn = styled.button`
     right: 10px;
     top: 17px;
 `;
-    const Searchinput = styled.input`
-    position: absolute;
-        font-size: 14px;
-        line-height: 18px;
-        background: #F2F2F2;
-        border-radius: 32px;
-        border: 0;
-        height: 32px;
-        width: 70%;
-        top: 10px;
-        right: 10px;
-        padding-left: 10px;
-        margin-right: 30px;
-
-    `;
-    const LogoCont = styled.div`
-    background: url(${Logo});
-    background-size: cover;
-    width: 162px;
-    height: 40px;
-    @media screen and (max-width: 768px){
-        display: none;
+const Searchinput = styled.input`
+    font-size: 14px;
+    background: #F2F2F2;
+    border-radius: 30px;
+    border: none;
+    padding: 8px 80px 8px 8px;
+    transition: .5s;
+    width: inherit;
+    &:focus {
+        width: 100%;
     }
-    cursor: pointer;
-    `
+`;
+
+const LogoCont = styled.div`
+background: url(${Logo});
+background-size: cover;
+width: 162px;
+height: 40px;
+@media screen and (max-width: 768px){
+    display: none;
+}
+cursor: pointer;
+`
 
 export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg, onClickModal}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
