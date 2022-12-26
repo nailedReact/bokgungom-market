@@ -15,7 +15,7 @@ export const formattedDate = (date) => {
         } else if (Math.floor(diff / (60 * 1000)) > 0) {
             res = `${Math.floor(diff / (60 * 1000))}분 전`;
         } else {
-            if (Math.floor(diff / 1000) === -1) {
+            if (Math.floor(diff / 1000) < 0) {
                 res = "0초 전";
             } else {
                 res = `${Math.floor(diff / 1000)}초 전`;
