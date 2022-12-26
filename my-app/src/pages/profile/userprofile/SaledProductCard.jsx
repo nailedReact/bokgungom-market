@@ -49,8 +49,8 @@ const Productlist = styled.ul`
     height: 100%;
     padding-bottom: 20px;
     /* 자동 캐러셀 부분 - 아직 구현 완료 못함 */
-    /* transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; */
-    /* transform: ${(props) => 'translateX(-' + props.count * 140 + 'px)'}; */
+    transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; 
+    transform: ${(props) => 'translateX(-' + props.count + 'px)'};
 `;
 
 const ProductCont = styled.li`
@@ -80,6 +80,11 @@ const ItemPrice = styled.p`
     line-height: 15px;
     color: #F26E22;
 `;  
+
+const Nextbtn = styled.button`
+    width:20px;
+    height:20px;
+`
 export default function SaledProductCard() {
 
 const [productData, setProductData] = useState([]);
@@ -90,6 +95,8 @@ const TOTAL_SLIDES = 4;
 const [count, setCount] = useState(0);
 const slideRef = useRef(null);
 const { username } = useContext(UserNameContext);
+
+
 
 //판매중인 상품 데이터를 받아오는 부분입니다.
 useEffect(() => {
@@ -128,15 +135,41 @@ useEffect(() => {
 
   
     //일정 시간이 지나면 캐러셀이 움직이는 부분입니다.
-  useEffect(() => {
-        const timer = setInterval(() => {
-            setCount((prev) => (prev === TOTAL_SLIDES ? 0 : prev + 1));
-        }, 3000);
+//   useEffect(() => {
+//         const timer = setInterval(() => {
+//             setCount((prev) => (prev === TOTAL_SLIDES ? 0 : prev + 1));
+//         }, 3000);
 
-        return () => {
-            clearInterval(timer);
-        };
-    }, [count]);
+//         return () => {
+//             clearInterval(timer);
+//         };
+//     }, [count]);
+
+    // console.log(window.innerWidth);
+    const a = useRef();
+    const [plus, setPlus] = useState(0);
+
+
+    const handlenext = () => {
+        let show_width = (a.current.offsetWidth);
+        let all_width = (a.current.scrollWidth);
+        console.log(all_width, show_width);
+        console.log(plus);
+        if((all_width-plus) < show_width){
+            setPlus(all_width)
+            setCount(all_width-plus);
+            console.log("?");
+        }else if(plus >= all_width){
+            setPlus(0);
+            setCount(0);
+        }
+        else{
+            setPlus(plus+show_width);
+            console.log(plus);
+            setCount(plus);
+            
+        }
+    }
 
   return (
     <>
@@ -144,10 +177,11 @@ useEffect(() => {
     <Cont>
     <SaledProduct>판매 중인 상품</SaledProduct>
     <Window>
-        <Productlist ref={slideRef} count={count}>
+        <Productlist ref={a} count={count}>
             {productData}
         </Productlist>
     </Window>
+    <Nextbtn onClick={handlenext}> &gt; </Nextbtn>
 </Cont>
     }
     </>
