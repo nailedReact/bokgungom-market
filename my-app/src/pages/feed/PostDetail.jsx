@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation } from "react-router";
 import axios from "axios";
 import styled from "styled-components";
@@ -9,7 +9,7 @@ import CommentInp from "../../components/CommentInp/CommentInp";
 import OptionModal from "../../components/OptionModal/OptionModal";
 import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import { formattedDate } from "./feed/dateformat";
-import useAuth from "../../hook/useAuth";
+import useAuth1 from "../../hook/useAuth1";
 import basicImg from "../../assets/basic-profile-img.png";
 import Button from "../../components/Button";
 
@@ -36,26 +36,24 @@ export default function PostDetail() {
     const [modalNotMe, setModalNotMe] = useState(false); // 내가 작성한 댓글이 아닌 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [deleteConfirm, setDeleteConfirm] = useState(false); // 삭제 여부를 선택하는 모달창이 보이는지 여부
-    const data = useAuth();
 
-    const userId = useRef(null); // 페이지를 접속한 user의 id
-    const inpRef = useRef(null); // 댓글 입력 input
-    const deleteTarget = useRef(null); // 삭제할 댓글 id
+    const {data, userIdRef} = useAuth1();
 
-    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
-    const [commentLoad, setCommentLoad] = useState(0); // 불러올 댓글
-    const noComment = useRef(null);
-    // 댓글의 more 버튼 클릭시 동작하는 함수
-    const onClickHandle = (deleteComment, author) => {
-        // deleteComment: 삭제할 댓글의 id
-        // author: 댓글 작성 유저 id
-        if (userId.current === author) {
+    const onClickHandle = useCallback((deleteComment, commentAuthor) => {
+        console.log("접속자", userIdRef.current);
+        console.log("댓글 단 사람", commentAuthor);
+        if (commentAuthor === userIdRef.current) {
             setModalMe(true);
             deleteTarget.current = deleteComment;
         } else {
             setModalNotMe(true);
         }
-    };
+    }, [userIdRef]);
+
+    const inpRef = useRef(null); // 댓글 입력 input
+    const deleteTarget = useRef(null); // 삭제할 댓글 id
+
+    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
 
     useEffect(() => {
         // 상세 게시글 요청 함수
@@ -71,7 +69,6 @@ export default function PostDetail() {
                 });
                 console.log(res.data);
                 setPostMsg(res.data.post);
-                userId.current = res.data.post.author._id; // 상세 게시글 요청시 페이지 접속한 유저의 id를 가져와 userId에 저장
             } catch (err) {
                 console.log(err);
             }
@@ -122,7 +119,7 @@ export default function PostDetail() {
 
         getProductDetail();
         getComments();
-    }, [currentId, commentLoad]);
+    }, [currentId, commentLoad, onClickHandle]);
 
     // 댓글 입력 인풋창 변할 때 함수 - 댓글 등록 버튼 활성화 비활성화 여부 정하기 위함
     const onInpChangeHandle = (e) => {
