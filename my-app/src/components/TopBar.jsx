@@ -83,18 +83,26 @@ const SearchBtn = styled.button`
     @media screen and (max-width: 768px){
         display: none;
     }
+    cursor: pointer;
     `
 
 export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg, onClickModal}) {
     // type의 앞글자, type의 뒤의 글자를 변수에 저장한다.
     const [TypeLeft, TypeRight] = type.split('');
     const navigate = useNavigate();
-
+    const handleClickLogo = () => {
+        if (localStorage.getItem("Authorization")){
+            navigate("../../../../post");
+        }
+        else {
+            navigate("../../../../account/login");
+        }
+    }
     return (
         <TopBarCont>
             <LeftCont>
-                {TypeLeft === "A" && !title ? <><BtnIcon action="back" onClick={() => navigate(-1)}/><LogoCont/></> : <></>}
-                {TypeLeft === "B" && title ? <><LogoCont/><div>{title}</div></> : <></>}
+                {TypeLeft === "A" && !title ? <><BtnIcon action="back" onClick={() => navigate(-1)}/><LogoCont onClick={handleClickLogo}/></> : <></>}
+                {TypeLeft === "B" && title ? <><LogoCont onClick={handleClickLogo}/><div>{title}</div></> : <></>}
                 {TypeLeft === "A" && title ?
                 <>
                     <BtnIcon action="back" onClick={() => navigate(-1)}/>
