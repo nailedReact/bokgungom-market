@@ -70,13 +70,12 @@ export default function HomeFeed() {
       const handlebutton = () => {
         let arr = [];
         for(let i = 0; i <= (allresMsg.length/10); i++){
-            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn}> {i+1} </PageBtn>)
+            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn} onFocus={changeblue} onBlur={changewhite}> {i+1} </PageBtn>)
         }
         return arr;
       }
 
     const clickbtn = (e) => {
-      console.log(e.target);
       let id_name = parseInt(e.target.id);
       if(id_name === 1){
         setPassamount(0);
@@ -85,33 +84,16 @@ export default function HomeFeed() {
       }
     }
 
-    // const next = (e) => {
-    //   if (pageEnd + 5 >= handlebutton().length){
-    //     e.target.disabled = true;
-    //     SetPageStart(pageStart + 5);
-    //     SetPageEnd(pageEnd + 5);
-    //   }
-    //   else {
-    //     SetPageStart(pageStart + 5);
-    //     SetPageEnd(pageEnd + 5);
-    //     e.target.disabled = false;
-    //   }
-    //   // console.log(page);
-    // }
-    // const prev = (e) => {
-    //   console.log(e.target.parentNode.childNode)
-    //   if (pageStart - 5 == 0){
-    //     console.log(e.target.disabled);
-    //     e.target.disabled = true;
-    //     SetPageStart(pageStart - 5);
-    //     SetPageEnd(pageEnd - 5);
-    //   }
-    //   else {
-    //     SetPageStart(pageStart - 5);
-    //     SetPageEnd(pageEnd - 5);
-    //     e.target.disabled = false;
-    //   }
-    // }
+    const changeblue = (e) => {
+      e.target.style.backgroundColor = "#4583a3";
+      e.target.style.color = "#fff";
+    }
+
+    const changewhite = (e) => {
+      e.target.style.backgroundColor = "#ffffff";
+    }
+
+    
     const handlePage = (e) => {
       console.log(pageStart, pageEnd)
       
