@@ -11,6 +11,9 @@ import Warning from '../../components/Warning';
 import TopBar from '../../components/TopBar';
 import NavBar from '../../components/NavBar/NavBar';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router';
+import useAuth from '../../hook/useAuth';
+import Toast from '../../components/Toast';
 
 const FormCont = styled.div`
     display: flex;
@@ -50,6 +53,9 @@ export default function UploadProduct() {
     const handleInpLink = (e) => {
         setProductLink(e.target.value)
     }
+    const navigate = useNavigate();
+    const data = useAuth();
+    const toastRef = useRef(null);
 
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
@@ -120,18 +126,31 @@ export default function UploadProduct() {
                 }
                 else {
                     console.log("상품 등록 완료");
+                    handleShowToast();
+                    setTimeout(function(){
+                        navigate("../../account/profile/" + data.accountname);
+                    }, 1000)
+                    
                 }
             }());
         } catch (err) {
             console.log(err);
         }
     }
-
+    const handleShowToast = () => {
+        console.log(toastRef)
+        toastRef.current.style.transform = "scale(1)";
+        setTimeout(function(){
+            toastRef.current.style.transform = "scale(0)";
+        }, 3000)
+        return;
+    }
 
     return (
         <>
             <TopBar type="A4" right4Ctrl="form_upload" // disabled={isBtnDisable}
             onClickGetMsg={onClickSave}/>
+            <Toast ref={toastRef} msg="게시물이 업로드 되었습니다!"/>
         <Cont>
                 <form id='form_upload'>
                 <FormCont>

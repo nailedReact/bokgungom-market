@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 import { Link } from "react-router-dom";
+import Toast from "../../components/Toast";
 import useAuth from "../../hook/useAuth"
 import { BgCont, Bear, SplashModal, BtnSocialLogin, LoginRegister } from "./splash.style.js"
 
@@ -9,7 +10,7 @@ export default function Splash() {
     console.log(data);
 
     const modalRef = useRef();
-
+    const toastRef = useRef(null);
     // 처음 실행 시 5초 뒤에 로그인 모달창이 뜨도록 함
     setTimeout(function(){
         modalRef.current.style.transform = "translate3d(0, 0, 0)";
@@ -29,19 +30,26 @@ export default function Splash() {
             return;
         }
     }
+    const handleShowToast = () => {
+        console.log(toastRef)
+        toastRef.current.style.transform = "scale(1)";
+        setTimeout(function(){
+            toastRef.current.style.transform = "scale(0)";
+        }, 3000)
+        return;
+    }
     return (
-
-
         <BgCont onClick={handleModal} id="back">
+            <Toast ref={toastRef} msg="준비중입니다!"  />
             <Bear id="bear"></Bear>
             <SplashModal ref={modalRef}>
-                <BtnSocialLogin className="kakao">
+                <BtnSocialLogin className="kakao" onClick={handleShowToast}>
                     카카오톡 계정으로 로그인
                 </BtnSocialLogin>
-                <BtnSocialLogin className="google">
+                <BtnSocialLogin className="google" onClick={handleShowToast}>
                     구글 아이디로 로그인
                 </BtnSocialLogin>
-                <BtnSocialLogin className="facebook">
+                <BtnSocialLogin className="facebook" onClick={handleShowToast}>
                     페이스북 계정으로 로그인
                 </BtnSocialLogin>
                 <LoginRegister>

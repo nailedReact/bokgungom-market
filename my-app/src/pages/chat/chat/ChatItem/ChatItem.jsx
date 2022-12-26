@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ChatItemCont } from "./chatItem.style";
 import { formattedDateFunc } from "../../dateFormat";
+import styled from "styled-components";
 
+const ProfilePic = styled.img`
+    border: 0.5px solid #C4C4C4;
+    border-radius: 50%;
+`
 export default function ChatItem({
     linkSrc,
     image,
@@ -23,7 +28,7 @@ export default function ChatItem({
                 <div className={isOnline ? "profileImgWrapper online" : "profileImgWrapper"}>
                     {/* 스크린 리더 사용자를 위해 온라인 오프라인 표시를 했습니다. */}
                     <span className={"ir"}>{isOnline ? "온라인" : "오프라인"}</span>
-                    <img className={"profileImg"} src={image} alt="프로필 사진" />
+                    <ProfilePic className={"profileImg"} src={image} alt="프로필 사진" />
                 </div>
                 <div className={"userNameAndLastChat"}>
                     <h2 className={"userName"}>{username}</h2>

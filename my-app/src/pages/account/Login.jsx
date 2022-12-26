@@ -1,40 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Inp from '../../components/userinput/Inp';
 import UserInput from '../../components/userinput/UserInput';
 import Button from '../../components/Button';
 import Warning from '../../components/Warning';
-import styled from 'styled-components';
-
-const Container = styled.main`
-    width: 87%;
-    max-width: 500px;
-    margin: 100px auto;
-`;
-
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Title = styled.h1`
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    @media screen and (max-width: 768px) {
-        font-size: 24px;
-    }
-`
-
-const JoinLink = styled(Link)`
-    margin-top: 20px;
-    color: #767676;
-    font-size: 18px;
-    text-align: center;
-    @media screen and (max-width: 768px) {
-        font-size: 14px;
-    }
-`
+import {
+    Container,
+    Form,
+    Title,
+    JoinLink
+} from "./loginRegister.style"
 
 export default function Login() {
     const emailInp = useRef(null);
@@ -44,6 +19,7 @@ export default function Login() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [emailValid, setEmailValid] = useState(false);
     const AlertMsg = useRef(null);
+    const navigate = useNavigate();
 
     // 이메일 형식이 유효하고 &&  비밀번호가 6자리 이상이면 버튼 활성화
     useEffect(() => {
@@ -91,6 +67,7 @@ export default function Login() {
                 const token = res.user["token"];
                 localStorage.setItem("Authorization","Bearer " + token);
                 AlertMsg.current.style.display = "none";
+                navigate("../../post");
             }
         }
         fetchData();
@@ -129,7 +106,7 @@ export default function Login() {
                     disabled={isBtnDisable}
                     onClick={handleLogin}
                 >다음</Button>
-                <JoinLink><Link to="../register">이메일로 회원가입</Link></JoinLink>
+                <JoinLink to="../register">이메일로 회원가입</JoinLink>
             </Form>
         </Container>
     )

@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router";
 import Button from "../../components/Button";
 import TopBar from "../../components/TopBar";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
@@ -11,6 +12,7 @@ import { Contentimg } from "../../components/postEditContentImg.style";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
 import NavBar from "../../components/NavBar/NavBar";
+import Toast from "../../components/Toast";
 
 export default function UploadPost() {
     const [showImages, setShowImages] = useState([]);
@@ -19,6 +21,8 @@ export default function UploadPost() {
     const submitData = useRef({});
     const imagePre = useRef(null);
     const textarea = useRef();
+    const navigate = useNavigate();
+    const toastRef = useRef(null);
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
@@ -119,18 +123,32 @@ export default function UploadPost() {
                 const json = await response.json();
                 console.log(json);
                 console.log("게시글 등록 완료");
+                handleShowToast();
+                setTimeout(function(){
+                    navigate("/post/" + json.post.id);
+                }, 1000)
+                
             })();
         } catch (err) {
             console.log(err);
         }
     };
 
+    const handleShowToast = () => {
+        console.log(toastRef)
+        toastRef.current.style.transform = "scale(1)";
+        setTimeout(function(){
+            toastRef.current.style.transform = "scale(0)";
+        }, 3000)
+        return;
+    }
     return (
         <>
             <TopBar
                 type="A4"
                 right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
+            <Toast ref={toastRef} msg="게시물이 업로드 되었습니다!" />
             <PostEditWrapper>
                 <UserProfileImg
                     src={basicImg}

@@ -10,6 +10,8 @@ import {
   FeedCont, PageBtn, PrevNextBtn
 } from "./homeFeed.style"
 import styled from "styled-components";
+import Loading from "../error/Loading";
+
 
 /* eslint-disable */
 
