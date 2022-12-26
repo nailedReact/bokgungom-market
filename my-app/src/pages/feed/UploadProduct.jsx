@@ -11,6 +11,8 @@ import Warning from '../../components/Warning';
 import TopBar from '../../components/TopBar';
 import NavBar from '../../components/NavBar/NavBar';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router';
+import useAuth from '../../hook/useAuth';
 
 const FormCont = styled.div`
     display: flex;
@@ -50,7 +52,8 @@ export default function UploadProduct() {
     const handleInpLink = (e) => {
         setProductLink(e.target.value)
     }
-
+    const navigate = useNavigate();
+    const data = useAuth();
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
     const fileOnChange = (files, fileReader) => {
@@ -120,6 +123,7 @@ export default function UploadProduct() {
                 }
                 else {
                     console.log("상품 등록 완료");
+                    navigate("../../account/profile/" + data.accountname);
                 }
             }());
         } catch (err) {

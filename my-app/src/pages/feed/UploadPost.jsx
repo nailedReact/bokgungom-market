@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router";
 import Button from "../../components/Button";
 import TopBar from "../../components/TopBar";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
@@ -19,6 +20,7 @@ export default function UploadPost() {
     const submitData = useRef({});
     const imagePre = useRef(null);
     const textarea = useRef();
+    const navigate = useNavigate();
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
@@ -119,6 +121,8 @@ export default function UploadPost() {
                 const json = await response.json();
                 console.log(json);
                 console.log("게시글 등록 완료");
+                navigate("/post/" + json.post.id);
+
             })();
         } catch (err) {
             console.log(err);
