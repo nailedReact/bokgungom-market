@@ -14,17 +14,20 @@ import basicImg from "../../assets/basic-profile-img.png";
 import Button from "../../components/Button";
 
 const CommentListBox = styled.ul`
-    border-top: 1px solid #dbdbdb;
+    /* border-top: 1px solid #dbdbdb; */
     padding: 20px 16px 80.5px 16px;
+    @media screen and (min-width: 768px){
+        padding: 20px;
+        margin-bottom: 60px;
+    }
 `;
 
 const PostContentBox = styled.div`
     padding: 20px 16px;
 `;
 
-const NoComments = styled.div`
-    display: none;
-    transition: .4s;
+const More = styled.div`
+    text-align: center;
 `
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
@@ -270,7 +273,9 @@ export default function PostDetail() {
             )}
             {commentMsg && <CommentListBox>
                 {commentMsg}
-                <Button className="small" onClick={handleMoreComment} ref={noComment}>+ 댓글 더보기</Button>
+                <More>
+                    <Button className="small" onClick={handleMoreComment} ref={noComment}>+ 댓글 더보기</Button>
+                </More>
                 </CommentListBox>}
             <CommentInp
                 onSubmit={onCommentSubmitHandle}
