@@ -36,12 +36,18 @@ export default function PostDetail() {
     const [modalNotMe, setModalNotMe] = useState(false); // 내가 작성한 댓글이 아닌 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [deleteConfirm, setDeleteConfirm] = useState(false); // 삭제 여부를 선택하는 모달창이 보이는지 여부
-
     const {data, userIdRef} = useAuth1();
 
+    const inpRef = useRef(null); // 댓글 입력 input
+    const deleteTarget = useRef(null); // 삭제할 댓글 id
+
+    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
+    const [commentLoad, setCommentLoad] = useState(0); // 불러올 댓글
+    const noComment = useRef(null);
+    // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = useCallback((deleteComment, commentAuthor) => {
-        console.log("접속자", userIdRef.current);
-        console.log("댓글 단 사람", commentAuthor);
+        // deleteComment: 삭제할 댓글의 id
+        // author: 댓글 작성 유저 id
         if (commentAuthor === userIdRef.current) {
             setModalMe(true);
             deleteTarget.current = deleteComment;
@@ -49,11 +55,6 @@ export default function PostDetail() {
             setModalNotMe(true);
         }
     }, [userIdRef]);
-
-    const inpRef = useRef(null); // 댓글 입력 input
-    const deleteTarget = useRef(null); // 삭제할 댓글 id
-
-    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
 
     useEffect(() => {
         // 상세 게시글 요청 함수
