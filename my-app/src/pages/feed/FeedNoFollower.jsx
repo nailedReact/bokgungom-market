@@ -9,21 +9,25 @@ const FeedNoFollower = () => {
     const Symbolimg = styled.img`
         width: 120px;
         height: 120px;
-        margin-top: 225px;
     `;
 
     const SearchText = styled.p`
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
-        line-height: 14px;
         color: #767676;
-        margin: 25px 0px;
     `;
 
     const Cont = styled.div`
-        text-align: center;
-        height: 100%;
+        display: flex;
+        height: calc(100vh - 60px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        @media screen and (max-width: 768px){
+            height: calc(100vh - 60px - 55px);
+        }
     `;
 
     const navigate = useNavigate();

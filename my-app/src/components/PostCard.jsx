@@ -24,6 +24,7 @@ const Cont = styled.div`
 const Username = styled.h2`
     font-weight: 500;
     font-size: 14px;
+    cursor: pointer;
     @media screen and (min-width: 768px){
         font-size: 16px;
     }
@@ -35,6 +36,7 @@ const Accountname = styled.p`
     line-height: 14px;
     color: #767676;
     margin-top: 2px;
+    cursor: pointer;
     @media screen and (min-width: 768px){
         font-size: 14px;
     }
@@ -81,6 +83,7 @@ const HeartCommentCont = styled.div`
     display: flex;
     align-items: center;
     margin-right: 16px;
+    cursor: pointer;
 `;
 const HeartCommentimg = styled.img`
     width: 15px;
@@ -109,6 +112,7 @@ const ProfilePicSmall = styled.img`
     @media screen and (min-width: 768px){
         margin-right: 16px;
     }
+    cursor: pointer;
 `;
 
 const Plusbutton = styled.button`
