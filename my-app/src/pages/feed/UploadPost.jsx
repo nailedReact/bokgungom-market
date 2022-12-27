@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../../components/TopBar";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
@@ -22,19 +22,24 @@ export default function UploadPost() {
     const textarea = useRef();
     const navigate = useNavigate();
 
+
     // 화면 사이즈 변경 훅
     const { width } = useWindowSizeCustom();
 
-    useEffect(() => {
-        contentText === true ? setIsBtnDisable(false) : setIsBtnDisable(true);
-    }, [contentText])
+    // useEffect(() => {
+    //     contentText ? setIsBtnDisable(false) : setIsBtnDisable(true);
+    // }, [contentText])
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
         setContentText(e.target.value);
         textarea.current.style.height = "auto";
         textarea.current.style.height = textarea.current.scrollHeight + "px";
-
+        if (e.target.value.length === 0 && showImages.length === 0) {
+            setIsBtnDisable(true);
+        } else {
+            setIsBtnDisable(false);
+        }
         // 글자 수 제한 테스트 중입니다.
         // let text = e.target.value;
         // let text_length = text.length;
@@ -66,6 +71,7 @@ export default function UploadPost() {
                 };
                 fileReader.readAsDataURL(file);
             };
+            setIsBtnDisable(false);
         } else {
             alert("이미지는 3개까지 업로드 할 수 있습니다.");
             fileUrls.pop();
@@ -75,6 +81,10 @@ export default function UploadPost() {
     // 이미지 미리보기 삭제
     const handleDeleteImage = (id) => {
         setShowImages(showImages.filter((_, index) => index !== id));
+
+        if (!contentText && showImages.length === 1) {
+            setIsBtnDisable(true);
+        }
     };
 
 

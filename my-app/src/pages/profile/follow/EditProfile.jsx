@@ -114,7 +114,7 @@ export default function EditProfile() {
         <>
             <TopBar
                 type={"A4"}
-                right4Ctrl={{ form: "logined", isDisabled: { isBtnVisible } }}
+                right4Ctrl={{ form: "logined", isDisabled: isBtnVisible }}
             />
             <Toast ref={toastRef} msg="프로필 정보가 수정되었습니다!" />
             <ProfileEditCont>
