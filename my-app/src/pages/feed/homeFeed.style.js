@@ -30,3 +30,10 @@ export const PrevNextBtn = styled.button`
         opacity: 0.4;
     }
 `
+
+export const Pagenation = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+`
