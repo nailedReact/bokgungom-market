@@ -6,8 +6,12 @@ import TopBar from '../../components/TopBar';
 import NavBar from '../../components/NavBar/NavBar';
 
 export default function Search() {
+    // const [search, setSearch] = useState("");
     const [resMsg, setResMsg] = useState([]);
+    // const [resultArr, setResultArr] = useState([]);
+    // const [checkkeyup, setCheckkeyup] = useState("");
     const [checkchange, setCheckchange] = useState("");
+    // const [count, setCount] = useState(0);
     
     const onChangeSearch = (e) => {
       if(e.code !== "Backspace" && e.target.value.length > 1){
