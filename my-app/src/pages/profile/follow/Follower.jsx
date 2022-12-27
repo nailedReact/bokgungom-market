@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 import NoFollowerFollowing from './NoFollowerFollowing';
 import NavBar from '../../../components/NavBar/NavBar';
 import TopBar from '../../../components/TopBar';
+import { FollowList } from "./followFollowing.style"
 
 export default function Following() {   
     const [resMsg, setResMsg] = useState([]);
@@ -41,9 +42,9 @@ useEffect(() => {
     <NoFollowerFollowing page="follower"/>:
     <>
      <TopBar type="A0" title="Followers"/>
-    <ul>
+    <FollowList>
       {followerArr}
-    </ul>
+    </FollowList>
     <NavBar />
     </>
    
