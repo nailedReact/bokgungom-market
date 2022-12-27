@@ -60,11 +60,15 @@ const Searchinput = styled.input`
     background: #F2F2F2;
     border-radius: 30px;
     border: none;
-    padding: 8px 80px 8px 8px;
+    padding: 8px;
     transition: .5s;
     width: inherit;
+    width: 80%;
     &:focus {
         width: 100%;
+    }
+    @media screen and (max-width: 768px){
+        width: 90%;
     }
 `;
 
