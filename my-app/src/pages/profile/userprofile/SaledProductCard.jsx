@@ -64,6 +64,7 @@ const Productimg = styled.img`
     width: 140px;
     height: 90px;
     border-radius: 8px;
+    object-fit: contain;
 `;
 
 const ItemName = styled.h3`
@@ -77,7 +78,7 @@ const ItemPrice = styled.p`
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-    color: #F26E22;
+    color: var(--color-primary);
 `;  
 
 const Nextbtn = styled.button`
