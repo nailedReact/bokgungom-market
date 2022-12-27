@@ -4,7 +4,6 @@
 import { useState, useRef } from 'react'
 import Inp from '../../components/userinput/Inp';
 import UserInput from '../../components/userinput/UserInput';
-import Button from '../../components/Button';
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
 import Warning from '../../components/Warning';
@@ -59,7 +58,7 @@ export default function UploadProduct() {
     const toastRef = useRef(null);
 
     // 화면 사이즈 변경 훅
-    const {width, height} = useWindowSizeCustom();
+    const width = useWindowSizeCustom()[0];
     // console.log(width);
     
     // 기존 미리보기 이미지에서 상품 이미지로 변경

@@ -37,7 +37,7 @@ export default function UploadPost() {
     };
 
     // 화면 사이즈 변경 훅
-    const {width, height} = useWindowSizeCustom();
+    const width = useWindowSizeCustom()[0];
 
     // 이미지 미리보기
     let previewUrl = [];

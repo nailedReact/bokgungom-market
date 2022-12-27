@@ -1,6 +1,5 @@
 import {
     Cont,
-    CharacterAni,
     ImgContLoading
 } from "./loadingError.style"
 

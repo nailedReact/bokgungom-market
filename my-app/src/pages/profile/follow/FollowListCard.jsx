@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Button from '../../../components/Button';
 import axios from 'axios';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 const Followingimg = styled.img`

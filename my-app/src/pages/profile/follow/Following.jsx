@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import axios from 'axios'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import FollowListCard from './FollowListCard'
 import { useParams } from 'react-router';
 import NoFollowerFollowing from './NoFollowerFollowing';

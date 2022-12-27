@@ -2,7 +2,6 @@ import React from 'react'
 import { useEffect, useState, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { UserNameContext } from "./Profile"
 
 const Cont = styled.div`
@@ -89,11 +88,10 @@ export default function SaledProductCard() {
 
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
-const navigate = useNavigate();
 //캐러셀 관련 
-const TOTAL_SLIDES = 4;
+// const TOTAL_SLIDES = 4;
 const [count, setCount] = useState(0);
-const slideRef = useRef(null);
+// const slideRef = useRef(null);
 const { username } = useContext(UserNameContext);
 
 
