@@ -58,7 +58,7 @@ export default function UploadProduct() {
     const toastRef = useRef(null);
 
     // 화면 사이즈 변경 훅
-    const {width} = useWindowSizeCustom();
+    const { width } = useWindowSizeCustom();
     
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
