@@ -55,7 +55,6 @@ export default function Register() {
             },
           }
         );
-        console.log(res.data)
         if (res.data.message === "사용 가능한 이메일 입니다.") {
           idAlertMsg.current.textContent = res.data.message;
           idAlertMsg.current.style.display = "none";
@@ -103,10 +102,7 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // 새로고침 막기
-    console.log(userData);
-    
     navigate('./profile', { state: userData });
-    // console.log(userData)
   }
 
   return (

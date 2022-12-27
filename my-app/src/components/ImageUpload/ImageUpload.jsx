@@ -4,7 +4,6 @@ import { ImgUploadIcon } from "./imageUpload.style";
 export default function ImageUpload({ btnStyle, onChangeByUpper }) {
     const handleFileChange = (event) => {
         const selectedFile = [...event.target.files];
-        console.log(selectedFile);
         const fileReader = new FileReader();
 
         onChangeByUpper(selectedFile, fileReader);

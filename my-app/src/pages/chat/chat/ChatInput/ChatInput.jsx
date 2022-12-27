@@ -33,13 +33,11 @@ export default function ChatInput() {
         submitMsg.current.date = date.toJSON();
         if (inpRef.current.value.length > 0) {
             submitMsg.current.txt = inpRef.current.value;
-            console.log(submitMsg.current);
             inpRef.current.value = "";
         } else {
             console.log(submitMsg.current);
         }
         submitMsg.current = {};
-        console.log(submitMsg.current);
     };
 
     return (

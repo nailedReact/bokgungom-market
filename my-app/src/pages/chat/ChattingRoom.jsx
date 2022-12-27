@@ -35,7 +35,6 @@ export default function ChattingRoom() {
 
     useEffect(() => {
         filtered.current = data.chat.filter((e) => e.id === id)[0];
-        console.log(filtered.current);
         setTitle(filtered.current.caller.username);
         const chatItems = filtered.current.chatData.map((e) => {
             const formattedTime = formattedTimeFunc(e.date);

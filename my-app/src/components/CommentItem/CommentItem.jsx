@@ -36,24 +36,17 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
 
     // 시간에 따라 렌더링 다르게 하기 위함.
     useEffect(() => {
-        console.log(createdAt);
         if (createdAt.includes("초")) {
             const identifier = setInterval(() => {
-                console.log("useeffect - 1");
-                console.log(createdAt);
                 setCreatedAt((prev) => {
-                    console.log("실행 - 1");
-                    return timeRenderHandle(createdAt, "1분 전", "초");
+                   return timeRenderHandle(createdAt, "1분 전", "초");
                 });
             }, [1000]);
 
             return () => clearInterval(identifier);
         } else if (createdAt.includes("분")) {
             const identifier = setInterval(() => {
-                console.log("useeffect - 2");
                 setCreatedAt((prev) => {
-                    console.log("실행 - 2");
-                    // return formattedDate(refer.createdAt);
                     return timeRenderHandle(createdAt, "1시간 전", "분");
                 });
             }, [60000]);
@@ -61,10 +54,7 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
             return () => clearInterval(identifier);
         } else if (createdAt.includes("시간")) {
             const identifier = setInterval(() => {
-                console.log("useeffect - 3");
                 setCreatedAt((prev) => {
-                    console.log("실행 - 3");
-                    // return formattedDate(refer.createdAt);
                     return timeRenderHandle(createdAt, formattedDate(initialTime), "시간", 23);
                 });
             }, [3600000]);

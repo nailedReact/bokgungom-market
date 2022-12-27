@@ -1,7 +1,6 @@
-import { useRef, forwardRef } from "react";
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Toast from "../../components/Toast";
-import useAuth from "../../hook/useAuth"
 import { BgCont, Bear, SplashModal, BtnSocialLogin, LoginRegister } from "./splash.style.js"
 
 export default function Splash() {
@@ -35,7 +34,6 @@ export default function Splash() {
         }
     }
     const handleShowToast = () => {
-        console.log(toastRef)
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";

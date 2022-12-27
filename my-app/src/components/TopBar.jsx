@@ -55,16 +55,6 @@ const BtnIcon = styled.button`
     height: 24px;
 `;
 
-const SearchBtn = styled.button`
-    background: url(${iconSearch});
-    background-position: center;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 10px;
-    top: 17px;
-`;
 const Searchinput = styled.input`
     font-size: 14px;
     background: #F2F2F2;
