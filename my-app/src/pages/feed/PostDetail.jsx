@@ -44,31 +44,30 @@ export default function PostDetail() {
     const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [deleteConfirm, setDeleteConfirm] = useState(false); // 삭제 여부를 선택하는 모달창이 보이는지 여부
     const [noComment, setNoComment] = useState(true);
+    const [noComment2, setNoComment2] = useState(false);
 
     const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
 
-    const commentLoadRef = useRef(0);
     const inpRef = useRef(null); // 댓글 입력 input
     const deleteTarget = useRef(null); // 삭제할 댓글 id
+    const orderedComments = useRef();
 
     const reacts = useMemo(() => {
         return { setPostMsg, currentId };
     }, [currentId]);
 
     const { data, userIdRef } = useAuth1();
-    const { sendRequest, commentCountNum } = usePostDetail(reacts);
+    const sendRequest = usePostDetail(reacts);
 
     const baseURL =
         "https://mandarin.api.weniv.co.kr/post/" +
         currentId +
         "/comments" +
-        "?limit=10&skip=0";
+        "?limit=infinity&skip=0";
 
     // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = useCallback(
         (deleteComment, commentAuthor) => {
-            // deleteComment: 삭제할 댓글의 id
-            // author: 댓글 작성 유저 id
             if (commentAuthor === userIdRef.current) {
                 setModalMe(true);
                 deleteTarget.current = deleteComment;
@@ -79,15 +78,42 @@ export default function PostDetail() {
         [userIdRef]
     );
 
-    // 댓글 불러오기, 추가, 삭제시 댓글 렌더링을 담당하는 함수
-    const commentRenderHandle = useCallback(
-        (commentRes, isCommentLoading) => {
-            if (commentCountNum.current <= 10) {
-                setNoComment(false);
-            }
+    const recentSortHandle = useCallback((arr) => {
+        if (arr) {
+            return [...arr].reverse();
+        } else {
+            return;
+        }
+    }, []);
 
-            if (commentRes.data.comments.length > 0) {
-                const comments = commentRes.data.comments.map((e) => {
+    const loadHandle = (sortedArr, isPreviousLoading) => {
+        if (sortedArr) {
+            const sliced = isPreviousLoading
+                ? sortedArr.splice(-10, 10)
+                : sortedArr.splice(0, 10);
+            return sliced;
+        } else {
+            return;
+        }
+    };
+
+    const initialDataSet = useCallback(
+        (commentRes) => {
+            if (commentRes.data.comments) {
+                if (commentRes.data.comments.length <= 10) {
+                    setNoComment(false);
+                } 
+
+                orderedComments.current = recentSortHandle(
+                    commentRes.data.comments
+                );
+
+                const currentRenderTarget = loadHandle(
+                    orderedComments.current,
+                    false
+                );
+
+                const comments = currentRenderTarget.map((e) => {
                     return (
                         <CommentItem
                             key={e.id}
@@ -99,16 +125,53 @@ export default function PostDetail() {
                     );
                 });
 
-                if (isCommentLoading) {
-                    setCommentMsg((prev) => [...prev, comments]);
-                } else {
-                    setCommentMsg(comments);
-                }
-            } else if (commentRes.data.comments.length === 0) {
-                setCommentMsg([]);
+                setCommentMsg(comments);
             }
         },
-        [onClickHandle, commentCountNum]
+        [recentSortHandle, onClickHandle]
+    );
+
+    // 댓글 작성 및 삭제시 렌더링 담당하는 함수
+    const commentEditRenderHandle = useCallback(
+        (commentRes, _, isInput) => {
+            if (commentRes.data.comments) {
+                if (commentRes.data.comments.length > 10) {
+                    if (isInput) {
+                        setNoComment2(true);
+                        setNoComment(false);
+                    } else {
+                        setNoComment2(false);
+                        setNoComment(true);
+                    }
+                } else {
+                    setNoComment(false);
+                    setNoComment2(false);
+                }
+
+                orderedComments.current = recentSortHandle(
+                    commentRes.data.comments
+                );
+
+                const currentRenderTarget = isInput
+                    ? loadHandle(orderedComments.current, true)
+                    : loadHandle(orderedComments.current, false);
+
+                const comments = currentRenderTarget.map((e) => {
+                    return (
+                        <CommentItem
+                            key={e.id}
+                            refer={e}
+                            onClickHandle={onClickHandle}
+                            initialTimeFormatted={formattedDate(e.createdAt)}
+                            initialTime={e.createdAt}
+                        />
+                    );
+                });
+
+                setCommentMsg(comments);
+            }
+        },
+        [recentSortHandle, onClickHandle]
     );
 
     // 댓글 입력 인풋창 변할 때 함수 - 댓글 등록 버튼 활성화 비활성화 여부 정하기 위함
@@ -143,13 +206,7 @@ export default function PostDetail() {
                 }
             );
 
-            sendRequest(baseURL, commentRenderHandle, false);
-
-            if (commentCountNum.current > 10) {
-                setNoComment(true);
-            }
-
-            commentLoadRef.current = 0;
+            sendRequest(baseURL, commentEditRenderHandle, true);
 
             inpRef.current.value = "";
             setIsBtnDisabled(true);
@@ -159,22 +216,33 @@ export default function PostDetail() {
     };
 
     // 댓글 더 불러오기
-    const handleMoreComment = () => {
-        commentLoadRef.current += 10;
 
+    const handleMoreComment = (isPreviousLoading = false) => {
+        const currentRenderTarget = loadHandle(
+            orderedComments.current,
+            isPreviousLoading
+        );
 
-        const URL =
-            "https://mandarin.api.weniv.co.kr/post/" +
-            currentId +
-            "/comments" +
-            "?limit=10&skip=" +
-            commentLoadRef.current;
-        
-        if (Math.abs(commentLoadRef.current - commentCountNum.current) <= 10) {
-            setNoComment(false);
+        if (orderedComments.current.length === 0) {
+            isPreviousLoading ? setNoComment2(false) : setNoComment(false);
+
         }
 
-        sendRequest(URL, commentRenderHandle, true);
+        const comments = currentRenderTarget.map((e) => {
+            return (
+                <CommentItem
+                    key={e.id}
+                    refer={e}
+                    onClickHandle={onClickHandle}
+                    initialTimeFormatted={formattedDate(e.createdAt)}
+                    initialTime={e.createdAt}
+                />
+            );
+        });
+
+        setCommentMsg((prev) =>
+            isPreviousLoading ? [comments, ...prev] : [...prev, comments]
+        );
     };
 
     // more 버튼 -> 댓글 삭제하기 버튼 클릭시 작동하는 함수
@@ -199,13 +267,11 @@ export default function PostDetail() {
                 },
             });
 
-            sendRequest(baseURL, commentRenderHandle, false);
+            orderedComments.current.length === 0
+                ? setNoComment(false)
+                : setNoComment(true);
 
-            if (commentCountNum.current > 10) {
-                setNoComment(true);
-            }
-
-            commentLoadRef.current = 0;
+            sendRequest(baseURL, commentEditRenderHandle, false);
 
             setDeleteConfirm(false);
             setModalMe(false);
@@ -215,8 +281,8 @@ export default function PostDetail() {
     };
 
     useEffect(() => {
-        sendRequest(baseURL, commentRenderHandle, true);
-    }, [currentId, commentRenderHandle, sendRequest, baseURL]);
+        sendRequest(baseURL, initialDataSet, false);
+    }, [currentId, initialDataSet, sendRequest, baseURL]);
 
     return (
         <>
@@ -273,11 +339,23 @@ export default function PostDetail() {
             )}
             {commentMsg && (
                 <CommentListBox>
+                    <More>
+                        <Button
+                            className="small"
+                            onClick={() => handleMoreComment(true)}
+                            style={{
+                                display: noComment2 ? "block" : "none",
+                                margin: "0 auto",
+                            }}
+                        >
+                            + 이전 댓글 보기
+                        </Button>
+                    </More>
                     {commentMsg}
                     <More>
                         <Button
                             className="small"
-                            onClick={handleMoreComment}
+                            onClick={() => handleMoreComment(false)}
                             style={{
                                 display: noComment ? "block" : "none",
                                 margin: "0 auto",

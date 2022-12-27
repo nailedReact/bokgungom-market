@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NavBarCont = styled.div`
+export const NavBarCont = styled.nav`
     width: 100%;
     padding: 0 6px;
     border-top: 0.5px solid #DBDBDB;

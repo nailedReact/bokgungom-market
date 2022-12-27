@@ -15,7 +15,10 @@ const InpLabel = styled.label`
 const Cont = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 16px;
+    margin-top: 12px;
+    @media screen and (max-width: 768px){
+        margin-top: 0px;
+    }
 `;
 
 

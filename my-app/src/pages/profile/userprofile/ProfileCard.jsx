@@ -26,7 +26,7 @@ import { UserNameContext } from "./Profile"
     height: 110px;
     width: 110px;
     border-radius: 50%;
-    outline: 1px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
   `;
 
   const Username = styled.h2`
