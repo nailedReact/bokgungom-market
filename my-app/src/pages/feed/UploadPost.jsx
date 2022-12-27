@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../../components/TopBar";
+import useAuth from "../../hook/useAuth";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
 import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
@@ -21,6 +22,7 @@ export default function UploadPost() {
     const imagePre = useRef(null);
     const textarea = useRef();
     const navigate = useNavigate();
+    const data = useAuth();
 
 
     // 화면 사이즈 변경 훅
@@ -165,7 +167,7 @@ export default function UploadPost() {
             />
             <PostEditWrapper>
                 <UserProfileImg
-                    src={basicImg}
+                    src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
                 />
                 <form style={{flexBasis: "304px", height: "100%"}} action="" id={"postUpload"} onSubmit={CreatePost}>

@@ -13,6 +13,7 @@ import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
 import Toast from "../../components/Toast";
 import NavBar from "../../components/NavBar/NavBar";
+import useAuth from "../../hook/useAuth";
 
 export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
@@ -27,6 +28,7 @@ export default function PostEdit() {
     const navigate = useNavigate();
     const toastRef = useRef(null);
     const textarea = useRef();
+    const data = useAuth();
 
     // 페이지 로드시 기존 게시글 정보 불러오기 위함
     useEffect(() => {
@@ -177,7 +179,7 @@ export default function PostEdit() {
             <Toast ref={toastRef} msg="게시물이 수정 되었습니다!" />
             <PostEditWrapper>
                 <UserProfileImg
-                    src={basicImg}
+                    src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
                 />
                 <form action="" id={"postUpload"} onSubmit={onClickUpload}>
