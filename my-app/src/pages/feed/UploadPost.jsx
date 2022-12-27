@@ -54,9 +54,11 @@ export default function UploadPost() {
                 fileReader.onload = () => {
                     // imagePre.current.src = fileReader.result;
                     previewUrl.push(fileReader.result);
+                    console.log();
                     setShowImages([...previewUrl]);
                 };
                 fileReader.readAsDataURL(file);
+                console.log(file);
             };
         } else {
             alert("이미지는 3개까지 올릴 수 있습니다.");
@@ -69,12 +71,13 @@ export default function UploadPost() {
         setShowImages(showImages.filter((_, index) => index !== id));
     };
 
-
+    // const postImgName = [];
     // 이미지 서버에 전송
     const uploadImg = async (file) => {
+
         const formData = new FormData();
         formData.append("image", file);
-        
+        console.log(formData);
 
         try {
             const res = await fetch(
@@ -85,6 +88,7 @@ export default function UploadPost() {
                 }
             );
             const json = await res.json();
+            console.log(json);
             const postImgName = json[0].filename;
             return postImgName
         } catch (error) {
@@ -95,7 +99,7 @@ export default function UploadPost() {
     // 저장 버튼 클릭 시 텍스트, 이미지 값 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
     const createPost = async function (e) {
         e.preventDefault()
-        // const url = "https://mandarin.api.weniv.co.kr/post";
+        const url = "https://mandarin.api.weniv.co.kr/post";
         const imgUrls = [];
         
         try {
@@ -111,17 +115,17 @@ export default function UploadPost() {
                 },
             };
 
-            // const response = await fetch(url, {
-            //     method: "POST",
-            //     headers: {
-            //         Authorization: localStorage.getItem("Authorization"),
-            //         "Content-type": "application/json",
-            //     },
-            //     body: JSON.stringify(productData),
-            // });
-            // const json = await response.json();
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    Authorization: localStorage.getItem("Authorization"),
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify(productData),
+            });
+            const json = await response.json();
             
-            // console.log(json);
+            console.log(json);
             console.log("게시글 등록 완료");
         } catch (error) {
             console.error(error);

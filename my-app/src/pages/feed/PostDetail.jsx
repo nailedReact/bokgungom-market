@@ -161,7 +161,9 @@ export default function PostDetail() {
     // 댓글 더 불러오기
     const handleMoreComment = () => {
         commentLoadRef.current += 10;
-    const URL =
+
+
+        const URL =
             "https://mandarin.api.weniv.co.kr/post/" +
             currentId +
             "/comments" +

@@ -245,9 +245,12 @@ export default function PostCard({
                         </HeadCont>
                         <div onClick={handlepostdetail}>
                             <Content>{data.content}</Content>
-                            {data.image ? (
-                                <Contentimg src={data.image} alt="컨텐츠 사진" />
-                            ) : null}
+                            {data.image ? data.image.length > 1 ?
+                            data.image.split(",").map((item, index) => {
+                                return <Contentimg src={item} key={index+1} alt="컨텐츠 사진" />  
+                            })
+                            : <Contentimg src={data.image} alt="컨텐츠 사진" /> 
+                            : null}
                         </div >
                         <HeartComment>
                             <span onClick={heartchange}>
