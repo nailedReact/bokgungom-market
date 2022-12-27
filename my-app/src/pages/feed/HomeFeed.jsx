@@ -91,6 +91,7 @@ export default function HomeFeed() {
 
     const changewhite = (e) => {
       e.target.style.backgroundColor = "#ffffff";
+      e.target.style.color = "#3f3f46";
     }
 
     
