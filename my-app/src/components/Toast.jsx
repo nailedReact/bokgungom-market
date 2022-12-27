@@ -21,6 +21,10 @@ const Cont = styled.div`
     transition: all .2s;
     transform: scale(0);
     z-index: 20;
+    @media screen and (max-width: 768px){
+        right: 20px;
+        top: 20px;
+    }
 `
 const CloseBtn = styled.button`
     font-family: "Pretendard";
