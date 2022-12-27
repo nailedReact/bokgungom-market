@@ -1,4 +1,10 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import React, {
+    useEffect,
+    useState,
+    useRef,
+    useCallback,
+    useMemo,
+} from "react";
 import { useLocation } from "react-router";
 import axios from "axios";
 import styled from "styled-components";
@@ -10,13 +16,14 @@ import OptionModal from "../../components/OptionModal/OptionModal";
 import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import { formattedDate } from "./feed/dateformat";
 import useAuth1 from "../../hook/useAuth1";
+import usePostDetail from "../../hook/usePostDetail";
 import basicImg from "../../assets/basic-profile-img.png";
 import Button from "../../components/Button";
 
 const CommentListBox = styled.ul`
     /* border-top: 1px solid #dbdbdb; */
     padding: 20px 16px 80.5px 16px;
-    @media screen and (min-width: 768px){
+    @media screen and (min-width: 768px) {
         padding: 20px;
         margin-bottom: 60px;
     }
@@ -28,7 +35,7 @@ const PostContentBox = styled.div`
 
 const More = styled.div`
     text-align: center;
-`
+`;
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
     const [commentMsg, setCommentMsg] = useState([]); // 댓글 API 응답 데이터 받아오는 곳
@@ -36,91 +43,73 @@ export default function PostDetail() {
     const [modalNotMe, setModalNotMe] = useState(false); // 내가 작성한 댓글이 아닌 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
     const [deleteConfirm, setDeleteConfirm] = useState(false); // 삭제 여부를 선택하는 모달창이 보이는지 여부
-    const {data, userIdRef} = useAuth1();
+    const [noComment, setNoComment] = useState(true);
 
+    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
+
+    const commentLoadRef = useRef(0);
     const inpRef = useRef(null); // 댓글 입력 input
     const deleteTarget = useRef(null); // 삭제할 댓글 id
 
-    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
-    const [commentLoad, setCommentLoad] = useState(0); // 불러올 댓글
-    const noComment = useRef(null);
+    const reacts = useMemo(() => {
+        return { setPostMsg, currentId };
+    }, [currentId]);
+
+    const { data, userIdRef } = useAuth1();
+    const { sendRequest, commentCountNum } = usePostDetail(reacts);
+
+    const baseURL =
+        "https://mandarin.api.weniv.co.kr/post/" +
+        currentId +
+        "/comments" +
+        "?limit=10&skip=0";
+
     // 댓글의 more 버튼 클릭시 동작하는 함수
-    const onClickHandle = useCallback((deleteComment, commentAuthor) => {
-        // deleteComment: 삭제할 댓글의 id
-        // author: 댓글 작성 유저 id
-        if (commentAuthor === userIdRef.current) {
-            setModalMe(true);
-            deleteTarget.current = deleteComment;
-        } else {
-            setModalNotMe(true);
-        }
-    }, [userIdRef]);
-
-    useEffect(() => {
-        // 상세 게시글 요청 함수
-        const getProductDetail = async () => {
-            try {
-                const URL =
-                    "https://mandarin.api.weniv.co.kr/post/" + currentId;
-                const res = await axios.get(URL, {
-                    headers: {
-                        Authorization: localStorage.getItem("Authorization"),
-                        "Content-type": "application/json",
-                    },
-                });
-                console.log(res.data);
-                setPostMsg(res.data.post);
-            } catch (err) {
-                console.log(err);
+    const onClickHandle = useCallback(
+        (deleteComment, commentAuthor) => {
+            // deleteComment: 삭제할 댓글의 id
+            // author: 댓글 작성 유저 id
+            if (commentAuthor === userIdRef.current) {
+                setModalMe(true);
+                deleteTarget.current = deleteComment;
+            } else {
+                setModalNotMe(true);
             }
-        };
+        },
+        [userIdRef]
+    );
 
-        // 댓글 요청 함수
-        const getComments = async () => {
-            try {
-                const URL =
-                    "https://mandarin.api.weniv.co.kr/post/" +
-                    currentId +
-                    "/comments" + 
-                    "?limit=10&skip=" + 
-                    commentLoad;
-                const res = await axios.get(URL, {
-                    headers: {
-                        Authorization: localStorage.getItem("Authorization"),
-                        "Content-type": "application/json",
-                    },
+    // 댓글 불러오기, 추가, 삭제시 댓글 렌더링을 담당하는 함수
+    const commentRenderHandle = useCallback(
+        (commentRes, isCommentLoading) => {
+            if (commentCountNum.current <= 10) {
+                setNoComment(false);
+            }
+
+            if (commentRes.data.comments.length > 0) {
+                const comments = commentRes.data.comments.map((e) => {
+                    return (
+                        <CommentItem
+                            key={e.id}
+                            refer={e}
+                            onClickHandle={onClickHandle}
+                            initialTimeFormatted={formattedDate(e.createdAt)}
+                            initialTime={e.createdAt}
+                        />
+                    );
                 });
-                console.log(res.data.comments);
 
-                // 새로 불러오는 댓글이 10개보다 적으면 댓글 더보기 버튼 보이지 않게 함
-                if (res.data.comments.length < 10){
-                    noComment.current.style.display = "none";
-                }
-                if (res.data.comments.length > 0) {
-                    const comments = res.data.comments.map((e) => {
-                        formattedDate(e.createdAt);
-                        return (
-                            <CommentItem
-                                key={e.id}
-                                refer={e}
-                                onClickHandle={onClickHandle}
-                                initialTimeFormatted={formattedDate(e.createdAt)}
-                                initialTime={e.createdAt}
-                            />
-                        );
-                    });
-
-                    // 댓글 더 불러오기 했을 때 기존 댓글들 뒤에 이어 붙이도록 함
+                if (isCommentLoading) {
                     setCommentMsg((prev) => [...prev, comments]);
+                } else {
+                    setCommentMsg(comments);
                 }
-            } catch (err) {
-                console.log(err);
+            } else if (commentRes.data.comments.length === 0) {
+                setCommentMsg([]);
             }
-        };
-
-        getProductDetail();
-        getComments();
-    }, [currentId, commentLoad, onClickHandle]);
+        },
+        [onClickHandle, commentCountNum]
+    );
 
     // 댓글 입력 인풋창 변할 때 함수 - 댓글 등록 버튼 활성화 비활성화 여부 정하기 위함
     const onInpChangeHandle = (e) => {
@@ -139,7 +128,7 @@ export default function PostDetail() {
                 "https://mandarin.api.weniv.co.kr/post/" +
                 currentId +
                 "/comments";
-            const res = await axios.post(
+            await axios.post(
                 URL,
                 {
                     comment: {
@@ -154,27 +143,39 @@ export default function PostDetail() {
                 }
             );
 
-            console.log(res.data);
+            sendRequest(baseURL, commentRenderHandle, false);
 
-            // 댓글이 등록되면 등록된 댓글이 반영되도록 - 우선 최신 댓글이 제일 맨 위로 가게 해놓음
-            setCommentMsg((prev) => {
-                return [
-                    <CommentItem
-                        key={res.data.comment.id}
-                        refer={res.data.comment}
-                        onClickHandle={onClickHandle}
-                        initialTimeFormatted={formattedDate(res.data.comment.createdAt)}
-                        initialTime={res.data.comment.createdAt}
-                    />,
-                    ...prev,
-                ];
-            });
+            if (commentCountNum.current > 10) {
+                setNoComment(true);
+            }
+
+            commentLoadRef.current = 0;
 
             inpRef.current.value = "";
             setIsBtnDisabled(true);
         } catch (err) {
             console.log(err);
         }
+    };
+
+    // 댓글 더 불러오기
+    const handleMoreComment = () => {
+        commentLoadRef.current += 10;
+        console.log(commentLoadRef.current, commentCountNum.current);
+        console.log(commentLoadRef.current - commentCountNum.current);
+
+        const URL =
+            "https://mandarin.api.weniv.co.kr/post/" +
+            currentId +
+            "/comments" +
+            "?limit=10&skip=" +
+            commentLoadRef.current;
+        
+        if (Math.abs(commentLoadRef.current - commentCountNum.current) <= 10) {
+            setNoComment(false);
+        }
+
+        sendRequest(URL, commentRenderHandle, true);
     };
 
     // more 버튼 -> 댓글 삭제하기 버튼 클릭시 작동하는 함수
@@ -184,10 +185,6 @@ export default function PostDetail() {
         setDeleteConfirm(true);
     };
 
-    // 댓글 더 불러오기
-    const handleMoreComment = () => {
-        setCommentLoad(commentLoad + 10);
-    }
     // 삭제 여부 묻는 confirm 모달창에서 최종적으로 삭제 버튼을 누를 때 동작하는 함수 => 동작시 댓글을 삭제한다.
     const deleteCommentFunc = async () => {
         const URL =
@@ -196,18 +193,20 @@ export default function PostDetail() {
             "/comments/" +
             deleteTarget.current;
         try {
-            const res = await axios.delete(URL, {
+            await axios.delete(URL, {
                 headers: {
                     Authorization: localStorage.getItem("Authorization"),
                     "Content-type": "application/json",
                 },
             });
-            console.log(res.data);
 
-            // 댓글 리스트에 삭제한 댓글 제외하고 보여줌
-            setCommentMsg((prev) => {
-                return prev.filter((e) => e.key !== deleteTarget.current);
-            });
+            sendRequest(baseURL, commentRenderHandle, false);
+
+            if (commentCountNum.current > 10) {
+                setNoComment(true);
+            }
+
+            commentLoadRef.current = 0;
 
             setDeleteConfirm(false);
             setModalMe(false);
@@ -215,6 +214,10 @@ export default function PostDetail() {
             console.log(err);
         }
     };
+
+    useEffect(() => {
+        sendRequest(baseURL, commentRenderHandle, true);
+    }, [currentId, commentRenderHandle, sendRequest, baseURL]);
 
     return (
         <>
@@ -269,12 +272,23 @@ export default function PostDetail() {
                     <PostCard data={postMsg} />
                 </PostContentBox>
             )}
-            {commentMsg && <CommentListBox>
-                {commentMsg}
-                <More>
-                    <Button className="small" onClick={handleMoreComment} ref={noComment}>+ 댓글 더보기</Button>
-                </More>
-                </CommentListBox>}
+            {commentMsg && (
+                <CommentListBox>
+                    {commentMsg}
+                    <More>
+                        <Button
+                            className="small"
+                            onClick={handleMoreComment}
+                            style={{
+                                display: noComment ? "block" : "none",
+                                margin: "0 auto",
+                            }}
+                        >
+                            + 댓글 더보기
+                        </Button>
+                    </More>
+                </CommentListBox>
+            )}
             <CommentInp
                 onSubmit={onCommentSubmitHandle}
                 isBtnActivated={!isBtnDisabled}
