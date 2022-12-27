@@ -1,48 +1,42 @@
 import axios from "axios";
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 
 export default function usePostDetail(reacts) {
-    const {setPostMsg, currentId} = reacts;
-    const commentCountNum = useRef();
+    const { setPostMsg, currentId } = reacts;
 
-    const sendRequest = useCallback((URL, applyData, isCommentLoading) => {
-        
+    const sendRequest = useCallback(
+        (commentsURL, applyData, isCommentLoading) => {
+            const getComments = async () => {
+                try {
+                    const postDetailURL =
+                        "https://mandarin.api.weniv.co.kr/post/" + currentId;
+                    const postDetailRes = await axios.get(postDetailURL, {
+                        headers: {
+                            Authorization:
+                                localStorage.getItem("Authorization"),
+                            "Content-type": "application/json",
+                        },
+                    });
+                    setPostMsg(postDetailRes.data.post);
 
-        const getProductDetail = async () => {
-            try {
-                const URL =
-                    "https://mandarin.api.weniv.co.kr/post/" + currentId;
-                const res = await axios.get(URL, {
-                    headers: {
-                        Authorization: localStorage.getItem("Authorization"),
-                        "Content-type": "application/json",
-                    },
-                });
-                setPostMsg(res.data.post);
-                commentCountNum.current = res.data.post.commentCount;
-            } catch (err) {
-                console.log(err);
-            }
-        };
+                    const commentsRes = await axios.get(commentsURL, {
+                        headers: {
+                            Authorization:
+                                localStorage.getItem("Authorization"),
+                            "Content-type": "application/json",
+                        },
+                    });
 
-        const getComments = async () => {
-            try {
-                const res = await axios.get(URL, {
-                    headers: {
-                        Authorization: localStorage.getItem("Authorization"),
-                        "Content-type": "application/json",
-                    },
-                });
+                    applyData(commentsRes, postDetailRes.data.post.commentCount, isCommentLoading);
+                } catch (err) {
+                    console.log(err);
+                }
+            };
 
-                applyData(res, isCommentLoading);
-            } catch (err) {
-                console.log(err);
-            }
-        };
+            getComments();
+        },
+        [currentId, setPostMsg]
+    );
 
-        getProductDetail();
-        getComments();
-    }, [currentId, setPostMsg]);
-
-    return { sendRequest, commentCountNum };
+    return sendRequest;
 }
