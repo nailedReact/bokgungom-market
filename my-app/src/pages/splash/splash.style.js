@@ -18,8 +18,9 @@ export const BgCont = styled.div`
     align-items: center;
     background-color: var(--color-primary);
     width: 100%;
-    height: 100vh;
+    height: calc(100vh);
     overflow: hidden;
+    position: relative;
 `
 export const Bear = styled.div`
     width: 305px;
