@@ -51,6 +51,7 @@ export default function Profile() {
         setIsMyProfile(false);
       }
     }
+    // eslint-disable-next-line
   }, [accoutName, accountNameInURL])
 
 
