@@ -69,9 +69,11 @@ export default function UploadPost() {
                 fileReader.onload = () => {
                     // imagePre.current.src = fileReader.result;
                     previewUrl.push(fileReader.result);
+                    console.log();
                     setShowImages([...previewUrl]);
                 };
                 fileReader.readAsDataURL(file);
+                console.log(file);
             };
             setIsBtnDisable(false);
         } else {
@@ -89,12 +91,15 @@ export default function UploadPost() {
         }
     };
 
-
+    // const postImgName = [];
     // 이미지 서버에 전송
     const uploadImg = async (file) => {
+
         const formData = new FormData();
         formData.append("image", file);
+        console.log(formData);
         console.log("업로드 버튼 클릭");
+
 
         try {
             const res = await fetch(
@@ -106,7 +111,7 @@ export default function UploadPost() {
             );
             const json = await res.json();
             console.log(json);
-            console.log(json[0].filename);
+
             const postImgName = json[0].filename;
             return postImgName
         } catch (error) {

@@ -225,6 +225,7 @@ export default function PostDetail() {
 
         if (orderedComments.current.length === 0) {
             isPreviousLoading ? setNoComment2(false) : setNoComment(false);
+
         }
 
         const comments = currentRenderTarget.map((e) => {
