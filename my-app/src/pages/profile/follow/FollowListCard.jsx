@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Button from '../../../components/Button';
 import axios from 'axios';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 const Followingimg = styled.img`
@@ -66,7 +65,6 @@ export default function FollowListCard({data}) {
     }
 
       const followingchange = async(e) => {
-        console.log(data); 
         if(e.target.value === "true"){
             setCheckFollowing(false)
             const unfollow = await axios.delete(
@@ -76,7 +74,6 @@ export default function FollowListCard({data}) {
                   Authorization: localStorage.getItem("Authorization")
                     }
                 });
-            console.log(unfollow.data);
         }else{
             setCheckFollowing(true);
             const follow = await axios.post(
@@ -85,7 +82,6 @@ export default function FollowListCard({data}) {
                   Authorization: localStorage.getItem("Authorization")
                     }
                 });
-            console.log(follow.data);
         }
       }
 

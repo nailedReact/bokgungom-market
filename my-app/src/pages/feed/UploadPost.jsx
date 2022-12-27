@@ -74,7 +74,7 @@ export default function UploadPost() {
     const uploadImg = async (file) => {
         const formData = new FormData();
         formData.append("image", file);
-        console.log("업로드 버튼 클릭");
+        
 
         try {
             const res = await fetch(
@@ -85,8 +85,6 @@ export default function UploadPost() {
                 }
             );
             const json = await res.json();
-            console.log(json);
-            console.log(json[0].filename);
             const postImgName = json[0].filename;
             return postImgName
         } catch (error) {
@@ -112,17 +110,17 @@ export default function UploadPost() {
                 },
             };
 
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    Authorization: localStorage.getItem("Authorization"),
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify(productData),
-            });
-            const json = await response.json();
+            // const response = await fetch(url, {
+            //     method: "POST",
+            //     headers: {
+            //         Authorization: localStorage.getItem("Authorization"),
+            //         "Content-type": "application/json",
+            //     },
+            //     body: JSON.stringify(productData),
+            // });
+            // const json = await response.json();
             
-            console.log(json);
+            // console.log(json);
             console.log("게시글 등록 완료");
         } catch (error) {
             console.error(error);

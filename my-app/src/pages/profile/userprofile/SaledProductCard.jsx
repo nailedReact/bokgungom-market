@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState, useContext, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { UserNameContext } from "./Profile"
 
 const Cont = styled.div`
@@ -89,11 +89,11 @@ export default function SaledProductCard() {
 
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
-const navigate = useNavigate();
+// const navigate = useNavigate();
 //캐러셀 관련 
-const TOTAL_SLIDES = 4;
+// const TOTAL_SLIDES = 4;
 const [count, setCount] = useState(0);
-const slideRef = useRef(null);
+// const slideRef = useRef(null);
 const { username } = useContext(UserNameContext);
 
 
@@ -107,7 +107,6 @@ useEffect(() => {
           Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
         }
     });
-        console.log(res.data.product);
         setResMsg(res.data.product);
     }
     getprofile();
@@ -145,7 +144,6 @@ useEffect(() => {
 //         };
 //     }, [count]);
 
-    // console.log(window.innerWidth);
     const a = useRef();
     const [plus, setPlus] = useState(0);
 
