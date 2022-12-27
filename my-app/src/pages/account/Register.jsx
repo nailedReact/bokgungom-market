@@ -96,7 +96,7 @@ export default function Register() {
         "password": pwVal,
         "accountname": null, 
         "intro": null, 
-        "image": "https://mandarin.api.weniv.co.kr/1671499060657.png"
+        "image": "https://mandarin.api.weniv.co.kr/1672102545236.png"
       }
     })
   }, [idValid, pwValid])
