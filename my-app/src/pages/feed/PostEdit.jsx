@@ -56,6 +56,7 @@ export default function PostEdit() {
         };
 
         getPrevDetail();
+        // eslint-disable-next-line
     }, []);
 
     const handleTextarea = (e) => {

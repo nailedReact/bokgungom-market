@@ -62,6 +62,7 @@ export default function EditProfileSignUp() {
         };
 
         try {
+            // eslint-disable-next-line
             const res = await axios.post(
                 "https://mandarin.api.weniv.co.kr/user",
                 finalEdited,
@@ -82,7 +83,6 @@ export default function EditProfileSignUp() {
                     },
                 }
             );
-
             localStorage.setItem("Authorization", "Bearer " + loginRes.data.user.token);
 
             console.log("회원가입 및 로그인 성공");

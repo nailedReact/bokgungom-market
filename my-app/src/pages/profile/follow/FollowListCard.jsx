@@ -67,6 +67,7 @@ export default function FollowListCard({data}) {
       const followingchange = async(e) => {
         if(e.target.value === "true"){
             setCheckFollowing(false)
+            // eslint-disable-next-line
             const unfollow = await axios.delete(
                 `https://mandarin.api.weniv.co.kr/profile/${data.accountname}/unfollow`,{
                 headers: {
@@ -76,6 +77,7 @@ export default function FollowListCard({data}) {
                 });
         }else{
             setCheckFollowing(true);
+            // eslint-disable-next-line
             const follow = await axios.post(
                 `https://mandarin.api.weniv.co.kr/profile/${data.accountname}/follow`,{},{
                 headers: {

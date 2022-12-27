@@ -95,7 +95,7 @@ export default function UploadPost() {
     // 저장 버튼 클릭 시 텍스트, 이미지 값 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
     const createPost = async function (e) {
         e.preventDefault()
-        const url = "https://mandarin.api.weniv.co.kr/post";
+        // const url = "https://mandarin.api.weniv.co.kr/post";
         const imgUrls = [];
         
         try {
@@ -103,12 +103,12 @@ export default function UploadPost() {
                 imgUrls.push("https://mandarin.api.weniv.co.kr/" + (await uploadImg(file)));
             };
 
-            const productData = {
-                post: {
-                    content: contentText,
-                    image: imgUrls.join(","),
-                },
-            };
+            // const productData = {
+            //     post: {
+            //         content: contentText,
+            //         image: imgUrls.join(","),
+            //     },
+            // };
 
             // const response = await fetch(url, {
             //     method: "POST",

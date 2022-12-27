@@ -35,8 +35,8 @@ export default function Register() {
   }
 
   // 이메일 주소 유효성 검사
-  const checkEmail =
-  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,5}$/i;
+  // eslint-disable-next-line
+  const checkEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,5}$/i;
 
   // 이메일 유효성 검사 후 메시지 출력
   async function checkIdValid() {
@@ -98,6 +98,7 @@ export default function Register() {
         "image": "https://mandarin.api.weniv.co.kr/1672102545236.png"
       }
     })
+    // eslint-disable-next-line
   }, [idValid, pwValid])
 
   const handleSubmit = (e) => {

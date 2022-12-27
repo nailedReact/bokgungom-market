@@ -92,6 +92,7 @@ export default function PostList({isProfilePage}) {
       setPostArrList(postLists);
       setPostArrAlbum(postPhotos);
     }
+    // eslint-disable-next-line
   }, [resMsg]);
 
   const handleChangeView = (e) => {

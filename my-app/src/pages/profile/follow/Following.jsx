@@ -24,6 +24,7 @@ export default function Following() {
         setResMsg(res.data);
     }
     getFollowinglist();
+    // eslint-disable-next-line
 }, [])
     
 useEffect(() => {
