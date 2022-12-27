@@ -1,21 +1,25 @@
 import { useRef, forwardRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Toast from "../../components/Toast";
 import useAuth from "../../hook/useAuth"
 import { BgCont, Bear, SplashModal, BtnSocialLogin, LoginRegister } from "./splash.style.js"
 
 export default function Splash() {
-    // 로그인 정보 받아오기
-    const data = useAuth();
-    console.log(data);
-
     const modalRef = useRef();
     const toastRef = useRef(null);
-    // 처음 실행 시 5초 뒤에 로그인 모달창이 뜨도록 함
-    setTimeout(function(){
-        modalRef.current.style.transform = "translate3d(0, 0, 0)";
-    }, 5000)
+    const navigate = useNavigate();
 
+    if (localStorage.getItem("Authorization")){
+        setTimeout(function(){
+            navigate("/post");
+        }, 7000)
+    }
+    else {
+        // 처음 실행 시 5초 뒤에 로그인 모달창이 뜨도록 함
+        setTimeout(function(){
+            modalRef.current.style.transform = "translate3d(0, 0, 0)";
+        }, 5000)
+    }
     // 모달창 바깥 영역을 클릭했을 때 모달창을 토글할 수 있도록 처리
     function handleModal(e){
         if (e.target.id === "back" || e.target.id === "bear"){

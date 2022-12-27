@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import useWindowSizeCustom from "../../hook/windowSize"
 import TopBar from "../../components/TopBar";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
@@ -8,7 +9,7 @@ import Textarea from "../../components/Textarea/Textarea";
 import { Contentimg } from "../../components/postEditContentImg.style";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
-
+import NavBar from "../../components/NavBar/NavBar";
 let fileUrls = [];
 
 export default function UploadPost() {
@@ -34,6 +35,9 @@ export default function UploadPost() {
         //     alert(100 + "자 이상 작성할 수 없습니다.");
         // }
     };
+
+    // 화면 사이즈 변경 훅
+    const {width, height} = useWindowSizeCustom();
 
     // 이미지 미리보기
     let previewUrl = [];
@@ -175,6 +179,7 @@ export default function UploadPost() {
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
+            {width >= 768 ? <NavBar/> : <></>}
         </>
     );
 }

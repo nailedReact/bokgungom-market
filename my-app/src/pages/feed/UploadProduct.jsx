@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import useAuth from '../../hook/useAuth';
 import Toast from '../../components/Toast';
+import useWindowSizeCustom from "../../hook/windowSize"
 
 const FormCont = styled.div`
     display: flex;
@@ -57,6 +58,10 @@ export default function UploadProduct() {
     const data = useAuth();
     const toastRef = useRef(null);
 
+    // 화면 사이즈 변경 훅
+    const {width, height} = useWindowSizeCustom();
+    // console.log(width);
+    
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
     const fileOnChange = (files, fileReader) => {
@@ -220,7 +225,8 @@ export default function UploadProduct() {
                     </FormCont>
                 </form>
  </Cont>
-            <NavBar/>
+                {width >= 768 ? <NavBar/> : <></>}
+            
  </>
     )
 }
