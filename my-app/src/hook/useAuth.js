@@ -12,7 +12,6 @@ export default function useAuth() {
                         "Authorization": localStorage.getItem("Authorization")
                     }
                 })
-                // console.log(res.data)
                 setData(res.data.user)
             })()
         }

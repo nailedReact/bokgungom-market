@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import useWindowSizeCustom from "../../hook/windowSize"
 import TopBar from "../../components/TopBar";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
 import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
@@ -8,7 +9,7 @@ import Textarea from "../../components/Textarea/Textarea";
 import { Contentimg } from "../../components/postEditContentImg.style";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
-
+import NavBar from "../../components/NavBar/NavBar";
 let fileUrls = [];
 
 export default function UploadPost() {
@@ -34,6 +35,9 @@ export default function UploadPost() {
         //     alert(100 + "자 이상 작성할 수 없습니다.");
         // }
     };
+
+    // 화면 사이즈 변경 훅
+    const { width } = useWindowSizeCustom();
 
     // 이미지 미리보기
     let previewUrl = [];
@@ -70,7 +74,7 @@ export default function UploadPost() {
     const uploadImg = async (file) => {
         const formData = new FormData();
         formData.append("image", file);
-        console.log("업로드 버튼 클릭");
+        
 
         try {
             const res = await fetch(
@@ -81,8 +85,6 @@ export default function UploadPost() {
                 }
             );
             const json = await res.json();
-            console.log(json);
-            console.log(json[0].filename);
             const postImgName = json[0].filename;
             return postImgName
         } catch (error) {
@@ -93,7 +95,7 @@ export default function UploadPost() {
     // 저장 버튼 클릭 시 텍스트, 이미지 값 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
     const createPost = async function (e) {
         e.preventDefault()
-        const url = "https://mandarin.api.weniv.co.kr/post";
+        // const url = "https://mandarin.api.weniv.co.kr/post";
         const imgUrls = [];
         
         try {
@@ -101,6 +103,7 @@ export default function UploadPost() {
                 imgUrls.push("https://mandarin.api.weniv.co.kr/" + (await uploadImg(file)));
             };
 
+            // eslint-disable-next-line
             const productData = {
                 post: {
                     content: contentText,
@@ -108,17 +111,17 @@ export default function UploadPost() {
                 },
             };
 
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    Authorization: localStorage.getItem("Authorization"),
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify(productData),
-            });
-            const json = await response.json();
+            // const response = await fetch(url, {
+            //     method: "POST",
+            //     headers: {
+            //         Authorization: localStorage.getItem("Authorization"),
+            //         "Content-type": "application/json",
+            //     },
+            //     body: JSON.stringify(productData),
+            // });
+            // const json = await response.json();
             
-            console.log(json);
+            // console.log(json);
             console.log("게시글 등록 완료");
         } catch (error) {
             console.error(error);
@@ -175,6 +178,7 @@ export default function UploadPost() {
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
+            {width >= 768 ? <NavBar/> : <></>}
         </>
     );
 }

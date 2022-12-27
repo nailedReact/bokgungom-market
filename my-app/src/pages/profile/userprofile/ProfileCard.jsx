@@ -128,7 +128,6 @@ export default function ProfileCard() {
 
     const followingchange = async(e) => {
       setTemp(temp => temp + 1)
-      console.log(e.target.value);
       if(e.target.value === "true"){
           const unfollow = await axios.delete(
               `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/unfollow`,{

@@ -26,11 +26,6 @@ const Cont = styled.div`
 `;
 
 
-// const PostCont =styled.div`
-//   background: white;
-//   border: 0.5px solid #DBDBDB;
-// `;
-
 export const UserNameContext = createContext();
 
 export default function Profile() {
@@ -40,12 +35,10 @@ export default function Profile() {
   const accountNameInURL = useParams().username;
   const [optionModalVisible, setOptionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  console.log(accountNameInURL, "accountNameInURL")
   const data = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(data);
     data && setAccountName(data.accountname);
   },[data])
 
@@ -58,8 +51,9 @@ export default function Profile() {
         setIsMyProfile(false);
       }
     }
+    // eslint-disable-next-line
   }, [accoutName, accountNameInURL])
-  // console.log(isMyProfile);
+
 
   const onConfirm = () => {
     setOptionModalVisible(false);
@@ -71,7 +65,6 @@ export default function Profile() {
   };
 
   const logOutFunc = () => {
-    console.log("로그아웃");
     if (localStorage.getItem("Authorization")){
       localStorage.removeItem("Authorization");
       navigate("../../../");

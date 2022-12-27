@@ -158,7 +158,6 @@ export default function PostCard({
                 {},
                 {
                     headers: {
-                        // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
                         Authorization: localStorage.getItem("Authorization"),
                     },
                 }
@@ -170,7 +169,6 @@ export default function PostCard({
                 `https://mandarin.api.weniv.co.kr/post/${data.id}/unheart`,
                 {
                     headers: {
-                        // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
                         Authorization: localStorage.getItem("Authorization"),
                     },
                 }
@@ -193,7 +191,6 @@ export default function PostCard({
                     "Content-type": "application/json",
                 }
             });
-            console.log(res.data);
             setIsConfirmVisible(false);
             setIsDeleted(true);
         } catch (err) {

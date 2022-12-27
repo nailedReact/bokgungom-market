@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Button from '../../../components/Button';
 import axios from 'axios';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 const Followingimg = styled.img`
@@ -66,9 +65,9 @@ export default function FollowListCard({data}) {
     }
 
       const followingchange = async(e) => {
-        console.log(data); 
         if(e.target.value === "true"){
             setCheckFollowing(false)
+            // eslint-disable-next-line
             const unfollow = await axios.delete(
                 `https://mandarin.api.weniv.co.kr/profile/${data.accountname}/unfollow`,{
                 headers: {
@@ -76,16 +75,15 @@ export default function FollowListCard({data}) {
                   Authorization: localStorage.getItem("Authorization")
                     }
                 });
-            console.log(unfollow.data);
         }else{
             setCheckFollowing(true);
+            // eslint-disable-next-line
             const follow = await axios.post(
                 `https://mandarin.api.weniv.co.kr/profile/${data.accountname}/follow`,{},{
                 headers: {
                   Authorization: localStorage.getItem("Authorization")
                     }
                 });
-            console.log(follow.data);
         }
       }
 

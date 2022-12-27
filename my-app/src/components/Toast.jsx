@@ -31,15 +31,14 @@ const CloseBtn = styled.button`
     font-weight: 700;
     padding: 0px 4px;
 `
-const Toast = forwardRef((props, ref, pageYOffset) => {
+const Toast = forwardRef((props, ref) => {
     const handleCloseToast = (e) => {
         e.target.parentElement.style.transform = "scale(0)";
     }
-    console.log(pageYOffset)
     return (
         <>
         {ReactDOM.createPortal(
-                <Cont ref={ref} pageYOffset={pageYOffset}>
+                <Cont ref={ref}>
                     {props.msg + " "}
                 <CloseBtn onClick={handleCloseToast}>X</CloseBtn>
                 </Cont>

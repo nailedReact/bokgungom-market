@@ -3,7 +3,6 @@ import Button from "../../components/Button"
 
 import {
     Cont,
-    CharacterAni,
     ImgCont
 } from "./loadingError.style"
 
