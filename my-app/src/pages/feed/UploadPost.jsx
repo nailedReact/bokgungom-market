@@ -9,6 +9,8 @@ import Textarea from "../../components/Textarea/Textarea";
 import { Contentimg } from "../../components/postEditContentImg.style";
 import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
+import useWindowSizeCustom from "../../hook/windowSize";
+import NavBar from "../../components/NavBar/NavBar";
 
 let fileUrls = [];
 
@@ -19,6 +21,9 @@ export default function UploadPost() {
     const imagePre = useRef(null);
     const textarea = useRef();
     const navigate = useNavigate();
+
+    // 화면 사이즈 변경 훅
+    const { width } = useWindowSizeCustom();
 
     useEffect(() => {
         contentText === true ? setIsBtnDisable(false) : setIsBtnDisable(true);
@@ -192,6 +197,7 @@ export default function UploadPost() {
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
+            {width >= 768 ? <NavBar/> : <></>}
         </>
     );
 }
