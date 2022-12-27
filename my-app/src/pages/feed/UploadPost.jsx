@@ -37,7 +37,7 @@ export default function UploadPost() {
     };
 
     // 화면 사이즈 변경 훅
-    const width = useWindowSizeCustom()[0];
+    const { width } = useWindowSizeCustom();
 
     // 이미지 미리보기
     let previewUrl = [];
@@ -103,12 +103,13 @@ export default function UploadPost() {
                 imgUrls.push("https://mandarin.api.weniv.co.kr/" + (await uploadImg(file)));
             };
 
-            // const productData = {
-            //     post: {
-            //         content: contentText,
-            //         image: imgUrls.join(","),
-            //     },
-            // };
+            // eslint-disable-next-line
+            const productData = {
+                post: {
+                    content: contentText,
+                    image: imgUrls.join(","),
+                },
+            };
 
             // const response = await fetch(url, {
             //     method: "POST",
