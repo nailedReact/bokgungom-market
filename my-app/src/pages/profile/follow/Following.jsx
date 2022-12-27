@@ -12,14 +12,12 @@ export default function Following() {
     const [resMsg, setResMsg] = useState([]);
     const [followingArr, setFollowingArr] = useState([]);;
     const accoutName = useParams().username;
-    //accountname을 props로 받아와서 url에 넣어야합니다, 개인 토큰도 넣어야합니다.
 
     useEffect(() => {
         const getFollowinglist = async () => {
-          const URL = "https://mandarin.api.weniv.co.kr/profile/" + accoutName + "/following"
+          const URL = "https://mandarin.api.weniv.co.kr/profile/" + accoutName + "/following/?limit=infinity"
           const res = await axios.get(URL, {
             headers: {
-            // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
             Authorization: localStorage.getItem("Authorization")
             }
         });
