@@ -37,7 +37,6 @@ export default function PostEdit() {
                         "Content-type": "application/json",
                     },
                 });
-                console.log(res.data);
 
                 // textarea 기존 데이터 받아온 거로
                 setContentText(res.data.post.content);
@@ -51,7 +50,6 @@ export default function PostEdit() {
 
                 // 기존 데이터 이미지를 나중에 게시글 수정 업로드 요청시 제출할 데이터에 넣도록(이미지 서버에 이미 등록돼있으니까 요청할 필요 없음)
                 submitData.current.image = res.data.post.image;
-                console.log(submitData.current.image);
             } catch (err) {
                 console.log(err);
             }
@@ -69,14 +67,12 @@ export default function PostEdit() {
 
     // 이미지 브라우저 화면에 업로드 & FormData 형식으로 변환
     const handleAddImages = (event) => {
-        console.log(showImages);
         const imageLists = event.target.files;
         let imageUrlLists = [...showImages];
         const fileReader = new FileReader();
 
         for (let i = 0; i < imageLists.length; i++) {
             imageUrlLists.push(imageLists[i].name);
-            console.log(imageUrlLists);
             fileReader.readAsDataURL(imageLists[i]);
             fileReader.onload = function () {
                 imagePre.current.src = fileReader.result;
@@ -95,14 +91,13 @@ export default function PostEdit() {
 
     const handleDeleteImage = (id) => {
         setShowImages(showImages.filter((_, index) => index !== id));
-        console.log(submitData.current.image);
         // 일단 이미지를 하나만 처리한다고 가정해서 버튼 클릭시 모두 null로 바꿨는데 여러장 이미지 등록할 때는 이 코드를 바꿔야 합니다.
         // 코드 수정 방향: 이미지 삭제 버튼 클릭시 해당 이미지만 삭제하도록(제출할 데이터에서)
         submitData.current.image = null;
-        console.log(submitData.current.image);
-        console.log(!!contentText);
-        console.log(showImages);
-        console.log(showImages.length);
+        // console.log(submitData.current.image);
+        // console.log(!!contentText);
+        // console.log(showImages);
+        // console.log(showImages.length);
         if (!contentText && showImages.length === 1) {
             setIsBtnDisable(true);
         }
@@ -111,8 +106,8 @@ export default function PostEdit() {
     // 업로드 버튼 클릭 시 텍스트, 이미지를 서버로 전송.
     const onClickUpload = async (e) => {
         e.preventDefault();
-        console.log(submitData.current.imageBeforeSubmit);
-        console.log(submitData.current.image);
+        // console.log(submitData.current.imageBeforeSubmit);
+        // console.log(submitData.current.image);
         console.log("업로드 버튼 클릭");
         // 이미지 서버에 전송
 
@@ -128,12 +123,8 @@ export default function PostEdit() {
                 );
                 const json = await res.json();
 
-                console.log(json);
-
                 submitData.current["image"] =
                     "https://mandarin.api.weniv.co.kr/" + json.filename;
-
-                console.log(submitData.current);
             }
 
             // 텍스트, 이미지 값 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
@@ -153,7 +144,6 @@ export default function PostEdit() {
                     body: JSON.stringify(productData),
                 });
                 const json = await response.json();
-                console.log(json);
                 console.log("게시글 수정 완료");
                 handleShowToast();
                 setTimeout(function(){
@@ -165,7 +155,6 @@ export default function PostEdit() {
         }
     };
     const handleShowToast = () => {
-        console.log(toastRef)
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";

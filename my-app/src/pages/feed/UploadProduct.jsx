@@ -58,8 +58,7 @@ export default function UploadProduct() {
     const toastRef = useRef(null);
 
     // 화면 사이즈 변경 훅
-    const width = useWindowSizeCustom()[0];
-    // console.log(width);
+    const {width} = useWindowSizeCustom();
     
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
@@ -86,12 +85,8 @@ export default function UploadProduct() {
             );
             const json = await res.json();
 
-            console.log(json);
-
             submitData.current["image"] =
                 "https://mandarin.api.weniv.co.kr/" + json.filename;
-
-            console.log(submitData.current);
 
             // 입력 내용 전체 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
             (async function () {
@@ -113,7 +108,6 @@ export default function UploadProduct() {
                     body: JSON.stringify(productData)
                 });
                 const json = await response.json();
-                console.log(json);
 
                 if (json.message === "필수 입력사항을 입력해주세요."){
                     (!productName) ? 
@@ -142,7 +136,6 @@ export default function UploadProduct() {
         }
     }
     const handleShowToast = () => {
-        console.log(toastRef)
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";

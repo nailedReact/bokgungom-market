@@ -34,7 +34,6 @@ export default function Splash() {
         }
     }
     const handleShowToast = () => {
-        console.log(toastRef)
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";

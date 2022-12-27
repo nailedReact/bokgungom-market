@@ -23,8 +23,6 @@ export const formattedDate = (date) => {
             return res;
         }
     }
-
-    console.log(res);
     return res;
 };
 

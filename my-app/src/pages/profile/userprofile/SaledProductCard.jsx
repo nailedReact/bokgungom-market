@@ -88,6 +88,7 @@ export default function SaledProductCard() {
 
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
+
 //캐러셀 관련 
 // const TOTAL_SLIDES = 4;
 const [count, setCount] = useState(0);
@@ -105,7 +106,6 @@ useEffect(() => {
           Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
         }
     });
-        console.log(res.data.product);
         setResMsg(res.data.product);
     }
     getprofile();
@@ -143,7 +143,6 @@ useEffect(() => {
 //         };
 //     }, [count]);
 
-    // console.log(window.innerWidth);
     const a = useRef();
     const [plus, setPlus] = useState(0);
 

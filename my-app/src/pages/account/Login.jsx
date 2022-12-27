@@ -55,7 +55,6 @@ export default function Login() {
                 body:JSON.stringify(loginData)
             });
             const res = await response.json();
-            // console.log(res);
             if (res.message){
                 console.log('로그인 실패');
                 AlertMsg.current.textContent = "*" + res.message;

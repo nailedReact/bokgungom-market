@@ -16,7 +16,6 @@ export default function Search() {
     const onChangeSearch = (e) => {
       if(e.code !== "Backspace" && e.target.value.length > 1){
       setCheckchange(e.target.value);
-      
     }}
 
         useEffect(() => { if(checkchange !== ""){
@@ -36,7 +35,6 @@ export default function Search() {
   return (
     <>
         <TopBar onChangeByUpper={[onChangeSearch]}  type="A2"/>
-        {/* onClickGetMsg={getMsg} */}
         <div>
             {resMsg !== 0 ? resMsg.map(item => {
               return(
