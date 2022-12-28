@@ -12,7 +12,11 @@ const CharacterAni = keyframes`
         background-position: -915px 0;
     }
 `
-
+const MobileAni = keyframes`
+    to {
+        background-position: -457.75px 0;
+    }
+`
 export const BgCont = styled.div`
     display: flex;
     justify-content: center;
@@ -28,6 +32,12 @@ export const Bear = styled.div`
     height: 480px;
     background: url(${spriteImg}) no-repeat 0 0 / auto 480px;
     animation: ${CharacterAni} .6s infinite steps(3) alternate;
+    @media screen and (max-width: 768px){
+        width: 152.5px;
+        height: 240px;
+        background: url(${spriteImg}) no-repeat 0 0 / auto 240px;
+        animation: ${MobileAni} .6s infinite steps(3) alternate;
+    }
 `
 
 export const SplashModal = styled.article`
