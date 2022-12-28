@@ -5,6 +5,7 @@ import IconKakaoHover from "../../assets/icon/icon-kakao-hover.png"
 import IconGoogle from "../../assets/icon/icon-google.png"
 import IconFaceBook from "../../assets/icon/icon-facebook.png"
 import IconFaceBookHover from "../../assets/icon/icon-facebook-hover.png"
+import LogoImg from "../../assets/logotypo.png"
 
 const CharacterAni = keyframes`
     to {
@@ -39,17 +40,17 @@ export const SplashModal = styled.article`
     padding: 50px 34px;
     background-color: white;
     color: #767676;
-    font-size: 14px;
+    font-size: 16px;
     transition: 1s;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     bottom: 0;
-        width: 100%;
-        transform: translate3d(0, 100%, 0);
-        border-radius: 10px 10px 0 0;
-    /* @media screen and (max-width: 768px){
-        
+    width: 100%;
+    transform: translate3d(0, 100%, 0);
+    border-radius: 10px 10px 0 0;
+    @media screen and (max-width: 768px){
+        font-size: 14px;
     }
-    @media screen and (min-width: 768px){
+    /* @media screen and (min-width: 768px){
         width: 30%;
         left: 0;
         border-radius: 0px 10px 10px 0;
@@ -69,7 +70,10 @@ export const BtnSocialLogin = styled.button`
     border-radius: 44px;
     background-color: initial;
     color: inherit;
-    
+    font-size: 16px;
+    @media screen and (max-width: 768px){
+        font-size: 14px;
+    }
     &::before {
         content: "";
         display: block;
@@ -125,4 +129,16 @@ export const LoginRegister = styled.div`
     align-items: center;
     gap: 12px;
     padding: 20px;
+`
+
+export const LogoCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
+
+export const Logo = styled.div`
+    width: 100%;
+    height: 3em;
+    background: url(${LogoImg}) no-repeat center/ contain;
 `

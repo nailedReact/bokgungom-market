@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Toast from "../../components/Toast";
-import { BgCont, Bear, SplashModal, BtnSocialLogin, LoginRegister } from "./splash.style.js"
+import { BgCont, Bear, SplashModal, BtnSocialLogin, LoginRegister, LogoCont, Logo } from "./splash.style.js"
 
 export default function Splash() {
     const modalRef = useRef();
@@ -43,7 +43,10 @@ export default function Splash() {
     return (
         <BgCont onClick={handleModal} id="back">
             <Toast ref={toastRef} msg="준비중입니다!"  />
-            <Bear id="bear"></Bear>
+            <LogoCont>
+                <Bear id="bear"/>
+                <Logo />
+            </LogoCont>
             <SplashModal ref={modalRef}>
                 <BtnSocialLogin className="kakao" onClick={handleShowToast}>
                     카카오톡 계정으로 로그인
