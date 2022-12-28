@@ -12,6 +12,7 @@ import basicImg from "../../assets/basic-profile-img.png";
 import deleteIcon from "../../assets/icon/icon-delete.png";
 import useWindowSizeCustom from "../../hook/windowSize";
 import NavBar from "../../components/NavBar/NavBar";
+import Toast from "../../components/Toast";
 
 let fileUrls = [];
 
@@ -23,7 +24,7 @@ export default function UploadPost() {
     const textarea = useRef();
     const navigate = useNavigate();
     const data = useAuth();
-
+    const toastRef = useRef(null);
 
     // 화면 사이즈 변경 훅
     const { width } = useWindowSizeCustom();
@@ -149,27 +150,37 @@ export default function UploadPost() {
             
             console.log(json);
             console.log("게시글 등록 완료");
+
             // 게시글이 없다면 오류 alert
             if (json.message) {
                 alert(json.message)
             } else {
                 // 게시글 등록 성공하면 본인 프로필 페이지로 이동
-                const next = () => {
+                handleShowToast();
+                setTimeout(function(){
                     navigate(`/account/profile/${json.post.author.accountname}`);
-                };
-                next();
+                }, 1000)
             }
         } catch (error) {
             console.error(error);
         };
     };
     
+    const handleShowToast = () => {
+        toastRef.current.style.transform = "scale(1)";
+        setTimeout(function(){
+            toastRef.current.style.transform = "scale(0)";
+        }, 3000)
+        return;
+    }
+
     return (
         <>
             <TopBar
                 type="A4"
                 right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
+            <Toast ref={toastRef} msg="게시글이 업로드 되었습니다!"/>
             <PostEditWrapper>
                 <UserProfileImg
                     src={data ? data.image : basicImg}
