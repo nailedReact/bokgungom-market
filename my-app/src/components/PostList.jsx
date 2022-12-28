@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable array-callback-return */
 import React from 'react'
 import styled from 'styled-components';
@@ -77,11 +78,9 @@ export default function PostList({isProfilePage}) {
   const [postArrAlbum, setPostArrAlbum] = useState([]);
   const [view, setView] = useState("list");
   const { username, isMyProfile } = useContext(UserNameContext);
-
   const [postcount, setPostcount] = useState(5);
   const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(false)
-
   const [ref, inView] = useInView()
 
   const getItems = useCallback(async () => {
@@ -94,6 +93,7 @@ export default function PostList({isProfilePage}) {
     
       setResMsg(res.data.post);
       setLoading(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postcount])
 
   useEffect(() => {
@@ -106,6 +106,7 @@ export default function PostList({isProfilePage}) {
       setPostcount(prevState => prevState + 5)
       setCount(0)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView,loading])
 
   useEffect(() => {
