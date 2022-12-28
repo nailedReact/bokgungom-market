@@ -11,7 +11,7 @@ export default function Splash() {
     if (localStorage.getItem("Authorization")){
         setTimeout(function(){
             navigate("/post");
-        }, 7000)
+        }, 5000)
     }
     else {
         // 처음 실행 시 5초 뒤에 로그인 모달창이 뜨도록 함
@@ -20,6 +20,7 @@ export default function Splash() {
         }, 5000)
     }
     // 모달창 바깥 영역을 클릭했을 때 모달창을 토글할 수 있도록 처리
+
     function handleModal(e){
         if (e.target.id === "back" || e.target.id === "bear"){
             if (modalRef.current.style.transform === "translate3d(0px, 0px, 0px)"){
