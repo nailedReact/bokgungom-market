@@ -4,8 +4,6 @@ import reset from "styled-reset";
 export const GlobalStyle = createGlobalStyle`
     ${reset}
 
-    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css");
-
     :root {
         --color-primary: #4583A3;
         --color-text: #3F3F46;
