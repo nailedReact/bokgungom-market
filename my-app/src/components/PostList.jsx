@@ -11,6 +11,7 @@ import IconListOn from "../assets/icon/icon-post-list-on.png"
 import IconListOff from "../assets/icon/icon-post-list-off.png"
 import IconAlbumOn from "../assets/icon/icon-post-album-on.png"
 import IconAlbumOff from "../assets/icon/icon-post-album-off.png"
+import IconNopost from "../assets/symbol-logo-gray.png"
 
 const PostViewCont = styled.div`
     display: flex;
@@ -50,6 +51,25 @@ const PostCont =styled.div`
   background: white;
   border: 0.5px solid #DBDBDB;
 `;
+
+const NoPost_Txt = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #767676;
+  margin-top: 15px;
+`
+const NoPost_img = styled.img`
+  width: 120px;
+  height: 120px;
+`
+
+const NoPost_Cont = styled.div`
+  background: #fff;
+  text-align: center;
+  padding-top: 70px;
+`
+
 
 export default function PostList({isProfilePage}) {
   const [resMsg, setResMsg] = useState([]);
@@ -101,7 +121,7 @@ export default function PostList({isProfilePage}) {
   }
   return (
     <>
-    { resMsg.length === 0 ? null : <PostCont>
+    { resMsg.length === 0 ? <NoPost_Cont><NoPost_img src={IconNopost} alt="아이콘" /> <NoPost_Txt>게시물 없음</NoPost_Txt></NoPost_Cont> : <PostCont>
       {isProfilePage ?
         <PostViewCont>
           <BtnOption className='list' onClick={handleChangeView} view={view}></BtnOption>
