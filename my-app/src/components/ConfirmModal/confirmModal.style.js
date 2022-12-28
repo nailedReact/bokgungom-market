@@ -34,8 +34,13 @@ export const ConfirmlLayout = styled.article`
     & .button-group :nth-child(2) {
         border-left: 0.5px solid #dbdbdb;
         color: var(--color-primary);
+        border-radius: 0px 0px 10px 0px;
+        &:active{
+            color: white;
+        }
     }
     & button {
+        border-radius: 0px 0px 0px 10px;
         &:hover{
             background-color: #4583a34c;
         }
