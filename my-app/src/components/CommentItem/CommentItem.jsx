@@ -13,6 +13,10 @@ const BtnIcon = styled.button`
     width: 24px;
     height: 24px;
 `;
+const UserProfilePic = styled.img`
+    border: 1px solid #C4C4C4;
+    border-radius: 50%;
+`
 
 export default function CommentItem({ refer, onClickHandle, initialTimeFormatted, initialTime }) {
     const [createdAt, setCreatedAt] = useState(initialTimeFormatted);
@@ -67,7 +71,7 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
 
     return (
         <CommentItemCont>
-            <img
+            <UserProfilePic
                 className="comment-profile-img"
                 src={refer.author.image}
                 alt={"댓글 작성자 프로필 사진"}

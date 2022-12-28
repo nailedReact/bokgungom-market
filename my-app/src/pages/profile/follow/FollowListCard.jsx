@@ -8,7 +8,7 @@ const Followingimg = styled.img`
         height: 50px;
         width: 50px;
         border-radius: 50%;
-        border: 0.5px solid #C4C4C4;
+        border: 1px solid #C4C4C4;
         flex-grow: 0;
         cursor: pointer;
     `;

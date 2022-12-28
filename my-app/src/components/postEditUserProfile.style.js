@@ -6,4 +6,5 @@ export const UserProfileImg = styled.img`
     height: 42px;
     border-radius: 50%;
     object-fit: cover;
+    border: 1px solid #C4C4C4;
 `;

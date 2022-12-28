@@ -9,6 +9,7 @@ export const IncomingCont = styled.li`
         height: 42px;
         margin-right: 12px;
         border-radius: 50%;
+        border: 1px solid #C4C4C4;
     }
 
     & .txtMsg {

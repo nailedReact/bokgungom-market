@@ -108,7 +108,7 @@ const ProfilePicSmall = styled.img`
     margin-right: 12px;
     border-radius: 50%;
     object-fit: cover;
-    border: 0.5px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
     @media screen and (min-width: 768px){
         margin-right: 16px;
     }
