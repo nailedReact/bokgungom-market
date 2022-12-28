@@ -10,6 +10,7 @@ const Followingimg = styled.img`
         border-radius: 50%;
         border: 0.5px solid #C4C4C4;
         flex-grow: 0;
+        cursor: pointer;
     `;
 
     const Username = styled.h3`
@@ -23,7 +24,7 @@ const Followingimg = styled.img`
         font-weight: 400;
         font-size: 12px;
         line-height: 15px;
-        color: #767676;  
+        color: #767676;
     `;
 
     const TxtCont = styled.div`
@@ -34,7 +35,7 @@ const Followingimg = styled.img`
         gap: 6px;
         /* width: 60%; */
         flex-grow: 0;
-       
+        cursor: pointer;
     `;
 
     const Cont = styled.li`

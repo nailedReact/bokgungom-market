@@ -36,14 +36,14 @@ const BtnOption = styled.button`
 
 const AlbumCont = styled.div`
   display: grid; 
-  grid-template-rows: repeat(auto-fill, minmax(144px, 1fr));
-  grid-gap: 1em;
+  /* grid-template-rows: repeat(auto-fill, minmax(144px, 1fr)); */
+  /* grid-gap: 1em; */
   grid-template-columns: repeat(3, 1fr);
-  justify-items: stretch; 
-  align-items: stretch;
+  /* justify-items: stretch;  */
+  /* align-items: stretch; */
   position: relative;
 	width: 100%;
-	height: 0; 
+  grid-gap: 1px;
 `;
 
 const PostCont =styled.div`
