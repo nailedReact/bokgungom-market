@@ -26,9 +26,9 @@ export const ImgUploadIcon = styled.label`
     }
 
     &.location {
-        position: fixed;
-        bottom: 50px;
-        right: 50px;
+        position: sticky !important;
+        bottom: 50px !important;
+        right: 50px !important;
     }
 
     /* @media screen and (max-width: 768px) {
