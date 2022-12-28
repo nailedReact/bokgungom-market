@@ -32,6 +32,7 @@ export default function ChattingRoom() {
     const [modalVisible, setModalVisible] = useState(false);
 
     const filtered = useRef();
+    const scrollRef = useRef();
 
     useEffect(() => {
         filtered.current = data.chat.filter((e) => e.id === id)[0];
@@ -63,6 +64,10 @@ export default function ChattingRoom() {
         setEachChat(chatItems);
     }, [id]);
 
+    useEffect(() => {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }, [eachChat])
+
     const onConfirm = () => {
         setModalVisible(false);
     };
@@ -83,7 +88,7 @@ export default function ChattingRoom() {
             <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
             <h1 className={"ir"}>{title}님과의 채팅방 입니다.</h1>
             <ChatContBack>
-                <ChatCont>{eachChat}</ChatCont>
+                <ChatCont ref={scrollRef}>{eachChat}</ChatCont>
             </ChatContBack>
             <ChatInput />
         </>
