@@ -52,6 +52,11 @@ export const OptionLayout = styled.article`
         }
     }
     & li {
+        & a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
         &:hover{
             background-color: #4583a34c;
         }
