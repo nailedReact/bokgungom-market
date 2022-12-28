@@ -1,11 +1,12 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import styled from 'styled-components';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import PostCard from './PostCard';
 import PostAlbum from "./PostAlbum"
 import { UserNameContext } from "../pages/profile/userprofile/Profile";
+import { useInView } from "react-intersection-observer"
 
 import IconListOn from "../assets/icon/icon-post-list-on.png"
 import IconListOff from "../assets/icon/icon-post-list-off.png"
@@ -57,7 +58,6 @@ const NoPost_Txt = styled.p`
   font-weight: 500;
   font-size: 20px;
   color: #767676;
-  margin-top: 15px;
 `
 const NoPost_img = styled.img`
   width: 120px;
@@ -67,7 +67,7 @@ const NoPost_img = styled.img`
 const NoPost_Cont = styled.div`
   background: #fff;
   text-align: center;
-  padding-top: 70px;
+  padding-top: 50px;
 `
 
 
@@ -78,28 +78,57 @@ export default function PostList({isProfilePage}) {
   const [view, setView] = useState("list");
   const { username, isMyProfile } = useContext(UserNameContext);
 
-  useEffect(() => {
-    const getMsg = async () => {
-      const URL = "https://mandarin.api.weniv.co.kr/post/" + username + "/userpost"
+  const [postcount, setPostcount] = useState(5);
+  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(false)
+
+  const [ref, inView] = useInView()
+
+  const getItems = useCallback(async () => {
+    setLoading(true)
+      const URL = "https://mandarin.api.weniv.co.kr/post/" + username + `/userpost/?limit=${postcount}`
       const res = await axios.get(URL, {
         headers: {
           Authorization : localStorage.getItem("Authorization")
-        }
-    });
+        }});
+    
       setResMsg(res.data.post);
+      setLoading(false);
+  }, [postcount])
+
+  useEffect(() => {
+    getItems()
+  }, [getItems])
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading && count) {
+      setPostcount(prevState => prevState + 5)
+      setCount(0)
     }
-    getMsg();
-}, [username])
+  }, [inView,loading])
+
+
 
   useEffect(() => {
     if (resMsg.length !== 0){
-      const postLists = resMsg.map((item) => {
-        if (isMyProfile) {
-          return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
-        } else {
-          return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
-        }
-      });
+      const postLists = resMsg.map((item, index) => {
+          if (isMyProfile) {
+            if(index%4 === 0 && count === 0){
+              setCount(1)
+              console.log(item);
+              return <div ref={ref}><PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div >;
+            }else{
+              return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+            }
+          } else {
+            if(index%4 === 0 && count === 0){
+              setCount(1)
+              return <div ref={ref}> <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div >;
+            }else{
+              return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
+            }
+          }})
 
       const postPhotos = resMsg.map((item) => {
         if (isMyProfile) {
@@ -128,7 +157,11 @@ export default function PostList({isProfilePage}) {
           <BtnOption className='album' onClick={handleChangeView} view={view}></BtnOption>
         </PostViewCont>
       : <></>}
-      {view === "list" ? postArrList : <AlbumCont> {postArrAlbum}</AlbumCont>}
+      {view === "list" ? 
+      
+        
+      postArrList
+      : <AlbumCont> {postArrAlbum}</AlbumCont>}
     </PostCont>}
     </>
   )
