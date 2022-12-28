@@ -4,11 +4,12 @@ import styled from 'styled-components'
 
 
 export default function PostAlbum({data, myProfile, postDetailSrc}) {
-    
+
   const Contentimg = styled.img`
     width: 100%;
-	  height: auto;
-  `;
+	  height: 100%;
+    outline: 1px solid #C4C4C4;
+  `
 
   return (
     <>

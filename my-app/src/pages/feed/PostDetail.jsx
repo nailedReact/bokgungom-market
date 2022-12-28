@@ -60,7 +60,7 @@ export default function PostDetail() {
     const sendRequest = usePostDetail(reacts);
 
     const baseURL =
-        "https://mandarin.api.weniv.co.kr/post/" +
+        "https://mandarin.api.weniv.co.kr/post/"+
         currentId +
         "/comments" +
         "?limit=infinity&skip=0";
