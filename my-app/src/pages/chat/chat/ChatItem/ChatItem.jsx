@@ -5,7 +5,7 @@ import { formattedDateFunc } from "../../dateFormat";
 import styled from "styled-components";
 
 const ProfilePic = styled.img`
-    border: 0.5px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
     border-radius: 50%;
 `
 export default function ChatItem({

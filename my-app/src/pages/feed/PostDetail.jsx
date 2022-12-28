@@ -36,6 +36,10 @@ const PostContentBox = styled.div`
 const More = styled.div`
     text-align: center;
 `;
+
+const UserProfilePic = styled.img`
+    border: 1px solid #C4C4C4;
+`
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
     const [commentMsg, setCommentMsg] = useState([]); // 댓글 API 응답 데이터 받아오는 곳
@@ -371,7 +375,7 @@ export default function PostDetail() {
                 isBtnActivated={!isBtnDisabled}
             >
                 {postMsg && (
-                    <img
+                    <UserProfilePic
                         src={data ? data.image : basicImg}
                         alt={"작성자 프로필 사진"}
                     />

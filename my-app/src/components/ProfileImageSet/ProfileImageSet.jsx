@@ -6,6 +6,9 @@ import styled from "styled-components";
 const Div = styled.div`
     text-align: center;
 `
+const ProfilePic = styled.img`
+    border: 1px solid #C4C4C4;
+`
 
 export default function ProfileImageSet({ onChangeByUpper, initial }) {
     const image = useRef(null);
@@ -22,7 +25,7 @@ export default function ProfileImageSet({ onChangeByUpper, initial }) {
         <Div>
             <ProfileImgSetCont>
                 <span className={"ir"}>프로필 사진 이미지 설정</span>
-                <img
+                <ProfilePic
                     className={"profileImg"}
                     src={initial || require(`../../assets/basic-profile-img.png`)}
                     alt=""
