@@ -2,7 +2,7 @@ import axios from "axios";
 import { useCallback } from "react";
 
 export default function usePostDetail(reacts) {
-    const { setPostMsg, currentId } = reacts;
+    const { setPostMsg, currentId, currentUserId } = reacts;
 
     const sendRequest = useCallback(
         (commentsURL, applyData, isCommentLoading) => {
@@ -18,7 +18,7 @@ export default function usePostDetail(reacts) {
                         },
                     });
                     setPostMsg(postDetailRes.data.post);
-
+                    currentUserId.current = postDetailRes.data.post.author._id;
                     const commentsRes = await axios.get(commentsURL, {
                         headers: {
                             Authorization:
@@ -35,7 +35,7 @@ export default function usePostDetail(reacts) {
 
             getComments();
         },
-        [currentId, setPostMsg]
+        [currentId, setPostMsg, currentUserId]
     );
 
     return sendRequest;
