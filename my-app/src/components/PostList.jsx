@@ -108,8 +108,6 @@ export default function PostList({isProfilePage}) {
     }
   }, [inView,loading])
 
-
-
   useEffect(() => {
     if (resMsg.length !== 0){
       const postLists = resMsg.map((item, index) => {
