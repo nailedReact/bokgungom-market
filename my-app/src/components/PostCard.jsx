@@ -130,6 +130,28 @@ const HeadCont = styled.div`
     justify-content: space-between;
 `
 
+const ImgCont = styled.div`
+    display: flex;
+    overflow-x: scroll;
+    ::-webkit-scrollbar {
+    height: 10px;
+
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #DBDBDB;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    height: 5px;
+  }
+   
+    ::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 2px white;
+  }
+`
+
 export default function PostCard({
     data,
     myProfile,
@@ -245,12 +267,8 @@ export default function PostCard({
                         </HeadCont>
                         <div onClick={handlepostdetail}>
                             <Content>{data.content}</Content>
-                            {data.image ? data.image.length > 1 ?
-                            data.image.split(",").map((item, index) => {
-                                return <Contentimg src={item} key={index+1} alt="컨텐츠 사진" />  
-                            })
-                            : <Contentimg src={data.image} alt="컨텐츠 사진" /> 
-                            : null}
+                            {data.image ? data.image.split(",").length > 1 ?  <ImgCont>
+                            {data.image.split(",").map((item, index) => {return <Contentimg src={item} key={index+1} alt="컨텐츠 사진" />})}</ImgCont>: <Contentimg  src={data.image} alt="컨텐츠 사진" /> : null}
                         </div >
                         <HeartComment>
                             <span onClick={heartchange}>
