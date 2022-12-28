@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../../components/TopBar";
 import useAuth from "../../hook/useAuth";
@@ -21,16 +21,18 @@ export default function UploadPost() {
     const [contentText, setContentText] = useState("");
     const imagePre = useRef(null);
     const textarea = useRef();
+    const fileInpRef = useRef(null);
     const navigate = useNavigate();
     const data = useAuth();
-
 
     // 화면 사이즈 변경 훅
     const { width } = useWindowSizeCustom();
 
-    // useEffect(() => {
-    //     contentText ? setIsBtnDisable(false) : setIsBtnDisable(true);
-    // }, [contentText])
+    // 뒤로 가기, 또는 페이지 전환시 혹시라도 남아있을 fileURL, fileInpRef.current.value 제거 위해
+    useEffect(() => {
+        fileInpRef.current.value = null;
+        fileUrls = [];
+    }, []);
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
@@ -57,28 +59,27 @@ export default function UploadPost() {
     // 이미지 미리보기
     let previewUrl = [];
     const handleAddImages = (event) => {
-        const imageFiles = event.target.files;
-        let imageUrlLists = [...imageFiles];
-        
-        imageUrlLists.forEach((file) => fileUrls.push(file));
+        if (
+            fileUrls.length + 
+            fileInpRef.current.files.length <=
+            3
+        ) {
+            const imageFiles = [...fileInpRef.current.files];
+            fileUrls.push(...imageFiles);
 
-        if (fileUrls.length <= 3) {
-            for (let i = 0; i < imageFiles.length; i++) {
-                let file = imageFiles[i];
+            for (let i = 0; i < fileUrls.length; i++) {
+                let file = fileUrls[i];
                 const fileReader = new FileReader();
                 fileReader.onload = () => {
-                    // imagePre.current.src = fileReader.result;
                     previewUrl.push(fileReader.result);
-                    console.log();
                     setShowImages([...previewUrl]);
                 };
                 fileReader.readAsDataURL(file);
-                console.log(file);
-            };
+            }
             setIsBtnDisable(false);
+            fileInpRef.current.value = null;
         } else {
             alert("이미지는 3개까지 업로드 할 수 있습니다.");
-            fileUrls.pop();
         }
     };
 
@@ -89,31 +90,31 @@ export default function UploadPost() {
         if (!contentText && showImages.length === 1) {
             setIsBtnDisable(true);
         }
+
+        fileInpRef.current.value = null;
+
+        fileUrls = fileUrls.filter((_, index) => index !== id);
     };
 
     // const postImgName = [];
     // 이미지 서버에 전송
     const uploadImg = async (file) => {
-
         const formData = new FormData();
         formData.append("image", file);
-        console.log(formData);
-        console.log("업로드 버튼 클릭");
-
-
+        
         try {
             const res = await fetch(
                 "https://mandarin.api.weniv.co.kr/image/uploadfiles",
                 {
                     method: "POST",
-                    body: formData
+                    body: formData,
                 }
             );
             const json = await res.json();
             console.log(json);
 
             const postImgName = json[0].filename;
-            return postImgName
+            return postImgName;
         } catch (error) {
             console.error(error);
         }
@@ -121,14 +122,17 @@ export default function UploadPost() {
 
     // 저장 버튼 클릭 시 텍스트, 이미지 값 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
     const CreatePost = async function (e) {
-        e.preventDefault()
+        e.preventDefault();
         const url = "https://mandarin.api.weniv.co.kr/post";
         const imgUrls = [];
-        
+
         try {
             for (const file of fileUrls) {
-                imgUrls.push("https://mandarin.api.weniv.co.kr/" + (await uploadImg(file)));
-            };
+                imgUrls.push(
+                    "https://mandarin.api.weniv.co.kr/" +
+                        (await uploadImg(file))
+                );
+            }
 
             const productData = {
                 post: {
@@ -146,24 +150,26 @@ export default function UploadPost() {
                 body: JSON.stringify(productData),
             });
             const json = await response.json();
-            
+
             console.log(json);
             console.log("게시글 등록 완료");
             // 게시글이 없다면 오류 alert
             if (json.message) {
-                alert(json.message)
+                alert(json.message);
             } else {
                 // 게시글 등록 성공하면 본인 프로필 페이지로 이동
                 const next = () => {
-                    navigate(`/account/profile/${json.post.author.accountname}`);
+                    navigate(
+                        `/account/profile/${json.post.author.accountname}`
+                    );
                 };
                 next();
             }
         } catch (error) {
             console.error(error);
-        };
+        }
     };
-    
+
     return (
         <>
             <TopBar
@@ -175,7 +181,12 @@ export default function UploadPost() {
                     src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
                 />
-                <form style={{flexBasis: "304px", height: "100%"}} action="" id={"postUpload"} onSubmit={CreatePost}>
+                <form
+                    style={{ flexBasis: "304px", height: "100%" }}
+                    action=""
+                    id={"postUpload"}
+                    onSubmit={CreatePost}
+                >
                     <ProductImgSetCont htmlFor="productImg">
                         <Textarea
                             placeholder="게시글 입력하기..."
@@ -207,14 +218,15 @@ export default function UploadPost() {
                         <input
                             multiple
                             className="ir"
+                            ref={fileInpRef}
                             type="file"
-                            accept="image/*"
+                            accept="image/jpg, image/gif, image/png, image/jpeg, image/bmp, image/tif, image/heic"
                             onChange={handleAddImages}
                         />
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
-            {width >= 768 ? <NavBar/> : <></>}
+            {width >= 768 ? <NavBar /> : <></>}
         </>
     );
 }
