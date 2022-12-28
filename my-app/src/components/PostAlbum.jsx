@@ -12,12 +12,19 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
     outline: 1px solid #C4C4C4;
   `
   const Multiimg = styled.img`
+    position: absolute;
+    top: 10px;
+    right: 10px;
     width: 20px;
     height: 20px;
   `
+  const AlbumCont = styled.div`
+    position: relative;  
+  `
+
   return (
     <>
-      { data.image ? data.image.split(",").length > 1 ? <div><Link to={postDetailSrc}><Contentimg src={data.image.split(",")[0]} alt="컨텐츠 사진입니다." /></Link> <Multiimg src={multiimg} alt="여러 이미지 아이콘" /></div> : <Link to={postDetailSrc}><Contentimg src={data.image} alt="컨텐츠 사진입니다." /></Link> : null}
+      { data.image ? data.image.split(",").length > 1 ? <Link to={postDetailSrc}><AlbumCont><Contentimg src={data.image.split(",")[0]} alt="컨텐츠 사진입니다." /><Multiimg src={multiimg} alt="여러 이미지 아이콘" /></AlbumCont></Link>  : <Link to={postDetailSrc}><Contentimg src={data.image} alt="컨텐츠 사진입니다." /></Link> : null}
     </>
   )
 }
