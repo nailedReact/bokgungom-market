@@ -48,7 +48,16 @@ export const OptionLayout = styled.article`
         }
 
         & .modal-items > :nth-child(1) {
-            padding-top: 60px;
+            margin-top: 60px;
+        }
+    }
+    & li {
+        &:hover{
+            background-color: #4583a34c;
+        }
+        &:active{
+            background-color: var(--color-primary);
+            color: white;
         }
     }
 `;

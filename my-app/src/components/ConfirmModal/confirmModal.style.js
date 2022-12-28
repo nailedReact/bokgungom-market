@@ -35,4 +35,13 @@ export const ConfirmlLayout = styled.article`
         border-left: 0.5px solid #dbdbdb;
         color: var(--color-primary);
     }
+    & button {
+        &:hover{
+            background-color: #4583a34c;
+        }
+        &:active{
+            background-color: var(--color-primary);
+            color: white;
+        }
+    }
 `;
