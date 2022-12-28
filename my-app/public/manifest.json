@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "복근곰마켓",
+  "name": "득근득근 복근곰마켓",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#4583A3",
+  "background_color": "#ffffff",
+  "lang" : "ko-KR",
+  "description" : "득근득근 복근곰마켓"
 }
