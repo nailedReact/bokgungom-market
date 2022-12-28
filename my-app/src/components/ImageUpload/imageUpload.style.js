@@ -33,8 +33,8 @@ export const ImgUploadIcon = styled.label`
 
     @media screen and (max-width: 768px) {
         &.location {
-            right: 16px;
-            bottom: 76.5px;
+            right: 1em;
+            bottom: 1em;
         }
     }
 `;
