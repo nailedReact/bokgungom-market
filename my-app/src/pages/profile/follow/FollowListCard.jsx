@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '../../../components/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import basicprofile from "../../../assets/basic-profile-img.png"
 
 const Followingimg = styled.img`
         height: 50px;
@@ -88,10 +89,14 @@ export default function FollowListCard({data}) {
         }
       }
 
+      const imgerror = (e) => {
+        e.target.src = basicprofile;
+    }
+
   return (
     <Cont>
         <ContLeft>
-            <Followingimg src={data.image} alt="팔로잉한 사람 프로필사진" onClick={handleClickProfile}/>
+            <Followingimg src={data.image} onError={imgerror} onClick={handleClickProfile}/>
             <TxtCont onClick={handleClickProfile}>
                 <Username>{data.username}</Username>
                 <Intro>{data.intro}</Intro>

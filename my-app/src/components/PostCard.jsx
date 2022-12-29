@@ -14,6 +14,7 @@ import axios from "axios";
 import plusimg from "../assets/icon/icon-more-vertical.png";
 import Toast from "./Toast";
 import {v4} from "uuid"
+import errorimg from "../assets/imageNotFound.png"
 
 const Cont = styled.div`
     display: flex;
@@ -239,6 +240,16 @@ export default function PostCard({
         return;
     };
 
+    const contentimg = useRef();
+
+    const imgerror = (e) => {
+        e.target.src = errorimg;
+        // e.target.style.border = "1px solid black"
+        e.target.style.padding = "60px"
+        e.target.style.background = "#f2f2f2"
+
+    }
+
     return (
         <div>
             <Toast ref={toastRef} msg="게시물이 삭제 되었습니다!" />
@@ -284,7 +295,7 @@ export default function PostCard({
                         <div onClick={handlepostdetail}>
                             <Content>{data.content}</Content>
                             {data.image ? data.image.split(",").length > 1 ?  <ImgCont>
-                            {data.image.split(",").map((item, index) => {return <Contentimg src={item} key={v4()} alt="컨텐츠 사진" />})}</ImgCont>: <Contentimg  src={data.image} alt="컨텐츠 사진" /> : null}
+                            {data.image.split(",").map((item) => {return <Contentimg ref={contentimg} src={item} key={v4()} onError={imgerror}/>})}</ImgCont>: <Contentimg  src={data.image} onError={imgerror} /> : null}
                         </div >
                         <HeartComment>
                             <span onClick={heartchange}>
