@@ -16,7 +16,7 @@ const ChatContBack = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: calc(${vh}px - 120.5px);
+    height: calc(${vh}px - 110.5px);
     background-color: #f2f2f2;
 `;
 
