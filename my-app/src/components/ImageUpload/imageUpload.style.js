@@ -26,12 +26,12 @@ export const ImgUploadIcon = styled.label`
     }
 
     &.location {
-        position: absolute;
+        position: fixed;
         bottom: 50px;
         right: 50px;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width: 769px) {
         &.location {
             right: 1em;
             bottom: 1em;

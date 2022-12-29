@@ -14,6 +14,7 @@ import deleteIcon from "../../assets/icon/icon-delete.png";
 import Toast from "../../components/Toast";
 import NavBar from "../../components/NavBar/NavBar";
 import useAuth from "../../hook/useAuth";
+import useWindowSizeCustom from "../../hook/windowSize";
 
 let fileUrls = []; // 이미지 서버 업로드용(이미지 서버 등록 API)
 let renderings = []; // 화면에 띄우는 거
@@ -34,6 +35,8 @@ export default function PostEdit() {
     const textarea = useRef();
     const fileInpRef = useRef(null);
     const data = useAuth();
+
+    const { width } = useWindowSizeCustom();
 
     // 페이지 로드시 기존 게시글 정보 불러오기 위함
     useEffect(() => {
@@ -74,10 +77,38 @@ export default function PostEdit() {
         // eslint-disable-next-line
     }, []);
 
+    const rows = useRef();
+
+    useEffect(() => {
+        const newRows = textarea.current.value.split(/\r\n|\r|\n/).length;
+
+        console.log(`예전 rows: ${rows.current}`);
+        console.log(`새로운 rows: ${newRows}`);
+
+        if (rows.current !== newRows) {
+            rows.current = newRows;
+            console.log("rows 업데이트");
+
+            if (textarea.current.scrollHeight > textarea.current.clientHeight) {
+                //textarea height 확장
+                textarea.current.style.height = textarea.current.scrollHeight + "px";
+            } else {
+                //textarea height 축소
+                // textarea.current.style.height =
+                // textarea.current.scrollHeight - 18 + "px";
+
+                textarea.current.style.height= (rows.current * 18) + "px";
+            }
+        } else {
+            textarea.current.style.height = "auto";
+            textarea.current.style.height = textarea.current.scrollHeight + "px";
+        }
+    }, [contentText]);
+
     const handleTextarea = (e) => {
         setContentText(e.target.value);
-        textarea.current.style.height = "auto";
-        textarea.current.style.height = textarea.current.scrollHeight + "px";
+        // textarea.current.style.height = "auto";
+        // textarea.current.style.height = textarea.current.scrollHeight + "px";
         if (e.target.value.length === 0 && showImages.length === 0) {
             setIsBtnDisable(true);
         } else {
@@ -176,9 +207,10 @@ export default function PostEdit() {
                 }
             }
 
-            submitOnProfileEdit = submitOnProfileEdit.length && fileUrls.length
-                ? submitOnProfileEdit + "," + imgUrls.join(",")
-                : submitOnProfileEdit + imgUrls.join(",");
+            submitOnProfileEdit =
+                submitOnProfileEdit.length && fileUrls.length
+                    ? submitOnProfileEdit + "," + imgUrls.join(",")
+                    : submitOnProfileEdit + imgUrls.join(",");
 
             const productData = {
                 post: {
@@ -223,7 +255,12 @@ export default function PostEdit() {
                     src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
                 />
-                <form action="" id={"postUpload"} onSubmit={onClickUpload}>
+                <form
+                    style={{ flexBasis: "304px", height: "100%" }}
+                    action=""
+                    id={"postUpload"}
+                    onSubmit={onClickUpload}
+                >
                     <ProductImgSetCont htmlFor="productImg">
                         <Textarea
                             placeholder="게시글 입력하기..."
@@ -267,7 +304,7 @@ export default function PostEdit() {
                     </ImgUploadIcon>
                 </form>
             </PostEditWrapper>
-            <NavBar />
+            {width >= 768 ? <NavBar /> : <></>}
         </>
     );
 }
