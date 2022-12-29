@@ -8,6 +8,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import {
   FeedCont, PageBtn, PrevNextBtn, Pagenation
 } from "./homeFeed.style"
+import Topbtn from "../../components/Topbtn";
 
 export default function HomeFeed() {
   const [allresMsg, setAllresMsg] = useState([]);
@@ -60,7 +61,7 @@ export default function HomeFeed() {
       //전체 게시물의 갯수에 따라 페이지 버튼을 만드는 부분입니다.
       const handlebutton = () => {
         let arr = [];
-        for(let i = 0; i <= (allresMsg.length/10); i++){
+        for(let i = 0; i <= (allresMsg.length/20); i++){
             arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn} onFocus={changeblue} onBlur={changewhite}> {i+1} </PageBtn>)
         }
         if(arr.length <= 5 && nextPageRef.current && prevPageRef.current){
@@ -134,6 +135,7 @@ export default function HomeFeed() {
               {handlebutton().slice(pageStart, pageEnd)}
               <PrevNextBtn id="next" onClick={handlePage} ref={nextPageRef}>next</PrevNextBtn>
             </Pagenation>}
+            <Topbtn />
         </FeedCont>
         <NavBar/>   
       </>   

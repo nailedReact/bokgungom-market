@@ -13,6 +13,7 @@ import styled from "styled-components";
 import axios from "axios";
 import plusimg from "../assets/icon/icon-more-vertical.png";
 import Toast from "./Toast";
+import {v4} from "uuid"
 
 const Cont = styled.div`
     display: flex;
@@ -283,7 +284,7 @@ export default function PostCard({
                         <div onClick={handlepostdetail}>
                             <Content>{data.content}</Content>
                             {data.image ? data.image.split(",").length > 1 ?  <ImgCont>
-                            {data.image.split(",").map((item, index) => {return <Contentimg src={item} key={item.id+Math.random()} alt="컨텐츠 사진" />})}</ImgCont>: <Contentimg  src={data.image} alt="컨텐츠 사진" /> : null}
+                            {data.image.split(",").map((item, index) => {return <Contentimg src={item} key={v4()} alt="컨텐츠 사진" />})}</ImgCont>: <Contentimg  src={data.image} alt="컨텐츠 사진" /> : null}
                         </div >
                         <HeartComment>
                             <span onClick={heartchange}>
