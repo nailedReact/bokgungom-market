@@ -26,6 +26,7 @@ export default function UploadPost() {
     const navigate = useNavigate();
     const data = useAuth();
     const toastRef = useRef(null);
+    const fileLabelRef =useRef();
 
     // 화면 사이즈 변경 훅
     const { width } = useWindowSizeCustom();
@@ -58,9 +59,20 @@ export default function UploadPost() {
         // }
     };
 
+    const handleFocus = () => {
+        if (width < 768){
+            fileLabelRef.current.style.bottom = "50%";
+        }
+    }
+
+    const handleBlur = () => {
+        fileLabelRef.current.style.bottom = "16px";
+    }
+
     // 이미지 미리보기
     let previewUrl = [];
     const handleAddImages = (event) => {
+        console.log(fileInpRef.current.style);
         if (
             fileUrls.length + 
             fileInpRef.current.files.length <=
@@ -91,7 +103,7 @@ export default function UploadPost() {
 
         if (!contentText && showImages.length === 1) {
             setIsBtnDisable(true);
-        }
+        };
 
         fileInpRef.current.value = null;
 
@@ -164,7 +176,7 @@ export default function UploadPost() {
                 handleShowToast();
                 setTimeout(function(){
                     navigate(`/account/profile/${json.post.author.accountname}`);
-                }, 1500)
+                }, 1000)
             }
         } catch (error) {
             console.error(error);
@@ -175,7 +187,7 @@ export default function UploadPost() {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";
-        }, 1500)
+        }, 3000)
         return;
     }
 
@@ -193,18 +205,21 @@ export default function UploadPost() {
                     alt="게시글 작성자 프로필 사진"
                 />
                 <form
-                    style={{ flexBasis: "304px", height: "100%" }}
+                    style={{ flexBasis: "304px" }}
                     action=""
                     id={"postUpload"}
                     onSubmit={CreatePost}
                 >
                     <ProductImgSetCont htmlFor="productImg">
+                        {/* <ExReport/> */}
                         <Textarea
                             placeholder="게시글 입력하기..."
                             onChange={handleTextarea}
                             value={contentText}
                             ref={textarea}
                             rows={1}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                         />
                         {/* 이미지 표시하는게 label 안에 있어도 되나? */}
                         {showImages.map((image, id) => (
@@ -224,7 +239,7 @@ export default function UploadPost() {
                             </div>
                         ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"}>
+                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             multiple
