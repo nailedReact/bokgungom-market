@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'
 import { UserNameContext } from "./Profile"
+import basicprofile from "../../../assets/basic-profile-img.png"
 
 
   const Cont = styled.div`
@@ -150,6 +151,10 @@ export default function ProfileCard() {
       }
     }
 
+    const imgerror = (e) => {
+      e.target.src = basicprofile;
+  }
+
   return (
     <Cont>
       <ProfileCont>
@@ -160,7 +165,7 @@ export default function ProfileCard() {
           </Follower>
           <FollowTxt>followers</FollowTxt>
         </div>
-        <Profileimg src={profileData.image} alt="프로필 사진 이미지" />
+        <Profileimg src={profileData.image} onError={imgerror} />
         <div>
           <Following onClick={(e) => {navigate('./following/', { state: profileData})}}>
             {profileData.followingCount}
