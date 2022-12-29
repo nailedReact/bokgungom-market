@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState, useContext, useRef } from 'react';
+import { useEffect, useState, useContext} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { UserNameContext } from "./Profile"
@@ -81,14 +81,14 @@ const ItemPrice = styled.p`
     color: var(--color-primary);
 `;  
 
-const Nextbtn = styled.button`
-    width:20px;
-    height:20px;
-`
+// const Nextbtn = styled.button`
+//     width:20px;
+//     height:20px;
+// `
 export default function SaledProductCard() {
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
-const [count, setCount] = useState(0);
+// const [count, setCount] = useState(0);
 const { username } = useContext(UserNameContext);
 
 
