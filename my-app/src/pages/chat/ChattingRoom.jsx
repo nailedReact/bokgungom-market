@@ -10,25 +10,20 @@ import Incoming from "./chat/Incoming/Incoming";
 import ChatInput from "./chat/ChatInput/ChatInput";
 import { formattedTimeFunc } from "./dateFormat";
 
+let vh = window.innerHeight;
+
 const ChatContBack = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* height: 772px; */
-    height: calc(100vh - 60.5px);
+    height: calc(${vh}px - 120.5px);
     background-color: #f2f2f2;
-    padding: 20px 16px 60.5px 16px;
 `;
 
 const ChatCont = styled.ul`
     overflow-y: scroll;
+    padding: 20px 16px 16px 16px;
 `;
-
-const ScrollToBottom = () => {
-    const elementRef = useRef();
-    useEffect(() => elementRef.current.scrollIntoView({ block: "end", inline: "nearest" }));
-    return <div ref={elementRef} />;
-};
 
 export default function ChattingRoom() {
     const location = useLocation();
@@ -38,7 +33,7 @@ export default function ChattingRoom() {
     const [modalVisible, setModalVisible] = useState(false);
 
     const filtered = useRef();
-    // const scrollRef = useRef();
+    const scrollRef = useRef();
 
     useEffect(() => {
         filtered.current = data.chat.filter((e) => e.id === id)[0];
@@ -70,9 +65,9 @@ export default function ChattingRoom() {
         setEachChat(chatItems);
     }, [id]);
 
-    // useEffect(() => {
-    //     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    // }, [eachChat])
+    useEffect(() => {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }, [eachChat])
 
     const onConfirm = () => {
         setModalVisible(false);
@@ -94,9 +89,8 @@ export default function ChattingRoom() {
             <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
             <h1 className={"ir"}>{title}님과의 채팅방 입니다.</h1>
             <ChatContBack>
-                <ChatCont>
+                <ChatCont ref={scrollRef}>
                     {eachChat}
-                    <ScrollToBottom />
                 </ChatCont>
             </ChatContBack>
             <ChatInput />
