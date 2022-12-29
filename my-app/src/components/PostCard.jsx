@@ -2,7 +2,7 @@
 /* eslint-disable array-callback-return */
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OptionModal from "./OptionModal/OptionModal";
 import ConfirmModal from "./ConfirmModal/ConfirmModal";
@@ -12,6 +12,7 @@ import comment from "../assets/icon/icon-message-circle.png";
 import styled from "styled-components";
 import axios from "axios";
 import plusimg from "../assets/icon/icon-more-vertical.png";
+import Toast from "./Toast";
 
 const Cont = styled.div`
     display: flex;
@@ -165,6 +166,7 @@ export default function PostCard({
     const [isOptionVisible, setIsOptionVisible] = useState(false);
     const [isConfirmVisible, setIsConfirmVisible] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
+    const toastRef = useRef(null);
 
     // 포스트카드를 눌렀을 때 포스트디테일로 넘어가는 부분입니다.
     const handlepostdetail = () => {
@@ -215,6 +217,10 @@ export default function PostCard({
             });
             setIsConfirmVisible(false);
             setIsDeleted(true);
+            handleShowToast();
+            setTimeout(function () {
+                navigate(-1); // 뒤로 가기
+            }, 1500);
         } catch (err) {
             console.log(err);
         }
@@ -223,9 +229,17 @@ export default function PostCard({
     function handleClickProfile(){
         navigate(`../../account/profile/${data.author.accountname}`);
     }
+    const handleShowToast = () => {
+        toastRef.current.style.transform = "scale(1)";
+        setTimeout(function () {
+            toastRef.current.style.transform = "scale(0)";
+        }, 1500);
+        return;
+    };
 
     return (
         <div>
+            <Toast ref={toastRef} msg="게시물이 삭제 되었습니다!" />
             {isOptionVisible && (
                 <OptionModal onConfirm={() => setIsOptionVisible(false)}>
                     <li>

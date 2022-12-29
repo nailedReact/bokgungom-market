@@ -66,7 +66,7 @@ export default function EditProfile() {
             setTimeout(function(){
                 // navigate("/post/" + json.post.id);
                 console.log("프로필 수정 완")
-            }, 1000)
+            }, 1500)
 
         } catch (err) {
             console.log(err);
@@ -106,7 +106,7 @@ export default function EditProfile() {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";
-        }, 3000)
+        }, 1500)
         return;
     }
 

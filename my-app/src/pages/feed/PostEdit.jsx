@@ -199,7 +199,7 @@ export default function PostEdit() {
             handleShowToast();
             setTimeout(function () {
                 navigate("/post/" + json.post.id);
-            }, 1000);
+            }, 1500);
         } catch (err) {
             console.log(err);
         }
@@ -208,7 +208,7 @@ export default function PostEdit() {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function () {
             toastRef.current.style.transform = "scale(0)";
-        }, 3000);
+        }, 1500);
         return;
     };
     return (
