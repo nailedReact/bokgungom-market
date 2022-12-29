@@ -17,7 +17,7 @@ const ChatContBack = styled.div`
     /* height: 772px; */
     height: calc(100vh - 60.5px);
     background-color: #f2f2f2;
-    padding: 20px 16px 90.5px 16px;
+    padding: 20px 16px 110.5px 16px;
 `;
 
 const ChatCont = styled.ul`
