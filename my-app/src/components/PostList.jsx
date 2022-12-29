@@ -100,6 +100,8 @@ export default function PostList({isProfilePage}) {
     getItems()
   }, [getItems])
 
+
+
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading && count) {
@@ -115,15 +117,14 @@ export default function PostList({isProfilePage}) {
           if (isMyProfile) {
             if(index%4 === 0 && count === 0){
               setCount(1)
-              console.log(item);
-              return <div ref={ref}><PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div >;
+              return <div ref={ref} key={item.id}><PostCard  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div >;
             }else{
               return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
             }
           } else {
             if(index%4 === 0 && count === 0){
               setCount(1)
-              return <div ref={ref}> <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div >;
+              return <div ref={ref} key={item.index}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div >;
             }else{
               return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
             }
