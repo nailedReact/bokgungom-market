@@ -127,7 +127,7 @@ export default function UploadProduct() {
                     handleShowToast();
                     setTimeout(function(){
                         navigate("../../account/profile/" + data.accountname);
-                    }, 1000)
+                    }, 1500)
                     
                 }
             }());
@@ -139,7 +139,7 @@ export default function UploadProduct() {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";
-        }, 3000)
+        }, 1500)
         return;
     }
 

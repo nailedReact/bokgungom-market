@@ -164,7 +164,7 @@ export default function UploadPost() {
                 handleShowToast();
                 setTimeout(function(){
                     navigate(`/account/profile/${json.post.author.accountname}`);
-                }, 1000)
+                }, 1500)
             }
         } catch (error) {
             console.error(error);
@@ -175,7 +175,7 @@ export default function UploadPost() {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";
-        }, 3000)
+        }, 1500)
         return;
     }
 

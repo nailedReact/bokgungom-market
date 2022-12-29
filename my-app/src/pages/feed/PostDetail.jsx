@@ -268,7 +268,7 @@ export default function PostDetail() {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function () {
             toastRef.current.style.transform = "scale(0)";
-        }, 3000);
+        }, 1500);
         return;
     };
 
@@ -315,7 +315,7 @@ export default function PostDetail() {
             handleShowToast();
             setTimeout(function () {
                 navigate(-1); // 뒤로 가기
-            }, 1000);
+            }, 1500);
         } catch (err) {
             console.log(err);
         }
