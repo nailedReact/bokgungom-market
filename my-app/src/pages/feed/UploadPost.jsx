@@ -66,7 +66,9 @@ export default function UploadPost() {
     }
 
     const handleBlur = () => {
-        fileLabelRef.current.style.bottom = "16px";
+        if (width < 768){
+            fileLabelRef.current.style.bottom = "16px";
+        }
     }
 
     // 이미지 미리보기
@@ -205,7 +207,7 @@ export default function UploadPost() {
                     alt="게시글 작성자 프로필 사진"
                 />
                 <form
-                    style={{ flexBasis: "304px" }}
+                    style={{ flexBasis: "304px", height: "100%"}}
                     action=""
                     id={"postUpload"}
                     onSubmit={CreatePost}
