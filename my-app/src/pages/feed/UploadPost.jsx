@@ -205,7 +205,7 @@ export default function UploadPost() {
                     alt="게시글 작성자 프로필 사진"
                 />
                 <form
-                    style={{ flexBasis: "304px", height: "100%" }}
+                    style={{ flexBasis: "304px" }}
                     action=""
                     id={"postUpload"}
                     onSubmit={CreatePost}
