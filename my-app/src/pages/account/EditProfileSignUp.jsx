@@ -5,6 +5,7 @@ import ProfileSetInpsTemp from "../../components/ProfileSetInpsTemp/ProfileSetIn
 import Button from "../../components/Button";
 import axios from "axios";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 const Container = styled.main`
         width: 87%;
@@ -20,7 +21,7 @@ export default function EditProfileSignUp() {
     const [userData, setUserData] = useState(null);
     const [isDisabled, setIsDisabled] = useState(true);
     const location = useLocation();
-
+    const navigate = useNavigate();
     useEffect(() => {
         setUserData(location.state);
     }, [location.state]);
@@ -105,9 +106,10 @@ export default function EditProfileSignUp() {
                 form={"signUp"}
                 className={"large max"}
                 type={"submit"}
+                onClick={() => navigate("../../../post")}
                 disabled={isDisabled}
             >
-                감귤마켓 시작하기
+                복근곰마켓 시작하기
             </Button>
         </Container>
     );
