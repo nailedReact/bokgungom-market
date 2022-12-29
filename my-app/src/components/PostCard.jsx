@@ -166,6 +166,7 @@ export default function PostCard({
     const [isConfirmVisible, setIsConfirmVisible] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
 
+
     // 포스트카드를 눌렀을 때 포스트디테일로 넘어가는 부분입니다.
     const handlepostdetail = () => {
         navigate(`/post/${data.id}`);
@@ -268,7 +269,7 @@ export default function PostCard({
                         <div onClick={handlepostdetail}>
                             <Content>{data.content}</Content>
                             {data.image ? data.image.split(",").length > 1 ?  <ImgCont>
-                            {data.image.split(",").map((item, index) => {return <Contentimg src={item} key={index+1} alt="컨텐츠 사진" />})}</ImgCont>: <Contentimg  src={data.image} alt="컨텐츠 사진" /> : null}
+                            {data.image.split(",").map((item, index) => {return <Contentimg src={item} key={item.id+Math.random()} alt="컨텐츠 사진" />})}</ImgCont>: <Contentimg  src={data.image} alt="컨텐츠 사진" /> : null}
                         </div >
                         <HeartComment>
                             <span onClick={heartchange}>
