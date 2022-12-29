@@ -10,13 +10,14 @@ import TopBar from '../../../components/TopBar';
 import NavBar from '../../../components/NavBar/NavBar';
 import OptionModal from '../../../components/OptionModal/OptionModal';
 import ConfirmModal from '../../../components/ConfirmModal/ConfirmModal';
+import Topbtn from "../../../components/Topbtn";
+
 
 const Cont = styled.div`
   display:flex;
   flex-direction: column;
   gap: 6px;
   background: #F2F2F2;
-  /* width: fit-content; */
   @media screen and (min-width: 768px){
     margin-left: 240px;
   }
@@ -31,7 +32,6 @@ export const UserNameContext = createContext();
 export default function Profile() {
   const [accoutName, setAccountName] = useState();
   const [isMyProfile, setIsMyProfile] = useState();
-  // const [checkProduct, setCheckProduct] = useState(false);
   const accountNameInURL = useParams().username;
   const [optionModalVisible, setOptionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -109,11 +109,13 @@ export default function Profile() {
         )
 
         }
-            <TopBar type="A1" onClickModal={()=>setOptionModalVisible(true)}/>
-        <Cont>
+        <TopBar type="A1" onClickModal={()=>setOptionModalVisible(true)}/>
+        <Cont >
             <ProfileCard/>
             <SaledProductCard/>
             <PostList isProfilePage={true}/> 
+
+            <Topbtn />
         </Cont>
             <NavBar/>
     </UserNameContext.Provider>
