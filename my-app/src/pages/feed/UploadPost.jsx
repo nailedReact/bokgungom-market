@@ -59,11 +59,14 @@ export default function UploadPost() {
         // }
     };
 
-    const handleClick = () => {
-        console.log(fileLabelRef.current.style);
+    const handleFocus = () => {
         if (width < 768){
             fileLabelRef.current.style.bottom = "50%";
         }
+    }
+
+    const handleBlur = () => {
+        fileLabelRef.current.style.bottom = "16px";
     }
 
     // 이미지 미리보기
@@ -215,7 +218,8 @@ export default function UploadPost() {
                             value={contentText}
                             ref={textarea}
                             rows={1}
-                            onClick={handleClick}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                         />
                         {/* 이미지 표시하는게 label 안에 있어도 되나? */}
                         {showImages.map((image, id) => (
