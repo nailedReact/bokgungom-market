@@ -16,7 +16,7 @@ import OptionModal from "../../components/OptionModal/OptionModal";
 import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import Toast from "../../components/Toast";
 import { formattedDate } from "./feed/dateformat";
-import useAuth1 from "../../hook/useAuth1";
+import useAuth from "../../hook/useAuth";
 import usePostDetail from "../../hook/usePostDetail";
 import basicImg from "../../assets/basic-profile-img.png";
 import Button from "../../components/Button";
@@ -69,7 +69,14 @@ export default function PostDetail() {
         return { setPostMsg, currentId, currentUserId };
     }, [currentId, currentUserId]);
 
-    const { data, userIdRef } = useAuth1();
+    const data = useAuth();
+
+    const [userIdRef, setUserIdRef] = useState();
+
+    useEffect(() => {
+        data && setUserIdRef(data._id);
+    }, [data]);
+
     const sendRequest = usePostDetail(reacts);
 
     const baseURL =
@@ -81,7 +88,7 @@ export default function PostDetail() {
     // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = useCallback(
         (deleteComment, commentAuthor) => {
-            if (commentAuthor === userIdRef.current) {
+            if (commentAuthor === userIdRef) {
                 setModalMe(true);
                 deleteTarget.current = deleteComment;
             } else {
@@ -322,7 +329,7 @@ export default function PostDetail() {
     };
 
     const postDetailModalHandle = () => {
-        if (currentUserId.current === userIdRef.current) {
+        if (currentUserId.current === userIdRef) {
             setModalMeDetail(true);
             // deleteTarget.current = deleteComment;
         } else {
