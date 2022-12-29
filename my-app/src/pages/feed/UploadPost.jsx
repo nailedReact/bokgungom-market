@@ -13,7 +13,6 @@ import deleteIcon from "../../assets/icon/icon-delete.png";
 import useWindowSizeCustom from "../../hook/windowSize";
 import NavBar from "../../components/NavBar/NavBar";
 import Toast from "../../components/Toast";
-import ExReport from "../../components/ExReport/ExReport"
 
 let fileUrls = [];
 
