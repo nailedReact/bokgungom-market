@@ -122,7 +122,7 @@ export default function ProfileCard() {
     }, [temp, checkFollowing, username])
 
     const chatorshare = (data) => {
-      if(data === "chat") navigate(`/chat/${profileData.accountname}`)
+      if(data === "chat") navigate(`/chat`)
       else if(data === "share") navigate('/share')
     }
 
