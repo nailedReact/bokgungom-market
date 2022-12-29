@@ -10,15 +10,30 @@ import Incoming from "./chat/Incoming/Incoming";
 import ChatInput from "./chat/ChatInput/ChatInput";
 import { formattedTimeFunc } from "./dateFormat";
 
-let vh = window.innerHeight;
-
 const ChatContBack = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: calc(${vh}px - 110.5px);
+    height: ${(props) => `calc(${props.windowHeight}px - 110.5px)`};
     background-color: #f2f2f2;
 `;
+
+const ResizedChatContBack = (props) => {
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+    const handleResize = () => {
+        setWindowHeight(window.innerHeight);
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }   
+    }, []);
+
+    return <ChatContBack windowHeight={windowHeight}>{props.children}</ChatContBack>
+};
 
 const ChatCont = styled.ul`
     overflow-y: scroll;
@@ -66,7 +81,9 @@ export default function ChattingRoom() {
     }, [id]);
 
     useEffect(() => {
-        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
     }, [eachChat])
 
     const onConfirm = () => {
@@ -88,11 +105,11 @@ export default function ChattingRoom() {
             )}
             <TopBar type={"A1"} title={title} onClickModal={onClickModal} />
             <h1 className={"ir"}>{title}님과의 채팅방 입니다.</h1>
-            <ChatContBack>
+            <ResizedChatContBack>
                 <ChatCont ref={scrollRef}>
                     {eachChat}
                 </ChatCont>
-            </ChatContBack>
+            </ResizedChatContBack>
             <ChatInput />
         </>
     );
