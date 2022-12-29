@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Textarea = styled.textarea`
     display: block;
-    resize: none;
+    /* resize: none; */
     width: calc(100% - 42px);
     height: 100%;
     font-family: "Pretendard";

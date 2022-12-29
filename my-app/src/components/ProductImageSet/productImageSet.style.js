@@ -14,14 +14,8 @@ export const ProductImgSetCont = styled.label`
         background-color: #F2F2F2;
     }
 
-    & :nth-child(3) {
-        position: absolute;
-        bottom: 12px;
-        right: 12px;
-    }
-
     & .each-image-cont {
-        display: inline-block;
+        display: block;
         position: relative;
         margin-top: 16px;
     }
