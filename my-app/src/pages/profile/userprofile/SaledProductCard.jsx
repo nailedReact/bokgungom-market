@@ -48,8 +48,8 @@ const Productlist = styled.ul`
     height: 100%;
     padding-bottom: 20px;
     /* 자동 캐러셀 부분 - 아직 구현 완료 못함 */
-    transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; 
-    transform: ${(props) => 'translateX(-' + props.count + 'px)'};
+    /* transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; 
+    transform: ${(props) => 'translateX(-' + props.count + 'px)'}; */
 `;
 
 const ProductCont = styled.li`
@@ -86,14 +86,9 @@ const Nextbtn = styled.button`
     height:20px;
 `
 export default function SaledProductCard() {
-
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
-
-//캐러셀 관련 
-// const TOTAL_SLIDES = 4;
 const [count, setCount] = useState(0);
-// const slideRef = useRef(null);
 const { username } = useContext(UserNameContext);
 
 
@@ -144,30 +139,30 @@ useEffect(() => {
 //         };
 //     }, [count]);
 
-    const a = useRef();
-    const [plus, setPlus] = useState(0);
+    // const a = useRef();
+    // const [plus, setPlus] = useState(0);
 
 
-    const handlenext = () => {
-        let show_width = (a.current.offsetWidth);
-        let all_width = (a.current.scrollWidth);
-        console.log(all_width, show_width);
-        console.log(plus);
-        if((all_width-plus) < show_width){
-            setPlus(all_width)
-            setCount(all_width-plus);
-            console.log("?");
-        }else if(plus >= all_width){
-            setPlus(0);
-            setCount(0);
-        }
-        else{
-            setPlus(plus+show_width);
-            console.log(plus);
-            setCount(plus);
+    // const handlenext = () => {
+    //     let show_width = (a.current.offsetWidth);
+    //     let all_width = (a.current.scrollWidth);
+    //     console.log(all_width, show_width);
+    //     console.log(plus);
+    //     if((all_width-plus) < show_width){
+    //         setPlus(all_width)
+    //         setCount(all_width-plus);
+    //         console.log("?");
+    //     }else if(plus >= all_width){
+    //         setPlus(0);
+    //         setCount(0);
+    //     }
+    //     else{
+    //         setPlus(plus+show_width);
+    //         console.log(plus);
+    //         setCount(plus);
             
-        }
-    }
+    //     }
+    // }
 
   return (
     <>
@@ -175,11 +170,11 @@ useEffect(() => {
     <Cont>
     <SaledProduct>판매 중인 상품</SaledProduct>
     <Window>
-        <Productlist ref={a} count={count}>
+        <Productlist>
             {productData}
         </Productlist>
     </Window>
-    <Nextbtn onClick={handlenext}> &gt; </Nextbtn>
+    {/* <Nextbtn onClick={handlenext}> &gt; </Nextbtn> */}
 </Cont>
     }
     </>
