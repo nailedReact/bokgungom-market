@@ -29,7 +29,7 @@ export default function UploadPost() {
     const fileLabelRef =useRef();
 
     // 화면 사이즈 변경 훅
-    const { width } = useWindowSizeCustom();
+    const { width, visualViewportHeight } = useWindowSizeCustom();
 
     // 뒤로 가기, 또는 페이지 전환시 혹시라도 남아있을 fileURL, fileInpRef.current.value 제거 위해
     useEffect(() => {
@@ -59,17 +59,17 @@ export default function UploadPost() {
         // }
     };
 
-    const handleFocus = () => {
-        if (width < 768){
-            fileLabelRef.current.style.bottom = "50%";
-        }
-    }
+    // const handleFocus = () => {
+    //     if (width < 768){
+    //         fileLabelRef.current.style.bottom = "50%";
+    //     }
+    // }
 
-    const handleBlur = () => {
-        if (width < 768){
-            fileLabelRef.current.style.bottom = "16px";
-        }
-    }
+    // const handleBlur = () => {
+    //     if (width < 768){
+    //         fileLabelRef.current.style.bottom = "16px";
+    //     }
+    // }
 
     // 이미지 미리보기
     let previewUrl = [];
@@ -220,8 +220,6 @@ export default function UploadPost() {
                             value={contentText}
                             ref={textarea}
                             rows={1}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
                         />
                         {/* 이미지 표시하는게 label 안에 있어도 되나? */}
                         {showImages.map((image, id) => (
@@ -241,7 +239,7 @@ export default function UploadPost() {
                             </div>
                         ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef}>
+                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef} visualViewportHeight={visualViewportHeight}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             multiple
