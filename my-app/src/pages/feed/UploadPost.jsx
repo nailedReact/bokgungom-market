@@ -201,7 +201,7 @@ export default function UploadPost() {
                 right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
             <Toast ref={toastRef} msg="게시글이 업로드 되었습니다!"/>
-            <PostEditWrapper height={height}>
+            <PostEditWrapper heightProp={height}>
                 <UserProfileImg
                     src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
