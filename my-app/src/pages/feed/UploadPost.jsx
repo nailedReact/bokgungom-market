@@ -20,6 +20,7 @@ export default function UploadPost() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [showImages, setShowImages] = useState([]);
     const [contentText, setContentText] = useState("");
+    const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const textarea = useRef();
     const fileInpRef = useRef(null);
@@ -36,6 +37,30 @@ export default function UploadPost() {
         fileInpRef.current.value = null;
         fileUrls = [];
     }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                if (isFocused) {
+                    fileLabelRef.current.style.bottom = "50%";
+                } else {
+                    fileLabelRef.current.style.bottom = "8.51%";
+                }
+            }
+        };
+
+        window.visualViewport.addEventListener("resize", handleResize)
+
+        return () => window.visualViewport.removeEventListener("resize", handleResize);
+    }, [isFocused])
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    }
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    }
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
@@ -59,22 +84,11 @@ export default function UploadPost() {
         // }
     };
 
-    const handleFocus = () => {
-        if (width < 768){
-            fileLabelRef.current.style.bottom = "50%";
-        }
-    }
-
-    const handleBlur = () => {
-        if (width < 768){
-            fileLabelRef.current.style.bottom = "16px";
-        }
-    }
+    // const [visualViewport, setVisualViewport] = useState();
 
     // 이미지 미리보기
     let previewUrl = [];
     const handleAddImages = (event) => {
-        console.log(fileInpRef.current.style);
         if (
             fileUrls.length + 
             fileInpRef.current.files.length <=
@@ -219,9 +233,9 @@ export default function UploadPost() {
                             onChange={handleTextarea}
                             value={contentText}
                             ref={textarea}
-                            rows={1}
                             onFocus={handleFocus}
                             onBlur={handleBlur}
+                            rows={1}
                         />
                         {/* 이미지 표시하는게 label 안에 있어도 되나? */}
                         {showImages.map((image, id) => (
@@ -241,7 +255,7 @@ export default function UploadPost() {
                             </div>
                         ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef}>
+                    <ImgUploadIcon className={"orange small location "} ref={fileLabelRef}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             multiple

@@ -25,6 +25,7 @@ export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
     const [contentText, setContentText] = useState("");
     const [isBtnDisable, setIsBtnDisable] = useState(false);
+    const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const URL = `https://mandarin.api.weniv.co.kr${useLocation().pathname.slice(
         0,
@@ -34,6 +35,7 @@ export default function PostEdit() {
     const toastRef = useRef(null);
     const textarea = useRef();
     const fileInpRef = useRef(null);
+    const fileLabelRef =useRef();
     const data = useAuth();
 
     const { width } = useWindowSizeCustom();
@@ -80,6 +82,58 @@ export default function PostEdit() {
         getPrevDetail();
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                if (isFocused) {
+                    fileLabelRef.current.style.bottom = "50%";
+                } else {
+                    fileLabelRef.current.style.bottom = "8.51%";
+                }
+            }
+        };
+
+        window.visualViewport.addEventListener("resize", handleResize)
+
+        return () => window.visualViewport.removeEventListener("resize", handleResize);
+    }, [isFocused])
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    }
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    }
+
+    const rows = useRef();
+
+    useEffect(() => {
+        const newRows = textarea.current.value.split(/\r\n|\r|\n/).length;
+
+        console.log(`예전 rows: ${rows.current}`);
+        console.log(`새로운 rows: ${newRows}`);
+
+        if (rows.current !== newRows) {
+            rows.current = newRows;
+            console.log("rows 업데이트");
+
+            if (textarea.current.scrollHeight > textarea.current.clientHeight) {
+                //textarea height 확장
+                textarea.current.style.height = textarea.current.scrollHeight + "px";
+            } else {
+                //textarea height 축소
+                // textarea.current.style.height =
+                // textarea.current.scrollHeight - 18 + "px";
+
+                textarea.current.style.height= (rows.current * 18) + "px";
+            }
+        } else {
+            textarea.current.style.height = "auto";
+            textarea.current.style.height = textarea.current.scrollHeight + "px";
+        }
+    }, [contentText]);
 
     const handleTextarea = (e) => {
         setContentText(e.target.value);
@@ -243,6 +297,8 @@ export default function PostEdit() {
                             onChange={handleTextarea}
                             value={contentText}
                             ref={textarea}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             rows={1}
                         />
 
@@ -267,7 +323,7 @@ export default function PostEdit() {
                                 </div>
                             ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"}>
+                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             multiple

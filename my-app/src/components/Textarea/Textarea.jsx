@@ -4,9 +4,7 @@ const Textarea = styled.textarea`
     display: block;
     resize: none;
     width: calc(100% - 42px);
-    /* min-height: 100px; */
     overflow: hidden;
-    /* height: 100%; */
     font-family: "Pretendard";
     padding: 10px 10px 10px 13px;
     box-sizing: border-box;
