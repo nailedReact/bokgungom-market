@@ -23,7 +23,7 @@ let alreadySubmitted = []; // 화면에 띄운 거 중 새로 업로드한 파�
 
 export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
-    const [contentText, setContentText] = useState("");
+    // const [contentText, setContentText] = useState("");
     const [isBtnDisable, setIsBtnDisable] = useState(false);
     const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
@@ -58,12 +58,10 @@ export default function PostEdit() {
                     },
                 });
 
-                // textarea 기존 데이터 받아온 거로
-                setContentText(res.data.post.content);
+                textarea.current.value = res.data.post.content;
 
-                const rows = res.data.post.content.split(/\r\n|\r|\n/).length;
-
-                textarea.current.style.height= res.data.post.content.length ? (rows * 18) + "px" : "37px";
+                textarea.current.style.height = "auto";
+                textarea.current.style.height = textarea.current.scrollHeight + "px";
 
                 setShowImages((prev) => {
                     // 받아온 기존 데이터에 이미지가 있을 경우에만 이미지 렌더링
@@ -108,7 +106,7 @@ export default function PostEdit() {
     }
 
     const handleTextarea = (e) => {
-        setContentText(e.target.value);
+        // setContentText(e.target.value);
         textarea.current.style.height = "auto";
         textarea.current.style.height = textarea.current.scrollHeight + "px";
         if (e.target.value.length === 0 && showImages.length === 0) {
@@ -152,7 +150,7 @@ export default function PostEdit() {
     const handleDeleteImage = (id) => {
         setShowImages(showImages.filter((_, index) => index !== id));
 
-        if (!contentText && showImages.length === 1) {
+        if (!textarea.current.value && showImages.length === 1) {
             setIsBtnDisable(true);
         }
 
@@ -216,7 +214,7 @@ export default function PostEdit() {
 
             const productData = {
                 post: {
-                    content: contentText,
+                    content: textarea.current.value,
                     image: submitOnProfileEdit,
                 },
             };
@@ -267,7 +265,6 @@ export default function PostEdit() {
                         <Textarea
                             placeholder="게시글 입력하기..."
                             onChange={handleTextarea}
-                            value={contentText}
                             ref={textarea}
                             onFocus={handleFocus}
                             onBlur={handleBlur}

@@ -19,7 +19,6 @@ let fileUrls = [];
 export default function UploadPost() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [showImages, setShowImages] = useState([]);
-    const [contentText, setContentText] = useState("");
     const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const textarea = useRef();
@@ -64,7 +63,6 @@ export default function UploadPost() {
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
-        setContentText(e.target.value);
         textarea.current.style.height = "auto";
         textarea.current.style.height = textarea.current.scrollHeight + "px";
         if (e.target.value.length === 0 && showImages.length === 0) {
@@ -117,7 +115,7 @@ export default function UploadPost() {
     const handleDeleteImage = (id) => {
         setShowImages(showImages.filter((_, index) => index !== id));
 
-        if (!contentText && showImages.length === 1) {
+        if (!textarea.current.value && showImages.length === 1) {
             setIsBtnDisable(true);
         };
 
@@ -166,7 +164,7 @@ export default function UploadPost() {
 
             const productData = {
                 post: {
-                    content: contentText,
+                    content: textarea.current.value,
                     image: imgUrls.join(","),
                 },
             };
@@ -231,7 +229,6 @@ export default function UploadPost() {
                         <Textarea
                             placeholder="게시글 입력하기..."
                             onChange={handleTextarea}
-                            value={contentText}
                             ref={textarea}
                             onFocus={handleFocus}
                             onBlur={handleBlur}
