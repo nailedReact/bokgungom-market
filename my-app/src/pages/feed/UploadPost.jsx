@@ -61,20 +61,42 @@ export default function UploadPost() {
 
     // const [visualViewport, setVisualViewport] = useState();
 
+    const [isFocused, setIsFocused] = useState();
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                if (isFocused) {
+                    console.log("keybaord");
+                    fileLabelRef.current.style.bottom = "50%";
+                } else {
+                    console.log("keyboard x");
+                    fileLabelRef.current.style.bottom = "50px";
+                }
+            }
+        };
+
+        window.visualViewport.addEventListener("resize", handleResize)
+
+        return () => window.visualViewport.removeEventListener("resize", handleResize);
+    }, [isFocused])
+
     const handleFocus = () => {
-        // console.log(window.innerHeight);
-        // console.log(window.visualViewport.height);
-        if (width < 768 && window.visualViewport.height !== window.innerHeight){
-            fileLabelRef.current.style.bottom = "50%";
-            // setVisualViewport(window.visualViewport.height);
-        }
+        // // console.log(window.innerHeight);
+        // // console.log(window.visualViewport);
+        // if (width < 768 && window.visualViewport.height !== window.innerHeight){
+        //     fileLabelRef.current.style.bottom = "50%";
+        //     // setVisualViewport(window.visualViewport.height);
+        // }
+        setIsFocused(true);
     }
 
     const handleBlur = () => {
-        if (width < 768){
-            fileLabelRef.current.style.bottom = "50px";
-            // setVisualViewport(window.visualViewport.height);
-        }
+        // if (width < 768){
+        //     fileLabelRef.current.style.bottom = "50px";
+        //     // setVisualViewport(window.visualViewport.height);
+        // }
+        setIsFocused(false);
     }
 
     // 이미지 미리보기
