@@ -59,6 +59,10 @@ export default function PostEdit() {
                 // textarea 기존 데이터 받아온 거로
                 setContentText(res.data.post.content);
 
+                const rows = res.data.post.content.split(/\r\n|\r|\n/).length;
+
+                textarea.current.style.height= (rows * 18) + "px";
+
                 setShowImages((prev) => {
                     // 받아온 기존 데이터에 이미지가 있을 경우에만 이미지 렌더링
                     if (res.data.post.image) {
@@ -77,38 +81,10 @@ export default function PostEdit() {
         // eslint-disable-next-line
     }, []);
 
-    const rows = useRef();
-
-    useEffect(() => {
-        const newRows = textarea.current.value.split(/\r\n|\r|\n/).length;
-
-        console.log(`예전 rows: ${rows.current}`);
-        console.log(`새로운 rows: ${newRows}`);
-
-        if (rows.current !== newRows) {
-            rows.current = newRows;
-            console.log("rows 업데이트");
-
-            if (textarea.current.scrollHeight > textarea.current.clientHeight) {
-                //textarea height 확장
-                textarea.current.style.height = textarea.current.scrollHeight + "px";
-            } else {
-                //textarea height 축소
-                // textarea.current.style.height =
-                // textarea.current.scrollHeight - 18 + "px";
-
-                textarea.current.style.height= (rows.current * 18) + "px";
-            }
-        } else {
-            textarea.current.style.height = "auto";
-            textarea.current.style.height = textarea.current.scrollHeight + "px";
-        }
-    }, [contentText]);
-
     const handleTextarea = (e) => {
         setContentText(e.target.value);
-        // textarea.current.style.height = "auto";
-        // textarea.current.style.height = textarea.current.scrollHeight + "px";
+        textarea.current.style.height = "auto";
+        textarea.current.style.height = textarea.current.scrollHeight + "px";
         if (e.target.value.length === 0 && showImages.length === 0) {
             setIsBtnDisable(true);
         } else {
