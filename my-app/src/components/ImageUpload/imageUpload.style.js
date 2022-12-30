@@ -26,8 +26,8 @@ export const ImgUploadIcon = styled.label`
     }
 
     &.location {
-        position: fixed;
-        bottom: 50px;
+        position: absolute;
+        bottom: 46px;
         right: 50px;
     }
 

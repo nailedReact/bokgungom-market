@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { subscribe, isSupported } from 'on-screen-keyboard-detector';
 import TopBar from "../../components/TopBar";
 import useAuth from "../../hook/useAuth";
 import { PostEditWrapper } from "../../components/postEditWrapper.style";
@@ -14,7 +13,6 @@ import deleteIcon from "../../assets/icon/icon-delete.png";
 import useWindowSizeCustom from "../../hook/windowSize";
 import NavBar from "../../components/NavBar/NavBar";
 import Toast from "../../components/Toast";
-import { useLayoutEffect } from "react";
 
 let fileUrls = [];
 
@@ -22,7 +20,6 @@ export default function UploadPost() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [showImages, setShowImages] = useState([]);
     const [contentText, setContentText] = useState("");
-    // const [height, setHeight] = useState("50px");
     const imagePre = useRef(null);
     const textarea = useRef();
     const fileInpRef = useRef(null);
@@ -31,61 +28,8 @@ export default function UploadPost() {
     const toastRef = useRef(null);
     const fileLabelRef =useRef();
 
-    useLayoutEffect(() => {
-        const detectMobileKeyboard = () => {
-            console.log(isSupported());
-            if (isSupported()) {
-                subscribe(visibility => {
-                    console.log("실행 1");
-                    if (visibility === "hidden") {
-                        // ...
-                        // setIsKeyboardVisible(false);
-                        console.log("실행 1-1");
-                        fileLabelRef.current.style.bottom = "50px";
-                    }
-                    else { // visibility === "visible"
-                        // ...
-                        // setIsKeyboardVisible(true);
-                        console.log("실행 1-2");
-                        fileLabelRef.current.style.bottom = "50%";
-                    }
-                });
-                
-                // After calling unsubscribe() the callback will no longer be invoked.
-            //    unsubscribe();
-            } else {
-                console.log("실행 2");
-            }
-        };
-
-        window.addEventListener("resize", detectMobileKeyboard);
-
-        return () => window.removeEventListener("resize", detectMobileKeyboard);
-    }, []);
-
-    // if (isSupported()) {
-    //     const unsubscribe = subscribe(visibility => {
-    //         console.log("실행");
-    //         if (visibility === "hidden") {
-    //             // ...
-    //             // setIsKeyboardVisible(false);
-    //             setHeight("50px");
-    //         }
-    //         else { // visibility === "visible"
-    //             // ...
-    //             // setIsKeyboardVisible(true);
-    //             setHeight("50%");
-    //         }
-    //     });
-        
-    //     // After calling unsubscribe() the callback will no longer be invoked.
-    //    unsubscribe();
-    // } else {
-    //     console.log("실행 x");
-    // }
-
     // 화면 사이즈 변경 훅
-    const { width } = useWindowSizeCustom();
+    const { width, height } = useWindowSizeCustom();
 
     // 뒤로 가기, 또는 페이지 전환시 혹시라도 남아있을 fileURL, fileInpRef.current.value 제거 위해
     useEffect(() => {
@@ -257,7 +201,7 @@ export default function UploadPost() {
                 right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
             <Toast ref={toastRef} msg="게시글이 업로드 되었습니다!"/>
-            <PostEditWrapper>
+            <PostEditWrapper height={height}>
                 <UserProfileImg
                     src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
