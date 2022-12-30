@@ -14,8 +14,6 @@ const useWindowSizeCustom = () => {
         if (typeof window !== 'undefined') {
 
             const handleResize = () => {
-                console.log(window.innerHeight)
-                console.log(window.visualViewport.height);
                 setWindowSize({
                     width: window.innerWidth,
                     height: window.innerHeight,

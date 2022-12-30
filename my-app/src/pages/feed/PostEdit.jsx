@@ -25,6 +25,7 @@ export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
     const [contentText, setContentText] = useState("");
     const [isBtnDisable, setIsBtnDisable] = useState(false);
+    const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const URL = `https://mandarin.api.weniv.co.kr${useLocation().pathname.slice(
         0,
@@ -34,6 +35,7 @@ export default function PostEdit() {
     const toastRef = useRef(null);
     const textarea = useRef();
     const fileInpRef = useRef(null);
+    const fileLabelRef =useRef();
     const data = useAuth();
 
     const { width } = useWindowSizeCustom();
@@ -76,6 +78,30 @@ export default function PostEdit() {
         getPrevDetail();
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                if (isFocused) {
+                    fileLabelRef.current.style.bottom = "50%";
+                } else {
+                    fileLabelRef.current.style.bottom = "8.51%";
+                }
+            }
+        };
+
+        window.visualViewport.addEventListener("resize", handleResize)
+
+        return () => window.visualViewport.removeEventListener("resize", handleResize);
+    }, [isFocused])
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    }
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    }
 
     const rows = useRef();
 
@@ -267,6 +293,8 @@ export default function PostEdit() {
                             onChange={handleTextarea}
                             value={contentText}
                             ref={textarea}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             rows={1}
                         />
 
@@ -291,7 +319,7 @@ export default function PostEdit() {
                                 </div>
                             ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"}>
+                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             multiple

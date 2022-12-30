@@ -20,6 +20,7 @@ export default function UploadPost() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [showImages, setShowImages] = useState([]);
     const [contentText, setContentText] = useState("");
+    const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const textarea = useRef();
     const fileInpRef = useRef(null);
@@ -36,6 +37,30 @@ export default function UploadPost() {
         fileInpRef.current.value = null;
         fileUrls = [];
     }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                if (isFocused) {
+                    fileLabelRef.current.style.bottom = "50%";
+                } else {
+                    fileLabelRef.current.style.bottom = "8.51%";
+                }
+            }
+        };
+
+        window.visualViewport.addEventListener("resize", handleResize)
+
+        return () => window.visualViewport.removeEventListener("resize", handleResize);
+    }, [isFocused])
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    }
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    }
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
@@ -61,48 +86,9 @@ export default function UploadPost() {
 
     // const [visualViewport, setVisualViewport] = useState();
 
-    const [isFocused, setIsFocused] = useState();
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 768) {
-                if (isFocused) {
-                    console.log("keybaord");
-                    fileLabelRef.current.style.bottom = "50%";
-                } else {
-                    console.log("keyboard x");
-                    fileLabelRef.current.style.bottom = "50px";
-                }
-            }
-        };
-
-        window.visualViewport.addEventListener("resize", handleResize)
-
-        return () => window.visualViewport.removeEventListener("resize", handleResize);
-    }, [isFocused])
-
-    const handleFocus = () => {
-        // // console.log(window.innerHeight);
-        // // console.log(window.visualViewport);
-        // if (width < 768 && window.visualViewport.height !== window.innerHeight){
-        //     fileLabelRef.current.style.bottom = "50%";
-        //     // setVisualViewport(window.visualViewport.height);
-        // }
-        setIsFocused(true);
-    }
-
-    const handleBlur = () => {
-        // if (width < 768){
-        //     fileLabelRef.current.style.bottom = "50px";
-        //     // setVisualViewport(window.visualViewport.height);
-        // }
-        setIsFocused(false);
-    }
-
     // 이미지 미리보기
     let previewUrl = [];
     const handleAddImages = (event) => {
-        console.log(fileInpRef.current.style);
         if (
             fileUrls.length + 
             fileInpRef.current.files.length <=
@@ -269,7 +255,7 @@ export default function UploadPost() {
                             </div>
                         ))}
                     </ProductImgSetCont>
-                    <ImgUploadIcon className={"orange small location"} ref={fileLabelRef}>
+                    <ImgUploadIcon className={"orange small location "} ref={fileLabelRef}>
                         <span className="ir">이미지 첨부</span>
                         <input
                             multiple
