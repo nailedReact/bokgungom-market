@@ -6,6 +6,7 @@ const useWindowSizeCustom = () => {
     const [windowSize, setWindowSize] = useState({
         width : 0,
         height: 0,
+        // visualViewportHeight: 0 
     });
 
     useEffect(() => {
@@ -16,6 +17,7 @@ const useWindowSizeCustom = () => {
                 setWindowSize({
                     width: window.innerWidth,
                     height: window.innerHeight,
+                    // visualViewportHeight: window.visualViewport.height
                 });
             }
 
