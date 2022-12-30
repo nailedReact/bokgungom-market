@@ -10,32 +10,33 @@ const Followingimg = styled.img`
         width: 50px;
         border-radius: 50%;
         border: 1px solid #C4C4C4;
-        flex-grow: 0;
+        flex-shrink: 0;
         cursor: pointer;
     `;
 
     const Username = styled.h3`
         font-weight: 500;
         font-size: 14px;
-        line-height: 18px;
-        flex-grow: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: calc(100vw - 60px - 45px - 10px - 50px - 10px);
     `;
 
     const Intro = styled.p`
-        font-weight: 400;
         font-size: 12px;
-        line-height: 15px;
         color: #767676;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: calc(100vw - 60px - 45px - 10px - 50px - 10px);
     `;
 
     const TxtCont = styled.div`
-        margin-left: 12px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 6px;
-        /* width: 60%; */
-        flex-grow: 0;
         cursor: pointer;
     `;
 
@@ -54,8 +55,9 @@ const Followingimg = styled.img`
 const ContLeft  = styled.div`
     display: flex;
     gap: 10px;
+    align-items: center;
 `
-    
+
 //취소버튼을 누르면 팔로우 취소가 된 데이터가 넘어가야합니다! - 구현예정
 export default function FollowListCard({data}) {
     const navigate = useNavigate();
@@ -102,7 +104,7 @@ export default function FollowListCard({data}) {
                 <Intro>{data.intro}</Intro>
             </TxtCont>
         </ContLeft>
-    <Button style={{float:"right"}}className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
+        <Button style={{float:"right"}} className="small" active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "취소" : "팔로우"} </Button>
     </Cont>
   )
 }
