@@ -23,6 +23,9 @@ const Button = styled.button`
         @media screen and (max-width: 768px) {
             padding: 8px 24px;
         }
+        @media screen and (max-width: 358px) {
+            padding: 8px 16px;
+        }
     }
     
     &.large {
