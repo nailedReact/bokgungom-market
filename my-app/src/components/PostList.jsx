@@ -55,10 +55,11 @@ const PostCont =styled.div`
 `;
 
 const NoPost_Txt = styled.p`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  color: #767676;
+  /* font-style: normal;
+  font-weight: 400;
+  font-size: 20px; */
+  /* color: #767676; */
+  margin-top: 20px;
 `
 const NoPost_img = styled.img`
   width: 120px;
@@ -150,7 +151,7 @@ export default function PostList({isProfilePage}) {
   }
   return (
     <>
-    { resMsg.length === 0 ? <NoPost_Cont><NoPost_img src={IconNopost} alt="아이콘" /> <NoPost_Txt>게시물 없음</NoPost_Txt></NoPost_Cont> : <PostCont>
+    { resMsg.length === 0 ? <NoPost_Cont><NoPost_img src={IconNopost} alt="아이콘" /> <NoPost_Txt>게시물이 없습니다</NoPost_Txt></NoPost_Cont> : <PostCont>
       {isProfilePage ?
         <PostViewCont>
           <BtnOption className='list' onClick={handleChangeView} view={view}></BtnOption>
