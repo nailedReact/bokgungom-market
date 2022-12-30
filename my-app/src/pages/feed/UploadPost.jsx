@@ -29,7 +29,7 @@ export default function UploadPost() {
     const fileLabelRef =useRef();
 
     // 화면 사이즈 변경 훅
-    const { width, height } = useWindowSizeCustom();
+    const { width } = useWindowSizeCustom();
 
     // 뒤로 가기, 또는 페이지 전환시 혹시라도 남아있을 fileURL, fileInpRef.current.value 제거 위해
     useEffect(() => {
@@ -59,17 +59,23 @@ export default function UploadPost() {
         // }
     };
 
-    // const handleFocus = () => {
-    //     if (width < 768){
-    //         fileLabelRef.current.style.bottom = "50%";
-    //     }
-    // }
+    // const [visualViewport, setVisualViewport] = useState();
 
-    // const handleBlur = () => {
-    //     if (width < 768){
-    //         fileLabelRef.current.style.bottom = "16px";
-    //     }
-    // }
+    const handleFocus = () => {
+        // console.log(window.innerHeight);
+        // console.log(window.visualViewport.height);
+        if (width < 768 && window.visualViewport.height !== window.innerHeight){
+            fileLabelRef.current.style.bottom = "50%";
+            // setVisualViewport(window.visualViewport.height);
+        }
+    }
+
+    const handleBlur = () => {
+        if (width < 768){
+            fileLabelRef.current.style.bottom = "50px";
+            // setVisualViewport(window.visualViewport.height);
+        }
+    }
 
     // 이미지 미리보기
     let previewUrl = [];
@@ -201,7 +207,7 @@ export default function UploadPost() {
                 right4Ctrl={{ form: "postUpload", isDisabled: isBtnDisable }}
             />
             <Toast ref={toastRef} msg="게시글이 업로드 되었습니다!"/>
-            <PostEditWrapper heightProp={height}>
+            <PostEditWrapper>
                 <UserProfileImg
                     src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
@@ -219,6 +225,8 @@ export default function UploadPost() {
                             onChange={handleTextarea}
                             value={contentText}
                             ref={textarea}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             rows={1}
                         />
                         {/* 이미지 표시하는게 label 안에 있어도 되나? */}
