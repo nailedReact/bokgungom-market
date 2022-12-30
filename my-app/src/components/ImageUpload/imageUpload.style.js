@@ -27,7 +27,7 @@ export const ImgUploadIcon = styled.label`
 
     &.location {
         position: fixed;
-        top: ${(props) => `${props.height - 70}px`};
+        bottom: 50px;
         right: 50px;
     }
 
