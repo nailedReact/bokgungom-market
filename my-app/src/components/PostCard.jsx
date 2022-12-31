@@ -15,6 +15,7 @@ import plusimg from "../assets/icon/icon-more-vertical.png";
 import Toast from "./Toast";
 import {v4} from "uuid"
 import errorimg from "../assets/imageNotFound.png"
+import basicprofile from "../assets/basic-profile-img.png"
 
 const Cont = styled.div`
     display: flex;
@@ -249,7 +250,9 @@ export default function PostCard({
         e.target.style.background = "#f2f2f2"
 
     }
-
+    const profileImgError = (e) => {
+        e.target.src = basicprofile;
+    }
     return (
         <div>
             <Toast ref={toastRef} msg="게시물이 삭제 되었습니다!" />
@@ -282,6 +285,7 @@ export default function PostCard({
                     <ProfilePicSmall
                         src={data.author.image}
                         alt="글쓴이프로필사진"
+                        onError={profileImgError}
                         onClick={handleClickProfile}
                     />
                     <ContentCont>
