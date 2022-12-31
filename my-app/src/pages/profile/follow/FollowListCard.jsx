@@ -20,7 +20,10 @@ const Followingimg = styled.img`
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        width: calc(100vw - 60px - 45px - 10px - 50px - 10px);
+        width: calc(100vw - 60px - 45px - 10px - 50px - 10px - 10px);
+        @media screen and (min-width: 768px){
+            width: calc(100vw - 240px - 200px - 50px - 80px);
+        }
     `;
 
     const Intro = styled.p`
@@ -29,7 +32,10 @@ const Followingimg = styled.img`
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        width: calc(100vw - 60px - 45px - 10px - 50px - 10px);
+        width: calc(100vw - 60px - 45px - 10px - 50px - 10px - 10px);
+        @media screen and (min-width: 768px){
+            width: calc(100vw - 240px - 200px - 50px - 80px);
+        }
     `;
 
     const TxtCont = styled.div`
