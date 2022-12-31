@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
-import multiimg from "../assets/icon/iccon-img-layers.png";
+import multiimg from "../assets/icon/icon-img-layers.png";
 
 
 export default function PostAlbum({data, myProfile, postDetailSrc}) {
@@ -16,10 +16,10 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
   `
   const Multiimg = styled.img`
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
+    top: 4%;
+    right: 4%;
+    width: 18%;
+    height: 18%;
   `
   const AlbumCont = styled.div`
     position: relative;
