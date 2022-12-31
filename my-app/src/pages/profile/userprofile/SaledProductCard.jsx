@@ -20,7 +20,7 @@ const Window = styled.div`
 
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #DBDBDB;
+    background-color: rgb(106,106,106);
     border-radius: 10px;
     background-clip: padding-box;
     border: 1px solid transparent;
@@ -28,7 +28,7 @@ const Window = styled.div`
   }
    
     ::-webkit-scrollbar-track {
-    background-color: grey;
+    background-color: transparent;
     border-radius: 10px;
     box-shadow: inset 1px 1px 2px white;
   }
@@ -64,7 +64,8 @@ const Productimg = styled.img`
     width: 140px;
     height: 90px;
     border-radius: 8px;
-    object-fit: contain;
+    object-fit: cover;
+    border: 0.5px solid #dbdbdb;
 `;
 
 const ItemName = styled.h3`

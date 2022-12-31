@@ -80,6 +80,7 @@ import basicprofile from "../../../assets/basic-profile-img.png"
     gap: 10px;
     margin: 25px;
     justify-content: center;
+    align-items:center;
   `;
 
   const Chatimg = styled.img`

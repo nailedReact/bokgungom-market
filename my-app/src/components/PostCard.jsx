@@ -141,7 +141,7 @@ const ImgCont = styled.div`
 
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #DBDBDB;
+    background-color: rgb(125,125,125);
     border-radius: 10px;
     background-clip: padding-box;
     border: 1px solid transparent;
@@ -149,7 +149,7 @@ const ImgCont = styled.div`
   }
    
     ::-webkit-scrollbar-track {
-    background-color: grey;
+    background-color: transparent;
     border-radius: 10px;
     box-shadow: inset 1px 1px 2px white;
   }
