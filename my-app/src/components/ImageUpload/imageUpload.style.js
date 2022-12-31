@@ -25,6 +25,12 @@ export const ImgUploadIcon = styled.label`
         background-image: url(${imgButton});
     }
 
+    &.product {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+    }
+
     &.location {
         position: fixed;
         bottom: 5.51%;

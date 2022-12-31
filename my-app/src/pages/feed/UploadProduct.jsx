@@ -162,7 +162,7 @@ export default function UploadProduct() {
                             <ImageUpload
                                 id={"productImg"}
                                 className={"fileUpload"}
-                                btnStyle={"orange small"}
+                                btnStyle={"orange small product"}
                                 onChangeByUpper={fileOnChange}
                             />
                         </UserInput>
