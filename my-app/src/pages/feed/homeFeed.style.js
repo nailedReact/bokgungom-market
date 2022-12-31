@@ -14,20 +14,33 @@ export const FeedCont = styled.div`
 `
 export const PageBtn = styled.button`
     font-family: "Pretenard";
-    padding: 8px 12px;
-    border: 1px solid var(--color-primary);
-    border-radius: 50%;
-    background: white;
+    font-weight: 500;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #BBBBBB;
+    &:hover {
+        border: 2px solid var(--color-primary);
+    }
 `
 export const PrevNextBtn = styled.button`
     font-family: "Pretenard";
-    padding: 8px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: white;
+    font-weight: 700;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #BBBBBB;
+    &:hover {
+        border: 2px solid var(--color-primary);
+    }
 
     &:disabled {
-        opacity: 0.4;
+        opacity: 0.2;
+        &:hover {
+            border: 1px solid #BBBBBB;
+        }
     }
 `
 
