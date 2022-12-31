@@ -82,15 +82,16 @@ export default function HomeFeed() {
       }
     }
     
-    //페이지 버튼을 눌렀을 때 스타일을 주는 부분입니다.
     const changeblue = (e) => {
-      e.target.style.backgroundColor = "#4583a3";
+      e.target.style.background = "var(--color-primary)";
       e.target.style.color = "#fff";
+      e.target.style.border = "2px solid var(--color-primary)";
     }
 
     const changewhite = (e) => {
-      e.target.style.backgroundColor = "#ffffff";
-      e.target.style.color = "#3f3f46";
+      e.target.style.background = "white";
+      e.target.style.color = "var(--color-text)";
+      e.target.style.border = "1px solid #BBBBBB";
     }
 
     //prev, next 버튼을 누르는 부분입니다.
@@ -131,9 +132,9 @@ export default function HomeFeed() {
           {resMsg.length === 0 ? 
           <FeedNoFollower /> :
             <Pagenation>
-              <PrevNextBtn id="prev" onClick={handlePage} ref={prevPageRef}>prev</PrevNextBtn> 
+              <PrevNextBtn id="prev" onClick={handlePage} ref={prevPageRef}>&lt;</PrevNextBtn> 
               {handlebutton().slice(pageStart, pageEnd)}
-              <PrevNextBtn id="next" onClick={handlePage} ref={nextPageRef}>next</PrevNextBtn>
+              <PrevNextBtn id="next" onClick={handlePage} ref={nextPageRef}>&gt;</PrevNextBtn>
             </Pagenation>}
             <Topbtn />
         </FeedCont>

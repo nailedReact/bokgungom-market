@@ -20,6 +20,10 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
     right: 4%;
     width: 18%;
     height: 18%;
+    @media screen and (min-width: 768px){
+      width: 14%;
+      height: 14%;
+    }
   `
   const AlbumCont = styled.div`
     position: relative;
