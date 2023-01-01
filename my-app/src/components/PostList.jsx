@@ -95,7 +95,7 @@ export default function PostList({isProfilePage}) {
       setResMsg(res.data.post);
       setLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postcount])
+  }, [postcount, username])
 
   const deleteHandle = (deleteTarget) => {
     setResMsg((prev) => (
@@ -105,7 +105,7 @@ export default function PostList({isProfilePage}) {
 
   useEffect(() => {
     getItems()
-  }, [getItems])
+  }, [getItems, username])
 
 
 
