@@ -97,6 +97,12 @@ export default function PostList({isProfilePage}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postcount])
 
+  const deleteHandle = (deleteTarget) => {
+    setResMsg((prev) => (
+      prev.filter(e => e.id !== deleteTarget)
+    ));
+  };
+
   useEffect(() => {
     getItems()
   }, [getItems])
@@ -118,16 +124,16 @@ export default function PostList({isProfilePage}) {
           if (isMyProfile) {
             if(index%4 === 0 && count === 0){
               setCount(1)
-              return <div ref={ref} key={item.id}><PostCard  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div >;
+              return <div ref={ref} key={item.id}><PostCard  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
             }else{
-              return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+              return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
             }
           } else {
             if(index%4 === 0 && count === 0){
               setCount(1)
-              return <div ref={ref} key={item.index}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div >;
+              return <div ref={ref} key={item.index}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
             }else{
-              return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
+              return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
             }
           }})
 
