@@ -47,10 +47,13 @@ const Accountname = styled.p`
 `;
 
 const Content = styled.p`
+    width: 100%;
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     margin-top: 16px;
+    white-space: pre-wrap;
+    word-break: break-all;
 `;
 
 const Contentimg = styled.img`
