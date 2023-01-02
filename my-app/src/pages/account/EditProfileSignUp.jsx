@@ -91,7 +91,11 @@ export default function EditProfileSignUp() {
             console.log(err);
         }
     };
-
+    const registerSuccess = () => {
+        setTimeout( () => {
+            navigate("../../../post");
+        }, 1500)
+    }
     return (
         <Container>
             <InitialHeading text={"프로필 설정"} info={"나중에 언제든지 변경할 수 있습니다."}/>
@@ -106,7 +110,7 @@ export default function EditProfileSignUp() {
                 form={"signUp"}
                 className={"large max"}
                 type={"submit"}
-                onClick={() => navigate("../../../post")}
+                onClick={registerSuccess}
                 disabled={isDisabled}
             >
                 복근곰마켓 시작하기
