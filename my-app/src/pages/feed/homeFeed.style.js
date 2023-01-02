@@ -13,7 +13,6 @@ export const FeedCont = styled.div`
     }
 `
 export const PageBtn = styled.button`
-    font-family: "Pretenard";
     font-weight: 500;
     width: 30px;
     height: 30px;
@@ -25,7 +24,6 @@ export const PageBtn = styled.button`
     }
 `
 export const PrevNextBtn = styled.button`
-    font-family: "Pretenard";
     font-weight: 700;
     width: 30px;
     height: 30px;

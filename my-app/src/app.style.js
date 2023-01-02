@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
         overflow: hidden;
     }
     button {
+        font-family: "Pretendard";
         border: none;
         cursor: pointer;
         :disabled {
