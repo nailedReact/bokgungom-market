@@ -20,7 +20,7 @@ const Window = styled.div`
 
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(106,106,106);
+    background-color: #DBDBDB;
     border-radius: 10px;
     background-clip: padding-box;
     border: 1px solid transparent;
@@ -28,7 +28,7 @@ const Window = styled.div`
   }
    
     ::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: grey;
     border-radius: 10px;
     box-shadow: inset 1px 1px 2px white;
   }
@@ -64,8 +64,7 @@ const Productimg = styled.img`
     width: 140px;
     height: 90px;
     border-radius: 8px;
-    object-fit: cover;
-    border: 0.5px solid #dbdbdb;
+    object-fit: contain;
 `;
 
 const ItemName = styled.h3`
@@ -120,7 +119,7 @@ useEffect(() => {
             <ProductCont onClick={() => handlelink(item.link)} key={item.id}>
                 <Productimg src={item.itemImage} alt="상품 이미지"/>
                 <ItemName>{item.itemName}</ItemName>
-                <ItemPrice>{item.price}원</ItemPrice>
+                <ItemPrice>{item.price.toLocaleString()}원</ItemPrice>
             </ProductCont>
         ));
 

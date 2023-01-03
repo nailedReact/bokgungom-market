@@ -1,7 +1,7 @@
 // 컴포넌트에 productImageSet.style 파일 추가
 // 상품 등록 페이지 이미지 업로드 및 API 코드 수정
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Inp from '../../components/userinput/Inp';
 import UserInput from '../../components/userinput/UserInput';
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
@@ -27,7 +27,6 @@ const Cont = styled.div`
     align-items: center;
     @media screen and (min-width: 768px){
         margin-left: 240px;
-        /* width: 100%; */
     }
 `
 const TextCont = styled.div`
@@ -44,11 +43,16 @@ export default function UploadProduct() {
     const priceAlertMsg = useRef(null);
     const linkAlertMsg = useRef(null);
     const imagePre = useRef(null)
+
     const handleInpName = (e) => {
         setProductName(e.target.value)
     }
+
+    // 숫자 세 번째 자리에 콤마
     const handleInpPrice = (e) => {
-        setProductPrice(e.target.value)
+        const value = e.target.value;
+        const removedCommaValue = Number(value.replaceAll(",", ""));
+        setProductPrice(removedCommaValue.toLocaleString())
     }
     const handleInpLink = (e) => {
         setProductLink(e.target.value)
@@ -56,6 +60,10 @@ export default function UploadProduct() {
     const navigate = useNavigate();
     const data = useAuth();
     const toastRef = useRef(null);
+
+    useEffect(() => {
+        productPrice.toLocaleString()
+    })
 
     // 화면 사이즈 변경 훅
     const { width } = useWindowSizeCustom();
@@ -94,7 +102,7 @@ export default function UploadProduct() {
                 const productData = {
                     "product": {
                         "itemName": productName,
-                        "price": Number(productPrice),
+                        "price": parseInt(productPrice.replace(',', '')),
                         "link": productLink,
                         "itemImage": submitData.current["image"]
                     }
@@ -162,7 +170,7 @@ export default function UploadProduct() {
                             <ImageUpload
                                 id={"productImg"}
                                 className={"fileUpload"}
-                                btnStyle={"orange small product"}
+                                btnStyle={"orange small"}
                                 onChangeByUpper={fileOnChange}
                             />
                         </UserInput>
@@ -184,7 +192,7 @@ export default function UploadProduct() {
                         <Warning ref={nameAlertMsg}>* 상품명을 입력해주세요.</Warning>
                         <UserInput inputId="productPrice" label="가격">
                             <Inp
-                                type="number"
+                                type="text"
                                 id="productPrice"
                                 onChange={handleInpPrice}
                                 value={productPrice}
