@@ -71,10 +71,15 @@ export default function PostDetail() {
 
     const data = useAuth();
 
-    const [userIdRef, setUserIdRef] = useState();
+    // const [userIdRef, setUserIdRef] = useState();
+    const userIdRef = useRef();
 
     useEffect(() => {
-        data && setUserIdRef(data._id);
+        // data && console.log(data._id);
+        // data && setUserIdRef(data._id);
+        if (data) {
+            userIdRef.current = data._id;
+        }
     }, [data]);
 
     const sendRequest = usePostDetail(reacts);
@@ -88,7 +93,14 @@ export default function PostDetail() {
     // 댓글의 more 버튼 클릭시 동작하는 함수
     const onClickHandle = useCallback(
         (deleteComment, commentAuthor) => {
-            if (commentAuthor === userIdRef) {
+            // console.log(`댓글 단 사람: ${commentAuthor}`);
+            // console.log(`로그인 한 유저: ${userIdRef.current}`);
+            // if (!userIdRef) {
+            //     // setUserIdRef(useAuth()._id);
+            //     setIsNeedUpdate((prev) => !prev);
+            //     return;
+            // }
+            if (commentAuthor === userIdRef.current) {
                 setModalMe(true);
                 deleteTarget.current = deleteComment;
             } else {
@@ -329,7 +341,7 @@ export default function PostDetail() {
     };
 
     const postDetailModalHandle = () => {
-        if (currentUserId.current === userIdRef) {
+        if (currentUserId.current === userIdRef.current) {
             setModalMeDetail(true);
             // deleteTarget.current = deleteComment;
         } else {
