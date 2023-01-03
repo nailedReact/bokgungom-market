@@ -6,7 +6,7 @@ import FeedNoFollower from "../feed/FeedNoFollower";
 import { useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import {
-  FeedCont, PageBtn, PrevNextBtn, Pagenation
+  FeedCont, PageBtn, PrevNextBtn, Pagenation, ButtonCont
 } from "./homeFeed.style"
 import Topbtn from "../../components/Topbtn";
 
@@ -19,6 +19,7 @@ export default function HomeFeed() {
     const [pageEnd, SetPageEnd] = useState(5);
     const prevPageRef = useRef(null);
     const nextPageRef = useRef(null);
+    const buttonAll = useRef([]);
     
     //전체 게시물을 가져와서 전체 게시물의 갯수를 확인합니다.
     useEffect(() => {
@@ -58,11 +59,14 @@ export default function HomeFeed() {
         }
       }, [resMsg])
 
+      
+
       //전체 게시물의 갯수에 따라 페이지 버튼을 만드는 부분입니다.
       const handlebutton = () => {
         let arr = [];
+        
         for(let i = 0; i <= (allresMsg.length/20); i++){
-            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn} onFocus={changeblue} onBlur={changewhite}> {i+1} </PageBtn>)
+            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn}  > {i+1} </PageBtn>)
         }
         if(arr.length <= 5 && nextPageRef.current && prevPageRef.current){
           nextPageRef.current.disabled = true;
@@ -80,18 +84,19 @@ export default function HomeFeed() {
       }else{
         setPassamount((id_name-1)*10);
       }
-    }
-    
-    const changeblue = (e) => {
-      e.target.style.background = "var(--color-primary)";
-      e.target.style.color = "#fff";
-      e.target.style.border = "2px solid var(--color-primary)";
-    }
-
-    const changewhite = (e) => {
-      e.target.style.background = "white";
-      e.target.style.color = "var(--color-text)";
-      e.target.style.border = "1px solid #BBBBBB";
+      
+      // eslint-disable-next-line array-callback-return, no-unused-expressions
+      buttonAll.current.childNodes.forEach(item => {
+        if(e.target.id === item.id){
+          e.target.style.background = "var(--color-primary)";
+          e.target.style.color = "#fff";
+          e.target.style.border = "2px solid var(--color-primary)";
+        }else{
+          item.style.background = "white";
+          item.style.color = "var(--color-text)";
+          item.style.border = "1px solid #BBBBBB";
+        }
+      })  
     }
 
     //prev, next 버튼을 누르는 부분입니다.
@@ -133,7 +138,7 @@ export default function HomeFeed() {
           <FeedNoFollower /> :
             <Pagenation>
               <PrevNextBtn id="prev" onClick={handlePage} ref={prevPageRef}>&lt;</PrevNextBtn> 
-              {handlebutton().slice(pageStart, pageEnd)}
+              <ButtonCont ref={buttonAll}>{handlebutton().slice(pageStart, pageEnd)}</ButtonCont>
               <PrevNextBtn id="next" onClick={handlePage} ref={nextPageRef}>&gt;</PrevNextBtn>
             </Pagenation>}
             <Topbtn />

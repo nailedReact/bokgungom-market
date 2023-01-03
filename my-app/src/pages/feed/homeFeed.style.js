@@ -48,3 +48,8 @@ export const Pagenation = styled.div`
   padding: 20px;
   gap: 10px;
 `
+
+export const ButtonCont = styled.div`
+    display: flex;
+    gap: 10px;
+`
