@@ -245,7 +245,6 @@ export default function PostCard({
 
     const imgerror = (e) => {
         e.target.src = errorimg;
-        // e.target.style.border = "1px solid black"
         e.target.style.padding = "60px";
         e.target.style.background = "#f2f2f2";
     };
