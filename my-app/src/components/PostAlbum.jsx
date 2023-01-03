@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import multiimg from "../assets/icon/icon-img-layers.png";
+import errorimg from "../assets/imageNotFound.png";
 
 
 export default function PostAlbum({data, myProfile, postDetailSrc}) {
@@ -39,6 +40,11 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
         padding-bottom: 100%;
       }
   `
+  const imgerror = (e) => {
+    e.target.src = errorimg;
+    e.target.style.padding = "60px";
+    e.target.style.background = "#f2f2f2";
+};
 
   return (
     <>
@@ -46,7 +52,7 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
       <Link to={postDetailSrc}>
         <AlbumCont>
           <ImgCont>
-            <Contentimg src={data.image.split(",")[0]} alt="컨텐츠 사진입니다." />
+            <Contentimg src={data.image.split(",")[0]} onError={imgerror} />
           </ImgCont>
           <Multiimg src={multiimg} alt="여러 이미지 아이콘" />
         </AlbumCont>
@@ -54,7 +60,7 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
       :
       <Link to={postDetailSrc}>
         <ImgCont>
-          <Contentimg src={data.image} alt="컨텐츠 사진입니다." />
+          <Contentimg src={data.image} onError={imgerror} />
         </ImgCont>
       </Link>
       : null}
