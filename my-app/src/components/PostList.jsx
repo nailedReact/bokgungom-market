@@ -105,14 +105,14 @@ export default function PostList({isProfilePage}) {
 
   useEffect(() => {
     getItems()
-  }, [getItems, username])
+  }, [getItems, username, view])
 
 
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading && count) {
-      setPostcount(prevState => prevState + 5)
+      setPostcount(prevState => prevState + 6)
       setCount(0)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -137,14 +137,23 @@ export default function PostList({isProfilePage}) {
             }
           }})
 
-      const postPhotos = resMsg.map((item) => {
+      const postPhotos = resMsg.map((item, index) => {
         if (isMyProfile) {
-          return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+          if(index%5 === 0 && count === 0){
+            setCount(1)
+          return <div ref={ref} key={item.id}><PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div>;
+          }else{
+            return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+          }
         } else {
-          return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
+          if(index%5 === 0 && count === 0){
+            setCount(1)
+          return <div ref={ref} key={item.id}><PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div>;
+          }else{
+            return <PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
+          }
         }
       });
-
       setPostArrList(postLists);
       setPostArrAlbum(postPhotos);
     }
@@ -165,8 +174,6 @@ export default function PostList({isProfilePage}) {
         </PostViewCont>
       : <></>}
       {view === "list" ? 
-      
-        
       postArrList
       : <AlbumCont> {postArrAlbum}</AlbumCont>}
     </PostCont>}

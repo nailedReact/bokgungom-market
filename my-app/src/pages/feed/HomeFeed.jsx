@@ -66,7 +66,7 @@ export default function HomeFeed() {
         let arr = [];
         
         for(let i = 0; i <= (allresMsg.length/20); i++){
-            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn}  > {i+1} </PageBtn>)
+            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn}> {i+1} </PageBtn>)
         }
         if(arr.length <= 5 && nextPageRef.current && prevPageRef.current){
           nextPageRef.current.disabled = true;
