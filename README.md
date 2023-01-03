@@ -47,18 +47,18 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align:center;">
+          <td align="center" style="text-align:center;">
             <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React" height="50" /></a>
             <br>
             <code>React</code>
           </td>
-          <td style="text-align:center;">
+          <td align="center" style="text-align:center; margin: 0 auto;">
             <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/styled-components.png" alt="Styled Components" height="50" /></a>
             <br>
             <code>styled-components</code>
           </td>
           <td style="text-align:center;">제공된 API 사용</td>
-          <td style="text-align:center;">
+          <td align="center" style="text-align:center;">
             <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Styled Components" height="50" /></a>
             <br>
             <code>Netlify</code>
