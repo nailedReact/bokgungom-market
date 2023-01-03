@@ -3,6 +3,7 @@ import { useEffect, useState, useContext} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { UserNameContext } from "./Profile"
+import errorimg from "../../../assets/imageNotFound.png";
 
 const Cont = styled.div`
         background: #ffffff;
@@ -47,9 +48,6 @@ const Productlist = styled.ul`
     gap: 10px;
     height: 100%;
     padding-bottom: 20px;
-    /* 자동 캐러셀 부분 - 아직 구현 완료 못함 */
-    /* transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')}; 
-    transform: ${(props) => 'translateX(-' + props.count + 'px)'}; */
 `;
 
 const ProductCont = styled.li`
@@ -82,17 +80,11 @@ const ItemPrice = styled.p`
     color: var(--color-primary);
 `;  
 
-// const Nextbtn = styled.button`
-//     width:20px;
-//     height:20px;
-// `
+
 export default function SaledProductCard() {
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
-// const [count, setCount] = useState(0);
 const { username } = useContext(UserNameContext);
-
-
 
 //판매중인 상품 데이터를 받아오는 부분입니다.
 useEffect(() => {
@@ -118,7 +110,7 @@ useEffect(() => {
     if (resMsg.length !== 0){
         const products = resMsg.map((item) => (
             <ProductCont onClick={() => handlelink(item.link)} key={item.id}>
-                <Productimg src={item.itemImage} alt="상품 이미지"/>
+                <Productimg src={item.itemImage} onError={imgerror}/>
                 <ItemName>{item.itemName}</ItemName>
                 <ItemPrice>{item.price}원</ItemPrice>
             </ProductCont>
@@ -127,6 +119,11 @@ useEffect(() => {
         setProductData(products);
     }
   }, [resMsg])
+
+  const imgerror = (e) => {
+    e.target.src = errorimg;
+    e.target.style.background = "#f2f2f2";
+};
 
   
     //일정 시간이 지나면 캐러셀이 움직이는 부분입니다.
