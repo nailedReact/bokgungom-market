@@ -4,12 +4,23 @@
 
 ## 프로젝트 소개
 
-- 
+<aside>
+💪 복근곰 마켓 서비스는 운동을 즐기는 사람들을 위한 SNS입니다.
+   
+상품을 등록하지 않아도 일상을 공유하며 즐거운 SNS 활동을 할 수 있습니다. 글과 사진과 함께 게시물을 작성하여 자신의 일상을 공유할 수 있습니다. 다른 사용자를 팔로우하면 유저가 올린 게시물을 홈 피드에서 소식을 확인할 수도 있습니다. 
+
+피드를 구경하다가 마음에 드는 게시물을 발견했다면 좋아요를 누를 수 있고 댓글을 남기거나 공유를 할 수도 있습니다.
+
+</aside>
+
 - 프로젝트 기간: 2022-12-07 ~ 2023-01-
 
 <br>
 
 ## 🫂 팀 소개
+
+- 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
+
 
 |<span style="font-size:16px">정수현</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
 |:-:|:-:|:-:|:-:|
@@ -21,10 +32,13 @@
 
 |<span style="font-size:16px">프론트엔드</span>|| <span style="font-size:16px">백엔드</span> | <span style="font-size:16px">배포</span> |
 |:-:|:-:|:-:|:-:|
-| `React` | `styled-components` | 제공된 API 사용 | `Netlify` |
-| <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React" height="50" /></a> | <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/styled-components.png" alt="Styled Components" height="50" /></a> |  | <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Styled Components" height="50" /></a> |
+| <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React" height="50" /></a><br>`React` | <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/styled-components.png" alt="Styled Components" height="50" /></a><br>`styled-components` | 제공된 API 사용 | <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Styled Components" height="50" /></a><br>`Netlify` |
 
 <br>
+
+### modules
+|axios|axios|
+|-|-|
 
 ## 📊 버전 & 프로젝트 진행 상황 관리
 
