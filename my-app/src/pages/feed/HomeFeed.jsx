@@ -62,7 +62,7 @@ export default function HomeFeed() {
       const handlebutton = () => {
         let arr = [];
         for(let i = 0; i <= (allresMsg.length/20); i++){
-            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn} onFocus={changeblue} onBlur={changewhite}> {i+1} </PageBtn>)
+            arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn}  onBlur={changewhite}> {i+1} </PageBtn>)
         }
         if(arr.length <= 5 && nextPageRef.current && prevPageRef.current){
           nextPageRef.current.disabled = true;
@@ -80,13 +80,14 @@ export default function HomeFeed() {
       }else{
         setPassamount((id_name-1)*10);
       }
-    }
-    
-    const changeblue = (e) => {
       e.target.style.background = "var(--color-primary)";
       e.target.style.color = "#fff";
       e.target.style.border = "2px solid var(--color-primary)";
     }
+    
+    // const changeblue = (e) => {
+      
+    // }
 
     const changewhite = (e) => {
       e.target.style.background = "white";
