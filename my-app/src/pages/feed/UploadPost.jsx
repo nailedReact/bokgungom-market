@@ -19,7 +19,6 @@ let fileUrls = [];
 export default function UploadPost() {
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [showImages, setShowImages] = useState([]);
-    const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const textarea = useRef();
     const fileInpRef = useRef(null);
@@ -38,9 +37,9 @@ export default function UploadPost() {
     }, []);
 
     useEffect(() => {
-        const handleResize = () => {
+        const handleResize = (e) => {
             if (window.innerWidth < 768) {
-                if (isFocused) {
+                if (Math.abs(window.innerHeight - e.target.height) >= 1) {
                     fileLabelRef.current.style.bottom = "50%";
                 } else {
                     fileLabelRef.current.style.bottom = "8.51%";
@@ -51,15 +50,7 @@ export default function UploadPost() {
         window.visualViewport.addEventListener("resize", handleResize)
 
         return () => window.visualViewport.removeEventListener("resize", handleResize);
-    }, [isFocused])
-
-    const handleFocus = () => {
-        setIsFocused(true);
-    }
-
-    const handleBlur = () => {
-        setIsFocused(false);
-    }
+    }, [])
 
     // textarea 자동 높이 조절
     const handleTextarea = (e) => {
@@ -230,8 +221,6 @@ export default function UploadPost() {
                             placeholder="게시글 입력하기..."
                             onChange={handleTextarea}
                             ref={textarea}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
                             rows={1}
                         />
                         {/* 이미지 표시하는게 label 안에 있어도 되나? */}
