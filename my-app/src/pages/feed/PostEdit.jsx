@@ -25,7 +25,6 @@ export default function PostEdit() {
     const [showImages, setShowImages] = useState([]);
     // const [contentText, setContentText] = useState("");
     const [isBtnDisable, setIsBtnDisable] = useState(false);
-    const [isFocused, setIsFocused] = useState();
     const imagePre = useRef(null);
     const URL = `https://mandarin.api.weniv.co.kr${useLocation().pathname.slice(
         0,
@@ -82,9 +81,9 @@ export default function PostEdit() {
     }, []);
 
     useEffect(() => {
-        const handleResize = () => {
+        const handleResize = (e) => {
             if (window.innerWidth < 768) {
-                if (isFocused) {
+                if (Math.abs(window.innerHeight - e.target.height) >= 1) {
                     fileLabelRef.current.style.bottom = "50%";
                 } else {
                     fileLabelRef.current.style.bottom = "8.51%";
@@ -95,15 +94,7 @@ export default function PostEdit() {
         window.visualViewport.addEventListener("resize", handleResize)
 
         return () => window.visualViewport.removeEventListener("resize", handleResize);
-    }, [isFocused])
-
-    const handleFocus = () => {
-        setIsFocused(true);
-    }
-
-    const handleBlur = () => {
-        setIsFocused(false);
-    }
+    }, [])
 
     const handleTextarea = (e) => {
         // setContentText(e.target.value);
@@ -266,8 +257,6 @@ export default function PostEdit() {
                             placeholder="게시글 입력하기..."
                             onChange={handleTextarea}
                             ref={textarea}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
                             rows={1}
                         />
 
