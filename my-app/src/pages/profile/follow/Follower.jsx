@@ -50,6 +50,7 @@ useEffect(() => {
         })    
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resMsg])
   
   return (followerArr.length === 0) ?
