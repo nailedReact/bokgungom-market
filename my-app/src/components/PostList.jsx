@@ -131,7 +131,7 @@ export default function PostList({isProfilePage}) {
           } else {
             if(index%4 === 0 && count === 0){
               setCount(1)
-              return <div ref={ref} key={item.index}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
+              return <div ref={ref} key={item.id}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
             }else{
               return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
             }
@@ -141,14 +141,14 @@ export default function PostList({isProfilePage}) {
         if (isMyProfile) {
           if(index%5 === 0 && count === 0){
             setCount(1)
-          return <div ref={ref} key={item.id}><PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div>;
+          return <div ref={ref} key={item.id}><PostAlbum  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div>;
           }else{
             return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
           }
         } else {
           if(index%5 === 0 && count === 0){
             setCount(1)
-          return <div ref={ref} key={item.id}><PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div>;
+          return <div ref={ref} key={item.id}><PostAlbum data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div>;
           }else{
             return <PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
           }
