@@ -281,7 +281,6 @@ export default function PostCard({
             <Cont>
                 <ProfilePicSmall
                     src={data.author.image}
-                    alt="글쓴이프로필사진"
                     onError={profileImgError}
                     onClick={handleClickProfile}
                 />

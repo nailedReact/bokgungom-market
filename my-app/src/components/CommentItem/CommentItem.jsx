@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CommentItemCont } from "./commentItem.style";
 import iconMoreVertical from "../../assets/icon/icon-more-vertical.png";
 import { formattedDate } from "../../pages/feed/feed/dateformat";
+import basicprofile from "../../assets/basic-profile-img.png"
 
 const BtnIcon = styled.button`
     background: url(${iconMoreVertical});
@@ -69,12 +70,16 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
         }
     }, [createdAt, setCreatedAt, refer.createdAt, initialTime]);
 
+    const imgerror = (e) => {
+        e.target.src = basicprofile;
+    }
+
     return (
         <CommentItemCont>
             <UserProfilePic
                 className="comment-profile-img"
                 src={refer.author.image}
-                alt={"댓글 작성자 프로필 사진"}
+                onError={imgerror}
                 onClick={handleClickProfile}
             />
             <div className="comment-main">

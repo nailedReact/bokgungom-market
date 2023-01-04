@@ -69,19 +69,20 @@ export default function HomeFeed() {
         for(let i = 0; i <= (allresMsg.length/20); i++){
             arr.push(<PageBtn key={i+1} id={i+1} onClick={clickbtn}> {i+1} </PageBtn>)
         }
-        if(arr.length <= 5 && nextPageRef.current && prevPageRef.current){
-          nextPageRef.current.disabled = true;
-          prevPageRef.current.disabled = true;
-        }   
+        
         if(buttonAll.current.childNodes && pageCheck === false){
           buttonAll.current.childNodes[0].style.background = "var(--color-primary)";
           buttonAll.current.childNodes[0].style.color = "#fff";
           buttonAll.current.childNodes[0].style.border = "2px solid var(--color-primary)";
         }
 
+        if(arr.length <= 5 && nextPageRef.current && prevPageRef.current&& arr.length > 0){
+          nextPageRef.current.disabled = true;
+          prevPageRef.current.disabled = true;
+        }
         return arr;
-
       }
+      
     
     //페이지 버튼을 누르면 그 페이지로 이동하는 부분입니다.
     const clickbtn = (e) => {

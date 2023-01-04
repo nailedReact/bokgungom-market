@@ -8,15 +8,26 @@ import NoFollowerFollowing from './NoFollowerFollowing';
 import NavBar from '../../../components/NavBar/NavBar';
 import TopBar from '../../../components/TopBar';
 import { FollowList } from "./followFollowing.style"
+import useAuth from '../../../hook/useAuth';
 
 export default function Following() {   
     const [resMsg, setResMsg] = useState([]);
     const [followingArr, setFollowingArr] = useState([]);;
-    const accoutName = useParams().username;
+    const accountName = useParams().username;
+    const data = useAuth();
+    const [myaccoutName, setMyaccountName] = useState();
+
+  
+    useEffect(() => {
+
+      data && setMyaccountName(data.accountname);
+      
+      },[data])
+
 
     useEffect(() => {
         const getFollowinglist = async () => {
-          const URL = "https://mandarin.api.weniv.co.kr/profile/" + accoutName + "/following/?limit=infinity"
+          const URL = "https://mandarin.api.weniv.co.kr/profile/" + accountName + "/following/?limit=infinity"
           const res = await axios.get(URL, {
             headers: {
             Authorization: localStorage.getItem("Authorization")
@@ -32,7 +43,11 @@ useEffect(() => {
     if (resMsg.length !== 0){
       resMsg.forEach((item) => {
         setFollowingArr((followingArr)=>{
+          if(item.accountname === myaccoutName){
+            return [...followingArr]
+          }else{
             return [...followingArr, <FollowListCard key={item._id} data={item}/>]
+          }   
         })    
       })
     }
