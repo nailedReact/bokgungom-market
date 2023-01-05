@@ -15,7 +15,7 @@ branches:
     prefix: markup/
   - label: refactor
     prefix: refactor/
-  - label: sytle
+  - label: style
     prefix: style/
 commentMessage: 'Branch ${branchName} created for issue: ${issue.title}'
 copyIssueDescriptionToPR: true
