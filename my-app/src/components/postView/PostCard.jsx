@@ -4,18 +4,18 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import OptionModal from "./OptionModal/OptionModal";
-import ConfirmModal from "./ConfirmModal/ConfirmModal";
-import heart_active from "../assets/icon/icon-heart-active.png";
-import heart from "../assets/icon/icon-heart.png";
-import comment from "../assets/icon/icon-message-circle.png";
+import OptionModal from "../optionModal/OptionModal";
+import ConfirmModal from "../confirmModal/ConfirmModal";
+import heart_active from "../../assets/icon/icon-heart-active.png";
+import heart from "../../assets/icon/icon-heart.png";
+import comment from "../../assets/icon/icon-message-circle.png";
 import styled from "styled-components";
 import axios from "axios";
-import plusimg from "../assets/icon/icon-more-vertical.png";
-import Toast from "./Toast";
+import plusimg from "../../assets/icon/icon-more-vertical.png";
+import Toast from "../toast/Toast";
 import { v4 } from "uuid";
-import errorimg from "../assets/imageNotFound.png";
-import basicprofile from "../assets/basic-profile-img.png";
+import errorimg from "../../assets/imageNotFound.png";
+import basicprofile from "../../assets/basic-profile-img.png";
 
 const Cont = styled.div`
     display: flex;

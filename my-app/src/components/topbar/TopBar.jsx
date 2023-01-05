@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components"
-import Button from "./Button"
-import iconArrowLeft from "../assets/icon/icon-arrow-left.png"
-import iconSearch from "../assets/icon/icon-search.png"
-import iconMoreVertical from "../assets/icon/icon-more-vertical.png"
+import Button from "../button/Button"
+import iconArrowLeft from "../../assets/icon/icon-arrow-left.png"
+import iconSearch from "../../assets/icon/icon-search.png"
+import iconMoreVertical from "../../assets/icon/icon-more-vertical.png"
 import { useNavigate } from 'react-router-dom';
-import Logo from "../assets/logo.png"
+import Logo from "../../assets/logo.png"
 
 const TopBarCont = styled.div`
     position: sticky;

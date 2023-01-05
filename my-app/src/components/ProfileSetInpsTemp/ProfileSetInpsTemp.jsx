@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import axios from "axios";
-import ProfileImageSet from "../ProfileImageSet/ProfileImageSet";
+import ProfileImageSet from "../aProfileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
-import Inp from "../../components/userinput/Inp";
+import Inp from "../userinput/Inp";
 import ProfileSetCont from "./profileSetINpsTemp.style";
-import Warning from "../../components/Warning";
+import Warning from "../userinput/Warning";
 
 export default function ProfileSetInpsTemp({
     formId,

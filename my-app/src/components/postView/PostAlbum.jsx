@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
-import multiimg from "../assets/icon/icon-img-layers.png";
-import errorimg from "../assets/imageNotFound.png";
+import multiimg from "../../assets/icon/icon-img-layers.png";
+import errorimg from "../../assets/imageNotFound.png";
 
 
 export default function PostAlbum({data, myProfile, postDetailSrc}) {

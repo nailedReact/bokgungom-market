@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import ProfileImageSet from "../aProfileImageSet/ProfileImageSet";
+import ProfileImageSet from "../profileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
-import ProfileSetCont from "./profileSetINpsTemp.style";
+import ProfileSetCont from "./profileSetInps.style";
 import Warning from "../userinput/Warning";
 
 export default function ProfileSetTemp({

@@ -6,14 +6,14 @@ import { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import PostCard from './PostCard';
 import PostAlbum from "./PostAlbum"
-import { UserNameContext } from "../pages/profile/userprofile/Profile";
+import { UserNameContext } from "../../pages/profile/userprofile/Profile";
 import { useInView } from "react-intersection-observer"
 
-import IconListOn from "../assets/icon/icon-post-list-on.png"
-import IconListOff from "../assets/icon/icon-post-list-off.png"
-import IconAlbumOn from "../assets/icon/icon-post-album-on.png"
-import IconAlbumOff from "../assets/icon/icon-post-album-off.png"
-import IconNopost from "../assets/symbol-logo-gray.png"
+import IconListOn from "../../assets/icon/icon-post-list-on.png"
+import IconListOff from "../../assets/icon/icon-post-list-off.png"
+import IconAlbumOn from "../../assets/icon/icon-post-album-on.png"
+import IconAlbumOff from "../../assets/icon/icon-post-album-off.png"
+import IconNopost from "../../assets/symbol-logo-gray.png"
 
 const PostViewCont = styled.div`
     display: flex;
@@ -39,11 +39,7 @@ const BtnOption = styled.button`
 
 const AlbumCont = styled.div`
   display: grid; 
-  /* grid-template-rows: repeat(auto-fill, minmax(144px, 1fr)); */
-  /* grid-gap: 1em; */
   grid-template-columns: repeat(3, 1fr);
-  /* justify-items: stretch;  */
-  /* align-items: stretch; */
   position: relative;
 	width: 100%;
   grid-gap: 1px;
@@ -55,10 +51,6 @@ const PostCont =styled.div`
 `;
 
 const NoPost_Txt = styled.p`
-  /* font-style: normal;
-  font-weight: 400;
-  font-size: 20px; */
-  /* color: #767676; */
   margin-top: 20px;
 `
 const NoPost_img = styled.img`

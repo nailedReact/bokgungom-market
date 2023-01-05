@@ -12,11 +12,6 @@ const Cont = styled.div`
     right: 50px;
     top: 50px;
     padding: 12px 20px;
-    /* font-size: 14px; */
-    /* font-weight: 300; */
-    /* border: 1px solid var(--color-primary); */
-    /* outline: 1px solid white; */
-    /* border-radius: 5px; */
     border-left: 5px solid var(--color-primary);
     outline: 1px solid #C2C2C2;
     transition: all .2s;

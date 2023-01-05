@@ -1,5 +1,5 @@
 import React from 'react';
-import Topbtnicon from "../assets/icon/chevron-up.png";
+import Topbtnicon from "../../assets/icon/chevron-up.png";
 import styled from 'styled-components';
 
 

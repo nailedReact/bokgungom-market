@@ -1,36 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
-import ProfileImageSet from "../aProfileImageSet/ProfileImageSet";
+import ProfileImageSet from "../profileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
-import ProfileSetCont from "./profileSetINpsTemp.style";
+import ProfileSetCont from "./profileSetInps.style";
 import Warning from "../userinput/Warning";
 
-export default function ProfileSetTemp({
+export default function ProfileSetInpsTemp({
     formId,
-    prev,
     onInValidByUpper,
     onValidByUpper,
     onSubmitByUpper,
 }) {
-    const [initial, setInitial] = useState(null);
-
     const accountName = useRef(null);
     const accountId = useRef(null);
     const about = useRef(null);
     const nameAlert = useRef(null);
     const idAlert = useRef(null);
     const submitData = useRef({});
-
-    useEffect(() => {
-        if (Object.keys(prev).length > 0) {
-            accountName.current.value = prev.username;
-            accountId.current.value = prev.accountname;
-            about.current.value = prev.intro;
-            setInitial(prev.image);
-        }
-    }, [prev]);
-
 
     // 이름 인풋창에서 포커스 아웃시 동작하는 함수
     const onNameBlurHandle = (e) => {
@@ -45,6 +32,7 @@ export default function ProfileSetTemp({
         } else {
             // 이름 패턴이 유효할 경우
             nameAlert.current.style.display = "none";
+
             if (
                 // 모든 인풋창에 값이 있고 아이디 경고창이 없을 때(아이디가 유효할 때)
                 accountName.current.value &&
@@ -63,10 +51,6 @@ export default function ProfileSetTemp({
             idAlert.current.style.display = "block";
 
             onInValidByUpper(); // 제출 버튼 비활성화
-        } else if (prev && e.target.value === prev.accountname) {
-            // 예전 아이디랑 지금 아이디랑 같을 경우
-            idAlert.current.style.display = "none";
-            return;
         } else {
             // 아이디 패턴이 유효할 경우
             try {
@@ -114,12 +98,12 @@ export default function ProfileSetTemp({
         const formData = new FormData();
         formData.append("image", imgdata);
         submitData.current["imageBeforeSubmit"] = formData;
-        console.log(submitData.current);
     };
 
     // 폼 제출시 동작하는 함수
     const onSubmitHandle = async (e) => {
         e.preventDefault();
+
         if (submitData.current.imageBeforeSubmit) {
             try {
                 const res = await fetch(
@@ -137,7 +121,7 @@ export default function ProfileSetTemp({
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;
                 onSubmitByUpper(submitData);
-                console.log("프로필 수정 성공 - 1");
+                console.log("회원가입 성공 - 1");
             } catch (err) {
                 console.log(err);
             }
@@ -146,13 +130,12 @@ export default function ProfileSetTemp({
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-            console.log("프로필 수정 성공 - 2");
         }
     };
 
     return (
         <ProfileSetCont id={formId} onSubmit={onSubmitHandle}>
-            <ProfileImageSet initial={initial} onChangeByUpper={ImgChangeHandle} />
+            <ProfileImageSet onChangeByUpper={ImgChangeHandle} />
             <UserInput inputId={"userName"} label={"사용자 이름"}>
                 <Inp
                     className={"inp"}
@@ -167,7 +150,7 @@ export default function ProfileSetTemp({
                     required
                 />
             </UserInput>
-            <Warning ref={nameAlert} className={"warn"}>* 한글 또는 영어를 2~10자 이내로 입력하세요.</Warning>
+            <Warning ref={nameAlert}>* 한글 또는 영어를 2~10자 이내로 입력하세요.</Warning>
             <UserInput inputId={"accountID"} label={"계정 ID"}>
                 <Inp
                     className={"inp"}
@@ -182,7 +165,7 @@ export default function ProfileSetTemp({
                     required
                 />
             </UserInput>
-            <Warning ref={idAlert} className={"warn"}>* 영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</Warning>
+            <Warning ref={idAlert}>* 영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</Warning>
             <UserInput inputId={"about"} label={"소개"}>
                 <Inp
                     className={"inp"}

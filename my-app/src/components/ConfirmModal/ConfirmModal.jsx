@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Backdrop from "../Backdrop/Backdrop";
+import Backdrop from "../backdrop/Backdrop";
 import { ConfirmlLayout } from "./confirmModal.style";
 
 export default function ConfirmModal({ confirmMsg, onConfirm, onCancle, buttonRight }) {
