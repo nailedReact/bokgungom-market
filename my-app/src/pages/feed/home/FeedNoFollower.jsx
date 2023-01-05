@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import symbolimg from "../../assets/symbol-logo-gray.png";
-import Button from "../../components/Button";
+import symbolimg from "../../../assets/symbol-logo-gray.png";
+import Button from "../../../components/button/Button";
 import { useNavigate } from 'react-router-dom';
 
 const FeedNoFollower = () => {

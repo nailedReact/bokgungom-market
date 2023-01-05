@@ -1,18 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import TopBar from "../../components/TopBar";
-import useAuth from "../../hook/useAuth";
-import { PostEditWrapper } from "../../components/postEditWrapper.style";
-import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
-import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
-import { UserProfileImg } from "../../components/postEditUserProfile.style";
-import Textarea from "../../components/Textarea/Textarea";
-import { Contentimg } from "../../components/postEditContentImg.style";
-import basicImg from "../../assets/basic-profile-img.png";
-import deleteIcon from "../../assets/icon/icon-delete.png";
-import useWindowSizeCustom from "../../hook/windowSize";
-import NavBar from "../../components/NavBar/NavBar";
-import Toast from "../../components/Toast";
+import TopBar from "../../../components/topbar/TopBar";
+import useAuth from "../../../hook/useAuth";
+import { PostEditWrapper } from "../post/postEditWrapper.style";
+import { ProductImgSetCont } from "../../../components/productImageSet/productImageSet.style";
+import { ImgUploadIcon } from "../../../components/imageUpload/imageUpload.style";
+import { UserProfileImg } from "../post/postEditUserProfile.style";
+import Textarea from "../../../components/textarea/Textarea";
+import { Contentimg } from "../post/postEditContentImg.style";
+import basicImg from "../../../assets/basic-profile-img.png";
+import deleteIcon from "../../../assets/icon/icon-delete.png";
+import useWindowSizeCustom from "../../../hook/windowSize";
+import NavBar from "../../../components/navBar/NavBar";
+import Toast from "../../../components/toast/Toast";
 
 let fileUrls = [];
 

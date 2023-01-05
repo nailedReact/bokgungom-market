@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router';
-import Button from '../../components/Button';
-import UserInput from '../../components/userinput/UserInput';
-import Inp from '../../components/userinput/Inp';
-import Warning from '../../components/Warning';
+import Button from '../../../components/button/Button';
+import UserInput from '../../../components/userinput/UserInput';
+import Inp from '../../../components/userinput/Inp';
+import Warning from '../../../components/userinput/Warning';
 import {
   Container,
   Form,
   Title
-} from "./loginRegister.style"
+} from "../loginRegister.style"
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);

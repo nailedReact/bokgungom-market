@@ -2,18 +2,18 @@
 // 상품 등록 페이지 이미지 업로드 및 API 코드 수정
 
 import { useState, useRef, useEffect } from 'react'
-import Inp from '../../components/userinput/Inp';
-import UserInput from '../../components/userinput/UserInput';
-import ImageUpload from "../../components/ImageUpload/ImageUpload";
-import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
-import Warning from '../../components/Warning';
-import TopBar from '../../components/TopBar';
-import NavBar from '../../components/NavBar/NavBar';
+import Inp from '../../../components/userinput/Inp';
+import UserInput from '../../../components/userinput/UserInput';
+import ImageUpload from "../../../components/imageUpload/ImageUpload";
+import { ProductImgSetCont } from "../../../components/productImageSet/productImageSet.style";
+import Warning from '../../../components/userinput/Warning';
+import TopBar from '../../../components/topbar/TopBar';
+import NavBar from '../../../components/navBar/NavBar';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
-import useAuth from '../../hook/useAuth';
-import Toast from '../../components/Toast';
-import useWindowSizeCustom from "../../hook/windowSize"
+import useAuth from '../../../hook/useAuth';
+import Toast from '../../../components/toast/Toast';
+import useWindowSizeCustom from "../../../hook/windowSize"
 
 const FormCont = styled.div`
     display: flex;
@@ -163,7 +163,7 @@ export default function UploadProduct() {
                         <UserInput label="이미지 업로드">
                             <img
                                 className={"productSampleImage"}
-                                src={require(`../../assets/product-img-empty.png`)}
+                                src={require(`../../../assets/product-img-empty.png`)}
                                 alt="상품 이미지 미리보기"
                                 ref={imagePre}
                             />

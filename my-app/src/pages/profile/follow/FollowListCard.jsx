@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import Button from '../../../components/Button';
+import Button from '../../../components/button/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import basicprofile from "../../../assets/basic-profile-img.png"

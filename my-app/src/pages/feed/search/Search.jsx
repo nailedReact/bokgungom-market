@@ -1,9 +1,9 @@
 /* eslint-disable no-const-assign */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import FollowListCard from '../profile/follow/FollowListCard';
-import TopBar from '../../components/TopBar';
-import NavBar from '../../components/NavBar/NavBar';
+import FollowListCard from '../../profile/follow/FollowListCard';
+import TopBar from '../../../components/topbar/TopBar';
+import NavBar from '../../../components/navBar/NavBar';
 
 export default function Search() {
     // const [search, setSearch] = useState("");

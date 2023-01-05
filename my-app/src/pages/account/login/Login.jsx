@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Inp from '../../components/userinput/Inp';
-import UserInput from '../../components/userinput/UserInput';
-import Button from '../../components/Button';
-import Warning from '../../components/Warning';
+import Inp from '../../../components/userinput/Inp';
+import UserInput from '../../../components/userinput/UserInput';
+import Button from '../../../components/button/Button';
+import Warning from '../../../components/userinput/Warning';
 import {
     Container,
     Form,
     Title,
     JoinLink
-} from "./loginRegister.style"
+} from "../loginRegister.style"
 
 export default function Login() {
     const emailInp = useRef(null);

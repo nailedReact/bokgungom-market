@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import InitialHeading from "../../components/InitialHeading/InitialHeading";
-import ProfileSetInpsTemp from "../../components/ProfileSetInpsTemp/ProfileSetInpsTemp";
-import Button from "../../components/Button";
+import InitialHeading from "../../../components/initialHeading/InitialHeading";
+import ProfileSetInpsTemp from "../../../components/profileSetInps/ProfileSetInps";
+import Button from "../../../components/button/Button";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router";

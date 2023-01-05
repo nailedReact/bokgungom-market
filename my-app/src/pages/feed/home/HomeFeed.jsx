@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react"
-import TopBar from "../../components/TopBar";
+import TopBar from "../../../components/topbar/TopBar";
 import axios from "axios";
-import FeedFollower from "../feed/FeedFollower";
-import FeedNoFollower from "../feed/FeedNoFollower";
+import FeedFollower from "./FeedFollower";
+import FeedNoFollower from "./FeedNoFollower";
 import { useState } from "react";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../../components/navBar/NavBar";
 import {
   FeedCont, PageBtn, PrevNextBtn, Pagenation, ButtonCont
 } from "./homeFeed.style"
-import Topbtn from "../../components/Topbtn";
+import Topbtn from "../../../components/button/Topbtn";
 
 export default function HomeFeed() {
   const [allresMsg, setAllresMsg] = useState([]);

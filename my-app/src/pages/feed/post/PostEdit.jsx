@@ -1,20 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router";
-import TopBar from "../../components/TopBar";
-import Textarea from "../../components/Textarea/Textarea";
+import TopBar from "../../../components/topbar/TopBar";
+import Textarea from "../../../components/textarea/Textarea";
 import axios from "axios";
-import { PostEditWrapper } from "../../components/postEditWrapper.style";
-import { Contentimg } from "../../components/postEditContentImg.style";
-import { UserProfileImg } from "../../components/postEditUserProfile.style";
-import { ProductImgSetCont } from "../../components/ProductImageSet/productImageSet.style";
-import { ImgUploadIcon } from "../../components/ImageUpload/imageUpload.style";
-import basicImg from "../../assets/basic-profile-img.png";
-import deleteIcon from "../../assets/icon/icon-delete.png";
-import Toast from "../../components/Toast";
-import NavBar from "../../components/NavBar/NavBar";
-import useAuth from "../../hook/useAuth";
-import useWindowSizeCustom from "../../hook/windowSize";
+import { PostEditWrapper } from "./postEditWrapper.style";
+import { Contentimg } from "./postEditContentImg.style";
+import { UserProfileImg } from "./postEditUserProfile.style";
+import { ProductImgSetCont } from "../../../components/productImageSet/productImageSet.style";
+import { ImgUploadIcon } from "../../../components/imageUpload/imageUpload.style";
+import basicImg from "../../../assets/basic-profile-img.png";
+import deleteIcon from "../../../assets/icon/icon-delete.png";
+import Toast from "../../../components/toast/Toast";
+import NavBar from "../../../components/navBar/NavBar";
+import useAuth from "../../../hook/useAuth";
+import useWindowSizeCustom from "../../../hook/windowSize";
 
 let fileUrls = []; // 이미지 서버 업로드용(이미지 서버 등록 API)
 let renderings = []; // 화면에 띄우는 거

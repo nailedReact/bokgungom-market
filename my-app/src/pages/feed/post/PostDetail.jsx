@@ -8,18 +8,18 @@ import React, {
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import styled from "styled-components";
-import TopBar from "../../components/TopBar";
-import PostCard from "../../components/PostCard";
-import CommentItem from "../../components/CommentItem/CommentItem";
-import CommentInp from "../../components/CommentInp/CommentInp";
-import OptionModal from "../../components/OptionModal/OptionModal";
-import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
-import Toast from "../../components/Toast";
-import { formattedDate } from "./feed/dateformat";
-import useAuth from "../../hook/useAuth";
-import usePostDetail from "../../hook/usePostDetail";
-import basicImg from "../../assets/basic-profile-img.png";
-import Button from "../../components/Button";
+import TopBar from "../../../components/topbar/TopBar";
+import PostCard from "../../../components/postView/PostCard";
+import CommentItem from "../../../components/commentItem/CommentItem";
+import CommentInp from "../../../components/commentInp/CommentInp";
+import OptionModal from "../../../components/optionModal/OptionModal";
+import ConfirmModal from "../../../components/confirmModal/ConfirmModal";
+import Toast from "../../../components/toast/Toast";
+import { formattedDate } from "../dateformat";
+import useAuth from "../../../hook/useAuth";
+import usePostDetail from "../../../hook/usePostDetail";
+import basicImg from "../../../assets/basic-profile-img.png";
+import Button from "../../../components/button/Button";
 import { Link } from "react-router-dom";
 
 const CommentListBox = styled.ul`

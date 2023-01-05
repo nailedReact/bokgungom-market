@@ -1,5 +1,5 @@
 import React from 'react';
-import PostCard from '../../components/PostCard';
+import PostCard from '../../../components/postView/PostCard';
 
 export default function FeedFollower({data, postDetailSrc}) {
   return (

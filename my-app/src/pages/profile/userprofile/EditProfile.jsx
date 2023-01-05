@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
-import TopBar from "../../../components/TopBar";
-import ProfileSetInpsTempLogIn from "../../../components/ProfileSetInpsTemp/ProfileSetInpsTempLogIn";
+import TopBar from "../../../components/topbar/TopBar";
+import ProfileSetInpsTempLogIn from "../../../components/profileSetInps/ProfileSetInpsLogIn";
 import styled from "styled-components";
-import NavBar from "../../../components/NavBar/NavBar";
-import Toast from "../../../components/Toast";
+import NavBar from "../../../components/navBar/NavBar";
+import Toast from "../../../components/toast/Toast";
 
 const ProfileEditCont = styled.div`
     padding: 40px;
