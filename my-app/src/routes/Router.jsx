@@ -1,22 +1,22 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Login from "../pages/account/Login";
-import Register from "../pages/account/Register";
+import Login from "../pages/account/login/Login";
+import Register from "../pages/account/register/Register";
 // import EditProfile from "../pages/account/EditProfile"
-import EditProfileSignUp from "../pages/account/EditProfileSignUp";
+import EditProfileSignUp from "../pages/account/register/EditProfileSignUp";
 import Splash from "../pages/splash/Splash";
-import HomeFeed from "../pages/feed/HomeFeed";
-import PostDetail from "../pages/feed/PostDetail";
-import UploadPost from "../pages/feed/UploadPost";
-import PostEdit from "../pages/feed/PostEdit";
-import UploadProduct from "../pages/feed/UploadProduct";
+import HomeFeed from "../pages/feed/home/HomeFeed";
+import PostDetail from "../pages/feed/post/PostDetail";
+import UploadPost from "../pages/feed/uploadPostProduct/UploadPost";
+import PostEdit from "../pages/feed/post/PostEdit";
+import UploadProduct from "../pages/feed/uploadPostProduct/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
-import Error from "../pages/error/Error";
+import Error from "../pages/errorLoading/Error";
 import Profile from "../pages/profile/userprofile/Profile";
-import EditProfile from "../pages/profile/follow/EditProfile";
+import EditProfile from "../pages/profile/userprofile/EditProfile";
 import Follower from "../pages/profile/follow/Follower";
 import Following from "../pages/profile/follow/Following";
-import Search from "../pages/feed/Search";
+import Search from "../pages/feed/search/Search";
 
 export default function Router() {
     return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router";
-import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import ConfirmModal from "../confirmModal/ConfirmModal";
 import NavBarItem from "./NavBarItem";
 import { NavBarCont, NavBarUl } from "./navBar.style";
 import iconHome from "../../assets/icon/icon-home.png";
@@ -12,7 +12,7 @@ import iconEditFill from "../../assets/icon/icon-edit-fill.png";
 import iconUser from "../../assets/icon/icon-user.png";
 import iconUserFill from "../../assets/icon/icon-user-fill.png";
 import useAuth from "../../hook/useAuth";
-import Loading from "../../pages/error/Loading";
+import Loading from "../../pages/errorLoading/Loading";
 import iconUserLogOut from "../../assets/icon/icon-user-logout.png";
 import iconBox from "../../assets/icon/icon-box.png";
 import iconBoxFill from "../../assets/icon/icon-box-fill.png";

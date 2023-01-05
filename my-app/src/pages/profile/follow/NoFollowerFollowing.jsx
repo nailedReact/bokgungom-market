@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
-import Button from '../../../components/Button';
-import TopBar from '../../../components/TopBar';
+import Button from '../../../components/button/Button';
+import TopBar from '../../../components/topbar/TopBar';
 import styled from 'styled-components';
 import BearImg from "../../../assets/nofollow.png"
 

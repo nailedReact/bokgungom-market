@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import TopBar from "../../components/TopBar";
+import TopBar from "../../components/topbar/TopBar";
 import ChatItem from "./chat/ChatItem/ChatItem";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/navBar/NavBar";
 import data from "./chat/chatdata.json";
 
 const ChatCont = styled.ul`

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import ImageUpload from "../../../../components/ImageUpload/ImageUpload";
-import { CommentInpCont } from "../../../../components/CommentInp/commentInp.style";
+import ImageUpload from "../../../../components/imageUpload/ImageUpload";
+import { CommentInpCont } from "../../../../components/commentInp/commentInp.style";
 
 export default function ChatInput() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);

@@ -5,8 +5,8 @@ import { useState,  useEffect } from 'react'
 import FollowListCard from './FollowListCard'
 import { useParams } from 'react-router';
 import NoFollowerFollowing from './NoFollowerFollowing';
-import NavBar from '../../../components/NavBar/NavBar';
-import TopBar from '../../../components/TopBar';
+import NavBar from '../../../components/navBar/NavBar';
+import TopBar from '../../../components/topbar/TopBar';
 import { FollowList } from "./followFollowing.style"
 import useAuth from '../../../hook/useAuth';
 

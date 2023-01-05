@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import ImageUpload from "../ImageUpload/ImageUpload.jsx";
+import ImageUpload from "../imageUpload/ImageUpload";
 import { ProfileImgSetCont } from "./profileImageSet.style.js";
 import styled from "styled-components";
 
