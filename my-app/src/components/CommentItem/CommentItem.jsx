@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { CommentItemCont } from "./commentItem.style";
 import iconMoreVertical from "../../assets/icon/icon-more-vertical.png";
-import { formattedDate } from "../../pages/feed/feed/dateformat";
+import { formattedDate } from "../../pages/feed/dateformat";
 import basicprofile from "../../assets/basic-profile-img.png"
 
 const BtnIcon = styled.button`

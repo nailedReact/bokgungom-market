@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import Button from '../../../components/Button'
+import Button from '../../../components/button/Button'
 import { useNavigate } from 'react-router-dom';
 import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'

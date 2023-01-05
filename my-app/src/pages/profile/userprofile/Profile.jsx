@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ProfileCard from './ProfileCard';
 import SaledProductCard from './SaledProductCard';
-import PostList from '../../../components/PostList'
+import PostList from '../../../components/postView/PostList'
 import useAuth from "../../../hook/useAuth";
-import Loading from '../../error/Loading';
-import TopBar from '../../../components/TopBar';
-import NavBar from '../../../components/NavBar/NavBar';
-import OptionModal from '../../../components/OptionModal/OptionModal';
-import ConfirmModal from '../../../components/ConfirmModal/ConfirmModal';
-import Topbtn from "../../../components/Topbtn";
+import Loading from '../../errorLoading/Loading';
+import TopBar from '../../../components/topbar/TopBar';
+import NavBar from '../../../components/navBar/NavBar';
+import OptionModal from '../../../components/optionModal/OptionModal';
+import ConfirmModal from '../../../components/confirmModal/ConfirmModal';
+import Topbtn from "../../../components/button/Topbtn";
 
 
 const Cont = styled.div`
