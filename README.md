@@ -35,6 +35,7 @@
           <th colspan="2" style="text-align:center;"><span style="font-size:16px;">프론트엔드</span></th>
           <th style="text-align:center;"><span style="font-size:16px">백엔드</span></th>
           <th style="text-align:center;"><span style="font-size:16px">배포</span></th>
+          <th colspan="2" style="text-align:center;"><span style="font-size:16px;">디자인</span></th>
         </tr>
       </thead>
       <tbody>
@@ -55,32 +56,70 @@
             <br>
             <code>Netlify</code>
           </td>
+          <td align="center" style="text-align:center; margin: 0 auto;">
+            <a href="https://www.adobe.com/kr/products/photoshop/landpa.html?gclid=Cj0KCQiA5NSdBhDfARIsALzs2EDDufpNAEYRcvM4knMcv6wZDXh2ZI8-4n74LBIJefRgHhmJ1PH_i6IaAtcUEALw_wcB&sdid=TBJRLR9V&mv=search&ef_id=Cj0KCQiA5NSdBhDfARIsALzs2EDDufpNAEYRcvM4knMcv6wZDXh2ZI8-4n74LBIJefRgHhmJ1PH_i6IaAtcUEALw_wcB:G:s&s_kwcid=AL!3085!3!460585117877!e!!g!!photoshop!97967719!4837432399" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1602172134/noticon/owhrsm7fwznd39eli3d6.png" alt="Adobe Photoshop" height="50" /></a>
+            <br>
+            <code>Adobe Photoshop</code>
+          </td>
+          <td align="center" style="text-align:center; margin: 0 auto;">
+            <a href="https://www.figma.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1640982247/noticon/tpvr26zp02angin4t0jv.png" alt="Styled Components" height="50" /></a>
+            <br>
+            <code>Figma</code>
+          </td>
         </tr>
       </tbody>
 </table>
 <br>
 
-### modules
+### ⛓️ node modules
 |모듈명|용도|
 |-|-|
 |react-router-dom|페이지 라우팅을 위해 사용|
 |axios|서버와 통신을 위해 사용|
 |react-intersection-observer| 무한 스크롤 구현을 위해 사용 |
-|styled-reset| 스타일 구현의 편리를 위해 사용 |
+|styled-reset| 스타일 구현의 편의를 위해 사용 |
 |uuid| 컴포넌트 리스트의 유니크한 key 생성을 위해 사용 |
 
 <br>
 
-## 📊 버전 & 프로젝트 진행 상황 관리
+## <a href="https://github.com/nailedReact/bokgungom-market/wiki/%ED%98%91%EC%97%85-&-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%83%9D%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C" target="_blank">🤝 협업 방식</a>
 
-- [🔘 GitHub Issues](https://github.com/orgs/nailedReact/projects/1/views/1)
-- [🗂️ GitHub Projects](https://github.com/orgs/nailedReact/projects/1/views/1)
+1. 프로젝트 노션 페이지 내 남은 작업 목록에서 원하는 작업을 분담합니다.
+2. 해당하는 업무에 대해 **GitHub Issue**를 생성합니다.
+3. GitHub Actions에 의해 자동으로 생성된 브랜치로 전환하여 해당하는 업무를 진행합니다.
+4. 작업을 완료하면 작업한 브랜치에서(main브랜치 X) 코드를 push합니다.
+5. **PR(Pull Request)** 을 오픈합니다.
+- PR(pull request)을 오픈하면, 푸시한 사람 외 다른 팀원 1명이 코드를 확인하고 승인합니다.
+- PR이 오픈되면 다른 팀원들이 바로 확인할 수 있도록 디스코드 웹 훅 설정을 통해 팀 채팅방으로 알람을 받을 수 있도록 했습니다.
+<img style="margin: 10px" width=60% src="./preview/discord.png" alt="디스코드 깃허브 알람"/>
+
+- 코드 리뷰 & 승인은 생산성을 위해 리뷰어를 1명으로 지정하되, 팀원들이 코드 스타일을 공유하며 서로 잘 이해할 수 있도록 순서를 정해 돌아가며 골고루 리뷰하도록 했습니다.
+    - 컨펌 순서
+        - **성준** : `수현` → `세민` → `혜지`
+        - **수현** : `성준` → `혜지` → `세민`
+        - **세민** : `혜지` → `수현` → `성준`
+        - **혜지** : `세민` → `성준` → `수현`
+6. PR이 merge되어 close 되면 해당 이슈는 자동으로 Done상태로 변경됩니다.
+
+<br>
+
+## 📊 프로젝트 진행 상황 관리
+
+- <a href="https://github.com/nailedReact/bokgungom-market/issues?q=is%3Aissue+is%3Aclosed" target="_blank">🔘 GitHub Issues</a>
+    - 간편한 이슈 생성을 위해 이슈 템플릿을 만들어 사용했습니다.
+    - 이슈 템플릿으로 어떤 이슈인지, 어떤 페이지에 해당하는 지, 구현 해야 하는 내용이 무엇인지를 적도록 했습니다.
+    <img style="margin: 10px" src="./preview/issue example.png" alt="이슈 예시"/>
+    - 팀원이 현재 어떤 작업을 진행하고 있는지를 바로 알 수 있어 의사소통 비용을 줄일 수 있었습니다. 
+- <a href="https://github.com/orgs/nailedReact/projects/1/views/1" target="_blank">🗂️ GitHub Projects</a>
+    - 칸반 보드로 프로젝트 진행 상황을 한 눈에 확인할 수 있어 일정을 관리하기 수월했습니다.
+    <img style="margin: 10px" src="./preview/project.png" alt="디스코드 깃허브 알람"/>
 
 <br>
 
 ## 🔀 브랜치 전략
 
 ### 👍 GitHub Flow 전략
+<img style="margin: 10px" src="./preview/git branch history min.png" alt="디스코드 깃허브 알람"/>
 
 - 개발과 동시에 지속적으로 배포를 진행할 것이 아니라, 기능을 모두 개발하고 최종적으로 배포를 할 예정이었기 때문에 Git Flow 전략보다는 GitHub Flow 전략이 적합하다고 생각했습니다.
 - 프로젝트 기간 동안 팀원들이 같은 시간에 작업하기 때문에 잦은 충돌이 발생할 것을 우려하여 충돌의 크기를 줄이고자 GitHub Flow 전략을 채택하여 작은 단위로 이슈를 쪼개 이슈 별로 브랜치를 분기하고 main 브랜치에 지속적으로 merge 하는 방식으로 진행했습니다.
@@ -90,6 +129,7 @@
 - 이슈를 생성하면 GitHub Action으로 해당 이슈에 해당하는 브랜치가 자동으로 생성되도록 설정하여 브랜치명을 고민하고 브랜치를 생성하는 시간을 줄였습니다.
     - [브랜치 자동화 설정 내용](https://github.com/nailedReact/react-app/wiki/%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9)
     - [브랜치 history](https://github.com/nailedReact/react-app/blob/main/preview/git%20branch%20history.png)
+    - 예) 자동 생성된 브랜치를 pull 하고 git checkout -t origin/feat/issue-13하여 
 
 <br>
 
@@ -400,21 +440,3 @@
 </tr>
 
 </table>
-
-## 추가기능 구현 부분
-
-### 1. 페이지 네이션, 무한 스크롤, 더보기 버튼, 다양한 방식의 UX 디자인 구현
-- 홈 피드에서 페이지 네이션 구현
-
-- 개인 프로필내 피드를 무한 스크롤로 구현
-
-- 댓글 부분을 더보기 버튼으로 구현
-
-### 2. 예외 처리 구현 
-- 개인 피드가 없을 경우 
-
-- 업로드 오류로 인한 이미지가 없을 경우
-
-- 
-
-### 3. 
