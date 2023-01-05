@@ -9,9 +9,8 @@ import Loading from '../../errorLoading/Loading';
 import TopBar from '../../../components/topbar/TopBar';
 import NavBar from '../../../components/navBar/NavBar';
 import OptionModal from '../../../components/optionModal/OptionModal';
-import ConfirmModal from '../../../components/confirmModal/ConfirmModal';
+import ConfirmModal from "../../../components/confirmModal/ConfirmModal"
 import Topbtn from "../../../components/button/Topbtn";
-
 
 const Cont = styled.div`
   display:flex;
