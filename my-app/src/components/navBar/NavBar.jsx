@@ -3,19 +3,8 @@ import { useLocation } from "react-router";
 import ConfirmModal from "../confirmModal/ConfirmModal";
 import NavBarItem from "./NavBarItem";
 import { NavBarCont, NavBarUl } from "./navBar.style";
-import iconHome from "../../assets/icon/icon-home.png";
-import iconHomeFill from "../../assets/icon/icon-home-fill.png";
-import iconMessageCircle from "../../assets/icon/icon-message-circle.png";
-import iconMessageCircleFill from "../../assets/icon/icon-message-circle-fill.png";
-import iconEdit from "../../assets/icon/icon-edit.png";
-import iconEditFill from "../../assets/icon/icon-edit-fill.png";
-import iconUser from "../../assets/icon/icon-user.png";
-import iconUserFill from "../../assets/icon/icon-user-fill.png";
 import useAuth from "../../hook/useAuth";
 import Loading from "../../pages/errorLoading/Loading";
-import iconUserLogOut from "../../assets/icon/icon-user-logout.png";
-import iconBox from "../../assets/icon/icon-box.png";
-import iconBoxFill from "../../assets/icon/icon-box-fill.png";
 import { useNavigate } from "react-router";
 
 export default function NavBar() {
@@ -23,15 +12,15 @@ export default function NavBar() {
 
     const data = useAuth();
     // basic은 기본 아이콘, filled는 색깔이 칠해진 아이콘 입니다.
-    const homeIcons = { basic: iconHome, filled: iconHomeFill };
+    const homeIcons = { basic: "icon-home", filled: "icon-home-fill" };
     const chatIcons = {
-        basic: iconMessageCircle,
-        filled: iconMessageCircleFill,
+        basic: "icon-message-circle",
+        filled: "icon-message-circle-fill",
     };
-    const uploadIcon = { basic: iconEdit, filled: iconEditFill };
-    const userIcons = { basic: iconUser, filled: iconUserFill };
-    const userLogoutIcons = { basic: iconUserLogOut, filled: iconUserLogOut };
-    const uploadProductIcon = { basic: iconBox, filled: iconBoxFill };
+    const uploadIcon = { basic: "icon-edit", filled: "icon-edit-fill" };
+    const userIcons = { basic: "icon-user", filled: "icon-user-fill" };
+    const userLogoutIcons = { basic: "icon-logout", filled: "icon-logout" };
+    const uploadProductIcon = { basic: "icon-box", filled: "icon-box-fill" };
     // currentPath는 현재 브라우저 페이지를 나타냅니다.
     const location = useLocation();
     const currentPath = location.pathname;

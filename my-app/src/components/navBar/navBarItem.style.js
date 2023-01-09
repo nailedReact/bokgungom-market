@@ -1,18 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Icon = styled.div`
-    width: 24px;
-    height: 24px;
-    background: ${(props) => `url(${props.icon.basic})`} no-repeat center / cover;
-    &.activated {
-        background: ${(props) => `url(${props.icon.filled})`} no-repeat center / cover;
-    }
-`
 export const StyledLink = styled(Link)`
     display: flex;
     flex-direction: column;
-
     align-items: center;
     padding: 10px 20px;
     font-size: 10px;
@@ -27,5 +18,8 @@ export const StyledLink = styled(Link)`
             background-color: #C6D9E3;
             border-radius: 10px;
         }
+    }
+    & svg {
+        fill: none;
     }
 `;
