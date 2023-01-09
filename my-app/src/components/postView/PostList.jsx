@@ -8,12 +8,8 @@ import PostCard from './PostCard';
 import PostAlbum from "./PostAlbum"
 import { UserNameContext } from "../../pages/profile/userprofile/Profile";
 import { useInView } from "react-intersection-observer"
-
-import IconListOn from "../../assets/icon/icon-post-list-on.png"
-import IconListOff from "../../assets/icon/icon-post-list-off.png"
-import IconAlbumOn from "../../assets/icon/icon-post-album-on.png"
-import IconAlbumOff from "../../assets/icon/icon-post-album-off.png"
 import IconNopost from "../../assets/symbol-logo-gray.png"
+import SVGIcon from '../icon/SVGIcon';
 
 const PostViewCont = styled.div`
     display: flex;
@@ -25,15 +21,22 @@ const PostViewCont = styled.div`
 const BtnOption = styled.button`
     width: 26px;
     height: 26px;
-    background-color: inherit;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: none;
+    & p {
+      text-indent: -9999px;
+    }
+    & svg {
+      margin-left: -6px;
+    }
     &.list {
-      background-image: ${(props) => (props.view === 'list'? `url(${IconListOn})` : `url(${IconListOff})`)};
+      & svg {
+            filter: ${(props) => (props.view === 'list'? "brightness(50%)" : "brightness(100%)")};
+        }
     }
     &.album {
-      background-image: ${(props) => (props.view === 'list'? `url(${IconAlbumOff})` : `url(${IconAlbumOn})`)};
+      & svg {
+            filter: ${(props) => (props.view === 'list'? "brightness(100%)" : "brightness(50%)")};
+        }
     }
 `
 
@@ -153,7 +156,7 @@ export default function PostList({isProfilePage}) {
   }, [resMsg]);
 
   const handleChangeView = (e) => {
-    const type = e.target.className.split(' ').pop();
+    const type = view === "list" ? "album" : "list";
     setView(type);
   }
   return (
@@ -161,8 +164,15 @@ export default function PostList({isProfilePage}) {
     { resMsg.length === 0 ? <NoPost_Cont><NoPost_img src={IconNopost} alt="아이콘" /> <NoPost_Txt>게시물이 없습니다</NoPost_Txt></NoPost_Cont> : <PostCont>
       {isProfilePage ?
         <PostViewCont>
-          <BtnOption className='list' onClick={handleChangeView} view={view}></BtnOption>
-          <BtnOption className='album' onClick={handleChangeView} view={view}></BtnOption>
+          <BtnOption className='list' onClick={handleChangeView} view={view}>
+            <SVGIcon id="icon-post-list" alt="게시글 리스트형 보기 버튼" width="26" height="26"/>
+            <p>게시글 리스트형 보기 버튼</p>
+          </BtnOption>
+          
+          <BtnOption className='album' onClick={handleChangeView} view={view}>
+            <SVGIcon id="icon-post-album" alt="게시글 앨범형 보기 버튼" width="26" height="26"/>
+            <p>게시글 앨범형 보기 버튼</p>
+          </BtnOption>
         </PostViewCont>
       : <></>}
       {view === "list" ? 

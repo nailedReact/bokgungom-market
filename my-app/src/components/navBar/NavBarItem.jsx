@@ -1,4 +1,5 @@
-import { StyledLink, Icon } from "./navBarItem.style";
+import { StyledLink } from "./navBarItem.style";
+import SVGIcon from "../icon/SVGIcon";
 
 export default function NavBarItem({ linkSrc, iconSrc, navTxt, currentPath }) {
     return (
@@ -7,7 +8,11 @@ export default function NavBarItem({ linkSrc, iconSrc, navTxt, currentPath }) {
             icon={iconSrc}
             className={currentPath.includes(linkSrc) ? "activated" : ""}
         >
-            <Icon icon={iconSrc} className={currentPath === linkSrc || currentPath === linkSrc + "/edit/" ? "activated" : ""}/>
+            {currentPath === linkSrc || currentPath === linkSrc + "/edit/"
+            ?
+                <SVGIcon id={iconSrc.filled} alt={navTxt}/>
+            :
+                <SVGIcon id={iconSrc.basic} alt={navTxt}/>}
             {navTxt}
         </StyledLink>
     );
