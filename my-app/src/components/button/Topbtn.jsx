@@ -9,6 +9,12 @@ const TopbtnCont = styled.div`
   @media screen and (max-width: 768px){
     margin-bottom: 60px;
   }
+
+  & p {
+    width: 0;
+    height: 0;
+    font-size: 0;
+  }
 `
 
 const Topbutton = styled.button`
@@ -16,13 +22,10 @@ const Topbutton = styled.button`
   background-color: #4584a3;
   border-radius: 50%;
   box-shadow: rgb(0 0 0 / 25%) 0px 3px 10px;
-  :hover{
+  &:hover{
     background-color: #78cafe;;
   }
-  & img {
-    width: 20px;
-    height: 20px;
-  }
+
 `
 
 export default function Topbtn() {
@@ -36,6 +39,7 @@ export default function Topbtn() {
 
   return (
     <TopbtnCont><Topbutton onClick={scrollToTop} > 
+    <p>페이지 상단으로 이동하기 버튼</p>
     <SVGIcon id="chevron-up" alt="페이지 상단으로 이동하기 버튼" width="20" height="20"/>
     </Topbutton></TopbtnCont>
   )
