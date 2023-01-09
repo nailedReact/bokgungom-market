@@ -1,7 +1,5 @@
-import React from 'react';
-import Topbtnicon from "../../assets/icon/chevron-up.png";
 import styled from 'styled-components';
-
+import SVGIcon from '../icon/SVGIcon';
 
 const TopbtnCont = styled.div`
   position: fixed;
@@ -37,6 +35,8 @@ export default function Topbtn() {
   }
 
   return (
-    <TopbtnCont><Topbutton onClick={scrollToTop} > <img src={Topbtnicon} alt="탑버튼"/> </Topbutton></TopbtnCont>
+    <TopbtnCont><Topbutton onClick={scrollToTop} > 
+    <SVGIcon id="chevron-up" alt="페이지 상단으로 이동하기 버튼" width="20" height="20"/>
+    </Topbutton></TopbtnCont>
   )
 }
