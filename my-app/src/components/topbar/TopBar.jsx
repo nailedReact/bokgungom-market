@@ -28,7 +28,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
         <TopBarCont>
             <LeftCont>
                 {TypeLeft === "A" && !title ? <>
-                    <BtnIcon action="back" onClick={() => navigate(-1)}><SVGIcon id="icon-arrow-left" alt="뒤로가기 버튼"/></BtnIcon>
+                    <BtnIcon action="back" onClick={() => navigate(-1)}>뒤로가기 버튼<SVGIcon id="icon-arrow-left" alt="뒤로가기 버튼"/></BtnIcon>
                     <LogoCont onClick={handleClickLogo}/>
                     </>
                 : <></>}
@@ -39,7 +39,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 : <></>}
                 {TypeLeft === "A" && title ?
                 <>
-                    <BtnIcon action="back" onClick={() => navigate(-1)}><SVGIcon id="icon-arrow-left" alt="뒤로가기 버튼"/></BtnIcon>
+                    <BtnIcon action="back" onClick={() => navigate(-1)}>뒤로가기 버튼<SVGIcon id="icon-arrow-left" alt="뒤로가기 버튼"/></BtnIcon>
                     <div>{title}</div>
                 </>
                 : <></>}
@@ -47,7 +47,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
             
             <RightCont>
                 {TypeRight === "0"  && <></>}
-                {TypeRight === "1"  && <BtnIcon action="more" onClick={onClickModal}><SVGIcon id="icon-more" alt="검색하기 버튼"/> </BtnIcon>}
+                {TypeRight === "1"  && <BtnIcon action="more" onClick={onClickModal}>더보기 버튼<SVGIcon id="icon-more" alt="더보기 버튼"/> </BtnIcon>}
                 {TypeRight === "2"  && <>
                 <Searchinput
                     type="text"
@@ -56,7 +56,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                     onKeyUp = {onChangeByUpper[1]}></Searchinput>
                 {/* <SearchBtn onClick={onClickGetMsg}></SearchBtn> */}
                 </>}
-                {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}><SVGIcon id="icon-search" alt="검색하기 버튼"/></BtnIcon>}
+                {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}>검색하기 버튼<SVGIcon id="icon-search" alt="검색하기 버튼"/></BtnIcon>}
                 {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} onClick={onClickGetMsg} disabled={right4Ctrl.isDisabled}>저장</Button>}
                 {/* disabled={right4Ctrl.isDisabled.isBtnVisible} */}
             </RightCont>
