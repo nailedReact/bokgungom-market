@@ -2,6 +2,13 @@ import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Toast from "../../components/toast/Toast";
 import { BgCont, Bear, SplashModal, BtnSocialLogin, LoginRegister, LogoCont, Logo } from "./splash.style.js"
+import SocialSpriteSVG from "../../assets/icon/social_icons.svg"
+
+const SocialSVG = ({letter, color, size=24}) => (
+    <svg className="svg-letter" fill={color} width={size} height={size}>
+        <use href={`${SocialSpriteSVG}#${letter}`} />
+    </svg>
+)
 
 export default function Splash() {
     const modalRef = useRef();
@@ -50,12 +57,15 @@ export default function Splash() {
             </LogoCont>
             <SplashModal ref={modalRef}>
                 <BtnSocialLogin className="kakao" onClick={handleShowToast}>
+                <SocialSVG letter="kakao"/>
                     카카오톡 계정으로 로그인
                 </BtnSocialLogin>
                 <BtnSocialLogin className="google" onClick={handleShowToast}>
+                <SocialSVG letter="google"/>
                     구글 아이디로 로그인
                 </BtnSocialLogin>
                 <BtnSocialLogin className="facebook" onClick={handleShowToast}>
+                <SocialSVG letter="facebook"/>
                     페이스북 계정으로 로그인
                 </BtnSocialLogin>
                 <LoginRegister>

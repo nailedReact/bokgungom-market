@@ -1,10 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import spriteImg from "../../assets/splash_sprites.png"
-import IconKakao from "../../assets/icon/icon-kakao.png"
-import IconKakaoHover from "../../assets/icon/icon-kakao-hover.png"
-import IconGoogle from "../../assets/icon/icon-google.png"
-import IconFaceBook from "../../assets/icon/icon-facebook.png"
-import IconFaceBookHover from "../../assets/icon/icon-facebook-hover.png"
 import LogoImg from "../../assets/logotypo.png"
 
 const CharacterAni = keyframes`
@@ -60,13 +55,6 @@ export const SplashModal = styled.article`
     @media screen and (max-width: 768px){
         font-size: 14px;
     }
-    /* @media screen and (min-width: 768px){
-        width: 30%;
-        left: 0;
-        border-radius: 0px 10px 10px 0;
-        height: 50%;
-        transform: translate3d(-100%, 0, 0);
-    } */
 `
 
 export const BtnSocialLogin = styled.button`
@@ -84,51 +72,36 @@ export const BtnSocialLogin = styled.button`
     @media screen and (max-width: 768px){
         font-size: 14px;
     }
-    &::before {
-        content: "";
-        display: block;
-        width: 24px;
-        height: 24px;
-        background-color: black;
+    & svg {
+        float: left;
         position: absolute;
         left: 14px;
     }
+
+    &:hover {
+        & svg {
+            filter: brightness(500%);
+        }
+    }
+
     &.kakao {
         border-color: #F2C94C;
-        &::before {
-            background: url(${IconKakao}) no-repeat 0 0 / cover;
-        }
         &:hover {
             background-color: #F2C94C;
-            &::before {
-                background: url(${IconKakaoHover}) no-repeat 0 0 / cover;
-            }
         }
     }
     &.google {
-        border-color: #767676;
-        &::before {
-            background: url(${IconGoogle}) no-repeat 0 0 / cover;
-        }
+        border-color: #C4C4C4;
         &:hover {
             background-color: #C4C4C4;
             color: #fff;
-            /* &::before {
-                background: url(${IconKakaoHover}) no-repeat 0 0 / cover;
-            } */
         }
     }
     &.facebook {
         border-color: #2D9CDB;
-        &::before {
-            background: url(${IconFaceBook}) no-repeat 0 0 / cover;
-        }
         &:hover {
             background-color: #2D9CDB;
             color: #fff;
-            &::before {
-                background: url(${IconFaceBookHover}) no-repeat 0 0 / cover;
-            }
         }
     }
 `
