@@ -1,10 +1,8 @@
 import styled, { css } from "styled-components"
 import Button from "../button/Button"
-import iconArrowLeft from "../../assets/icon/icon-arrow-left.png"
-import iconSearch from "../../assets/icon/icon-search.png"
-import iconMoreVertical from "../../assets/icon/icon-more-vertical.png"
 import { useNavigate } from 'react-router-dom';
 import Logo from "../../assets/logo.png"
+import SVGIcon from "../icon/SVGIcon"
 
 const TopBarCont = styled.div`
     position: sticky;
@@ -39,20 +37,27 @@ const RightCont = styled.div`
 
 const BtnIcon = styled.button`
     ${({action}) => action === "back" && css`
-        background: url(${iconArrowLeft});
+        & svg {
+            left: 14px;
+        }
     `};
-    ${({action}) => action === "more" && css`
-        background: url(${iconMoreVertical});
+    ${({action}) => (action === "more" ||  action === "search") && css`
+        & svg {
+            right: 14px;
+        }
     `};
-    ${({action}) => action === "search" && css`
-        background: url(${iconSearch});
-    `};
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: none;
     display: block;
     width: 24px;
     height: 24px;
+    & svg {
+        fill: none;
+        position: absolute;
+        bottom: 14px;
+        @media screen and (min-width: 768px){
+            bottom: 18px;
+        }
+    }
 `;
 
 const Searchinput = styled.input`
@@ -77,6 +82,7 @@ background: url(${Logo});
 background-size: cover;
 width: 162px;
 height: 40px;
+position: absolute;
 @media screen and (max-width: 768px){
     display: none;
 }
@@ -99,7 +105,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
         <TopBarCont>
             <LeftCont>
                 {TypeLeft === "A" && !title ? <>
-                    <BtnIcon action="back" onClick={() => navigate(-1)}/>
+                    <BtnIcon action="back" onClick={() => navigate(-1)}><SVGIcon id="icon-arrow-left" alt="뒤로가기 버튼"/></BtnIcon>
                     <LogoCont onClick={handleClickLogo}/>
                     </>
                 : <></>}
@@ -110,7 +116,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 : <></>}
                 {TypeLeft === "A" && title ?
                 <>
-                    <BtnIcon action="back" onClick={() => navigate(-1)}/>
+                    <BtnIcon action="back" onClick={() => navigate(-1)}><SVGIcon id="icon-arrow-left" alt="뒤로가기 버튼"/></BtnIcon>
                     <div>{title}</div>
                 </>
                 : <></>}
@@ -118,7 +124,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
             
             <RightCont>
                 {TypeRight === "0"  && <></>}
-                {TypeRight === "1"  && <BtnIcon action="more" onClick={onClickModal}/>}
+                {TypeRight === "1"  && <BtnIcon action="more" onClick={onClickModal}><SVGIcon id="icon-more" alt="검색하기 버튼"/> </BtnIcon>}
                 {TypeRight === "2"  && <>
                 <Searchinput
                     type="text"
@@ -127,7 +133,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                     onKeyUp = {onChangeByUpper[1]}></Searchinput>
                 {/* <SearchBtn onClick={onClickGetMsg}></SearchBtn> */}
                 </>}
-                {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}/>}
+                {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}><SVGIcon id="icon-search" alt="검색하기 버튼"/></BtnIcon>}
                 {TypeRight === "4"  && <Button className="ms" form={right4Ctrl.form} onClick={onClickGetMsg} disabled={right4Ctrl.isDisabled}>저장</Button>}
                 {/* disabled={right4Ctrl.isDisabled.isBtnVisible} */}
             </RightCont>
