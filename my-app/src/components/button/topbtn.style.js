@@ -15,7 +15,7 @@ export const TopbtnCont = styled.div`
     }
 `
 
-const Topbutton = styled.button`
+export const Topbutton = styled.button`
     padding :8px 10px;
     background-color: #4584a3;
     border-radius: 50%;

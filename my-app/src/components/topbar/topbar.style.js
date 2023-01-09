@@ -47,6 +47,7 @@ export const BtnIcon = styled.button`
     display: block;
     width: 24px;
     height: 24px;
+    text-indent: -9999px;
     & svg {
         fill: none;
         position: absolute;
