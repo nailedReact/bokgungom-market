@@ -140,7 +140,7 @@ export default function ProfileCard() {
           console.log(unfollow.data);
           setCheckFollowing(false)
           
-      }else{
+      } else{
         const follow = await axios.post(
           `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/follow`,{},{
             headers: {
@@ -152,9 +152,23 @@ export default function ProfileCard() {
       }
     }
 
+    const handleShare = () => {
+      let currentUrl = '';
+      currentUrl = window.document.location.href;
+      if (navigator.share) {
+          navigator.share({
+              title: '복근곰마켓',
+              text: 'Hello World',
+              url: currentUrl
+          });
+      }else{
+          alert("공유하기가 지원되지 않는 환경 입니다.")
+      }
+    }
+
     const imgerror = (e) => {
       e.target.src = basicprofile;
-  }
+    }
 
   return (
     <Cont>
@@ -185,7 +199,7 @@ export default function ProfileCard() {
           <Button className='medium' onClick={()=> navigate("../../post/upload/product")}>상품등록</Button>
           </> :
           <Button className='medium' active={!checkFollowing} value={checkFollowing} onClick={followingchange}>{checkFollowing ? "팔로우 취소" : "팔로우"}</Button>}
-          <Shareimg src={share} alt="공유하기" onClick={()=> {chatorshare("share")}}/>
+          <Shareimg src={share} alt="공유하기" onClick={()=> {handleShare()}}/>
         </ButtonCont>
     </Cont>
   )
