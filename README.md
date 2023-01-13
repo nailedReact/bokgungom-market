@@ -515,3 +515,25 @@
 </tr>
 
 </table>
+
+<br>
+
+## 로컬 환경에서 프로젝트 구동
+
+- 레포지토리 클론
+```
+git clone https://github.com/nailedReact/bokgungom-market.git
+```
+- 프로젝트 소스 코드 폴더로 이동
+```
+cd my-app
+```
+- 필요한 모듈 설치
+```
+npm install
+```
+- 로컬 환경에서 리액트 앱을 실행
+```
+npm start
+```
+
