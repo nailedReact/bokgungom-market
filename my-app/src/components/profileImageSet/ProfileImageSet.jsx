@@ -16,18 +16,17 @@ export default function ProfileImageSet({ onChangeByUpper, initial }) {
     const image = useRef(null);
 
     const handleFiles = (files) => {
-        const fileReader = new FileReader();
+        if (files.length > 0) {
+            const fileReader = new FileReader();
 
-        fileReader.readAsDataURL(files[0]);
-
-        fileReader.onload = async function () {
-            image.current.src = fileReader.result;
-            const compressed = await actionImgCompress(files[0], true);
-            const fileCompressed = new File([compressed], files[0].name, {
-                type: files[0].type,
-            });
-            onChangeByUpper(fileCompressed);
-        };
+            fileReader.readAsDataURL(files[0]);
+    
+            fileReader.onload = async function () {
+                image.current.src = fileReader.result;
+                const submitFile = await actionImgCompress(files[0], true);
+                onChangeByUpper(submitFile);
+            };
+        }
     };
     return (
         <Div>

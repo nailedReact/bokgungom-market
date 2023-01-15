@@ -31,46 +31,36 @@ export default function ProfileSetTemp({
         }
     }, [prev]);
 
-
-    // 이름 인풋창에서 포커스 아웃시 동작하는 함수
     const onNameBlurHandle = (e) => {
         if (
             e.target.validity.patternMismatch ||
             e.target.value.trim().length === 0
         ) {
-            // 이름 패턴이 유효하지 않을 경우
             nameAlert.current.style.display = "block";
 
-            onInValidByUpper(); // 제출 버튼 비활성화
+            onInValidByUpper();
         } else {
-            // 이름 패턴이 유효할 경우
             nameAlert.current.style.display = "none";
             if (
-                // 모든 인풋창에 값이 있고 아이디 경고창이 없을 때(아이디가 유효할 때)
                 accountName.current.value &&
                 accountId.current.value &&
                 idAlert.current.style.display === "none"
             ) {
-                onValidByUpper(); // 제출 버튼 활성화
+                onValidByUpper();
             }
         }
     };
 
-    // 아이디 인풋창에서 포커스 아웃시 동작하는 함수
     const onIdBlurHandle = async (e) => {
         if (e.target.validity.patternMismatch) {
-            // 아이디 패턴이 유효하지 않을 경우
             idAlert.current.style.display = "block";
 
-            onInValidByUpper(); // 제출 버튼 비활성화
+            onInValidByUpper();
         } else if (prev && e.target.value === prev.accountname) {
-            // 예전 아이디랑 지금 아이디랑 같을 경우
             idAlert.current.style.display = "none";
             return;
         } else {
-            // 아이디 패턴이 유효할 경우
             try {
-                // 아이디 중복 검증
                 const res = await axios.post(
                     "https://mandarin.api.weniv.co.kr/user/accountnamevalid",
                     {
@@ -89,13 +79,11 @@ export default function ProfileSetTemp({
                     idAlert.current.textContent = ("*" + res.data.message);
                     idAlert.current.style.display = "block";
 
-                    onInValidByUpper(); // 제출 버튼 비활성화
+                    onInValidByUpper();
                 } else {
-                    // 중복 계정이 아닐 경우
                     idAlert.current.style.display = "none";
 
                     if (
-                        // 모든 인풋에 값이 있고 이름 경고창이 없는 경우(이름이 유효한 경우) 제출 버튼 활성화
                         accountName.current.value &&
                         accountId.current.value &&
                         nameAlert.current.style.display === "none"
@@ -109,15 +97,12 @@ export default function ProfileSetTemp({
         }
     };
 
-    // 이미지 파일 변경시 동작하는 함수
     const ImgChangeHandle = async (imgdata) => {
         const formData = new FormData();
         formData.append("image", imgdata);
         submitData.current["imageBeforeSubmit"] = formData;
-        console.log(submitData.current);
     };
 
-    // 폼 제출시 동작하는 함수
     const onSubmitHandle = async (e) => {
         e.preventDefault();
         if (submitData.current.imageBeforeSubmit) {
@@ -137,7 +122,6 @@ export default function ProfileSetTemp({
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;
                 onSubmitByUpper(submitData);
-                console.log("프로필 수정 성공 - 1");
             } catch (err) {
                 console.log(err);
             }
@@ -146,7 +130,6 @@ export default function ProfileSetTemp({
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-            console.log("프로필 수정 성공 - 2");
         }
     };
 

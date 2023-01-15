@@ -123,7 +123,6 @@ export default function UploadEditPost() {
             for (let i = 0; i < selectedFile.length; i++) {
                 const file = selectedFile[i];
                 renderings.push(file);
-                const fileType = file.type.split("/")[1].toLowerCase();
 
                 const fileReader = new FileReader();
                 fileReader.readAsDataURL(file);
@@ -132,15 +131,8 @@ export default function UploadEditPost() {
                 };
                 fileInpRef.current.value = null;
 
-                if (!(fileType === "gif")) {
-                    const compressed = await actionImgCompress(file);
-                    const fileCompressed = new File([compressed], file.name, {
-                        type: file.type,
-                    });
-                    fileUrls.push(fileCompressed);
-                } else {
-                    fileUrls.push(file);
-                }
+                const submitFile = await actionImgCompress(file);
+                fileUrls.push(submitFile);
             }
             setIsBtnDisable(false);
         } else {

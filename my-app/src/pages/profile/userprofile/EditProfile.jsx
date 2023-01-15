@@ -29,7 +29,6 @@ export default function EditProfile() {
     const toastRef = useRef(null);
 
     const onSubmitFunc = async (submitted) => {
-        // 원본 데이터를 훼손하지 않기 위해 스프레드 기법 + 새로운 변수를 만듦, 기존 데이터 건들지 않는 방향으로
         let edited;
 
         if (submitted.current.image) {
@@ -48,7 +47,7 @@ export default function EditProfile() {
         }
 
         try {
-            const loginRes = await axios.put(
+            await axios.put(
                 "https://mandarin.api.weniv.co.kr/user",
                 {
                     user: edited,
@@ -61,7 +60,6 @@ export default function EditProfile() {
                 }
             );
 
-            console.log(loginRes.data);
             handleShowToast();
             setTimeout(function(){
                 // navigate("/post/" + json.post.id);
@@ -73,7 +71,6 @@ export default function EditProfile() {
         }
     };
 
-    // 페이지 로드시 기존 정보를 가져오기 위함
     const getPrevData = useCallback(async () => {
         try {
             const res = await axios.get(
@@ -85,7 +82,6 @@ export default function EditProfile() {
                 }
             );
 
-            // 기존 정보를 가져온 뒤 prevData에 값을 넣음
             setPrevData({
                 username: res.data.user.username,
                 accountname: res.data.user.accountname,
@@ -102,7 +98,6 @@ export default function EditProfile() {
     }, [getPrevData]);
 
     const handleShowToast = () => {
-        console.log(toastRef)
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function(){
             toastRef.current.style.transform = "scale(0)";

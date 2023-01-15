@@ -72,20 +72,19 @@ export default function UploadProduct() {
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
     const fileOnChange = (files) => {
-        const fileReader = new FileReader();
+        if (files.length > 0) {
+            const fileReader = new FileReader();
 
-        fileReader.readAsDataURL(files[0]);
-
-        fileReader.onload = async function () {
-            imagePre.current.src = fileReader.result;
-            const compressed = await actionImgCompress(files[0], true);
-            const fileCompressed = new File([compressed], files[0].name, {
-                type: files[0].type,
-            });
-            const formData = new FormData();
-            formData.append("image", fileCompressed);
-            submitData.current["imageBeforeSubmit"] = formData;
-        };
+            fileReader.readAsDataURL(files[0]);
+    
+            fileReader.onload = async function () {
+                imagePre.current.src = fileReader.result;
+                const submitFile = await actionImgCompress(files[0], true);
+                const formData = new FormData();
+                formData.append("image", submitFile);
+                submitData.current["imageBeforeSubmit"] = formData;
+            };
+        }
     }
 
     // 저장 버튼 클릭하면 상품 정보 API 전송 (로그인 되어있어야 함.)
