@@ -42,7 +42,6 @@ export default function Profile() {
   },[data])
 
   useEffect(() => {
-    console.log(accountNameInURL);
     if (accoutName && !isMyProfile){
       if (accoutName === accountNameInURL){
         setIsMyProfile(true);

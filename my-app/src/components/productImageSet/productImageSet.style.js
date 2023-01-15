@@ -9,6 +9,7 @@ export const ProductImgSetCont = styled.label`
     & .productSampleImage {
         width: 322px;
         height: 204px;
+        object-fit: cover;
         border-radius: 10px;
         border: 0.5px solid #DBDBDB;
         background-color: #F2F2F2;
@@ -16,8 +17,16 @@ export const ProductImgSetCont = styled.label`
 
     & .each-image-cont {
         display: block;
-        position: relative;
         margin-top: 16px;
+        width: calc(100% - 42px);
+        max-width: 400px;
+        margin-left: 42px;
+    }
+
+    & .each-image-cont div {
+        display: inline-block;
+        position: relative;
+        width: 100%;
     }
 
     & .each-image-cont .delete-btn {

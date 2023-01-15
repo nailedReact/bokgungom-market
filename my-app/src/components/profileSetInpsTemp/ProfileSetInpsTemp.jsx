@@ -94,7 +94,7 @@ export default function ProfileSetInpsTemp({
     };
 
     // 이미지 파일 변경시 동작하는 함수
-    const ImgChangeHandle = async (imgdata) => {
+    const ImgChangeHandle = (imgdata) => {
         const formData = new FormData();
         formData.append("image", imgdata);
         submitData.current["imageBeforeSubmit"] = formData;

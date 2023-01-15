@@ -114,7 +114,6 @@ export default function ProfileSetTemp({
         const formData = new FormData();
         formData.append("image", imgdata);
         submitData.current["imageBeforeSubmit"] = formData;
-        console.log(submitData.current);
     };
 
     // 폼 제출시 동작하는 함수

@@ -28,6 +28,7 @@ import basicprofile from "../../../assets/basic-profile-img.png"
     width: 110px;
     border-radius: 50%;
     border: 1px solid #C4C4C4;
+    object-fit: cover;
   `;
 
   const Username = styled.h2`

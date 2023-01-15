@@ -37,6 +37,10 @@ export const ImgUploadIcon = styled.label`
         right: 8.51%;
     }
 
+    &.location.keyboardUp {
+        bottom: 50%;
+    }
+
     @media screen and (min-width: 769px) {
         &.location {
             right: 1em;

@@ -13,7 +13,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import useAuth from '../../../hook/useAuth';
 import Toast from '../../../components/toast/Toast';
-import useWindowSizeCustom from "../../../hook/windowSize"
+import useWindowSizeCustom from "../../../hook/windowSize";
+import actionImgCompress from '../../../utils/imageCompression';
 
 const FormCont = styled.div`
     display: flex;
@@ -70,12 +71,19 @@ export default function UploadProduct() {
     
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
-    const fileOnChange = (files, fileReader) => {
+    const fileOnChange = (files) => {
+        const fileReader = new FileReader();
+
         fileReader.readAsDataURL(files[0]);
-        fileReader.onload = function () {
+
+        fileReader.onload = async function () {
             imagePre.current.src = fileReader.result;
+            const compressed = await actionImgCompress(files[0], true);
+            const fileCompressed = new File([compressed], files[0].name, {
+                type: files[0].type,
+            });
             const formData = new FormData();
-            formData.append("image", files[0]);
+            formData.append("image", fileCompressed);
             submitData.current["imageBeforeSubmit"] = formData;
         };
     }
