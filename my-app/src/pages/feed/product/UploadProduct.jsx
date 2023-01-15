@@ -13,7 +13,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import useAuth from '../../../hook/useAuth';
 import Toast from '../../../components/toast/Toast';
-import useWindowSizeCustom from "../../../hook/windowSize"
+import useWindowSizeCustom from "../../../hook/windowSize";
+import actionImgCompress from '../../../utils/imageCompression';
 
 const FormCont = styled.div`
     display: flex;
@@ -70,14 +71,20 @@ export default function UploadProduct() {
     
     // 기존 미리보기 이미지에서 상품 이미지로 변경
     const submitData = useRef({});
-    const fileOnChange = (files, fileReader) => {
-        fileReader.readAsDataURL(files[0]);
-        fileReader.onload = function () {
-            imagePre.current.src = fileReader.result;
-            const formData = new FormData();
-            formData.append("image", files[0]);
-            submitData.current["imageBeforeSubmit"] = formData;
-        };
+    const fileOnChange = (files) => {
+        if (files.length > 0) {
+            const fileReader = new FileReader();
+
+            fileReader.readAsDataURL(files[0]);
+    
+            fileReader.onload = async function () {
+                imagePre.current.src = fileReader.result;
+                const submitFile = await actionImgCompress(files[0], true);
+                const formData = new FormData();
+                formData.append("image", submitFile);
+                submitData.current["imageBeforeSubmit"] = formData;
+            };
+        }
     }
 
     // 저장 버튼 클릭하면 상품 정보 API 전송 (로그인 되어있어야 함.)

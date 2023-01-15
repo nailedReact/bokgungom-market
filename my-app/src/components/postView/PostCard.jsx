@@ -58,6 +58,7 @@ const Content = styled.p`
 
 const Contentimg = styled.img`
     width: 100%;
+    height: auto;
     display: block;
     /* height: 228px; */
     border: 0.5px solid #dbdbdb;
@@ -241,8 +242,6 @@ export default function PostCard({
         return;
     };
 
-    const contentimg = useRef();
-
     const imgerror = (e) => {
         e.target.src = errorimg;
         e.target.style.padding = "60px";
@@ -308,8 +307,9 @@ export default function PostCard({
                                     {data.image.split(",").map((item) => {
                                         return (
                                             <Contentimg
-                                                ref={contentimg}
                                                 src={item}
+                                                width="304"
+                                                height="228"
                                                 key={v4()}
                                                 onError={imgerror}
                                             />
@@ -319,6 +319,8 @@ export default function PostCard({
                             ) : (
                                 <Contentimg
                                     src={data.image}
+                                    width="304"
+                                    height="228"
                                     onError={imgerror}
                                 />
                             )

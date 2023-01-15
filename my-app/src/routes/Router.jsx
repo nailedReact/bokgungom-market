@@ -1,14 +1,12 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Login from "../pages/account/login/Login";
 import Register from "../pages/account/register/Register";
-// import EditProfile from "../pages/account/EditProfile"
 import EditProfileSignUp from "../pages/account/register/EditProfileSignUp";
 import Splash from "../pages/splash/Splash";
 import HomeFeed from "../pages/feed/home/HomeFeed";
 import PostDetail from "../pages/feed/post/PostDetail";
-import UploadPost from "../pages/feed/uploadPostProduct/UploadPost";
-import PostEdit from "../pages/feed/post/PostEdit";
-import UploadProduct from "../pages/feed/uploadPostProduct/UploadProduct";
+import UploadEditPost from "../pages/feed/post/UploadEditPost";
+import UploadProduct from "../pages/feed/product/UploadProduct";
 import ChatList from "../pages/chat/ChatList";
 import ChattingRoom from "../pages/chat/ChattingRoom";
 import Error from "../pages/errorLoading/Error";
@@ -39,8 +37,8 @@ export default function Router() {
                 <Route path="/post/" element={<Outlet />}>
                     <Route path="" element={<HomeFeed />} />
                     <Route path=":id/" element={<PostDetail />} />
-                    <Route path=":id/edit" element={<PostEdit />} />
-                    <Route path="upload/" element={<UploadPost />} />
+                    <Route path=":id/edit" element={<UploadEditPost />} />
+                    <Route path="upload/" element={<UploadEditPost />} />
                     <Route path="upload/product" element={<UploadProduct />} />
                     <Route path="*" element={<Error />}/>
                 </Route>

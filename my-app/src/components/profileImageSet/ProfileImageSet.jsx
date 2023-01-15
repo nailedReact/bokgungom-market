@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import ImageUpload from "../imageUpload/ImageUpload";
 import { ProfileImgSetCont } from "./profileImageSet.style.js";
+import actionImgCompress from "../../utils/imageCompression";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -8,18 +9,24 @@ const Div = styled.div`
 `
 const ProfilePic = styled.img`
     border: 1px solid #C4C4C4;
+    object-fit: cover;
 `
 
 export default function ProfileImageSet({ onChangeByUpper, initial }) {
     const image = useRef(null);
 
-    const handleFiles = (files, fileReader) => {
-        fileReader.readAsDataURL(files[0]);
+    const handleFiles = (files) => {
+        if (files.length > 0) {
+            const fileReader = new FileReader();
 
-        fileReader.onload = function () {
-            image.current.src = fileReader.result;
-            onChangeByUpper(files[0]);
-        };
+            fileReader.readAsDataURL(files[0]);
+    
+            fileReader.onload = async function () {
+                image.current.src = fileReader.result;
+                const submitFile = await actionImgCompress(files[0], true);
+                onChangeByUpper(submitFile);
+            };
+        }
     };
     return (
         <Div>

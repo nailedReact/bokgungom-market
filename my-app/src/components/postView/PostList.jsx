@@ -75,9 +75,9 @@ export default function PostList({isProfilePage}) {
   const [view, setView] = useState("list");
   const { username, isMyProfile } = useContext(UserNameContext);
   const [postcount, setPostcount] = useState(5);
-  const [count, setCount] = useState(0)
-  const [loading, setLoading] = useState(false)
-  const [ref, inView] = useInView()
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView();
 
   const getItems = useCallback(async () => {
     setLoading(true)

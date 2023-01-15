@@ -1,23 +1,25 @@
 import React from "react";
 import { ImgUploadIcon } from "./imageUpload.style";
 
-export default function ImageUpload({ btnStyle, onChangeByUpper }) {
+const ImageUpload = React.forwardRef((props, ref) => {
     const handleFileChange = (event) => {
         const selectedFile = [...event.target.files];
-        const fileReader = new FileReader();
-
-        onChangeByUpper(selectedFile, fileReader);
+        props.onChangeByUpper(selectedFile);
     };
 
     return (
-        <ImgUploadIcon className={btnStyle}>
+        <ImgUploadIcon className={`${props.btnStyle} ${props.isKeyboardUp ? "keyboardUp" : ''}`}>
             <span className="ir">이미지 첨부</span>
             <input
+                multiple={props.isMultiple || false}
                 className="ir"
+                ref={ref}
                 type="file"
                 accept="image/jpg, image/gif, image/png, image/jpeg, image/bmp, image/tif, image/heic"
                 onChange={handleFileChange}
             />
         </ImgUploadIcon>
     );
-}
+});
+
+export default ImageUpload;
