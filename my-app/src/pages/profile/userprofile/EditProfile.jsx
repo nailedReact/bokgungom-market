@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import TopBar from "../../../components/topbar/TopBar";
 import ProfileSetInpsTempLogIn from "../../../components/profileSetInps/ProfileSetInpsLogIn";
@@ -16,7 +17,7 @@ const ProfileEditCont = styled.div`
 export default function EditProfile() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);
     const [prevData, setPrevData] = useState({});
-
+    const navigate = useNavigate();
     const token = localStorage.getItem("Authorization");
 
     const onInvalidFunc = () => {
@@ -47,7 +48,7 @@ export default function EditProfile() {
         }
 
         try {
-            await axios.put(
+            const res = await axios.put(
                 "https://mandarin.api.weniv.co.kr/user",
                 {
                     user: edited,
@@ -62,8 +63,7 @@ export default function EditProfile() {
 
             handleShowToast();
             setTimeout(function(){
-                // navigate("/post/" + json.post.id);
-                console.log("프로필 수정 완")
+                navigate("/account/profile/" + res.data.user.accountname);
             }, 1500)
 
         } catch (err) {
