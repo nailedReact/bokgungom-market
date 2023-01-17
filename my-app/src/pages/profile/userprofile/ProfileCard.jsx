@@ -119,6 +119,7 @@ export default function ProfileCard() {
               Authorization : localStorage.getItem("Authorization")
             }
         });
+        console.log(res.data);
         setProfileData(res.data.profile);
         }
         getprofile();
@@ -159,7 +160,7 @@ export default function ProfileCard() {
       if (navigator.share) {
           navigator.share({
               title: '복근곰마켓',
-              text: 'Hello World',
+              text: '득근득근 복근곰마켓',
               url: currentUrl
           });
       }else{
@@ -181,7 +182,7 @@ export default function ProfileCard() {
           </Follower>
           <FollowTxt>followers</FollowTxt>
         </div>
-        <Profileimg src={profileData.image} onError={imgerror} />
+        <Profileimg src={profileData.image} onError={imgerror} alt={`${profileData.username}의 프로필 이미지`}/>
         <div>
           <Following onClick={(e) => {navigate('./following/', { state: profileData})}}>
             {profileData.followingCount}

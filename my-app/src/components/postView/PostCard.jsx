@@ -282,6 +282,7 @@ export default function PostCard({
                     src={data.author.image}
                     onError={profileImgError}
                     onClick={handleClickProfile}
+                    alt={`${data.author.username}의 프로필 이미지`}
                 />
                 <ContentCont>
                     <HeadCont>
@@ -305,6 +306,7 @@ export default function PostCard({
                             data.image.split(",").length > 1 ? (
                                 <ImgCont>
                                     {data.image.split(",").map((item) => {
+                                        // console.log(data);
                                         return (
                                             <Contentimg
                                                 src={item}
@@ -312,6 +314,7 @@ export default function PostCard({
                                                 height="228"
                                                 key={v4()}
                                                 onError={imgerror}
+                                                alt={`${data.author.username}의 게시글 이미지`}
                                             />
                                         );
                                     })}
@@ -322,6 +325,7 @@ export default function PostCard({
                                     width="304"
                                     height="228"
                                     onError={imgerror}
+                                    alt={`${data.author.username}의 게시글 이미지`}
                                 />
                             )
                         ) : null}
