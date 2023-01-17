@@ -5,14 +5,15 @@ import React, {
     useCallback,
     useMemo,
 } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import styled from "styled-components";
 import TopBar from "../../../components/topbar/TopBar";
 import PostCard from "../../../components/postView/PostCard";
 import CommentItem from "../../../components/commentItem/CommentItem";
 import CommentInp from "../../../components/commentInp/CommentInp";
-import OptionModal from "../../../components/optionModal/OptionModal";
+import CommentOptionModal from "./CommentOptionModal";
+import PostOptionModal from "./PostOptionModal";
 import ConfirmModal from "../../../components/confirmModal/ConfirmModal";
 import Toast from "../../../components/toast/Toast";
 import { formattedDate } from "../dateformat";
@@ -20,10 +21,8 @@ import useAuth from "../../../hook/useAuth";
 import usePostDetail from "../../../hook/usePostDetail";
 import basicImg from "../../../assets/basic-profile-img.png";
 import Button from "../../../components/button/Button";
-import { Link } from "react-router-dom";
 
 const CommentListBox = styled.ul`
-    /* border-top: 1px solid #dbdbdb; */
     padding: 20px 16px 80.5px 16px;
     @media screen and (min-width: 768px) {
         padding: 20px;
@@ -43,40 +42,32 @@ const UserProfilePic = styled.img`
     border: 1px solid #C4C4C4;
 `
 export default function PostDetail() {
-    const [postMsg, setPostMsg] = useState(); // 상세 게시글 API 응답 데이터 받아오는 곳
-    const [commentMsg, setCommentMsg] = useState([]); // 댓글 API 응답 데이터 받아오는 곳
-    const [isBtnDisabled, setIsBtnDisabled] = useState(true); // 댓글 작성 버튼 disabled 여부(초기값: true => 보이지 않음)
-    const [modalNotMe, setModalNotMe] = useState(false); // 내가 작성한 댓글이 아닌 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
-    const [modalMe, setModalMe] = useState(false); // 내가 작성한 댓글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
-    const [modalNotMeDetail, setModalNotMeDetail] = useState(false); // 내가 쓴 글이 아닌 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
-    const [modalMeDetail, setModalMeDetail] = useState(false); // 내가 쓴 글인 경우 - more 버튼 클릭시 보이는 모달창 보이는지 여부
-    const [deleteConfirm, setDeleteConfirm] = useState(false); // 댓글 삭제 여부를 선택하는 모달창이 보이는지 여부
-    const [deleteConfirmDetail, setDeleteConfirmDetail] = useState(false); // 글 삭제 여부를 선택하는 모달창이 보이는지 여부
+    const [postMsg, setPostMsg] = useState();
+    const [commentMsg, setCommentMsg] = useState([]);
+    const [isBtnDisabled, setIsBtnDisabled] = useState(true);
+    const [commentModal, setCommentModal] = useState({isMe: undefined, isOpen: false});
+    const [postModal, setPostModal] = useState({isMe: undefined, isOpen: false});
+    const [deleteConfirmModal, setDeleteConfirmModal] = useState({target: undefined, isOpen: false});
     const [noComment, setNoComment] = useState(true);
     const [noComment2, setNoComment2] = useState(false);
 
     const navigate = useNavigate();
+    const { id } = useParams();
 
-    const currentId = useLocation().pathname.split("/")[2]; // 현재 상세 게시글의 id
-
-    const currentUserId = useRef(); // 현재 상세 게시글의 user id
-    const inpRef = useRef(null); // 댓글 입력 input
-    const deleteTarget = useRef(null); // 삭제할 댓글 id
+    const currentUserId = useRef();
+    const inpRef = useRef(null);
+    const deleteTarget = useRef(null);
     const orderedComments = useRef();
     const toastRef = useRef(null);
+    const userIdRef = useRef();
 
     const reacts = useMemo(() => {
-        return { setPostMsg, currentId, currentUserId };
-    }, [currentId, currentUserId]);
+        return { setPostMsg, id, currentUserId };
+    }, [id, currentUserId]);
 
     const data = useAuth();
 
-    // const [userIdRef, setUserIdRef] = useState();
-    const userIdRef = useRef();
-
     useEffect(() => {
-        // data && console.log(data._id);
-        // data && setUserIdRef(data._id);
         if (data) {
             userIdRef.current = data._id;
         }
@@ -86,25 +77,17 @@ export default function PostDetail() {
 
     const baseURL =
         "https://mandarin.api.weniv.co.kr/post/" +
-        currentId +
+        id +
         "/comments" +
         "?limit=infinity&skip=0";
 
-    // 댓글의 more 버튼 클릭시 동작하는 함수
-    const onClickHandle = useCallback(
+    const commentClickHandle = useCallback(
         (deleteComment, commentAuthor) => {
-            // console.log(`댓글 단 사람: ${commentAuthor}`);
-            // console.log(`로그인 한 유저: ${userIdRef.current}`);
-            // if (!userIdRef) {
-            //     // setUserIdRef(useAuth()._id);
-            //     setIsNeedUpdate((prev) => !prev);
-            //     return;
-            // }
             if (commentAuthor === userIdRef.current) {
-                setModalMe(true);
+                setCommentModal((prev) => ({...prev, isMe: true, isOpen: true}));
                 deleteTarget.current = deleteComment;
             } else {
-                setModalNotMe(true);
+                setCommentModal((prev) => ({...prev, isMe: false, isOpen: true}));
             }
         },
         [userIdRef]
@@ -150,7 +133,7 @@ export default function PostDetail() {
                         <CommentItem
                             key={e.id}
                             refer={e}
-                            onClickHandle={onClickHandle}
+                            onClickHandle={commentClickHandle}
                             initialTimeFormatted={formattedDate(e.createdAt)}
                             initialTime={e.createdAt}
                         />
@@ -160,10 +143,9 @@ export default function PostDetail() {
                 setCommentMsg(comments);
             }
         },
-        [recentSortHandle, onClickHandle]
+        [recentSortHandle, commentClickHandle]
     );
 
-    // 댓글 작성 및 삭제시 렌더링 담당하는 함수
     const commentEditRenderHandle = useCallback(
         (commentRes, _, isInput) => {
             if (commentRes.data.comments) {
@@ -193,7 +175,7 @@ export default function PostDetail() {
                         <CommentItem
                             key={e.id}
                             refer={e}
-                            onClickHandle={onClickHandle}
+                            onClickHandle={commentClickHandle}
                             initialTimeFormatted={formattedDate(e.createdAt)}
                             initialTime={e.createdAt}
                         />
@@ -203,10 +185,9 @@ export default function PostDetail() {
                 setCommentMsg(comments);
             }
         },
-        [recentSortHandle, onClickHandle]
+        [recentSortHandle, commentClickHandle]
     );
 
-    // 댓글 입력 인풋창 변할 때 함수 - 댓글 등록 버튼 활성화 비활성화 여부 정하기 위함
     const onInpChangeHandle = (e) => {
         if (e.target.value.trim().length === 0 || e.target.value.length === 0) {
             setIsBtnDisabled(true);
@@ -215,13 +196,12 @@ export default function PostDetail() {
         }
     };
 
-    // 댓글이 제출될 때 동작하는 함수
     const onCommentSubmitHandle = async (e) => {
         e.preventDefault();
         try {
             const URL =
                 "https://mandarin.api.weniv.co.kr/post/" +
-                currentId +
+                id +
                 "/comments";
             await axios.post(
                 URL,
@@ -247,8 +227,6 @@ export default function PostDetail() {
         }
     };
 
-    // 댓글 더 불러오기
-
     const handleMoreComment = (isPreviousLoading = false) => {
         const currentRenderTarget = loadHandle(
             orderedComments.current,
@@ -264,7 +242,7 @@ export default function PostDetail() {
                 <CommentItem
                     key={e.id}
                     refer={e}
-                    onClickHandle={onClickHandle}
+                    onClickHandle={commentClickHandle}
                     initialTimeFormatted={formattedDate(e.createdAt)}
                     initialTime={e.createdAt}
                 />
@@ -276,11 +254,24 @@ export default function PostDetail() {
         );
     };
 
-    // more 버튼 -> 댓글 삭제하기 버튼 클릭시 작동하는 함수
-    // 동작시 삭제 여부를 묻는 confirm 모달창이 뜬다.
-    const deleteConfirmFunc = async () => {
-        setModalMe(false);
-        setDeleteConfirm(true);
+    const deleteCommentSelectedFunc = () => {
+        setCommentModal((prev) => ({...prev, isMe: undefined, isOpen: false}));
+        setDeleteConfirmModal((prev) => ({...prev, target: "comment", isOpen: true}));
+    };
+
+    const reportCommentSelectedFunc = () => {
+        window.alert("댓글이 신고되었습니다.");
+        setCommentModal((prev) => ({...prev, isMe: undefined, isOpen: false}));
+    };
+
+    const deletePostSelectedFunc = () => {
+        setPostModal((prev) => ({...prev, isMe: undefined, isOpen: false}));
+        setDeleteConfirmModal((prev) => ({...prev, target: "post", isOpen: true}));
+    };
+
+    const reportPostSelectedFunc = () => {
+        window.alert("게시글이 신고되었습니다.");
+        setPostModal((prev) => ({...prev, isMe: undefined, isOpen: false}));
     };
 
     const handleShowToast = () => {
@@ -291,11 +282,10 @@ export default function PostDetail() {
         return;
     };
 
-    // 삭제 여부 묻는 confirm 모달창에서 최종적으로 삭제 버튼을 누를 때 동작하는 함수 => 동작시 댓글을 삭제한다.
     const deleteCommentFunc = async () => {
         const URL =
             "https://mandarin.api.weniv.co.kr/post/" +
-            currentId +
+            id +
             "/comments/" +
             deleteTarget.current;
         try {
@@ -312,15 +302,15 @@ export default function PostDetail() {
 
             sendRequest(baseURL, commentEditRenderHandle, false);
 
-            setDeleteConfirm(false);
-            setModalMe(false);
+            setDeleteConfirmModal((prev) => ({...prev, target: undefined, isOpen: false}));
+            setCommentModal((prev) => ({...prev, isMe: undefined, isOpen: false}));
         } catch (err) {
             console.log(err);
         }
     };
 
     const deletePostFunc = async () => {
-        const URL = `https://mandarin.api.weniv.co.kr/post/${currentId}`;
+        const URL = `https://mandarin.api.weniv.co.kr/post/${id}`;
         try {
             await axios.delete(URL, {
                 headers: {
@@ -329,11 +319,11 @@ export default function PostDetail() {
                 },
             });
 
-            setDeleteConfirmDetail(false);
+            setDeleteConfirmModal((prev) => ({...prev, target: undefined, isOpen: false}));
 
             handleShowToast();
             setTimeout(function () {
-                navigate(-1); // 뒤로 가기
+                navigate(-1);
             }, 1500);
         } catch (err) {
             console.log(err);
@@ -342,110 +332,37 @@ export default function PostDetail() {
 
     const postDetailModalHandle = () => {
         if (currentUserId.current === userIdRef.current) {
-            setModalMeDetail(true);
-            // deleteTarget.current = deleteComment;
+            setPostModal((prev) => ({...prev, isMe: true, isOpen: true}));
         } else {
-            setModalNotMeDetail(true);
+            setPostModal((prev) => ({...prev, isMe: false, isOpen: true}));
         }
     };
 
     useEffect(() => {
         sendRequest(baseURL, initialDataSet, false);
-    }, [currentId, initialDataSet, sendRequest, baseURL]);
+    }, [id, initialDataSet, sendRequest, baseURL]);
 
     return (
         <>
-            {modalNotMe && (
-                <OptionModal
-                    onConfirm={() => {
-                        setModalNotMe(false);
-                        deleteTarget.current = null;
-                    }}
-                >
-                    <li>
-                        <button
-                            type={"button"}
-                            onClick={() => {
-                                window.alert("댓글이 신고되었습니다.");
-                            }}
-                        >
-                            댓글 신고하기
-                        </button>
-                    </li>
-                </OptionModal>
-            )}
-            {modalMe && (
-                <OptionModal
-                    onConfirm={() => {
-                        setModalMe(false);
-                        deleteTarget.current = null;
-                    }}
-                >
-                    <li>
-                        <button type={"button"} onClick={deleteConfirmFunc}>
-                            댓글 삭제하기
-                        </button>
-                    </li>
-                </OptionModal>
-            )}
-            {modalNotMeDetail && (
-                <OptionModal
-                    onConfirm={() => {
-                        setModalNotMeDetail(false);
-                        // deleteTarget.current = null;
-                    }}
-                >
-                    <li>
-                        <button
-                            type={"button"}
-                            onClick={() => {
-                                window.alert("댓글이 신고되었습니다.");
-                            }}
-                        >
-                            신고
-                        </button>
-                    </li>
-                </OptionModal>
-            )}
-            {modalMeDetail && (
-                <OptionModal
-                    onConfirm={() => {
-                        setModalMeDetail(false);
-                        // deleteTarget.current = null;
-                    }}
-                >
-                    <li>
-                        <button type={"button"} onClick={() => {
-                            setModalMeDetail(false);
-                            setDeleteConfirmDetail(true);
-                        }}>
-                            삭제
-                        </button>
-                    </li>
-                    <li>
-                        <Link to={`/post/${currentId}/edit`}>수정</Link>
-                    </li>
-                </OptionModal>
-            )}
-            {deleteConfirm && (
+            <CommentOptionModal 
+                commentState={commentModal}
+                setCommentState={setCommentModal}
+                deleteTarget={deleteTarget}
+                clickHandle={commentModal.isMe ? deleteCommentSelectedFunc : reportCommentSelectedFunc}
+            />
+            <PostOptionModal 
+                postState={postModal}
+                setPostState={setPostModal}
+                clickHandle={postModal.isMe ? deletePostSelectedFunc : reportPostSelectedFunc}
+                postDetailId={id}
+            />
+            {deleteConfirmModal.isOpen && (
                 <ConfirmModal
                     confirmMsg={"삭제하시겠습니까?"}
-                    onCancle={() => setDeleteConfirm(false)}
-                    onConfirm={() => setDeleteConfirm(false)}
+                    onCancle={() => setDeleteConfirmModal((prev) => ({...prev, target: undefined, isOpen: false}))}
+                    onConfirm={() => setDeleteConfirmModal((prev) => ({...prev, target: undefined, isOpen: false}))}
                     buttonRight={
-                        <button type={"button"} onClick={deleteCommentFunc}>
-                            삭제
-                        </button>
-                    }
-                />
-            )}
-            {deleteConfirmDetail && (
-                <ConfirmModal
-                    confirmMsg={"삭제하시겠습니까?"}
-                    onCancle={() => setDeleteConfirmDetail(false)}
-                    onConfirm={() => setDeleteConfirmDetail(false)}
-                    buttonRight={
-                        <button type={"button"} onClick={deletePostFunc}>
+                        <button type="button" onClick={deleteConfirmModal.target === "comment" ? deleteCommentFunc : deletePostFunc}>
                             삭제
                         </button>
                     }

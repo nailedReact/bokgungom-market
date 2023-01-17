@@ -39,7 +39,7 @@ export default function Profile() {
 
   useEffect(() => {
     data && setAccountName(data.accountname);
-  },[data])
+  },[data]);
 
   useEffect(() => {
     if (accoutName && !isMyProfile){
@@ -51,7 +51,7 @@ export default function Profile() {
       }
     }
     // eslint-disable-next-line
-  }, [accoutName, accountNameInURL])
+  }, [accoutName, accountNameInURL]);
 
 
   const onConfirm = () => {
