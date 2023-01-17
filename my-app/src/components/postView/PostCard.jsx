@@ -222,9 +222,6 @@ export default function PostCard({
             });
             setIsConfirmVisible(false);
             handleShowToast();
-            // setTimeout(function () {
-            //     navigate(-1); // 뒤로 가기
-            // }, 1500);
             deleteByUpper(data.id);
         } catch (err) {
             console.log(err);

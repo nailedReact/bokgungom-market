@@ -2,14 +2,14 @@ import axios from "axios";
 import { useCallback } from "react";
 
 export default function usePostDetail(reacts) {
-    const { setPostMsg, currentId, currentUserId } = reacts;
+    const { setPostMsg, id, currentUserId } = reacts;
 
     const sendRequest = useCallback(
         (commentsURL, applyData, isCommentLoading) => {
             const getComments = async () => {
                 try {
                     const postDetailURL =
-                        "https://mandarin.api.weniv.co.kr/post/" + currentId;
+                        "https://mandarin.api.weniv.co.kr/post/" + id;
                     const postDetailRes = await axios.get(postDetailURL, {
                         headers: {
                             Authorization:
@@ -27,7 +27,11 @@ export default function usePostDetail(reacts) {
                         },
                     });
 
-                    applyData(commentsRes, postDetailRes.data.post.commentCount, isCommentLoading);
+                    applyData(
+                        commentsRes,
+                        postDetailRes.data.post.commentCount,
+                        isCommentLoading
+                    );
                 } catch (err) {
                     console.log(err);
                 }
@@ -35,7 +39,7 @@ export default function usePostDetail(reacts) {
 
             getComments();
         },
-        [currentId, setPostMsg, currentUserId]
+        [id, setPostMsg, currentUserId]
     );
 
     return sendRequest;
