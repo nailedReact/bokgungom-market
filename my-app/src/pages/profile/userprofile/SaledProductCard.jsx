@@ -110,7 +110,7 @@ useEffect(() => {
     if (resMsg.length !== 0){
         const products = resMsg.map((item) => (
             <ProductCont onClick={() => handlelink(item.link)} key={item.id}>
-                <Productimg src={item.itemImage} onError={imgerror}/>
+                <Productimg src={item.itemImage} onError={imgerror} alt={`${item.author.username}의 상품 이미지`}/>
                 <ItemName>{item.itemName}</ItemName>
                 <ItemPrice>{item.price.toLocaleString()}원</ItemPrice>
             </ProductCont>
