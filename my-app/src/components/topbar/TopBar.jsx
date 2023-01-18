@@ -53,7 +53,7 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                     type="text"
                     placeholder="계정 검색"
                     onChange ={onChangeByUpper[0]}
-                    onKeyUp = {onChangeByUpper[1]}></Searchinput>
+                    onKeyDown = {onChangeByUpper[1]}></Searchinput>
                 {/* <SearchBtn onClick={onClickGetMsg}></SearchBtn> */}
                 </>}
                 {TypeRight === "3"  && <BtnIcon action="search" onClick={()=> {navigate("/search")}}>검색하기 버튼<SVGIcon id="icon-search" alt="검색하기 버튼"/></BtnIcon>}
