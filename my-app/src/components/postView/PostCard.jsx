@@ -222,6 +222,9 @@ export default function PostCard({
             });
             setIsConfirmVisible(false);
             handleShowToast();
+            // setTimeout(function () {
+            //     navigate(-1); // 뒤로 가기
+            // }, 1500);
             deleteByUpper(data.id);
         } catch (err) {
             console.log(err);
@@ -294,6 +297,7 @@ export default function PostCard({
                         {myProfile ? (
                             <Plusbutton
                                 onClick={() => setIsOptionVisible(true)}
+                                aria-label="게시글 수정,삭제 목록"
                             />
                         ) : null}
                     </HeadCont>
