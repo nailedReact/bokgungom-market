@@ -77,7 +77,7 @@ const ItemPrice = styled.p`
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-    color: var(--color-primary);
+    color: #3F7D9C;
 `;  
 
 
