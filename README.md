@@ -138,7 +138,7 @@
 
 - [Create Issue Branch](https://github.com/marketplace/actions/create-issue-branch)
 - 이슈를 생성하면 GitHub Action으로 해당 이슈에 해당하는 브랜치가 자동으로 생성되도록 설정하여 브랜치명을 고민하고 브랜치를 생성하는 시간을 줄였습니다.
-    - [브랜치 자동화 설정 상세 내용](https://github.com/nailedReact/react-app/wiki/%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9)
+    - [브랜치 자동화 설정 상세 내용]([https://github.com/nailedReact/react-app/wiki/%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9](https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%AA%84-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9))
     
 - 예) 자동 생성된 브랜치를 pull 하고 ```git checkout -t origin/feat/issue-81```하여 해당 브랜치로 이동합니다.
 - [브랜치 history](https://github.com/nailedReact/react-app/blob/main/preview/git%20branch%20history.png)
