@@ -85,7 +85,7 @@
 
 <br>
 
-## <a href="https://github.com/nailedReact/bokgungom-market/wiki/%ED%98%91%EC%97%85-&-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%83%9D%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C" target="_blank">🤝 협업 방식</a>
+## <a href="https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%A4%9D-%ED%98%91%EC%97%85-&-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%83%9D%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C" target="_blank">🤝 협업 방식</a>
 
 1. 프로젝트 노션 페이지 내 남은 작업 목록에서 원하는 작업을 분담합니다.
 2. 해당하는 업무에 대해 **GitHub Issue**를 생성합니다.
@@ -151,7 +151,7 @@
 리드미에는 간략히 작성하고, 자세한 컨벤션은 각각의 타이틀에 링크된 깃허브 위키에 적어두었습니다.
 
 
-### [🔗 커밋 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)
+### [🔗 커밋 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%93%A8-%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)
 
 - 다양한 사례를 참고하여 프로젝트에서 주로 쓰일 것 같은 커밋 유형을 간추려 컨벤션으로 지정했습니다.
 
@@ -160,7 +160,7 @@
         - 커밋 유형은 영어로 작성하며, 첫 글자를 대문자로 합니다
         - 커밋 유형
         - Feat : 새로운 기능, 특징 추가
-        - Fix	: 수정, 버그 수정
+        - Fix : 수정, 버그 수정
         - Docs : 문서에 관련된 내용, 문서 수정
         - Style : 스타일링
         - Refactor : 리팩토링
@@ -189,7 +189,7 @@
 
 <br>
 
-### [🔗 코드 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98)
+### [🔗 코드 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%E2%8C%A8%EF%B8%8F-%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98)
 - 리액트 코딩에 주로 쓰이는 컨벤션을 참고하여 저희 조만의 코드 컨벤션을 만들었습니다.
 - 문자열 처리 시 쌍따옴표/홑따옴표의 사용, 혹은 문장 끝 세미콜론의 사용여부와 같은 개인적 취향이 반영될 수 있는 항목들의 경우에는 사전 설문을 통해 다수결에 따라 지정했습니다. 
 
