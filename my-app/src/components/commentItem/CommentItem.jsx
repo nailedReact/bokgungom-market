@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { CommentItemCont } from "./commentItem.style";
-import iconMoreVertical from "../../assets/icon/icon-more-vertical.png";
+import styled from "styled-components";
 import { formattedDate } from "../../pages/feed/dateformat";
+import iconMoreVertical from "../../assets/icon/icon-more-vertical.png";
 import basicprofile from "../../assets/basic-profile-img.png"
+import { CommentItemCont } from "./commentItem.style";
 
 const BtnIcon = styled.button`
     background: url(${iconMoreVertical});
@@ -17,7 +17,7 @@ const BtnIcon = styled.button`
 const UserProfilePic = styled.img`
     border: 1px solid #C4C4C4;
     border-radius: 50%;
-`
+`;
 
 export default function CommentItem({ refer, onClickHandle, initialTimeFormatted, initialTime }) {
     const [createdAt, setCreatedAt] = useState(initialTimeFormatted);
@@ -37,7 +37,7 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
     // 댓글 단 사람의 프로필 클릭 시 그 사람의 프로필로 이동
     function handleClickProfile() {
         navigate("../../account/profile/" + refer.author.accountname);
-    }
+    };
 
     // 시간에 따라 렌더링 다르게 하기 위함.
     useEffect(() => {
@@ -72,7 +72,7 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
 
     const imgerror = (e) => {
         e.target.src = basicprofile;
-    }
+    };
 
     return (
         <CommentItemCont>
@@ -98,4 +98,4 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
             </BtnIcon>
         </CommentItemCont>
     );
-}
+};

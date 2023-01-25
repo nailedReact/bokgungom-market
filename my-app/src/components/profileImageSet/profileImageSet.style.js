@@ -10,17 +10,17 @@ export const ProfileImgSetCont = styled.label`
         border-radius: 10px;
         border: 0.5px solid #DBDBDB;
         background-color: #F2F2F2;
-    }
+    };
 
     & .profileImg {
         width: 110px;
         height: 110px;
         border-radius: 50%;
-    }
+    };
 
     & :nth-child(3) {
         position: absolute;
         top: 74px;
         left: 74px; 
-    }
+    };
 `;

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import ConfirmModal from "../confirmModal/ConfirmModal";
 import NavBarItem from "./NavBarItem";
-import { NavBarCont, NavBarUl } from "./navBar.style";
 import useAuth from "../../hook/useAuth";
-import { useNavigate } from "react-router";
+import { NavBarCont, NavBarUl } from "./navBar.style";
 
 export default function NavBar() {
     const [modalVisible, setModalVisible] = useState(false);
@@ -25,7 +24,7 @@ export default function NavBar() {
 
     const showConfirmModal = () => {
         setModalVisible(true);
-    }
+    };
 
     const handleLogout = () => {
         if (localStorage.getItem("Authorization")) {
@@ -106,5 +105,5 @@ export default function NavBar() {
                 </NavBarCont>
             </>
         );
-    }
-}
+    };
+};

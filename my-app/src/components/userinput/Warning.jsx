@@ -9,7 +9,7 @@ const Warning = styled.strong`
     color: #eb5757;
     @media screen and (max-width: 768px) {
         font-size: 12px;
-    }
-`
+    };
+`;
 
 export default Warning;

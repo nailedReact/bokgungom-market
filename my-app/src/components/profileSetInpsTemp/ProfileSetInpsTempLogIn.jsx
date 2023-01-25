@@ -3,8 +3,8 @@ import axios from "axios";
 import ProfileImageSet from "../aProfileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
-import ProfileSetCont from "./profileSetINpsTemp.style";
 import Warning from "../userinput/Warning";
+import ProfileSetCont from "./profileSetINpsTemp.style";
 
 export default function ProfileSetTemp({
     formId,
@@ -53,7 +53,7 @@ export default function ProfileSetTemp({
             ) {
                 onValidByUpper(); // 제출 버튼 활성화
             }
-        }
+        };
     };
 
     // 아이디 인풋창에서 포커스 아웃시 동작하는 함수
@@ -106,7 +106,7 @@ export default function ProfileSetTemp({
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
     };
 
     // 이미지 파일 변경시 동작하는 함수
@@ -146,7 +146,7 @@ export default function ProfileSetTemp({
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
             console.log("프로필 수정 성공 - 2");
-        }
+        };
     };
 
     return (
@@ -193,4 +193,4 @@ export default function ProfileSetTemp({
             </UserInput>
         </ProfileSetCont>
     );
-}
+};

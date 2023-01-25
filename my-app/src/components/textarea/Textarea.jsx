@@ -15,11 +15,11 @@ const Textarea = styled.textarea`
     :focus {
         outline: none;
         // border-bottom: 1px solid #DBDBDB;
-    }
+    };
 
     @media screen and (min-width: 768px){
         font-size: 16px;
-    }
-`
+    };
+`;
 
 export default Textarea;

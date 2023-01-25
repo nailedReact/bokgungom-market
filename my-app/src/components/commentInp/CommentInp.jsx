@@ -7,4 +7,4 @@ export default function CommentInp(props) {
             {props.children}
         </CommentInpCont>
     );
-}
+};

@@ -14,14 +14,14 @@ export const CommentInpCont = styled.form`
     label {
         flex-shrink: 0;
         margin-right: 18px;
-    }
+    };
 
     & img {
         width: 36px;
         height: 36px;
         border-radius: 50%;
         object-fit: cover;
-    }
+    };
 
     & input {
         flex-grow: 1;
@@ -29,11 +29,11 @@ export const CommentInpCont = styled.form`
         border: none;
         font-size: 14px;
         line-height: 18px;
-    }
+    };
 
     & input::placeholder {
         color: #c4c4c4;
-    }
+    };
 
     & button {
         background-color: transparent;
@@ -42,11 +42,11 @@ export const CommentInpCont = styled.form`
         flex-shrink: 0;
         margin-left: auto;
         color: ${(props) => (props.isBtnActivated ? "#4583A3" : "#C4C4C4")};
-    }
+    };
 
     @media screen and (min-width: 768px) {
         & input, button {
             font-size: 16px;
-        }
-    }
+        };
+    };
 `;

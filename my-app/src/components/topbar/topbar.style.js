@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components"
-import Logo from "../../assets/logo.png"
+import styled, { css } from "styled-components";
+import Logo from "../../assets/logo.png";
 
 export const TopBarCont = styled.div`
     position: sticky;
@@ -18,19 +18,20 @@ export const TopBarCont = styled.div`
     @media screen and (min-width: 768px){
         background-color: #C6D9E3;
         height: 60px;
-    }
-`
+    };
+`;
+
 export const LeftCont = styled.div`
     display: flex;
     gap: 10px;
     align-items: center;
+`;
 
-`
 export const RightCont = styled.div`
     display: flex;
     width: 50%;
     justify-content: right;
-`
+`;
 
 export const BtnIcon = styled.button`
     ${({action}) => action === "back" && css`
@@ -54,8 +55,8 @@ export const BtnIcon = styled.button`
         bottom: 14px;
         @media screen and (min-width: 768px){
             bottom: 18px;
-        }
-    }
+        };
+    };
 `;
 
 export const Searchinput = styled.input`
@@ -69,10 +70,10 @@ export const Searchinput = styled.input`
     width: 80%;
     &:focus {
         width: 100%;
-    }
+    };
     @media screen and (max-width: 768px){
         width: 90%;
-    }
+    };
 `;
 
 export const LogoCont = styled.div`
@@ -84,5 +85,5 @@ export const LogoCont = styled.div`
     cursor: pointer;
     @media screen and (max-width: 768px){
         display: none;
-    }
-`
+    };
+`;

@@ -6,7 +6,7 @@ export const CommentItemCont = styled.li`
 
     &:nth-child(1) {
         margin-top: 0;
-    }
+    };
 
     & .comment-profile-img {
         position: absolute;
@@ -16,7 +16,7 @@ export const CommentItemCont = styled.li`
         height: 36px;
         border-radius: 50%;
         object-fit: cover;
-    }
+    };
 
     & .comment-main {
         position: relative;
@@ -25,12 +25,12 @@ export const CommentItemCont = styled.li`
         width: calc(100% - 60px);
         font-size: 14px;
         line-height: 18px;
-    }
+    };
 
     & .comment-main h2 {
         display: inline-block;
         font-weight: 500;
-    }
+    };
 
     & .comment-main span {
         display: inline-block;
@@ -38,23 +38,23 @@ export const CommentItemCont = styled.li`
         font-size: 10px;
         line-height: 13px;
         color: #767676;
-    }
+    };
 
     & .comment-main p {
         margin-top: 16px;
         width: 100%;
         word-break: break-all;
-    }
+    };
 
     & .comment-more-btn {
         position: absolute;
         top: 0;
         right: 0;
-    }
+    };
 
     @media screen and (min-width: 768px){
         & .comment-main {
             font-size: 16px;
-        }
-    }
+        };
+    };
 `;

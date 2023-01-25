@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const StyledLink = styled(Link)`
     display: flex;
@@ -17,9 +17,10 @@ export const StyledLink = styled(Link)`
         &:hover {
             background-color: #C6D9E3;
             border-radius: 10px;
-        }
-    }
+        };
+    };
+
     & svg {
         fill: none;
-    }
+    };
 `;
