@@ -16,4 +16,4 @@ export default function NavBarItem({ linkSrc, iconSrc, navTxt, currentPath }) {
             {navTxt}
         </StyledLink>
     );
-}
+};

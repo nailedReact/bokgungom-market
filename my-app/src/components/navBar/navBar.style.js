@@ -21,9 +21,10 @@ export const NavBarCont = styled.nav`
             &.desktop {
                 display: none
             }
-    }
-    }
+        };
+    };
 `;
+
 export const NavBarUl = styled.ul`
     display: flex;
     justify-content: space-around;
@@ -31,5 +32,5 @@ export const NavBarUl = styled.ul`
         flex-direction: column;
         gap: 20px;
         padding: 20px 0px;
-    }
-`
+    };
+`;

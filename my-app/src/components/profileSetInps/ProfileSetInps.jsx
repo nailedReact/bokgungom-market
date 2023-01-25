@@ -3,8 +3,8 @@ import axios from "axios";
 import ProfileImageSet from "../profileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
-import ProfileSetCont from "./profileSetInps.style";
 import Warning from "../userinput/Warning";
+import ProfileSetCont from "./profileSetInps.style";
 
 export default function ProfileSetInpsTemp({
     formId,
@@ -90,7 +90,7 @@ export default function ProfileSetInpsTemp({
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
     };
 
     // 이미지 파일 변경시 동작하는 함수
@@ -130,7 +130,7 @@ export default function ProfileSetInpsTemp({
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-        }
+        };
     };
 
     return (
@@ -177,4 +177,4 @@ export default function ProfileSetInpsTemp({
             </UserInput>
         </ProfileSetCont>
     );
-}
+};

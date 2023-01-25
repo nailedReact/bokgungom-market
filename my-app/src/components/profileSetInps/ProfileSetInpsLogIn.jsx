@@ -3,8 +3,8 @@ import axios from "axios";
 import ProfileImageSet from "../profileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
-import ProfileSetCont from "./profileSetInps.style";
 import Warning from "../userinput/Warning";
+import ProfileSetCont from "./profileSetInps.style";
 
 export default function ProfileSetTemp({
     formId,
@@ -48,7 +48,7 @@ export default function ProfileSetTemp({
             ) {
                 onValidByUpper();
             }
-        }
+        };
     };
 
     const onIdBlurHandle = async (e) => {
@@ -94,7 +94,7 @@ export default function ProfileSetTemp({
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
     };
 
     const ImgChangeHandle = async (imgdata) => {
@@ -130,7 +130,7 @@ export default function ProfileSetTemp({
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-        }
+        };
     };
 
     return (
@@ -177,4 +177,4 @@ export default function ProfileSetTemp({
             </UserInput>
         </ProfileSetCont>
     );
-}
+};

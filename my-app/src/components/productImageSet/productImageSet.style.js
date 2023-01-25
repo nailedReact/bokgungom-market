@@ -13,7 +13,7 @@ export const ProductImgSetCont = styled.label`
         border-radius: 10px;
         border: 0.5px solid #DBDBDB;
         background-color: #F2F2F2;
-    }
+    };
 
     & .each-image-cont {
         display: block;
@@ -21,13 +21,13 @@ export const ProductImgSetCont = styled.label`
         width: calc(100% - 42px);
         max-width: 400px;
         margin-left: 42px;
-    }
+    };
 
     & .each-image-cont div {
         display: inline-block;
         position: relative;
         width: 100%;
-    }
+    };
 
     & .each-image-cont .delete-btn {
         position: absolute;
@@ -37,10 +37,10 @@ export const ProductImgSetCont = styled.label`
         height: 11px;
         background-color: transparent;
         padding: 0;
-    }
+    };
 
     & .each-image-cont .delete-btn img {
         width: 100%;
         object-fit: cover;
-    }
+    };
 `;

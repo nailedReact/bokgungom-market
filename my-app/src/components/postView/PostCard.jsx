@@ -4,16 +4,16 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import axios from "axios";
 import OptionModal from "../optionModal/OptionModal";
 import ConfirmModal from "../confirmModal/ConfirmModal";
+import Toast from "../toast/Toast";
+import { v4 } from "uuid";
 import heart_active from "../../assets/icon/icon-heart-active.png";
 import heart from "../../assets/icon/icon-heart.png";
 import comment from "../../assets/icon/icon-message-circle.png";
-import styled from "styled-components";
-import axios from "axios";
 import plusimg from "../../assets/icon/icon-more-vertical.png";
-import Toast from "../toast/Toast";
-import { v4 } from "uuid";
 import errorimg from "../../assets/imageNotFound.png";
 import basicprofile from "../../assets/basic-profile-img.png";
 
@@ -31,7 +31,7 @@ const Username = styled.h2`
     cursor: pointer;
     @media screen and (min-width: 768px) {
         font-size: 16px;
-    }
+    };
 `;
 
 const Accountname = styled.p`
@@ -43,7 +43,7 @@ const Accountname = styled.p`
     cursor: pointer;
     @media screen and (min-width: 768px) {
         font-size: 14px;
-    }
+    };
 `;
 
 const Content = styled.p`
@@ -70,7 +70,7 @@ const ContentCont = styled.div`
     width: 304px;
     @media screen and (min-width: 768px) {
         width: 400px;
-    }
+    };
 `;
 
 const Count = styled.span`
@@ -80,7 +80,7 @@ const Count = styled.span`
     margin-left: 7px;
     @media screen and (min-width: 768px) {
         font-size: 14px;
-    }
+    };
 `;
 const HeartComment = styled.div`
     display: flex;
@@ -99,7 +99,7 @@ const HeartCommentimg = styled.img`
     @media screen and (min-width: 768px) {
         width: 18px;
         height: 18px;
-    }
+    };
 `;
 
 const Createdate = styled.span`
@@ -108,7 +108,7 @@ const Createdate = styled.span`
     color: #767676;
     @media screen and (min-width: 768px) {
         font-size: 12px;
-    }
+    };
 `;
 const ProfilePicSmall = styled.img`
     width: 42px;
@@ -117,10 +117,10 @@ const ProfilePicSmall = styled.img`
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid #c4c4c4;
+    cursor: pointer;
     @media screen and (min-width: 768px) {
         margin-right: 16px;
-    }
-    cursor: pointer;
+    };
 `;
 
 const Plusbutton = styled.button`
@@ -141,22 +141,24 @@ const HeadCont = styled.div`
 const ImgCont = styled.div`
     display: flex;
     overflow-x: scroll;
+
     ::-webkit-scrollbar {
         height: 10px;
-    }
+    };
+
     ::-webkit-scrollbar-thumb {
         background-color: rgb(125, 125, 125);
         border-radius: 10px;
         background-clip: padding-box;
         border: 1px solid transparent;
         height: 5px;
-    }
+    };
 
     ::-webkit-scrollbar-track {
         background-color: transparent;
         border-radius: 10px;
         box-shadow: inset 1px 1px 2px white;
-    }
+    };
 `;
 
 export default function PostCard({
@@ -203,7 +205,7 @@ export default function PostCard({
                 }
             );
             setMyposthearts(heartfalse.data.post.heartCount);
-        }
+        };
     };
 
     const deleteSelectedHandle = () => {
@@ -228,12 +230,13 @@ export default function PostCard({
             deleteByUpper(data.id);
         } catch (err) {
             console.log(err);
-        }
+        };
     };
 
     function handleClickProfile() {
         navigate(`../../account/profile/${data.author.accountname}`);
-    }
+    };
+
     const handleShowToast = () => {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function () {
@@ -247,9 +250,11 @@ export default function PostCard({
         e.target.style.padding = "60px";
         e.target.style.background = "#f2f2f2";
     };
+
     const profileImgError = (e) => {
         e.target.src = basicprofile;
     };
+
     return (
         <div>
             <Toast ref={toastRef} msg="게시물이 삭제 되었습니다!" />
@@ -369,4 +374,4 @@ export default function PostCard({
             </Cont>
         </div>
     );
-}
+};

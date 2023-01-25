@@ -14,7 +14,8 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
     height: 100%;
     object-fit: cover;
     margin: auto;
-  `
+  `;
+
   const Multiimg = styled.img`
     position: absolute;
     top: 4%;
@@ -24,27 +25,30 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
     @media screen and (min-width: 768px){
       width: 14%;
       height: 14%;
-    }
-  `
+    };
+  `;
+
   const AlbumCont = styled.div`
     position: relative;
-  `
+  `;
+
   const ImgCont = styled.div`
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      outline: 1px solid #C4C4C4;
-      &::after {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
-      }
-  `
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    outline: 1px solid #C4C4C4;
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    };
+  `;
+
   const imgerror = (e) => {
     e.target.src = errorimg;
     e.target.style.padding = "60px";
     e.target.style.background = "#f2f2f2";
-};
+  };
 
   return (
     <>
@@ -65,5 +69,5 @@ export default function PostAlbum({data, myProfile, postDetailSrc}) {
       </Link>
       : null}
     </>
-  )
-}
+  );
+};

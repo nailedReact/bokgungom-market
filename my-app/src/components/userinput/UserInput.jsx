@@ -9,8 +9,8 @@ const InpLabel = styled.label`
     margin-top: 40px;
     @media screen and (max-width: 768px) {
         font-size: 14px;
-    }
-`
+    };
+`;
 
 const Cont = styled.div`
     display: flex;
@@ -18,7 +18,7 @@ const Cont = styled.div`
     margin-top: 12px;
     @media screen and (max-width: 768px){
         margin-top: 0px;
-    }
+    };
 `;
 
 
@@ -30,5 +30,5 @@ export default function UserInput(props) {
             </InpLabel>
             {props.children}
         </Cont>
-    )
-}
+    );
+};

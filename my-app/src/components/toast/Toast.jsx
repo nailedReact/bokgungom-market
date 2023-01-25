@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
-import styled from "styled-components";
 import { forwardRef } from "react";
+import styled from "styled-components";
 
 const Cont = styled.div`
     display: flex;
@@ -20,8 +20,9 @@ const Cont = styled.div`
     @media screen and (max-width: 768px){
         right: 20px;
         top: 20px;
-    }
-`
+    };
+`;
+
 const CloseBtn = styled.button`
     font-family: "Pretendard";
     background: none;
@@ -31,11 +32,13 @@ const CloseBtn = styled.button`
     font-weight: 500;
     padding: 0px 4px;
     font-size: 18px;
-`
+`;
+
 const Toast = forwardRef((props, ref) => {
     const handleCloseToast = (e) => {
         e.target.parentElement.style.transform = "scale(0)";
-    }
+    };
+
     return (
         <>
         {ReactDOM.createPortal(
@@ -47,7 +50,7 @@ const Toast = forwardRef((props, ref) => {
                 document.getElementById("modal-root")
             )}
         </>
-    )
-})
+    );
+});
 
 export default Toast;

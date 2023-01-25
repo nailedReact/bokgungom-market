@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
-import ImageUpload from "../imageUpload/ImageUpload";
-import { ProfileImgSetCont } from "./profileImageSet.style.js";
-import actionImgCompress from "../../utils/imageCompression";
 import styled from "styled-components";
+import ImageUpload from "../imageUpload/ImageUpload";
+import actionImgCompress from "../../utils/imageCompression";
+import { ProfileImgSetCont } from "./profileImageSet.style.js";
 
 const Div = styled.div`
     text-align: center;
-`
+`;
 const ProfilePic = styled.img`
     border: 1px solid #C4C4C4;
     object-fit: cover;
-`
+`;
 
 export default function ProfileImageSet({ onChangeByUpper, initial }) {
     const image = useRef(null);
@@ -46,4 +46,4 @@ export default function ProfileImageSet({ onChangeByUpper, initial }) {
             </ProfileImgSetCont>
         </Div>
     );
-}
+};

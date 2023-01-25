@@ -9,8 +9,8 @@ const Title = styled.h1`
 
     @media screen and (max-width: 768px) {
       font-size: 24px;
-    }
-`
+    };
+`;
 
 const Info = styled.p`
   font-size: 16px;
@@ -19,8 +19,8 @@ const Info = styled.p`
 
   @media screen and (max-width: 768px) {
     font-size: 14px;
-  }
-`
+  };
+`;
 
 export default function InitialHeading({text, info}) {
   return (
@@ -28,5 +28,5 @@ export default function InitialHeading({text, info}) {
       <Title>{text}</Title>
       <Info>{info}</Info>
     </>
-  )
-}
+  );
+};

@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable array-callback-return */
 import React from 'react'
-import styled from 'styled-components';
 import { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import PostCard from './PostCard';
 import PostAlbum from "./PostAlbum"
 import { UserNameContext } from "../../pages/profile/userprofile/Profile";
@@ -12,33 +12,33 @@ import IconNopost from "../../assets/symbol-logo-gray.png"
 import SVGIcon from '../icon/SVGIcon';
 
 const PostViewCont = styled.div`
-    display: flex;
-    justify-content: right;
-    gap: 6px;
-    border: 0.5px solid #DBDBDB;
-    padding: 9px 16px;
-`
+  display: flex;
+  justify-content: right;
+  gap: 6px;
+  border: 0.5px solid #DBDBDB;
+  padding: 9px 16px;
+`;
 const BtnOption = styled.button`
-    width: 26px;
-    height: 26px;
-    background: none;
-    & p {
-      text-indent: -9999px;
-    }
+  width: 26px;
+  height: 26px;
+  background: none;
+  & p {
+    text-indent: -9999px;
+  };
+  & svg {
+    margin-left: -6px;
+  };
+  &.list {
     & svg {
-      margin-left: -6px;
-    }
-    &.list {
-      & svg {
-            filter: ${(props) => (props.view === 'list'? "brightness(50%)" : "brightness(100%)")};
-        }
-    }
-    &.album {
-      & svg {
-            filter: ${(props) => (props.view === 'list'? "brightness(100%)" : "brightness(50%)")};
-        }
-    }
-`
+          filter: ${(props) => (props.view === 'list'? "brightness(50%)" : "brightness(100%)")};
+      };
+  };
+  &.album {
+    & svg {
+          filter: ${(props) => (props.view === 'list'? "brightness(100%)" : "brightness(50%)")};
+      };
+  };
+`;
 
 const AlbumCont = styled.div`
   display: grid; 
@@ -55,17 +55,17 @@ const PostCont =styled.div`
 
 const NoPost_Txt = styled.p`
   margin-top: 20px;
-`
+`;
 const NoPost_img = styled.img`
   width: 120px;
   height: 120px;
-`
+`;
 
 const NoPost_Cont = styled.div`
   background: #fff;
   text-align: center;
   padding-top: 50px;
-`
+`;
 
 
 export default function PostList({isProfilePage}) {
@@ -100,7 +100,7 @@ export default function PostList({isProfilePage}) {
 
   useEffect(() => {
     getItems()
-  }, [getItems, username, view])
+  }, [getItems, username, view]);
 
 
 
@@ -111,54 +111,56 @@ export default function PostList({isProfilePage}) {
       setCount(0)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView,loading])
+  }, [inView,loading]);
 
   useEffect(() => {
     if (resMsg.length !== 0){
       const postLists = resMsg.map((item, index) => {
-          if (isMyProfile) {
-            if(index%4 === 0 && count === 0){
-              setCount(1)
-              return <div ref={ref} key={item.id}><PostCard  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
-            }else{
-              return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
-            }
+        if (isMyProfile) {
+          if (index%4 === 0 && count === 0){
+            setCount(1)
+            return <div ref={ref} key={item.id}><PostCard  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
           } else {
-            if(index%4 === 0 && count === 0){
-              setCount(1)
-              return <div ref={ref} key={item.id}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
-            }else{
-              return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
-            }
-          }})
+            return <PostCard key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
+          }
+        } else {
+          if (index%4 === 0 && count === 0){
+            setCount(1)
+            return <div ref={ref} key={item.id}> <PostCard data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} /></div >;
+          } else {
+            return <PostCard key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} deleteByUpper={deleteHandle} />;
+          }
+        }
+      });
 
       const postPhotos = resMsg.map((item, index) => {
         if (isMyProfile) {
           if(index%5 === 0 && count === 0){
             setCount(1)
           return <div ref={ref} key={item.id}><PostAlbum  data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} /></div>;
-          }else{
+          } else {
             return <PostAlbum key={item.id} data={item} myProfile={true} postDetailSrc={`/post/${item.id}`} />;
           }
         } else {
-          if(index%5 === 0 && count === 0){
+          if (index%5 === 0 && count === 0){
             setCount(1)
-          return <div ref={ref} key={item.id}><PostAlbum data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div>;
-          }else{
-            return <PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
+            return <div ref={ref} key={item.id}><PostAlbum data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} /></div>;
+          } else{
+              return <PostAlbum key={item.id} data={item} myProfile={false} postDetailSrc={`/post/${item.id}`} />;
           }
         }
       });
       setPostArrList(postLists);
       setPostArrAlbum(postPhotos);
-    }
+    };
     // eslint-disable-next-line
   }, [resMsg]);
 
   const handleChangeView = (e) => {
     const type = view === "list" ? "album" : "list";
     setView(type);
-  }
+  };
+
   return (
     <>
     { resMsg.length === 0 ? <NoPost_Cont><NoPost_img src={IconNopost} alt="아이콘" /> <NoPost_Txt>게시물이 없습니다</NoPost_Txt></NoPost_Cont> : <PostCont>
@@ -180,5 +182,5 @@ export default function PostList({isProfilePage}) {
       : <AlbumCont> {postArrAlbum}</AlbumCont>}
     </PostCont>}
     </>
-  )
-}
+  );
+};
