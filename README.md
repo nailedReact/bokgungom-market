@@ -21,19 +21,59 @@
 
 ## 🫂 팀 소개
 
-<img src="" width=""/>
-- 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
-- 이 프로젝트를 통해 리액트를 
-
+<img src="https://github.com/nailedReact/bokgungom-market/blob/main/preview/15.gif" width="40%"/>
 
 |<span style="font-size:16px">정수현 (팀장)</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
 |:-:|:-:|:-:|:-:|
 |<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=150 width=150></a>|<a href="https://github.com/SEMINSEMINSEMIN"><img src="https://avatars.githubusercontent.com/SEMINSEMINSEMIN" height=150 width=150></a>|<a href="https://github.com/sjkymy"><img src="https://avatars.githubusercontent.com/sjkymy" height=150 width=150></a>|<a href="https://github.com/hyejee0504"><img src="https://avatars.githubusercontent.com/hyejee0504" height=150 width=150></a>|
 
+- 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
+- 이 프로젝트를 통해 팀원 모두 낯설었던 리액트를 찢어보자! 라는 의미에서 다음과 같은 팀명을 짓게 되었습니다.
+- 원본 밈인 ~~북극곰은 사람을 찢어~~에서 비롯하여 저희의 대표 캐릭터도 북극곰으로 지정했습니다. 🐻‍❄️
+
 <br>
 
 ## 🙋‍♀️ 역할 분담
 
+### 정수현
+
+- 스플래시 페이지
+- 회원가입 페이지
+- 프로필 페이지
+- 반응형 디자인 구현
+- 토스트 메시지 구현
+- 로딩중 & 404 페이지
+- 게시글 상세 페이지 댓글 더보기 기능 구현
+- 로그인 유효성 검사
+- 디자인 총괄
+
+### 강세민
+- 게시글 상세보기 + 댓글 페이지
+- 게시글 수정 페이지
+- 프로필 페이지
+- 프로필 수정 페이지
+- 채팅 페이지
+
+### 김성준
+
+- 로그인 페이지
+- 게시글 업로드 페이지
+- 상품 업로드 페이지
+
+### 한혜지
+
+- 팔로잉 팔로우 리스트 구현
+- 프로필 페이지 
+- 홈피드 페이지
+- 검색 페이지
+- 홈피드에서 페이지네이션 구현
+- 프로필 내 피드에서 무한 스크롤 구현
+- top 버튼 구현
+
+### 공통 작업
+- 공통 컴포넌트
+
+<br>
 
 ## ⚙️ 개발 환경
 
@@ -100,7 +140,7 @@
 5. **PR(Pull Request)** 을 오픈합니다.
 - PR(pull request)을 오픈하면, 푸시한 사람 외 다른 팀원 1명이 코드를 확인하고 승인합니다.
 - PR이 오픈되면 다른 팀원들이 바로 확인할 수 있도록 디스코드 웹 훅 설정을 통해 팀 채팅방으로 알람을 받을 수 있도록 했습니다.
-<img style="margin: 10px" width=60% src="./preview/discord.png" alt="디스코드 깃허브 알람"/>
+    <img style="margin: 10px" width=60% src="./preview/discord.png" alt="디스코드 깃허브 알람"/>
 
 - 코드 리뷰 & 승인은 생산성을 위해 리뷰어를 1명으로 지정하되, 팀원들이 코드 스타일을 공유하며 서로 잘 이해할 수 있도록 순서를 정해 돌아가며 골고루 리뷰하도록 했습니다.
 
