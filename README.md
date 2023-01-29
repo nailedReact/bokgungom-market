@@ -23,7 +23,7 @@
 
 <img src="https://github.com/nailedReact/bokgungom-market/blob/main/preview/15.gif" width="40%"/>
 
-|<span style="font-size:16px">정수현 (팀장)</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
+|<span style="font-size:16px">🤖 정수현 (팀장)</span>|<span style="font-size:16px">🔥 강세민</span>|<span style="font-size:16px">🏅 김성준</span>|<span style="font-size:16px">🦁 한혜지</span>|
 |:-:|:-:|:-:|:-:|
 |<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=150 width=150></a>|<a href="https://github.com/SEMINSEMINSEMIN"><img src="https://avatars.githubusercontent.com/SEMINSEMINSEMIN" height=150 width=150></a>|<a href="https://github.com/sjkymy"><img src="https://avatars.githubusercontent.com/sjkymy" height=150 width=150></a>|<a href="https://github.com/hyejee0504"><img src="https://avatars.githubusercontent.com/hyejee0504" height=150 width=150></a>|
 
@@ -35,7 +35,7 @@
 
 ## 🙋‍♀️ 역할 분담
 
-### 정수현
+### 🤖 정수현
 
 - 스플래시 페이지
 - 회원가입 페이지
@@ -47,20 +47,20 @@
 - 로그인 유효성 검사
 - 디자인 총괄
 
-### 강세민
+### 🔥 강세민
 - 게시글 상세보기 + 댓글 페이지
 - 게시글 수정 페이지
 - 프로필 페이지
 - 프로필 수정 페이지
 - 채팅 페이지
 
-### 김성준
+### 🏅 김성준
 
 - 로그인 페이지
 - 게시글 업로드 페이지
 - 상품 업로드 페이지
 
-### 한혜지
+### 🦁 한혜지
 
 - 팔로잉 팔로우 리스트 구현
 - 프로필 페이지 
