@@ -21,8 +21,9 @@
 
 ## 🫂 팀 소개
 
+<img src="" width=""/>
 - 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
-- 이 
+- 이 프로젝트를 통해 리액트를 
 
 
 |<span style="font-size:16px">정수현 (팀장)</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
