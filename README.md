@@ -22,13 +22,17 @@
 ## 🫂 팀 소개
 
 - 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
+- 이 
 
 
-|<span style="font-size:16px">정수현</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
+|<span style="font-size:16px">정수현 (팀장)</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
 |:-:|:-:|:-:|:-:|
-|<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=100 width=100></a>|<a href="https://github.com/SEMINSEMINSEMIN"><img src="https://avatars.githubusercontent.com/SEMINSEMINSEMIN" height=100 width=100></a>|<a href="https://github.com/sjkymy"><img src="https://avatars.githubusercontent.com/sjkymy" height=100 width=100></a>|<a href="https://github.com/hyejee0504"><img src="https://avatars.githubusercontent.com/hyejee0504" height=100 width=100></a>|
+|<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=150 width=150></a>|<a href="https://github.com/SEMINSEMINSEMIN"><img src="https://avatars.githubusercontent.com/SEMINSEMINSEMIN" height=150 width=150></a>|<a href="https://github.com/sjkymy"><img src="https://avatars.githubusercontent.com/sjkymy" height=150 width=150></a>|<a href="https://github.com/hyejee0504"><img src="https://avatars.githubusercontent.com/hyejee0504" height=150 width=150></a>|
 
 <br>
+
+## 🙋‍♀️ 역할 분담
+
 
 ## ⚙️ 개발 환경
 
@@ -53,7 +57,7 @@
             <br>
             <code>styled-components</code>
           </td>
-          <td style="text-align:center;">제공된 API 사용</td>
+          <td align="center" style="text-align:center;">부트캠프에서 제공된<br>API 사용</td>
           <td align="center" style="text-align:center;">
             <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Styled Components" height="50" /></a>
             <br>
@@ -82,6 +86,7 @@
 |react-intersection-observer| 무한 스크롤 구현을 위해 사용 |
 |styled-reset| 스타일 구현의 편의를 위해 사용 |
 |uuid| 컴포넌트 리스트의 유니크한 key 생성을 위해 사용 |
+|browser-image-compression| 업로딩 이미지 압축을 위해 사용 |
 
 <br>
 
