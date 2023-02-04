@@ -137,7 +137,8 @@
 ## <a href="https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%A4%9D-%ED%98%91%EC%97%85-&-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%83%9D%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C" target="_blank">🤝 협업 방식</a>
 
 1. 프로젝트 노션 페이지 내 남은 작업 목록에서 원하는 작업을 분담합니다.
-2. 해당하는 업무에 대해 **GitHub Issue**를 생성합니다.
+    <img src="./preview/notion.png" alt="프로젝트 노션 페이지" width="60%"/>
+2. 해당하는 업무에 대해 **GitHub Issue**를 생성합니다. (이슈 템플릿 사용)
 3. GitHub Actions에 의해 자동으로 생성된 브랜치로 전환하여 해당하는 업무를 진행합니다.
 4. 작업을 완료하면 작업한 브랜치에서(main브랜치 X) 코드를 push합니다.
 5. **PR(Pull Request)** 을 오픈합니다.
