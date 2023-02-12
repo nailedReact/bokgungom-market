@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const Div = styled.div`
+    text-align: center;
+`;
+
+export const ProfilePic = styled.img`
+    border: 1px solid #C4C4C4;
+    object-fit: cover;
+`;
 export const ProfileImgSetCont = styled.label`
     display: inline-block;
     position: relative;

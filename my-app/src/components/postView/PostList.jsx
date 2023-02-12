@@ -1,72 +1,22 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable array-callback-return */
-import React from 'react'
 import { useState, useEffect, useContext, useCallback } from 'react';
+import { useInView } from "react-intersection-observer"
 import axios from 'axios';
-import styled from 'styled-components';
 import PostCard from './PostCard';
 import PostAlbum from "./PostAlbum"
 import { UserNameContext } from "../../pages/profile/userprofile/Profile";
-import { useInView } from "react-intersection-observer"
 import IconNopost from "../../assets/symbol-logo-gray.png"
 import SVGIcon from '../icon/SVGIcon';
-
-const PostViewCont = styled.div`
-  display: flex;
-  justify-content: right;
-  gap: 6px;
-  border: 0.5px solid #DBDBDB;
-  padding: 9px 16px;
-`;
-const BtnOption = styled.button`
-  width: 26px;
-  height: 26px;
-  background: none;
-  & p {
-    text-indent: -9999px;
-  };
-  & svg {
-    margin-left: -6px;
-  };
-  &.list {
-    & svg {
-          filter: ${(props) => (props.view === 'list'? "brightness(50%)" : "brightness(100%)")};
-      };
-  };
-  &.album {
-    & svg {
-          filter: ${(props) => (props.view === 'list'? "brightness(100%)" : "brightness(50%)")};
-      };
-  };
-`;
-
-const AlbumCont = styled.div`
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr);
-  position: relative;
-	width: 100%;
-  grid-gap: 1px;
-`;
-
-const PostCont =styled.div`
-  background: white;
-  border: 0.5px solid #DBDBDB;
-`;
-
-const NoPost_Txt = styled.p`
-  margin-top: 20px;
-`;
-const NoPost_img = styled.img`
-  width: 120px;
-  height: 120px;
-`;
-
-const NoPost_Cont = styled.div`
-  background: #fff;
-  text-align: center;
-  padding-top: 50px;
-`;
-
+import {
+  PostViewCont,
+  BtnOption,
+  AlbumCont,
+  PostCont,
+  NoPost_Txt,
+  NoPost_img,
+  NoPost_Cont
+} from "./postList.style";
 
 export default function PostList({isProfilePage}) {
   const [resMsg, setResMsg] = useState([]);
