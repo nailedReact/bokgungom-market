@@ -1,165 +1,18 @@
 /* eslint-disable */
 /* eslint-disable array-callback-return */
-
-import React from "react";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { v4 } from "uuid";
 import axios from "axios";
 import OptionModal from "../optionModal/OptionModal";
 import ConfirmModal from "../confirmModal/ConfirmModal";
 import Toast from "../toast/Toast";
-import { v4 } from "uuid";
 import heart_active from "../../assets/icon/icon-heart-active.png";
 import heart from "../../assets/icon/icon-heart.png";
 import comment from "../../assets/icon/icon-message-circle.png";
-import plusimg from "../../assets/icon/icon-more-vertical.png";
 import errorimg from "../../assets/imageNotFound.png";
 import basicprofile from "../../assets/basic-profile-img.png";
-
-const Cont = styled.div`
-    display: flex;
-    padding: 20px;
-    justify-content: center;
-    background-color: white;
-    border-bottom: 0.5px solid #dbdbdb;
-`;
-
-const Username = styled.h2`
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    @media screen and (min-width: 768px) {
-        font-size: 16px;
-    };
-`;
-
-const Accountname = styled.p`
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    color: #767676;
-    margin-top: 2px;
-    cursor: pointer;
-    @media screen and (min-width: 768px) {
-        font-size: 14px;
-    };
-`;
-
-const Content = styled.p`
-    width: 100%;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    margin-top: 16px;
-    white-space: pre-wrap;
-    word-break: break-all;
-`;
-
-const Contentimg = styled.img`
-    width: 100%;
-    height: auto;
-    display: block;
-    /* height: 228px; */
-    border: 0.5px solid #dbdbdb;
-    border-radius: 10px;
-    margin-top: 16px;
-`;
-
-const ContentCont = styled.div`
-    width: 304px;
-    @media screen and (min-width: 768px) {
-        width: 400px;
-    };
-`;
-
-const Count = styled.span`
-    font-weight: 400;
-    font-size: 12px;
-    color: #767676;
-    margin-left: 7px;
-    @media screen and (min-width: 768px) {
-        font-size: 14px;
-    };
-`;
-const HeartComment = styled.div`
-    display: flex;
-    align-items: center;
-    margin: 6px 0;
-`;
-const HeartCommentCont = styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: 16px;
-    cursor: pointer;
-`;
-const HeartCommentimg = styled.img`
-    width: 15px;
-    height: 15px;
-    @media screen and (min-width: 768px) {
-        width: 18px;
-        height: 18px;
-    };
-`;
-
-const Createdate = styled.span`
-    font-weight: 400;
-    font-size: 10px;
-    color: #767676;
-    @media screen and (min-width: 768px) {
-        font-size: 12px;
-    };
-`;
-const ProfilePicSmall = styled.img`
-    width: 42px;
-    height: 42px;
-    margin-right: 12px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #c4c4c4;
-    cursor: pointer;
-    @media screen and (min-width: 768px) {
-        margin-right: 16px;
-    };
-`;
-
-const Plusbutton = styled.button`
-    background-image: url(${plusimg});
-    width: 25px;
-    height: 25px;
-    background-color: inherit;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-`;
-
-const HeadCont = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
-const ImgCont = styled.div`
-    display: flex;
-    overflow-x: scroll;
-
-    ::-webkit-scrollbar {
-        height: 10px;
-    };
-
-    ::-webkit-scrollbar-thumb {
-        background-color: rgb(125, 125, 125);
-        border-radius: 10px;
-        background-clip: padding-box;
-        border: 1px solid transparent;
-        height: 5px;
-    };
-
-    ::-webkit-scrollbar-track {
-        background-color: transparent;
-        border-radius: 10px;
-        box-shadow: inset 1px 1px 2px white;
-    };
-`;
+import * as S from "./postCard.style";
 
 export default function PostCard({
     data,
@@ -282,39 +135,39 @@ export default function PostCard({
                     }
                 />
             )}
-            <Cont>
-                <ProfilePicSmall
+            <S.Cont>
+                <S.ProfilePicSmall
                     src={data.author.image}
                     onError={profileImgError}
                     onClick={handleClickProfile}
                     alt={`${data.author.username}의 프로필 이미지`}
                 />
-                <ContentCont>
-                    <HeadCont>
+                <S.ContentCont>
+                    <S.HeadCont>
                         <div>
-                            <Username onClick={handleClickProfile}>
+                            <S.Username onClick={handleClickProfile}>
                                 {data.author.username}
-                            </Username>
-                            <Accountname onClick={handleClickProfile}>
+                            </S.Username>
+                            <S.Accountname onClick={handleClickProfile}>
                                 @{data.author.accountname}
-                            </Accountname>
+                            </S.Accountname>
                         </div>
                         {myProfile ? (
-                            <Plusbutton
+                            <S.Plusbutton
                                 onClick={() => setIsOptionVisible(true)}
                                 aria-label="게시글 수정,삭제 목록"
                             />
                         ) : null}
-                    </HeadCont>
+                    </S.HeadCont>
                     <div onClick={handlepostdetail}>
-                        <Content>{data.content}</Content>
+                        <S.Content>{data.content}</S.Content>
                         {data.image ? (
                             data.image.split(",").length > 1 ? (
-                                <ImgCont>
+                                <S.ImgCont>
                                     {data.image.split(",").map((item) => {
                                         // console.log(data);
                                         return (
-                                            <Contentimg
+                                            <S.Contentimg
                                                 src={item}
                                                 width="304"
                                                 height="228"
@@ -324,9 +177,9 @@ export default function PostCard({
                                             />
                                         );
                                     })}
-                                </ImgCont>
+                                </S.ImgCont>
                             ) : (
-                                <Contentimg
+                                <S.Contentimg
                                     src={data.image}
                                     width="304"
                                     height="228"
@@ -336,42 +189,42 @@ export default function PostCard({
                             )
                         ) : null}
                     </div>
-                    <HeartComment>
+                    <S.HeartComment>
                         <span onClick={heartchange}>
                             {myheart ? (
-                                <HeartCommentCont>
-                                    <HeartCommentimg
+                                <S.HeartCommentCont>
+                                    <S.HeartCommentimg
                                         src={heart_active}
                                         alt="채워진 하트"
                                     />
-                                    <Count>{myposthearts}</Count>
-                                </HeartCommentCont>
+                                    <S.Count>{myposthearts}</S.Count>
+                                </S.HeartCommentCont>
                             ) : (
-                                <HeartCommentCont>
-                                    <HeartCommentimg
+                                <S.HeartCommentCont>
+                                    <S.HeartCommentimg
                                         src={heart}
                                         alt="비워진 하트"
                                     />
-                                    <Count>{myposthearts}</Count>
-                                </HeartCommentCont>
+                                    <S.Count>{myposthearts}</S.Count>
+                                </S.HeartCommentCont>
                             )}
                         </span>
                         <Link to={postDetailSrc}>
                             <span className={"ir"}>
                                 게시글 상세 페이지로 이동
                             </span>
-                            <HeartCommentCont>
-                                <HeartCommentimg
+                            <S.HeartCommentCont>
+                                <S.HeartCommentimg
                                     src={comment}
                                     alt="댓글 아이콘"
                                 />
-                                <Count>{data.commentCount}</Count>
-                            </HeartCommentCont>
+                                <S.Count>{data.commentCount}</S.Count>
+                            </S.HeartCommentCont>
                         </Link>
-                    </HeartComment>
-                    <Createdate>{data.createdAt.slice(0, 10)}</Createdate>
-                </ContentCont>
-            </Cont>
+                    </S.HeartComment>
+                    <S.Createdate>{data.createdAt.slice(0, 10)}</S.Createdate>
+                </S.ContentCont>
+            </S.Cont>
         </div>
     );
 };

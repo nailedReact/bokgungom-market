@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
-import styled from "styled-components";
 import TopBar from "../../../components/topbar/TopBar";
 import PostCard from "../../../components/postView/PostCard";
 import CommentItem from "../../../components/commentItem/CommentItem";
@@ -19,28 +18,15 @@ import Toast from "../../../components/toast/Toast";
 import { formattedDate } from "../dateformat";
 import useAuth from "../../../hook/useAuth";
 import usePostDetail from "../../../hook/usePostDetail";
-import basicImg from "../../../assets/basic-profile-img.png";
 import Button from "../../../components/button/Button";
+import basicImg from "../../../assets/basic-profile-img.png";
+import {
+    CommentListBox,
+    PostContentBox,
+    More,
+    UserProfilePic
+} from "./post.share.style";
 
-const CommentListBox = styled.ul`
-    padding: 20px 16px 80.5px 16px;
-    @media screen and (min-width: 768px) {
-        padding: 20px;
-        margin-bottom: 60px;
-    }
-`;
-
-const PostContentBox = styled.div`
-    padding: 20px 16px;
-`;
-
-const More = styled.div`
-    text-align: center;
-`;
-
-const UserProfilePic = styled.img`
-    border: 1px solid #C4C4C4;
-`
 export default function PostDetail() {
     const [postMsg, setPostMsg] = useState();
     const [commentMsg, setCommentMsg] = useState([]);

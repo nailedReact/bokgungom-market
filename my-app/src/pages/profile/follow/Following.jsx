@@ -19,9 +19,7 @@ export default function Following() {
 
   
     useEffect(() => {
-
       data && setMyaccountName(data.accountname);
-      
       },[data])
 
 
