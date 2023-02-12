@@ -43,13 +43,37 @@ export const PrevNextBtn = styled.button`
 `
 
 export const Pagenation = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  gap: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
 `
 
 export const ButtonCont = styled.div`
     display: flex;
     gap: 10px;
 `
+
+export const Symbolimg = styled.img`
+    width: 120px;
+    height: 120px;
+`;
+
+export const SearchText = styled.p`
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #767676;
+`;
+
+export const Cont = styled.div`
+    display: flex;
+    height: calc(100vh - 60px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @media screen and (max-width: 768px){
+        height: calc(100vh - 60px - 55px);
+    }
+`;

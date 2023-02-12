@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import data from "./chat/chatdata.json";
 import OptionModal from "../../components/optionModal/OptionModal";
 import TopBar from "../../components/topbar/TopBar";
@@ -9,14 +8,7 @@ import Outgoing from "./chat/Outgoing/Outgoing";
 import Incoming from "./chat/Incoming/Incoming";
 import ChatInput from "./chat/ChatInput/ChatInput";
 import { formattedTimeFunc } from "./dateFormat";
-
-const ChatContBack = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: ${(props) => `calc(${props.windowHeight}px - 110.5px)`};
-    background-color: #f2f2f2;
-`;
+import { ChatContBack, ChatCont } from "./chatListRoom.style";
 
 const ResizedChatContBack = (props) => {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -34,11 +26,6 @@ const ResizedChatContBack = (props) => {
 
     return <ChatContBack windowHeight={windowHeight}>{props.children}</ChatContBack>
 };
-
-const ChatCont = styled.ul`
-    overflow-y: scroll;
-    padding: 20px 16px 16px 16px;
-`;
 
 export default function ChattingRoom() {
     const location = useLocation();

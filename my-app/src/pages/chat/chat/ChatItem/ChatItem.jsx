@@ -1,13 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { ChatItemCont } from "./chatItem.style";
 import { formattedDateFunc } from "../../dateFormat";
-import styled from "styled-components";
+import { ChatItemCont, ProfilePic } from "./chatItem.style";
 
-const ProfilePic = styled.img`
-    border: 1px solid #C4C4C4;
-    border-radius: 50%;
-`
 export default function ChatItem({
     linkSrc,
     image,

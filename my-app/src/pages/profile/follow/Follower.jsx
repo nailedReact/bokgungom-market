@@ -2,8 +2,8 @@
 import React from 'react'
 import axios from 'axios'
 import { useState,  useEffect } from 'react'
-import FollowListCard from './FollowListCard'
 import { useParams } from 'react-router';
+import FollowListCard from './FollowListCard'
 import NoFollowerFollowing from './NoFollowerFollowing';
 import NavBar from '../../../components/navBar/NavBar';
 import TopBar from '../../../components/topbar/TopBar';

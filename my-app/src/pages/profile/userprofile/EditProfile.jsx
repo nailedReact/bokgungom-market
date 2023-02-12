@@ -13,7 +13,6 @@ const ProfileEditCont = styled.div`
         margin-left: 240px;
     }
 `
-
 export default function EditProfile() {
     const [isBtnVisible, setIsBtnVisible] = useState(false);
     const [prevData, setPrevData] = useState({});

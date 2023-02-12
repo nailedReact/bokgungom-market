@@ -9,12 +9,13 @@ import Textarea from "../../../components/textarea/Textarea";
 import useAuth from "../../../hook/useAuth";
 import useWindowSizeCustom from "../../../hook/windowSize";
 import actionImgCompress from "../../../utils/imageCompression";
-import { PostEditWrapper } from "./postEditWrapper.style";
 import { ProductImgSetCont } from "../../../components/productImageSet/productImageSet.style";
-import { UserProfileImg } from "./postProfile.style";
-import { Contentimg } from "./postContentImg.style";
 import basicImg from "../../../assets/basic-profile-img.png";
 import deleteIcon from "../../../assets/icon/icon-delete.png";
+import { 
+    Contentimg,
+    PostEditWrapper,
+    UserProfileImg } from "./post.share.style";
 
 let fileUrls = [];
 let renderings = [];
