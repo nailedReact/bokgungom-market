@@ -1,6 +1,8 @@
 # <span id="top">득근득근 복근곰마켓 🐻‍❄️</span>
 
 [🔗 복근곰마켓 바로가기](https://bokgungom-market.netlify.app/)
+- ID : abc12345@gmail.com
+- PW : abc12345
 
 ## 💪 프로젝트 소개
 
