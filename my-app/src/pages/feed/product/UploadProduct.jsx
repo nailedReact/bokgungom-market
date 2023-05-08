@@ -87,7 +87,7 @@ export default function UploadProduct() {
             const json = await res.json();
 
             submitData.current["image"] =
-                `${baseUrl}` + json.filename;
+                `${baseUrl}/` + json.filename;
 
             // 입력 내용 전체 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
             (async function () {

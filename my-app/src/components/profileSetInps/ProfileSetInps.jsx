@@ -5,7 +5,7 @@ import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
 import Warning from "../userinput/Warning";
 import ProfileSetCont from "./profileSetInps.style";
-import { BASE_URL } from "../../config";
+import BASE_URL from "../../config";
 
 export default function ProfileSetInpsTemp({
     formId,
@@ -118,7 +118,7 @@ export default function ProfileSetInpsTemp({
                 const json = await res.json();
     
                 submitData.current["image"] =
-                    `${baseUrl}` + json.filename;
+                    `${baseUrl}/` + json.filename;
                 submitData.current["username"] = accountName.current.value;
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;

@@ -59,7 +59,7 @@ export default function ProfileSetInpsTemp({
             try {
                 // 아이디 중복 검증
                 const res = await axios.post(
-                    `${baseUrl}user/accountnamevalid`,
+                    `${baseUrl}/user/accountnamevalid`,
                     {
                         user: {
                             accountname: accountId.current.value,
@@ -110,7 +110,7 @@ export default function ProfileSetInpsTemp({
         if (submitData.current.imageBeforeSubmit) {
             try {
                 const res = await fetch(
-                    `${baseUrl}image/uploadfile`,
+                    `${baseUrl}/image/uploadfile`,
                     {
                         method: "POST",
                         body: submitData.current.imageBeforeSubmit,
@@ -119,7 +119,7 @@ export default function ProfileSetInpsTemp({
                 const json = await res.json();
     
                 submitData.current["image"] =
-                    `${baseUrl}` + json.filename;
+                    `${baseUrl}/` + json.filename;
                 submitData.current["username"] = accountName.current.value;
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;
