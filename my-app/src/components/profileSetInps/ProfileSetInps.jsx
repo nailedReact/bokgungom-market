@@ -5,7 +5,7 @@ import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
 import Warning from "../userinput/Warning";
 import ProfileSetCont from "./profileSetInps.style";
-import BASE_URL from "../../config";
+import {BASE_URL} from "../../config";
 
 export default function ProfileSetInpsTemp({
     formId,
