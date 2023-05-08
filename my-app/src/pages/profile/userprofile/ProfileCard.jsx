@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'
 import { UserNameContext } from "./Profile"
-import basicprofile from "../../../assets/basic-profile-img.png"
+import basicprofile from "../../../assets/basic-profile-img.png";
+import { BASE_URL } from '../../config';
 
 
   const Cont = styled.div`
@@ -101,6 +102,7 @@ import basicprofile from "../../../assets/basic-profile-img.png"
   `;
 
 export default function ProfileCard() {
+  const baseUrl = BASE_URL;
     const [profileData, setProfileData] = useState({});
     const [checkFollowing, setCheckFollowing] = useState(profileData.isfollow)
     const navigate = useNavigate();
@@ -113,7 +115,7 @@ export default function ProfileCard() {
 
     useEffect(() => {
         const getprofile = async () => {
-          const URL = "https://mandarin.api.weniv.co.kr/profile/" + username;
+          const URL = `${baseUrl}/profile/` + username;
           const res = await axios.get(URL, {
             headers: {
               Authorization : localStorage.getItem("Authorization")
@@ -123,7 +125,7 @@ export default function ProfileCard() {
         setProfileData(res.data.profile);
         }
         getprofile();
-    }, [temp, checkFollowing, username])
+    }, [temp, checkFollowing, username, baseUrl])
 
     const chatorshare = (data) => {
       if(data === "chat") navigate(`/chat`)
@@ -134,7 +136,7 @@ export default function ProfileCard() {
       setTemp(temp => temp + 1)
       if(e.target.value === "true"){
           const unfollow = await axios.delete(
-              `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/unfollow`,{
+              `${baseUrl}/profile/${profileData.accountname}/unfollow`,{
               headers: {
                   Authorization: localStorage.getItem("Authorization")
               }
@@ -144,7 +146,7 @@ export default function ProfileCard() {
           
       } else{
         const follow = await axios.post(
-          `https://mandarin.api.weniv.co.kr/profile/${profileData.accountname}/follow`,{},{
+          `${baseUrl}/profile/${profileData.accountname}/follow`,{},{
             headers: {
               Authorization: localStorage.getItem("Authorization")
             }

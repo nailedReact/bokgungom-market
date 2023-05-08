@@ -9,8 +9,10 @@ import NavBar from '../../../components/navBar/NavBar';
 import TopBar from '../../../components/topbar/TopBar';
 import { FollowList } from "./followFollowing.style"
 import useAuth from '../../../hook/useAuth';
+import { BASE_URL } from '../../config';
 
 export default function Following() {   
+  const baseUrl = BASE_URL;
     const [resMsg, setResMsg] = useState([]);
     const [followingArr, setFollowingArr] = useState([]);;
     const accountName = useParams().username;
@@ -27,7 +29,7 @@ export default function Following() {
 
     useEffect(() => {
         const getFollowinglist = async () => {
-          const URL = "https://mandarin.api.weniv.co.kr/profile/" + accountName + "/following/?limit=infinity"
+          const URL = `${baseUrl}/profile/` + accountName + "/following/?limit=infinity"
           const res = await axios.get(URL, {
             headers: {
             Authorization: localStorage.getItem("Authorization")

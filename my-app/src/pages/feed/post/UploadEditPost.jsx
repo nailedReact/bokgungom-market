@@ -15,6 +15,7 @@ import { UserProfileImg } from "./postProfile.style";
 import { Contentimg } from "./postContentImg.style";
 import basicImg from "../../../assets/basic-profile-img.png";
 import deleteIcon from "../../../assets/icon/icon-delete.png";
+import { BASE_URL } from '../../config';
 
 let fileUrls = [];
 let renderings = [];
@@ -22,6 +23,7 @@ let imagesOnSubmit = [];
 let alreadySubmitted = [];
 
 export default function UploadEditPost() {
+    const baseUrl = BASE_URL;
     const [isBtnDisable, setIsBtnDisable] = useState(true);
     const [showImages, setShowImages] = useState([]);
     const [isKeyboardUp, setIsKeyboardUp] = useState(false);
@@ -66,7 +68,7 @@ export default function UploadEditPost() {
             if (id) {
                 setIsBtnDisable(false);
                 try {
-                    const URL = `https://mandarin.api.weniv.co.kr/post/${id}`;
+                    const URL = `${baseUrl}/post/${id}`;
 
                     const res = await axios.get(URL, {
                         headers: {
@@ -96,7 +98,7 @@ export default function UploadEditPost() {
         };
 
         id && getPrevDetail();
-    }, [id]);
+    }, [baseUrl, id]);
 
     const handleTextarea = (e) => {
         textarea.current.style.height = "auto";
@@ -164,7 +166,7 @@ export default function UploadEditPost() {
 
         try {
             const res = await fetch(
-                "https://mandarin.api.weniv.co.kr/image/uploadfiles",
+                `${baseUrl}/image/uploadfiles`,
                 {
                     method: "POST",
                     body: formData,
@@ -187,7 +189,7 @@ export default function UploadEditPost() {
             if (fileUrls.length) {
                 for (const file of fileUrls) {
                     imgUrls.push(
-                        "https://mandarin.api.weniv.co.kr/" +
+                        `${baseUrl}` +
                             (await uploadImg(file))
                     );
                 }
@@ -209,11 +211,11 @@ export default function UploadEditPost() {
 
             if (id) {
                 submitRequestConfig.method = "PUT";
-                submitRequestConfig.url = `https://mandarin.api.weniv.co.kr/post/${id}`;
+                submitRequestConfig.url = `${baseUrl}/post/${id}`;
             } else {
                 submitRequestConfig.method = "POST";
                 submitRequestConfig.url =
-                    "https://mandarin.api.weniv.co.kr/post";
+                    `${baseUrl}/post`;
             }
 
             const response = await fetch(submitRequestConfig.url, {

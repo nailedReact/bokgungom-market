@@ -6,6 +6,7 @@ import ProfileSetInpsTempLogIn from "../../../components/profileSetInps/ProfileS
 import styled from "styled-components";
 import NavBar from "../../../components/navBar/NavBar";
 import Toast from "../../../components/toast/Toast";
+import { BASE_URL } from '../../config';
 
 const ProfileEditCont = styled.div`
     padding: 40px;
@@ -15,6 +16,7 @@ const ProfileEditCont = styled.div`
 `
 
 export default function EditProfile() {
+    const baseUrl = BASE_URL;
     const [isBtnVisible, setIsBtnVisible] = useState(false);
     const [prevData, setPrevData] = useState({});
     const navigate = useNavigate();
@@ -49,7 +51,7 @@ export default function EditProfile() {
 
         try {
             const res = await axios.put(
-                "https://mandarin.api.weniv.co.kr/user",
+                `${baseUrl}/user`,
                 {
                     user: edited,
                 },
@@ -74,7 +76,7 @@ export default function EditProfile() {
     const getPrevData = useCallback(async () => {
         try {
             const res = await axios.get(
-                "https://mandarin.api.weniv.co.kr/user/myinfo",
+                `${baseUrl}/user/myinfo`,
                 {
                     headers: {
                         Authorization: token,
@@ -91,7 +93,7 @@ export default function EditProfile() {
         } catch (err) {
             console.log(err);
         }
-    }, [token]);
+    }, [baseUrl, token]);
 
     useEffect(() => {
         getPrevData();

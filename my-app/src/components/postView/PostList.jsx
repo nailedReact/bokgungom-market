@@ -10,6 +10,7 @@ import { UserNameContext } from "../../pages/profile/userprofile/Profile";
 import { useInView } from "react-intersection-observer"
 import IconNopost from "../../assets/symbol-logo-gray.png"
 import SVGIcon from '../icon/SVGIcon';
+import { BASE_URL } from '../../config';
 
 const PostViewCont = styled.div`
     display: flex;
@@ -69,6 +70,7 @@ const NoPost_Cont = styled.div`
 
 
 export default function PostList({isProfilePage}) {
+  const baseUrl = BASE_URL;
   const [resMsg, setResMsg] = useState([]);
   const [postArrList, setPostArrList] = useState([]);
   const [postArrAlbum, setPostArrAlbum] = useState([]);
@@ -81,7 +83,7 @@ export default function PostList({isProfilePage}) {
 
   const getItems = useCallback(async () => {
     setLoading(true)
-      const URL = "https://mandarin.api.weniv.co.kr/post/" + username + `/userpost/?limit=${postcount}`
+      const URL =   `${baseUrl}/post/` + username + `/userpost/?limit=${postcount}`
       const res = await axios.get(URL, {
         headers: {
           Authorization : localStorage.getItem("Authorization")

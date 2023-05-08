@@ -4,6 +4,7 @@ import Inp from '../../../components/userinput/Inp';
 import UserInput from '../../../components/userinput/UserInput';
 import Button from '../../../components/button/Button';
 import Warning from '../../../components/userinput/Warning';
+import { BASE_URL } from '../../config';
 import {
     Container,
     Form,
@@ -20,6 +21,7 @@ export default function Login() {
     const [emailValid, setEmailValid] = useState(false);
     const AlertMsg = useRef(null);
     const navigate = useNavigate();
+    const baseUrl = BASE_URL;
 
     // 이메일 형식이 유효하고 &&  비밀번호가 6자리 이상이면 버튼 활성화
     useEffect(() => {
@@ -40,7 +42,7 @@ export default function Login() {
     // 로그인 버튼 클릭하면 api전송
     const handleLogin = (e) => {
         const fetchData = async() => {
-            const url = "https://mandarin.api.weniv.co.kr/user/login";
+            const url = `${baseUrl}/user/login`;
             const loginData = {
                 "user":{
                 "email": emailVal,

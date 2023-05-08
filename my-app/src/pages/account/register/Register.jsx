@@ -9,7 +9,8 @@ import {
   Container,
   Form,
   Title
-} from "../loginRegister.style"
+} from "../loginRegister.style";
+import { BASE_URL } from '../../config';
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);
@@ -23,6 +24,7 @@ export default function Register() {
   const [pwVal, setPwVal]= useState();
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
+  const baseUrl = BASE_URL;
 
   //페이지 로딩됐을 때 이메일 인풋 포커스
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function Register() {
     if (checkEmail.test(idVal)){
       try {
         const res = await axios.post(
-          "https://mandarin.api.weniv.co.kr/user/emailvalid",
+          `${baseUrl}/user/emailvalid`,
           {
             user: {
               "email": idVal
@@ -95,7 +97,7 @@ export default function Register() {
         "password": pwVal,
         "accountname": null, 
         "intro": null, 
-        "image": "https://mandarin.api.weniv.co.kr/1672102545236.png"
+        "image": `${baseUrl}/1672102545236.png`
       }
     })
     // eslint-disable-next-line

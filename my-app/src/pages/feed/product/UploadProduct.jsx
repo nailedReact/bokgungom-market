@@ -15,6 +15,7 @@ import useAuth from '../../../hook/useAuth';
 import Toast from '../../../components/toast/Toast';
 import useWindowSizeCustom from "../../../hook/windowSize";
 import actionImgCompress from '../../../utils/imageCompression';
+import { BASE_URL } from '../../config';
 
 const FormCont = styled.div`
     display: flex;
@@ -37,6 +38,7 @@ const TextCont = styled.div`
 `
 
 export default function UploadProduct() {
+    const baseUrl = BASE_URL;
     const [productName, setProductName] = useState('')
     const [productPrice, setProductPrice] = useState('')
     const [productLink, setProductLink] = useState('')
@@ -92,7 +94,7 @@ export default function UploadProduct() {
         // 이미지 서버에 전송
         try {
             const res = await fetch(
-                "https://mandarin.api.weniv.co.kr/image/uploadfile",
+                `${baseUrl}/image/uploadfile`,
                 {
                     method: "POST",
                     body: submitData.current.imageBeforeSubmit,
@@ -101,11 +103,11 @@ export default function UploadProduct() {
             const json = await res.json();
 
             submitData.current["image"] =
-                "https://mandarin.api.weniv.co.kr/" + json.filename;
+                `${baseUrl}` + json.filename;
 
             // 입력 내용 전체 서버에 전송. 이미지는 서버에 있는 데이터를 가져와서 전송.
             (async function () {
-                const url = "https://mandarin.api.weniv.co.kr/product";
+                const url = `${baseUrl}/product`;
                 const productData = {
                     "product": {
                         "itemName": productName,

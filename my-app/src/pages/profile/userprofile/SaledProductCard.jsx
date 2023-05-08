@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { UserNameContext } from "./Profile"
 import errorimg from "../../../assets/imageNotFound.png";
+import { BASE_URL } from '../../config';
 
 const Cont = styled.div`
         background: #ffffff;
@@ -82,6 +83,7 @@ const ItemPrice = styled.p`
 
 
 export default function SaledProductCard() {
+    const baseUrl = BASE_URL;
 const [productData, setProductData] = useState([]);
 const [resMsg, setResMsg] = useState([]);
 const { username } = useContext(UserNameContext);
@@ -89,7 +91,7 @@ const { username } = useContext(UserNameContext);
 //판매중인 상품 데이터를 받아오는 부분입니다.
 useEffect(() => {
     const getprofile = async () => {
-        const URL = "https://mandarin.api.weniv.co.kr/product/" + username;
+        const URL = `${baseUrl}/product/` + username;
       const res = await axios.get(URL, {
         headers: {
           Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
@@ -98,7 +100,7 @@ useEffect(() => {
         setResMsg(res.data.product);
     }
     getprofile();
-}, [username])
+}, [baseUrl, username])
 
 // 판매중인 상품의 링크로 넘어가는 부분입니다.
 const handlelink = (link) => {

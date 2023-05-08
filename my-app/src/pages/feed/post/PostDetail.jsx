@@ -21,6 +21,7 @@ import useAuth from "../../../hook/useAuth";
 import usePostDetail from "../../../hook/usePostDetail";
 import basicImg from "../../../assets/basic-profile-img.png";
 import Button from "../../../components/button/Button";
+import { BASE_URL } from '../../config';
 
 const CommentListBox = styled.ul`
     padding: 20px 16px 80.5px 16px;
@@ -42,6 +43,7 @@ const UserProfilePic = styled.img`
     border: 1px solid #C4C4C4;
 `
 export default function PostDetail() {
+    const baseUrl = BASE_URL;
     const [postMsg, setPostMsg] = useState();
     const [commentMsg, setCommentMsg] = useState([]);
     const [isBtnDisabled, setIsBtnDisabled] = useState(true);
@@ -76,7 +78,7 @@ export default function PostDetail() {
     const sendRequest = usePostDetail(reacts);
 
     const baseURL =
-        "https://mandarin.api.weniv.co.kr/post/" +
+        `${baseUrl}/post/` +
         id +
         "/comments" +
         "?limit=infinity&skip=0";
@@ -200,7 +202,7 @@ export default function PostDetail() {
         e.preventDefault();
         try {
             const URL =
-                "https://mandarin.api.weniv.co.kr/post/" +
+                `${baseUrl}/post/` +
                 id +
                 "/comments";
             await axios.post(
@@ -284,7 +286,7 @@ export default function PostDetail() {
 
     const deleteCommentFunc = async () => {
         const URL =
-            "https://mandarin.api.weniv.co.kr/post/" +
+            `${baseUrl}/post/` +
             id +
             "/comments/" +
             deleteTarget.current;
@@ -310,7 +312,7 @@ export default function PostDetail() {
     };
 
     const deletePostFunc = async () => {
-        const URL = `https://mandarin.api.weniv.co.kr/post/${id}`;
+        const URL = `${baseUrl}/post/${id}`;
         try {
             await axios.delete(URL, {
                 headers: {

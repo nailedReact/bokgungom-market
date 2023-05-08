@@ -5,6 +5,7 @@ import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
 import ProfileSetCont from "./profileSetINpsTemp.style";
 import Warning from "../userinput/Warning";
+import { BASE_URL } from '../../config';
 
 export default function ProfileSetTemp({
     formId,
@@ -21,6 +22,7 @@ export default function ProfileSetTemp({
     const nameAlert = useRef(null);
     const idAlert = useRef(null);
     const submitData = useRef({});
+    const baseUrl = BASE_URL;
 
     useEffect(() => {
         if (Object.keys(prev).length > 0) {
@@ -72,7 +74,7 @@ export default function ProfileSetTemp({
             try {
                 // 아이디 중복 검증
                 const res = await axios.post(
-                    "https://mandarin.api.weniv.co.kr/user/accountnamevalid",
+                    `${baseUrl}/user/accountnamevalid`,
                     {
                         user: {
                             accountname: accountId.current.value,
@@ -122,7 +124,7 @@ export default function ProfileSetTemp({
         if (submitData.current.imageBeforeSubmit) {
             try {
                 const res = await fetch(
-                    "https://mandarin.api.weniv.co.kr/image/uploadfile",
+                    `${baseUrl}/image/uploadfile"`,
                     {
                         method: "POST",
                         body: submitData.current.imageBeforeSubmit,
@@ -131,7 +133,7 @@ export default function ProfileSetTemp({
                 const json = await res.json();
     
                 submitData.current["image"] =
-                    "https://mandarin.api.weniv.co.kr/" + json.filename;
+                    `${baseUrl}` + json.filename;
                 submitData.current["username"] = accountName.current.value;
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;

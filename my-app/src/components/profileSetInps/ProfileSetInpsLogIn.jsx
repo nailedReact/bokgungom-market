@@ -5,6 +5,7 @@ import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
 import ProfileSetCont from "./profileSetInps.style";
 import Warning from "../userinput/Warning";
+import { BASE_URL } from '../../config';
 
 export default function ProfileSetTemp({
     formId,
@@ -14,7 +15,7 @@ export default function ProfileSetTemp({
     onSubmitByUpper,
 }) {
     const [initial, setInitial] = useState(null);
-
+    const baseUrl = BASE_URL;
     const accountName = useRef(null);
     const accountId = useRef(null);
     const about = useRef(null);
@@ -62,7 +63,7 @@ export default function ProfileSetTemp({
         } else {
             try {
                 const res = await axios.post(
-                    "https://mandarin.api.weniv.co.kr/user/accountnamevalid",
+                    `${baseUrl}/user/accountnamevalid`,
                     {
                         user: {
                             accountname: accountId.current.value,
@@ -108,7 +109,7 @@ export default function ProfileSetTemp({
         if (submitData.current.imageBeforeSubmit) {
             try {
                 const res = await fetch(
-                    "https://mandarin.api.weniv.co.kr/image/uploadfile",
+                    `${baseUrl}/image/uploadfile`,
                     {
                         method: "POST",
                         body: submitData.current.imageBeforeSubmit,
@@ -117,7 +118,7 @@ export default function ProfileSetTemp({
                 const json = await res.json();
     
                 submitData.current["image"] =
-                    "https://mandarin.api.weniv.co.kr/" + json.filename;
+                    `${baseUrl}` + json.filename;
                 submitData.current["username"] = accountName.current.value;
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;

@@ -16,6 +16,7 @@ import Toast from "../toast/Toast";
 import { v4 } from "uuid";
 import errorimg from "../../assets/imageNotFound.png";
 import basicprofile from "../../assets/basic-profile-img.png";
+import { BASE_URL } from '../../config';
 
 const Cont = styled.div`
     display: flex;
@@ -166,6 +167,10 @@ export default function PostCard({
     postDetailSrc,
     deleteByUpper,
 }) {
+
+    
+
+    const baseUrl = BASE_URL;
     const [myheart, setMyheart] = useState(data.hearted);
     const [myposthearts, setMyposthearts] = useState(data.heartCount);
     const navigate = useNavigate();
@@ -183,7 +188,7 @@ export default function PostCard({
         if (myheart === false) {
             setMyheart(true);
             const hearttrue = await axios.post(
-                `https://mandarin.api.weniv.co.kr/post/${data.id}/heart`,
+                `${baseUrl}/post/${data.id}/heart`,
                 {},
                 {
                     headers: {
@@ -195,7 +200,7 @@ export default function PostCard({
         } else {
             setMyheart(false);
             const heartfalse = await axios.delete(
-                `https://mandarin.api.weniv.co.kr/post/${data.id}/unheart`,
+                `${baseUrl}/post/${data.id}/unheart`,
                 {
                     headers: {
                         Authorization: localStorage.getItem("Authorization"),
@@ -212,7 +217,7 @@ export default function PostCard({
     };
 
     const deleteConfirmedHandle = async () => {
-        const URL = `https://mandarin.api.weniv.co.kr/post/${data.id}`;
+        const URL = `${baseUrl}/post/${data.id}`;
         try {
             const res = await axios.delete(URL, {
                 headers: {

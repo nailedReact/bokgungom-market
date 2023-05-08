@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useCallback } from "react";
+import { BASE_URL } from '../../config';
 
 export default function usePostDetail(reacts) {
     const { setPostMsg, id, currentUserId } = reacts;
+    const baseUrl = BASE_URL;
 
     const sendRequest = useCallback(
         (commentsURL, applyData, isCommentLoading) => {
             const getComments = async () => {
                 try {
                     const postDetailURL =
-                        "https://mandarin.api.weniv.co.kr/post/" + id;
+                        `${baseUrl}/post/` + id;
                     const postDetailRes = await axios.get(postDetailURL, {
                         headers: {
                             Authorization:
@@ -39,7 +41,7 @@ export default function usePostDetail(reacts) {
 
             getComments();
         },
-        [id, setPostMsg, currentUserId]
+        [baseUrl, id, setPostMsg, currentUserId]
     );
 
     return sendRequest;

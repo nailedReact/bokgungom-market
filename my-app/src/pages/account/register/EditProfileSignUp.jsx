@@ -6,6 +6,7 @@ import Button from "../../../components/button/Button";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import { BASE_URL } from '../../config';
 
 const Container = styled.main`
         width: 87%;
@@ -18,6 +19,7 @@ const Container = styled.main`
     `;
 
 export default function EditProfileSignUp() {
+    const baseUrl = BASE_URL;
     const [userData, setUserData] = useState(null);
     const [isDisabled, setIsDisabled] = useState(true);
     const location = useLocation();
@@ -65,7 +67,7 @@ export default function EditProfileSignUp() {
         try {
             // eslint-disable-next-line
             const res = await axios.post(
-                "https://mandarin.api.weniv.co.kr/user",
+                `${baseUrl}/user`,
                 finalEdited,
                 {
                     headers: {
@@ -76,7 +78,7 @@ export default function EditProfileSignUp() {
 
             // 회원가입 후 바로 로그인이 가능하도록 토큰 저장
             const loginRes = await axios.post(
-                "https://mandarin.api.weniv.co.kr/user/login",
+                `${baseUrl}/user/login`,
                 {
                     user: {
                         email: finalEdited.user.email,

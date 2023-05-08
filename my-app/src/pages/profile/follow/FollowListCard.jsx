@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Button from '../../../components/button/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import basicprofile from "../../../assets/basic-profile-img.png"
+import basicprofile from "../../../assets/basic-profile-img.png";
+import { BASE_URL } from '../../config';
 
 const Followingimg = styled.img`
         height: 50px;
@@ -66,6 +67,7 @@ const ContLeft  = styled.div`
 
 //취소버튼을 누르면 팔로우 취소가 된 데이터가 넘어가야합니다! - 구현예정
 export default function FollowListCard({data}) {
+    const baseUrl = BASE_URL;
     const navigate = useNavigate();
     const [checkFollowing, setCheckFollowing] = useState(data.isfollow)
 
@@ -79,7 +81,7 @@ export default function FollowListCard({data}) {
             setCheckFollowing(false)
             // eslint-disable-next-line
             const unfollow = await axios.delete(
-                `https://mandarin.api.weniv.co.kr/profile/${data.accountname}/unfollow`,{
+                `${baseUrl}/profile/${data.accountname}/unfollow`,{
                 headers: {
                     // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
                   Authorization: localStorage.getItem("Authorization")

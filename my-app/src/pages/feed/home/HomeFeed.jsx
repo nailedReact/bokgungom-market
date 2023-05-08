@@ -9,6 +9,7 @@ import {
   FeedCont, PageBtn, PrevNextBtn, Pagenation, ButtonCont
 } from "./homeFeed.style"
 import Topbtn from "../../../components/button/Topbtn";
+import { BASE_URL } from '../../config';
 
 export default function HomeFeed() {
   const [allresMsg, setAllresMsg] = useState([]);
@@ -21,11 +22,12 @@ export default function HomeFeed() {
     const prevPageRef = useRef(null);
     const nextPageRef = useRef(null);
     const buttonAll = useRef([]);
+    const baseUrl = BASE_URL;
     
     //전체 게시물을 가져와서 전체 게시물의 갯수를 확인합니다.
     useEffect(() => {
       const getMsg = async () => {
-        const res = await axios.get(`https://mandarin.api.weniv.co.kr/post/feed/?limit=infinity`, {
+        const res = await axios.get(`${baseUrl}/post/feed/?limit=infinity`, {
           headers: {
             Authorization : localStorage.getItem("Authorization")
           }
@@ -33,13 +35,13 @@ export default function HomeFeed() {
       setAllresMsg(res.data.posts);
       }
       getMsg();
-  }, [])
+  }, [baseUrl])
 
     // 10개씩 게시물을 가져오는 부분입니다.
     useEffect(() => {
         const getMsg = async () => {
           setPostArr([]);
-          const res = await axios.get(`https://mandarin.api.weniv.co.kr/post/feed/?limit=10&skip=${passamount}`, {
+          const res = await axios.get(`${baseUrl}/post/feed/?limit=10&skip=${passamount}`, {
             headers: {
               Authorization : localStorage.getItem("Authorization")
             }
@@ -47,7 +49,7 @@ export default function HomeFeed() {
           setResMsg(res.data.posts);
         }
         getMsg();
-    }, [passamount])
+    }, [baseUrl, passamount])
     
     //10개씩 가져온 게새물을 화면에 렌더링해주는 부분입니다.
     useEffect(() => {

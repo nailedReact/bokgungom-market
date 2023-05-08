@@ -5,6 +5,7 @@ import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
 import ProfileSetCont from "./profileSetINpsTemp.style";
 import Warning from "../userinput/Warning";
+import { BASE_URL } from '../../config';
 
 export default function ProfileSetInpsTemp({
     formId,
@@ -17,7 +18,8 @@ export default function ProfileSetInpsTemp({
     const about = useRef(null);
     const nameAlert = useRef(null);
     const idAlert = useRef(null);
-    const submitData = useRef({});
+    const submitData = useRef({}); 
+    const baseUrl = BASE_URL;
 
     // 이름 인풋창에서 포커스 아웃시 동작하는 함수
     const onNameBlurHandle = (e) => {
@@ -56,7 +58,7 @@ export default function ProfileSetInpsTemp({
             try {
                 // 아이디 중복 검증
                 const res = await axios.post(
-                    "https://mandarin.api.weniv.co.kr/user/accountnamevalid",
+                    `${baseUrl}user/accountnamevalid`,
                     {
                         user: {
                             accountname: accountId.current.value,
@@ -107,7 +109,7 @@ export default function ProfileSetInpsTemp({
         if (submitData.current.imageBeforeSubmit) {
             try {
                 const res = await fetch(
-                    "https://mandarin.api.weniv.co.kr/image/uploadfile",
+                    `${baseUrl}image/uploadfile`,
                     {
                         method: "POST",
                         body: submitData.current.imageBeforeSubmit,
@@ -116,7 +118,7 @@ export default function ProfileSetInpsTemp({
                 const json = await res.json();
     
                 submitData.current["image"] =
-                    "https://mandarin.api.weniv.co.kr/" + json.filename;
+                    `${baseUrl}` + json.filename;
                 submitData.current["username"] = accountName.current.value;
                 submitData.current["accountname"] = accountId.current.value;
                 submitData.current["intro"] = about.current.value;

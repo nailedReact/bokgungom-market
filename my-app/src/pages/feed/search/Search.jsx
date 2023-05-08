@@ -5,8 +5,10 @@ import FollowListCard from '../../profile/follow/FollowListCard';
 import TopBar from '../../../components/topbar/TopBar';
 import NavBar from '../../../components/navBar/NavBar';
 import useDebounce from '../../../hook/useDebounce';
+import { BASE_URL } from '../../config';
 
 export default function Search() {
+  const baseUrl = BASE_URL;
     const [resMsg, setResMsg] = useState([]);
     const [checkchange, setCheckchange] = useState("");
     const [checkkey, setCheckkey] = useState("");
@@ -28,7 +30,7 @@ export default function Search() {
         useEffect(() => {
           if(debouncedSearchText.length > 0){
             const getMsg = async () => {
-              const res = await axios.get(`https://mandarin.api.weniv.co.kr/user/searchuser/?keyword=${debouncedSearchText}`, {
+              const res = await axios.get(`${baseUrl}/user/searchuser/?keyword=${debouncedSearchText}`, {
                 headers: {
                   "Authorization": localStorage.getItem('Authorization')
                 }
@@ -38,7 +40,7 @@ export default function Search() {
             getMsg();
           
 
-          }}, [debouncedSearchText]);
+          }}, [baseUrl, debouncedSearchText]);
           
 
   
