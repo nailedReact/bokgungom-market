@@ -1,85 +1,23 @@
 import React from 'react'
 import { useEffect, useState, useContext} from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import { UserNameContext } from "./Profile"
 import errorimg from "../../../assets/imageNotFound.png";
+<<<<<<< HEAD
 import { BASE_URL } from '../../config';
+=======
+import {
+    Cont,
+    Window,
+    SaledProduct,
+    Productlist,
+    ProductCont,
+    Productimg,
+    ItemName,
+    ItemPrice
+} from "./saledProductCard.style";
+>>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
 
-const Cont = styled.div`
-        background: #ffffff;
-        padding: 20px;
-        border: 0.5px solid #DBDBDB;
-    `;
-    
-const Window = styled.div`
-    overflow-x: scroll;
-    overflow-y: hidden;
-    height: 100%;
-    
-    ::-webkit-scrollbar {
-    height: 10px;
-
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: rgb(106,106,106);
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 1px solid transparent;
-    height: 5px;
-  }
-   
-    ::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 10px;
-    box-shadow: inset 1px 1px 2px white;
-  }
-
-`;
-
-const SaledProduct = styled.h2`
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
-    margin-bottom: 16px;
-`;
-
-const Productlist = styled.ul`
-    display: flex;
-    gap: 10px;
-    height: 100%;
-    padding-bottom: 20px;
-`;
-
-const ProductCont = styled.li`
-    width: 140px;
-    height: 132px;
-    flex-shrink: 0;
-    list-style: none;
-    padding: 10px 0;
-`;
-
-const Productimg = styled.img`
-    width: 140px;
-    height: 90px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 0.5px solid #dbdbdb;
-`;
-
-const ItemName = styled.h3`
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    margin: 6px 0px;
-`;
-
-const ItemPrice = styled.p`
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    color: var(--color-primary);
-`;  
 
 
 export default function SaledProductCard() {
@@ -127,7 +65,7 @@ useEffect(() => {
     e.target.style.background = "#f2f2f2";
 };
 
-  
+
     //일정 시간이 지나면 캐러셀이 움직이는 부분입니다.
 //   useEffect(() => {
 //         const timer = setInterval(() => {

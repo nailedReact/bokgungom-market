@@ -9,13 +9,17 @@ import Textarea from "../../../components/textarea/Textarea";
 import useAuth from "../../../hook/useAuth";
 import useWindowSizeCustom from "../../../hook/windowSize";
 import actionImgCompress from "../../../utils/imageCompression";
-import { PostEditWrapper } from "./postEditWrapper.style";
 import { ProductImgSetCont } from "../../../components/productImageSet/productImageSet.style";
-import { UserProfileImg } from "./postProfile.style";
-import { Contentimg } from "./postContentImg.style";
 import basicImg from "../../../assets/basic-profile-img.png";
 import deleteIcon from "../../../assets/icon/icon-delete.png";
+<<<<<<< HEAD
 import { BASE_URL } from '../../config';
+=======
+import { 
+    Contentimg,
+    PostEditWrapper,
+    UserProfileImg } from "./post.share.style";
+>>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
 
 let fileUrls = [];
 let renderings = [];

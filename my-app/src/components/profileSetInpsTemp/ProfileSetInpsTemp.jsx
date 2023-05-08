@@ -3,9 +3,12 @@ import axios from "axios";
 import ProfileImageSet from "../aProfileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
-import ProfileSetCont from "./profileSetINpsTemp.style";
 import Warning from "../userinput/Warning";
+<<<<<<< HEAD
 import { BASE_URL } from '../../config';
+=======
+import ProfileSetCont from "./profileSetINpsTemp.style";
+>>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
 
 export default function ProfileSetInpsTemp({
     formId,
@@ -43,7 +46,7 @@ export default function ProfileSetInpsTemp({
             ) {
                 onValidByUpper(); // 제출 버튼 활성화
             }
-        }
+        };
     };
 
     // 아이디 인풋창에서 포커스 아웃시 동작하는 함수
@@ -92,7 +95,7 @@ export default function ProfileSetInpsTemp({
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
     };
 
     // 이미지 파일 변경시 동작하는 함수
@@ -132,7 +135,7 @@ export default function ProfileSetInpsTemp({
             submitData.current["accountname"] = accountId.current.value;
             submitData.current["intro"] = about.current.value;
             onSubmitByUpper(submitData);
-        }
+        };
     };
 
     return (
@@ -179,4 +182,4 @@ export default function ProfileSetInpsTemp({
             </UserInput>
         </ProfileSetCont>
     );
-}
+};

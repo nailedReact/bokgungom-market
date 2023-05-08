@@ -80,3 +80,8 @@ export const ChatItemCont = styled.li`
         }
     }
 `;
+
+export const ProfilePic = styled.img`
+    border: 1px solid #C4C4C4;
+    border-radius: 50%;
+`

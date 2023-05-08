@@ -1,21 +1,18 @@
 /* eslint-disable */
 /* eslint-disable array-callback-return */
-
-import React from "react";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
+import axios from "axios";
 import OptionModal from "../optionModal/OptionModal";
 import ConfirmModal from "../confirmModal/ConfirmModal";
+import Toast from "../toast/Toast";
 import heart_active from "../../assets/icon/icon-heart-active.png";
 import heart from "../../assets/icon/icon-heart.png";
 import comment from "../../assets/icon/icon-message-circle.png";
-import styled from "styled-components";
-import axios from "axios";
-import plusimg from "../../assets/icon/icon-more-vertical.png";
-import Toast from "../toast/Toast";
-import { v4 } from "uuid";
 import errorimg from "../../assets/imageNotFound.png";
 import basicprofile from "../../assets/basic-profile-img.png";
+<<<<<<< HEAD
 import { BASE_URL } from '../../config';
 
 const Cont = styled.div`
@@ -159,6 +156,9 @@ const ImgCont = styled.div`
         box-shadow: inset 1px 1px 2px white;
     }
 `;
+=======
+import * as S from "./postCard.style";
+>>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
 
 export default function PostCard({
     data,
@@ -208,7 +208,7 @@ export default function PostCard({
                 }
             );
             setMyposthearts(heartfalse.data.post.heartCount);
-        }
+        };
     };
 
     const deleteSelectedHandle = () => {
@@ -227,15 +227,19 @@ export default function PostCard({
             });
             setIsConfirmVisible(false);
             handleShowToast();
+            // setTimeout(function () {
+            //     navigate(-1); // 뒤로 가기
+            // }, 1500);
             deleteByUpper(data.id);
         } catch (err) {
             console.log(err);
-        }
+        };
     };
 
     function handleClickProfile() {
         navigate(`../../account/profile/${data.author.accountname}`);
-    }
+    };
+
     const handleShowToast = () => {
         toastRef.current.style.transform = "scale(1)";
         setTimeout(function () {
@@ -249,9 +253,11 @@ export default function PostCard({
         e.target.style.padding = "60px";
         e.target.style.background = "#f2f2f2";
     };
+
     const profileImgError = (e) => {
         e.target.src = basicprofile;
     };
+
     return (
         <div>
             <Toast ref={toastRef} msg="게시물이 삭제 되었습니다!" />
@@ -279,38 +285,39 @@ export default function PostCard({
                     }
                 />
             )}
-            <Cont>
-                <ProfilePicSmall
+            <S.Cont>
+                <S.ProfilePicSmall
                     src={data.author.image}
                     onError={profileImgError}
                     onClick={handleClickProfile}
                     alt={`${data.author.username}의 프로필 이미지`}
                 />
-                <ContentCont>
-                    <HeadCont>
+                <S.ContentCont>
+                    <S.HeadCont>
                         <div>
-                            <Username onClick={handleClickProfile}>
+                            <S.Username onClick={handleClickProfile}>
                                 {data.author.username}
-                            </Username>
-                            <Accountname onClick={handleClickProfile}>
+                            </S.Username>
+                            <S.Accountname onClick={handleClickProfile}>
                                 @{data.author.accountname}
-                            </Accountname>
+                            </S.Accountname>
                         </div>
                         {myProfile ? (
-                            <Plusbutton
+                            <S.Plusbutton
                                 onClick={() => setIsOptionVisible(true)}
+                                aria-label="게시글 수정,삭제 목록"
                             />
                         ) : null}
-                    </HeadCont>
+                    </S.HeadCont>
                     <div onClick={handlepostdetail}>
-                        <Content>{data.content}</Content>
+                        <S.Content>{data.content}</S.Content>
                         {data.image ? (
                             data.image.split(",").length > 1 ? (
-                                <ImgCont>
+                                <S.ImgCont>
                                     {data.image.split(",").map((item) => {
                                         // console.log(data);
                                         return (
-                                            <Contentimg
+                                            <S.Contentimg
                                                 src={item}
                                                 width="304"
                                                 height="228"
@@ -320,9 +327,9 @@ export default function PostCard({
                                             />
                                         );
                                     })}
-                                </ImgCont>
+                                </S.ImgCont>
                             ) : (
-                                <Contentimg
+                                <S.Contentimg
                                     src={data.image}
                                     width="304"
                                     height="228"
@@ -332,42 +339,42 @@ export default function PostCard({
                             )
                         ) : null}
                     </div>
-                    <HeartComment>
+                    <S.HeartComment>
                         <span onClick={heartchange}>
                             {myheart ? (
-                                <HeartCommentCont>
-                                    <HeartCommentimg
+                                <S.HeartCommentCont>
+                                    <S.HeartCommentimg
                                         src={heart_active}
                                         alt="채워진 하트"
                                     />
-                                    <Count>{myposthearts}</Count>
-                                </HeartCommentCont>
+                                    <S.Count>{myposthearts}</S.Count>
+                                </S.HeartCommentCont>
                             ) : (
-                                <HeartCommentCont>
-                                    <HeartCommentimg
+                                <S.HeartCommentCont>
+                                    <S.HeartCommentimg
                                         src={heart}
                                         alt="비워진 하트"
                                     />
-                                    <Count>{myposthearts}</Count>
-                                </HeartCommentCont>
+                                    <S.Count>{myposthearts}</S.Count>
+                                </S.HeartCommentCont>
                             )}
                         </span>
                         <Link to={postDetailSrc}>
                             <span className={"ir"}>
                                 게시글 상세 페이지로 이동
                             </span>
-                            <HeartCommentCont>
-                                <HeartCommentimg
+                            <S.HeartCommentCont>
+                                <S.HeartCommentimg
                                     src={comment}
                                     alt="댓글 아이콘"
                                 />
-                                <Count>{data.commentCount}</Count>
-                            </HeartCommentCont>
+                                <S.Count>{data.commentCount}</S.Count>
+                            </S.HeartCommentCont>
                         </Link>
-                    </HeartComment>
-                    <Createdate>{data.createdAt.slice(0, 10)}</Createdate>
-                </ContentCont>
-            </Cont>
+                    </S.HeartComment>
+                    <S.Createdate>{data.createdAt.slice(0, 10)}</S.Createdate>
+                </S.ContentCont>
+            </S.Cont>
         </div>
     );
-}
+};

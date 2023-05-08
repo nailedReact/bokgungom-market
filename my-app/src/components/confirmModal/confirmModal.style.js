@@ -17,7 +17,7 @@ export const ConfirmlLayout = styled.article`
         line-height: 20px;
         font-weight: 500;
         text-align: center;
-    }
+    };
 
     & .button-group > * {
         display: inline-block;
@@ -29,7 +29,7 @@ export const ConfirmlLayout = styled.article`
         font-weight: 400;
         line-height: 18px;
         background-color: transparent;
-    }
+    };
 
     & .button-group :nth-child(2) {
         border-left: 0.5px solid #dbdbdb;
@@ -37,16 +37,16 @@ export const ConfirmlLayout = styled.article`
         border-radius: 0px 0px 10px 0px;
         &:active{
             color: white;
-        }
-    }
+        };
+    };
     & button {
         border-radius: 0px 0px 0px 10px;
         &:hover{
             background-color: #4583a34c;
-        }
+        };
         &:active{
             background-color: var(--color-primary);
             color: white;
-        }
-    }
+        };
+    };
 `;

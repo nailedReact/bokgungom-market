@@ -1,6 +1,8 @@
-# 득근득근 복근곰마켓 🐻‍❄️
+# <span id="top">득근득근 복근곰마켓 🐻‍❄️</span>
 
 [🔗 복근곰마켓 바로가기](https://bokgungom-market.netlify.app/)
+- ID : abc12345@gmail.com
+- PW : abc12345
 
 ## 💪 프로젝트 소개
 
@@ -15,18 +17,74 @@
 
 <br>
 
-- 프로젝트 개발 기간: 2022-12-07 ~ 2023-01-04
+## 💪 프로젝트 개발 기간
 
+```mermaid
+gantt
+    title 프로젝트 개발 기간
+    dateFormat  YYYY-MM-DD
+    section 복근곰마켓
+    프로젝트 개발, 배포       :a1, 2022-12-07, 29d
+    프로젝트 리팩토링     :after a1, 14d
+
+```
 <br>
 
 ## 🫂 팀 소개
 
-- 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
+<img src="https://github.com/nailedReact/bokgungom-market/blob/main/preview/15.gif" width="40%"/>
 
-
-|<span style="font-size:16px">정수현</span>|<span style="font-size:16px">강세민</span>|<span style="font-size:16px">김성준</span>|<span style="font-size:16px">한혜지</span>|
+|<span style="font-size:16px">🤖 정수현 (팀장)</span>|<span style="font-size:16px">🔥 강세민</span>|<span style="font-size:16px">🏅 김성준</span>|<span style="font-size:16px">🦁 한혜지</span>|
 |:-:|:-:|:-:|:-:|
-|<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=100 width=100></a>|<a href="https://github.com/SEMINSEMINSEMIN"><img src="https://avatars.githubusercontent.com/SEMINSEMINSEMIN" height=100 width=100></a>|<a href="https://github.com/sjkymy"><img src="https://avatars.githubusercontent.com/sjkymy" height=100 width=100></a>|<a href="https://github.com/hyejee0504"><img src="https://avatars.githubusercontent.com/hyejee0504" height=100 width=100></a>|
+|<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=150 width=150></a>|<a href="https://github.com/SEMINSEMINSEMIN"><img src="https://avatars.githubusercontent.com/SEMINSEMINSEMIN" height=150 width=150></a>|<a href="https://github.com/sjkymy"><img src="https://avatars.githubusercontent.com/sjkymy" height=150 width=150></a>|<a href="https://github.com/hyejee0504"><img src="https://avatars.githubusercontent.com/hyejee0504" height=150 width=150></a>|
+
+- 멋쟁이사자처럼 프론트엔드 스쿨 3기 프로젝트 15조 `15조는 리액트를 찢오`입니다.
+- 이 프로젝트를 통해 팀원 모두 낯설었던 리액트를 찢어보자! 라는 의미에서 다음과 같은 팀명을 짓게 되었습니다.
+- 원본 밈인 ~~북극곰은 사람을 찢어~~에서 비롯하여 저희의 대표 캐릭터도 북극곰으로 지정했습니다. 🐻‍❄️
+
+<p align="right"><a href="#top">TOP 🔼</a></p>
+<br>
+
+
+## 🙋‍♀️ 역할 분담
+
+### 🤖 정수현
+
+- 스플래시 페이지
+- 회원가입 페이지
+- 프로필 페이지
+- 반응형 디자인 구현
+- 토스트 메시지 구현
+- 로딩중 & 404 페이지
+- 게시글 상세 페이지 댓글 더보기 기능 구현
+- 로그인 유효성 검사
+- 디자인 총괄
+
+### 🔥 강세민
+- 게시글 상세보기 + 댓글 페이지
+- 게시글 수정 페이지
+- 프로필 페이지
+- 프로필 수정 페이지
+- 채팅 페이지
+
+### 🏅 김성준
+
+- 로그인 페이지
+- 게시글 업로드 페이지
+- 상품 업로드 페이지
+
+### 🦁 한혜지
+
+- 팔로잉 팔로우 리스트 구현
+- 프로필 페이지 
+- 홈피드 페이지
+- 검색 페이지
+- 홈피드에서 페이지네이션 구현
+- 프로필 내 피드에서 무한 스크롤 구현
+- top 버튼 구현
+
+### 공통 작업
+- 공통 컴포넌트
 
 <br>
 
@@ -53,7 +111,7 @@
             <br>
             <code>styled-components</code>
           </td>
-          <td style="text-align:center;">제공된 API 사용</td>
+          <td align="center" style="text-align:center;">부트캠프에서 제공된<br>API 사용</td>
           <td align="center" style="text-align:center;">
             <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Styled Components" height="50" /></a>
             <br>
@@ -82,19 +140,22 @@
 |react-intersection-observer| 무한 스크롤 구현을 위해 사용 |
 |styled-reset| 스타일 구현의 편의를 위해 사용 |
 |uuid| 컴포넌트 리스트의 유니크한 key 생성을 위해 사용 |
+|browser-image-compression| 업로딩 이미지 압축을 위해 사용 |
 
+<p align="right"><a href="#top">TOP 🔼</a></p>
 <br>
 
-## <a href="https://github.com/nailedReact/bokgungom-market/wiki/%ED%98%91%EC%97%85-&-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%83%9D%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C" target="_blank">🤝 협업 방식</a>
+## <a href="https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%A4%9D-%ED%98%91%EC%97%85-&-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%83%9D%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C" target="_blank">🤝 협업 방식</a>
 
 1. 프로젝트 노션 페이지 내 남은 작업 목록에서 원하는 작업을 분담합니다.
-2. 해당하는 업무에 대해 **GitHub Issue**를 생성합니다.
+    <img src="./preview/notion.png" alt="프로젝트 노션 페이지" width="60%"/>
+2. 해당하는 업무에 대해 **GitHub Issue**를 생성합니다. (이슈 템플릿 사용)
 3. GitHub Actions에 의해 자동으로 생성된 브랜치로 전환하여 해당하는 업무를 진행합니다.
 4. 작업을 완료하면 작업한 브랜치에서(main브랜치 X) 코드를 push합니다.
 5. **PR(Pull Request)** 을 오픈합니다.
 - PR(pull request)을 오픈하면, 푸시한 사람 외 다른 팀원 1명이 코드를 확인하고 승인합니다.
 - PR이 오픈되면 다른 팀원들이 바로 확인할 수 있도록 디스코드 웹 훅 설정을 통해 팀 채팅방으로 알람을 받을 수 있도록 했습니다.
-<img style="margin: 10px" width=60% src="./preview/discord.png" alt="디스코드 깃허브 알람"/>
+    <img style="margin: 10px" width=60% src="./preview/discord.png" alt="디스코드 깃허브 알람"/>
 
 - 코드 리뷰 & 승인은 생산성을 위해 리뷰어를 1명으로 지정하되, 팀원들이 코드 스타일을 공유하며 서로 잘 이해할 수 있도록 순서를 정해 돌아가며 골고루 리뷰하도록 했습니다.
 
@@ -120,6 +181,7 @@
     - 칸반 보드로 프로젝트 진행 상황을 한 눈에 확인할 수 있어 일정을 관리하기 수월했습니다.
     <img style="margin: 10px" width=80% src="./preview/project.png" alt="깃허브 프로젝트 캡쳐"/>
 
+<p align="right"><a href="#top">TOP 🔼</a></p>
 <br>
 
 ## 🔀 브랜치 전략
@@ -138,11 +200,12 @@
 
 - [Create Issue Branch](https://github.com/marketplace/actions/create-issue-branch)
 - 이슈를 생성하면 GitHub Action으로 해당 이슈에 해당하는 브랜치가 자동으로 생성되도록 설정하여 브랜치명을 고민하고 브랜치를 생성하는 시간을 줄였습니다.
-    - [브랜치 자동화 설정 상세 내용](https://github.com/nailedReact/react-app/wiki/%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9)
+    - [브랜치 자동화 설정 상세 내용]([https://github.com/nailedReact/react-app/wiki/%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9](https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%AA%84-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9E%90%EB%8F%99%ED%99%94-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9))
     
 - 예) 자동 생성된 브랜치를 pull 하고 ```git checkout -t origin/feat/issue-81```하여 해당 브랜치로 이동합니다.
 - [브랜치 history](https://github.com/nailedReact/react-app/blob/main/preview/git%20branch%20history.png)
 
+<p align="right"><a href="#top">TOP 🔼</a></p>
 <br>
 
 ## 📐 컨벤션
@@ -151,7 +214,7 @@
 리드미에는 간략히 작성하고, 자세한 컨벤션은 각각의 타이틀에 링크된 깃허브 위키에 적어두었습니다.
 
 
-### [🔗 커밋 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)
+### [🔗 커밋 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%F0%9F%93%A8-%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)
 
 - 다양한 사례를 참고하여 프로젝트에서 주로 쓰일 것 같은 커밋 유형을 간추려 컨벤션으로 지정했습니다.
 
@@ -160,7 +223,7 @@
         - 커밋 유형은 영어로 작성하며, 첫 글자를 대문자로 합니다
         - 커밋 유형
         - Feat : 새로운 기능, 특징 추가
-        - Fix	: 수정, 버그 수정
+        - Fix : 수정, 버그 수정
         - Docs : 문서에 관련된 내용, 문서 수정
         - Style : 스타일링
         - Refactor : 리팩토링
@@ -189,7 +252,7 @@
 
 <br>
 
-### [🔗 코드 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98)
+### [🔗 코드 컨벤션](https://github.com/nailedReact/bokgungom-market/wiki/%E2%8C%A8%EF%B8%8F-%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98)
 - 리액트 코딩에 주로 쓰이는 컨벤션을 참고하여 저희 조만의 코드 컨벤션을 만들었습니다.
 - 문자열 처리 시 쌍따옴표/홑따옴표의 사용, 혹은 문장 끝 세미콜론의 사용여부와 같은 개인적 취향이 반영될 수 있는 항목들의 경우에는 사전 설문을 통해 다수결에 따라 지정했습니다. 
 
@@ -221,6 +284,7 @@
     📠 콤마 다음에 값이 올 경우 공백을 추가하여 가독성을 높입니다.
     ```
 
+<p align="right"><a href="#top">TOP 🔼</a></p>
 <br>
 
 ## 페이지 미리보기
@@ -537,3 +601,5 @@ npm install
 npm start
 ```
 
+
+<p align="right"><a href="#top">TOP 🔼</a></p>

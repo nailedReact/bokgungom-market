@@ -9,12 +9,12 @@ import { ProductImgSetCont } from "../../../components/productImageSet/productIm
 import Warning from '../../../components/userinput/Warning';
 import TopBar from '../../../components/topbar/TopBar';
 import NavBar from '../../../components/navBar/NavBar';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import useAuth from '../../../hook/useAuth';
 import Toast from '../../../components/toast/Toast';
 import useWindowSizeCustom from "../../../hook/windowSize";
 import actionImgCompress from '../../../utils/imageCompression';
+<<<<<<< HEAD
 import { BASE_URL } from '../../config';
 
 const FormCont = styled.div`
@@ -36,6 +36,13 @@ const TextCont = styled.div`
     flex-direction: column;
     width: 100%;
 `
+=======
+import {
+    FormCont,
+    Cont,
+    TextCont
+} from "./uploadProduct.style";
+>>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
 
 export default function UploadProduct() {
     const baseUrl = BASE_URL;
@@ -165,77 +172,76 @@ export default function UploadProduct() {
             <TopBar type="A4" right4Ctrl="form_upload" // disabled={isBtnDisable}
             onClickGetMsg={onClickSave}/>
             <Toast ref={toastRef} msg="게시물이 업로드 되었습니다!"/>
-        <Cont>
-                <form id='form_upload'>
-                <FormCont>
-                    <ProductImgSetCont htmlFor="productImg">
-                        <UserInput label="이미지 업로드">
-                            <img
-                                className={"productSampleImage"}
-                                src={require(`../../../assets/product-img-empty.png`)}
-                                alt="상품 이미지 미리보기"
-                                ref={imagePre}
-                            />
-                            <ImageUpload
-                                id={"productImg"}
-                                className={"fileUpload"}
-                                btnStyle={"orange small product"}
-                                onChangeByUpper={fileOnChange}
-                            />
-                        </UserInput>
-                    </ProductImgSetCont>
-                    <TextCont>
-                        <UserInput inputId="productName" label="상품명">
-                            <Inp
-                                type="text"
-                                id="productName"
-                                onChange={handleInpName}
-                                value={productName}
-                                minLength={"2"}
-                                maxLength={"15"}
-                                required
-                                placeholder='2~15자 이내여야 합니다.'
-                            >
-                            </Inp>
-                        </UserInput>
-                        <Warning ref={nameAlertMsg}>* 상품명을 입력해주세요.</Warning>
-                        <UserInput inputId="productPrice" label="가격">
-                            <Inp
-                                type="text"
-                                id="productPrice"
-                                onChange={handleInpPrice}
-                                value={productPrice}
-                                required
-                                placeholder='숫자만 입력 가능합니다.'
-                            >
-                            </Inp>
-                        </UserInput>
-                        <Warning ref={priceAlertMsg}>* 가격을 입력해주세요.</Warning>
-                        <UserInput inputId="productLink" label="판매링크">
-                            <Inp
-                                type="url"
-                                id="productLink"
-                                onChange={handleInpLink}
-                                value={productLink}
-                                required
-                                placeholder='URL을 입력해 주세요.'
-                            >
-                            </Inp>
-                        </UserInput>
-                        <Warning ref={linkAlertMsg}>* 판매 링크를 입력해주세요.</Warning>
-                    </TextCont>
-                    {/* <Button
-                        type="button"
-                        className="ms"
-                        // disabled={isBtnDisable}
-                        onClick={onClickSave}
-                    >저장
-                    </Button> */}
+            <Cont>
+                    <form id='form_upload'>
+                    <FormCont>
+                        <ProductImgSetCont htmlFor="productImg">
+                            <UserInput label="이미지 업로드">
+                                <img
+                                    className={"productSampleImage"}
+                                    src={require(`../../../assets/product-img-empty.png`)}
+                                    alt="상품 이미지 미리보기"
+                                    ref={imagePre}
+                                />
+                                <ImageUpload
+                                    id={"productImg"}
+                                    className={"fileUpload"}
+                                    btnStyle={"orange small product"}
+                                    onChangeByUpper={fileOnChange}
+                                />
+                            </UserInput>
+                        </ProductImgSetCont>
+                        <TextCont>
+                            <UserInput inputId="productName" label="상품명">
+                                <Inp
+                                    type="text"
+                                    id="productName"
+                                    onChange={handleInpName}
+                                    value={productName}
+                                    minLength={"2"}
+                                    maxLength={"15"}
+                                    required
+                                    placeholder='2~15자 이내여야 합니다.'
+                                >
+                                </Inp>
+                            </UserInput>
+                            <Warning ref={nameAlertMsg}>* 상품명을 입력해주세요.</Warning>
+                            <UserInput inputId="productPrice" label="가격">
+                                <Inp
+                                    type="text"
+                                    id="productPrice"
+                                    onChange={handleInpPrice}
+                                    value={productPrice}
+                                    required
+                                    placeholder='숫자만 입력 가능합니다.'
+                                >
+                                </Inp>
+                            </UserInput>
+                            <Warning ref={priceAlertMsg}>* 가격을 입력해주세요.</Warning>
+                            <UserInput inputId="productLink" label="판매링크">
+                                <Inp
+                                    type="url"
+                                    id="productLink"
+                                    onChange={handleInpLink}
+                                    value={productLink}
+                                    required
+                                    placeholder='URL을 입력해 주세요.'
+                                >
+                                </Inp>
+                            </UserInput>
+                            <Warning ref={linkAlertMsg}>* 판매 링크를 입력해주세요.</Warning>
+                        </TextCont>
+                        {/* <Button
+                            type="button"
+                            className="ms"
+                            // disabled={isBtnDisable}
+                            onClick={onClickSave}
+                        >저장
+                        </Button> */}
                     </FormCont>
-                </form>
- </Cont>
-                {width >= 768 ? <NavBar/> : <></>}
-            
- </>
+                    </form>
+            </Cont>
+            {width >= 768 ? <NavBar/> : <></>}
+        </>
     )
 }

@@ -1,6 +1,6 @@
-import Button from "../button/Button"
+import Button from "../button/Button";
 import { useNavigate } from 'react-router-dom';
-import SVGIcon from "../icon/SVGIcon"
+import SVGIcon from "../icon/SVGIcon";
 import { 
     TopBarCont,
     LeftCont,
@@ -8,8 +8,7 @@ import {
     BtnIcon,
     Searchinput,
     LogoCont
-
-} from "./topbar.style"
+} from "./topbar.style";
 
 
 export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClickGetMsg, onClickModal}) {
@@ -19,11 +18,11 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
     const handleClickLogo = () => {
         if (localStorage.getItem("Authorization")){
             navigate("../../../../post");
-        }
-        else {
+        } else {
             navigate("../../../../account/login");
         }
-    }
+    };
+
     return (
         <TopBarCont>
             <LeftCont>
@@ -61,5 +60,5 @@ export default function TopBar({type, title, right4Ctrl, onChangeByUpper, onClic
                 {/* disabled={right4Ctrl.isDisabled.isBtnVisible} */}
             </RightCont>
         </TopBarCont>
-    )
-} 
+    );
+};

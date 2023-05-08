@@ -14,7 +14,6 @@ const ProfileEditCont = styled.div`
         margin-left: 240px;
     }
 `
-
 export default function EditProfile() {
     const baseUrl = BASE_URL;
     const [isBtnVisible, setIsBtnVisible] = useState(false);

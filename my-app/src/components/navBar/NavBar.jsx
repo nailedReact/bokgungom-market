@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import ConfirmModal from "../confirmModal/ConfirmModal";
 import NavBarItem from "./NavBarItem";
-import { NavBarCont, NavBarUl } from "./navBar.style";
 import useAuth from "../../hook/useAuth";
-import Loading from "../../pages/errorLoading/Loading";
-import { useNavigate } from "react-router";
+import { NavBarCont, NavBarUl } from "./navBar.style";
 
 export default function NavBar() {
     const [modalVisible, setModalVisible] = useState(false);
 
     const data = useAuth();
-    // basic은 기본 아이콘, filled는 색깔이 칠해진 아이콘 입니다.
     const homeIcons = { basic: "icon-home", filled: "icon-home-fill" };
     const chatIcons = {
         basic: "icon-message-circle",
@@ -21,14 +18,13 @@ export default function NavBar() {
     const userIcons = { basic: "icon-user", filled: "icon-user-fill" };
     const userLogoutIcons = { basic: "icon-logout", filled: "icon-logout" };
     const uploadProductIcon = { basic: "icon-box", filled: "icon-box-fill" };
-    // currentPath는 현재 브라우저 페이지를 나타냅니다.
     const location = useLocation();
     const currentPath = location.pathname;
     const navigate = useNavigate();
 
     const showConfirmModal = () => {
         setModalVisible(true);
-    }
+    };
 
     const handleLogout = () => {
         if (localStorage.getItem("Authorization")) {
@@ -109,7 +105,5 @@ export default function NavBar() {
                 </NavBarCont>
             </>
         );
-    } else {
-        return <Loading />;
-    }
-}
+    };
+};

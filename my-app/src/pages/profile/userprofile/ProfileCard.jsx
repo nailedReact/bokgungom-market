@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import styled from 'styled-components';
 import axios from 'axios';
-import Button from '../../../components/button/Button'
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../components/button/Button'
+import { UserNameContext } from "./Profile"
 import chat from '../../../assets/icon/icon-message-circle.png';
 import share from '../../../assets/icon/icon-share.png'
+<<<<<<< HEAD
 import { UserNameContext } from "./Profile"
 import basicprofile from "../../../assets/basic-profile-img.png";
 import { BASE_URL } from '../../config';
@@ -100,6 +101,23 @@ import { BASE_URL } from '../../config';
     border-radius: 30px;
     padding: 9px;
   `;
+=======
+import basicprofile from "../../../assets/basic-profile-img.png"
+import {
+  Cont,
+  ProfileCont,
+  Profileimg,
+  Username,
+  Accountname,
+  Intro,
+  Follower,
+  Following,
+  FollowTxt,
+  ButtonCont,
+  Chatimg,
+  Shareimg
+} from "./profileCard.style";
+>>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
 
 export default function ProfileCard() {
   const baseUrl = BASE_URL;
