@@ -3,9 +3,6 @@ import { useEffect, useState, useContext} from 'react';
 import axios from 'axios';
 import { UserNameContext } from "./Profile"
 import errorimg from "../../../assets/imageNotFound.png";
-<<<<<<< HEAD
-import { BASE_URL } from '../../config';
-=======
 import {
     Cont,
     Window,
@@ -16,7 +13,7 @@ import {
     ItemName,
     ItemPrice
 } from "./saledProductCard.style";
->>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
+import { BASE_URL } from '../../../config';
 
 
 

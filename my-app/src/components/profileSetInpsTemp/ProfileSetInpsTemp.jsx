@@ -4,11 +4,9 @@ import ProfileImageSet from "../aProfileImageSet/ProfileImageSet";
 import UserInput from "../userinput/UserInput";
 import Inp from "../userinput/Inp";
 import Warning from "../userinput/Warning";
-<<<<<<< HEAD
-import { BASE_URL } from '../../config';
-=======
 import ProfileSetCont from "./profileSetINpsTemp.style";
->>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
+import { BASE_URL } from "../../config";
+
 
 export default function ProfileSetInpsTemp({
     formId,

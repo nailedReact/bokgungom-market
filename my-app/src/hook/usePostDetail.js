@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
-import { BASE_URL } from '../../config';
+import { BASE_URL } from "../config";
 
 export default function usePostDetail(reacts) {
     const { setPostMsg, id, currentUserId } = reacts;

@@ -12,14 +12,11 @@ import actionImgCompress from "../../../utils/imageCompression";
 import { ProductImgSetCont } from "../../../components/productImageSet/productImageSet.style";
 import basicImg from "../../../assets/basic-profile-img.png";
 import deleteIcon from "../../../assets/icon/icon-delete.png";
-<<<<<<< HEAD
-import { BASE_URL } from '../../config';
-=======
 import { 
     Contentimg,
     PostEditWrapper,
     UserProfileImg } from "./post.share.style";
->>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
+import { BASE_URL } from "../../../config";
 
 let fileUrls = [];
 let renderings = [];

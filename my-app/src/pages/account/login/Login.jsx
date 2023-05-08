@@ -4,13 +4,13 @@ import Inp from '../../../components/userinput/Inp';
 import UserInput from '../../../components/userinput/UserInput';
 import Button from '../../../components/button/Button';
 import Warning from '../../../components/userinput/Warning';
-import { BASE_URL } from '../../config';
 import {
     Container,
     Form,
     Title,
     JoinLink
 } from "../loginRegister.style"
+import { BASE_URL } from "../../../config";
 
 export default function Login() {
     const emailInp = useRef(null);

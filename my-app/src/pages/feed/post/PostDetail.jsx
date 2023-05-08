@@ -19,9 +19,6 @@ import { formattedDate } from "../dateformat";
 import useAuth from "../../../hook/useAuth";
 import usePostDetail from "../../../hook/usePostDetail";
 import Button from "../../../components/button/Button";
-<<<<<<< HEAD
-import { BASE_URL } from '../../config';
-=======
 import basicImg from "../../../assets/basic-profile-img.png";
 import {
     CommentListBox,
@@ -29,7 +26,7 @@ import {
     More,
     UserProfilePic
 } from "./post.share.style";
->>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
+import { BASE_URL } from "../../../config";
 
 export default function PostDetail() {
     const baseUrl = BASE_URL;

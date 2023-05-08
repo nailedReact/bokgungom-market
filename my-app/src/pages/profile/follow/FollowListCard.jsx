@@ -4,7 +4,7 @@ import Button from '../../../components/button/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import basicprofile from "../../../assets/basic-profile-img.png";
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 
 const Followingimg = styled.img`
         height: 50px;

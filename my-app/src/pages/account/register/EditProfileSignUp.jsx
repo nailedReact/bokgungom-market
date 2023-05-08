@@ -6,7 +6,8 @@ import Button from "../../../components/button/Button";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { BASE_URL } from '../../config';
+import { BASE_URL } from "../../../config";
+
 
 const Container = styled.main`
         width: 87%;

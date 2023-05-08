@@ -9,7 +9,7 @@ import {
   FeedCont, PageBtn, PrevNextBtn, Pagenation, ButtonCont
 } from "./homeFeed.style"
 import Topbtn from "../../../components/button/Topbtn";
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 
 export default function HomeFeed() {
   const [allresMsg, setAllresMsg] = useState([]);

@@ -10,7 +10,8 @@ import {
   Form,
   Title
 } from "../loginRegister.style";
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
+
 
 export default function Register() {
   const [idValid, setIdValid] = useState(false);

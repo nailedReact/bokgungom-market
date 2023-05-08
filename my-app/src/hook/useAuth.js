@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react";
-import { BASE_URL } from '../../config';
+import { BASE_URL } from "../config";
 
 export default function useAuth() {
     const baseUrl = BASE_URL;

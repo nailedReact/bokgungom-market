@@ -14,35 +14,12 @@ import useAuth from '../../../hook/useAuth';
 import Toast from '../../../components/toast/Toast';
 import useWindowSizeCustom from "../../../hook/windowSize";
 import actionImgCompress from '../../../utils/imageCompression';
-<<<<<<< HEAD
-import { BASE_URL } from '../../config';
-
-const FormCont = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Cont = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    @media screen and (min-width: 768px){
-        margin-left: 240px;
-    }
-`
-const TextCont = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-`
-=======
 import {
     FormCont,
     Cont,
     TextCont
 } from "./uploadProduct.style";
->>>>>>> 28091010cf6d8e324e5f2b6c2c119b690aa1d0ed
+import { BASE_URL } from '../../../config';
 
 export default function UploadProduct() {
     const baseUrl = BASE_URL;
