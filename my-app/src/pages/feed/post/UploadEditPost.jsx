@@ -190,7 +190,7 @@ export default function UploadEditPost() {
             if (fileUrls.length) {
                 for (const file of fileUrls) {
                     imgUrls.push(
-                        `${baseUrl}` +
+                        `https://api.mandarin.weniv.co.kr/` +
                             (await uploadImg(file))
                     );
                 }
