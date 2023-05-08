@@ -5,7 +5,7 @@ import FollowListCard from '../../profile/follow/FollowListCard';
 import TopBar from '../../../components/topbar/TopBar';
 import NavBar from '../../../components/navBar/NavBar';
 import useDebounce from '../../../hook/useDebounce';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 
 export default function Search() {
   const baseUrl = BASE_URL;
