@@ -1,6 +1,6 @@
 # <span id="top">득근득근 복근곰마켓 🐻‍❄️</span>
 
-[🔗 복근곰마켓 바로가기](https://bokgungom-market.netlify.app/)
+[🔗 복근곰마켓 바로가기](https://bokgungom-market.vercel.app/)
 - ID : abc12345@gmail.com
 - PW : abc12345
 
@@ -113,9 +113,9 @@ gantt
           </td>
           <td align="center" style="text-align:center;">부트캠프에서 제공된<br>API 사용</td>
           <td align="center" style="text-align:center;">
-            <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Styled Components" height="50" /></a>
+            <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1679312641/noticon/rx8rni4npifrbo9ckxmt.png" alt="Styled Components" height="50" /></a>
             <br>
-            <code>Netlify</code>
+            <code>Vercel</code>
           </td>
           <td align="center" style="text-align:center; margin: 0 auto;">
             <a href="https://www.adobe.com/kr/products/photoshop/landpa.html?gclid=Cj0KCQiA5NSdBhDfARIsALzs2EDDufpNAEYRcvM4knMcv6wZDXh2ZI8-4n74LBIJefRgHhmJ1PH_i6IaAtcUEALw_wcB&sdid=TBJRLR9V&mv=search&ef_id=Cj0KCQiA5NSdBhDfARIsALzs2EDDufpNAEYRcvM4knMcv6wZDXh2ZI8-4n74LBIJefRgHhmJ1PH_i6IaAtcUEALw_wcB:G:s&s_kwcid=AL!3085!3!460585117877!e!!g!!photoshop!97967719!4837432399" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1602172134/noticon/owhrsm7fwznd39eli3d6.png" alt="Adobe Photoshop" height="50" /></a>
