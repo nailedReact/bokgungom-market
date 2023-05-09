@@ -27,6 +27,7 @@ import {
     UserProfilePic
 } from "./post.share.style";
 import { BASE_URL } from "../../../config";
+import basicprofile from "../../../assets/basic-profile-img.png";
 
 export default function PostDetail() {
     const baseUrl = BASE_URL;
@@ -330,6 +331,12 @@ export default function PostDetail() {
         sendRequest(baseURL, initialDataSet, false);
     }, [id, initialDataSet, sendRequest, baseURL]);
 
+
+    const profileImgError = (e) => {
+        e.target.src = basicprofile;
+    };
+
+
     return (
         <>
             <CommentOptionModal 
@@ -400,6 +407,7 @@ export default function PostDetail() {
                     <UserProfilePic
                         src={data ? data.image : basicImg}
                         alt={"작성자 프로필 사진"}
+                        onError={profileImgError}
                     />
                 )}
                 <input

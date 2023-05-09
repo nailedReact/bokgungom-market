@@ -17,6 +17,7 @@ import {
     PostEditWrapper,
     UserProfileImg } from "./post.share.style";
 import { BASE_URL } from "../../../config";
+import basicprofile from "../../../assets/basic-profile-img.png";
 
 let fileUrls = [];
 let renderings = [];
@@ -256,6 +257,10 @@ export default function UploadEditPost() {
         return;
     };
 
+    const profileImgError = (e) => {
+        e.target.src = basicprofile;
+    };
+
     return (
         <>
             <TopBar
@@ -274,6 +279,7 @@ export default function UploadEditPost() {
                 <UserProfileImg
                     src={data ? data.image : basicImg}
                     alt="게시글 작성자 프로필 사진"
+                    onError={profileImgError}
                 />
                 <form
                     style={{ flexBasis: "304px", height: "100%" }}
