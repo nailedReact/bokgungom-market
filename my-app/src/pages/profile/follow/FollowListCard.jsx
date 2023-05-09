@@ -83,7 +83,6 @@ export default function FollowListCard({data}) {
             const unfollow = await axios.delete(
                 `${baseUrl}/profile/${data.accountname}/unfollow`,{
                 headers: {
-                    // Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTY5MWQwMTdhZTY2NjU4MWMzMjM1YyIsImV4cCI6MTY3NTk5NjE5MywiaWF0IjoxNjcwODEyMTkzfQ.yX_F68SQOJkak0ud8BUTI3OUHriaIlPqEqDUiWBcf6I"
                   Authorization: localStorage.getItem("Authorization")
                     }
                 });
@@ -91,7 +90,7 @@ export default function FollowListCard({data}) {
             setCheckFollowing(true);
             // eslint-disable-next-line
             const follow = await axios.post(
-                `https://mandarin.api.weniv.co.kr/profile/${data.accountname}/follow`,{},{
+                `${baseUrl}/profile/${data.accountname}/follow`,{},{
                 headers: {
                   Authorization: localStorage.getItem("Authorization")
                     }
