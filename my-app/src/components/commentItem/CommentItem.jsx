@@ -41,33 +41,29 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
 
     // 시간에 따라 렌더링 다르게 하기 위함.
     useEffect(() => {
+        let identifier;
+
         if (createdAt.includes("초")) {
-            const identifier = setInterval(() => {
+            identifier = setInterval(() => {
                 setCreatedAt((prev) => {
                    return timeRenderHandle(createdAt, "1분 전", "초");
                 });
-            }, [1000]);
-
-            return () => clearInterval(identifier);
+            }, 1000);
         } else if (createdAt.includes("분")) {
-            const identifier = setInterval(() => {
+            identifier = setInterval(() => {
                 setCreatedAt((prev) => {
                     return timeRenderHandle(createdAt, "1시간 전", "분");
                 });
-            }, [60000]);
-
-            return () => clearInterval(identifier);
+            }, 60000);
         } else if (createdAt.includes("시간")) {
-            const identifier = setInterval(() => {
+            identifier = setInterval(() => {
                 setCreatedAt((prev) => {
                     return timeRenderHandle(createdAt, formattedDate(initialTime), "시간", 23);
                 });
-            }, [3600000]);
-
-            return () => clearInterval(identifier);
-        } else {
-            return;
+            }, 3600000);
         }
+        
+        return () => clearInterval(identifier);
     }, [createdAt, setCreatedAt, refer.createdAt, initialTime]);
 
     const imgerror = (e) => {
