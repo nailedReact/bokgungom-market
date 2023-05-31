@@ -3,7 +3,7 @@ import TopBar from "../../components/topbar/TopBar";
 import ChatItem from "./chat/ChatItem/ChatItem";
 import NavBar from "../../components/navBar/NavBar";
 import data from "./chat/chatdata.json";
-import { ChatCont } from "./chatListRoom.style";
+import ChatListCont from "./chatList.style";
 
 export default function ChatList() {
     // 데이터를 가져온다는 가정으로 코드를 짜봤습니다.
@@ -36,7 +36,7 @@ export default function ChatList() {
         <>
             <TopBar type={"A1"} />
             <h1 className={"ir"}>채팅 리스트</h1>
-            <ChatCont>{chatData}</ChatCont>
+            <ChatListCont>{chatData}</ChatListCont>
             <NavBar />
         </>
     );
