@@ -44,26 +44,26 @@ export default function CommentItem({ refer, onClickHandle, initialTimeFormatted
         let identifier;
 
         if (createdAt.includes("초")) {
-            identifier = setInterval(() => {
+            identifier = setTimeout(() => {
                 setCreatedAt((prev) => {
                    return timeRenderHandle(createdAt, "1분 전", "초");
                 });
             }, 1000);
         } else if (createdAt.includes("분")) {
-            identifier = setInterval(() => {
+            identifier = setTimeout(() => {
                 setCreatedAt((prev) => {
                     return timeRenderHandle(createdAt, "1시간 전", "분");
                 });
             }, 60000);
         } else if (createdAt.includes("시간")) {
-            identifier = setInterval(() => {
+            identifier = setTimeout(() => {
                 setCreatedAt((prev) => {
                     return timeRenderHandle(createdAt, formattedDate(initialTime), "시간", 23);
                 });
             }, 3600000);
         }
         
-        return () => clearInterval(identifier);
+        return () => clearTimeout(identifier);
     }, [createdAt, setCreatedAt, refer.createdAt, initialTime]);
 
     const imgerror = (e) => {
