@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import deleteIcon from "../../../assets/icon/icon-delete.png"
 
 const Cont = styled.div`
     background: #ffffff;
@@ -50,6 +51,19 @@ const ProductCont = styled.li`
     flex-shrink: 0;
     list-style: none;
     padding: 10px 0;
+    position: relative;
+    .delete_btn {
+        width: 17px;
+        height: 17px;
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        right: 8px;
+        top: 17px;
+        background: none;
+        background-image: url(${deleteIcon});
+        background-size: cover;
+    }
 `;
 
 const Productimg = styled.img`
@@ -58,6 +72,7 @@ const Productimg = styled.img`
     border-radius: 8px;
     object-fit: cover;
     border: 0.5px solid #dbdbdb;
+    cursor: pointer;
 `;
 
 const ItemName = styled.h3`
