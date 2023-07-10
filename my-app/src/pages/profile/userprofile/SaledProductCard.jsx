@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext} from 'react';
+import { useEffect, useState, useContext, useCallback} from 'react';
 import axios from 'axios';
 import { UserNameContext } from "./Profile";
 import errorimg from "../../../assets/imageNotFound.png";
@@ -20,18 +20,18 @@ export default function SaledProductCard() {
                 Authorization : localStorage.getItem("Authorization")
             }
         });
-            setResMsg(res.data.product);
-        }
+        setResMsg(res.data.product);
+        };
         getprofile();
     }, [baseUrl, username])
 
     // 판매중인 상품의 링크로 넘어가는 부분입니다.
     const handlelink = (link) => {
-            window.open("http://" + link, '_blank')
+        window.open("http://" + link, '_blank')
     };
 
     // 상품 삭제
-    const handleProductDelete = async (productId) => {
+    const handleProductDelete = useCallback(async (productId) => {
         try {
             const url = `${baseUrl}/product/${productId}`;
             const userToken = localStorage.getItem("Authorization");
@@ -49,7 +49,7 @@ export default function SaledProductCard() {
         } catch (error) {
             console.log(error);
         };
-    };
+    }, [baseUrl]);
 
     // 상품을 뿌려주는 역할을 하는 부분입니다.
     useEffect(() => {
@@ -75,7 +75,7 @@ export default function SaledProductCard() {
             ));
             setProductData(products);
         };
-    }, [resMsg])
+    }, [resMsg, handleProductDelete])
 
     const imgerror = (e) => {
         e.target.src = errorimg;

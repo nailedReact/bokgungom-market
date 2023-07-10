@@ -42,7 +42,7 @@ export default function ProfileCard() {
               Authorization : localStorage.getItem("Authorization")
             }
         });
-        // console.log(res.data);
+        console.log(res.data);
         setProfileData(res.data.profile);
         }
         getprofile();
