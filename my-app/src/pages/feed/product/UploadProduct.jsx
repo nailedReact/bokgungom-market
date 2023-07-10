@@ -1,7 +1,4 @@
-// 컴포넌트에 productImageSet.style 파일 추가
-// 상품 등록 페이지 이미지 업로드 및 API 코드 수정
-
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react';
 import Inp from '../../../components/userinput/Inp';
 import UserInput from '../../../components/userinput/UserInput';
 import ImageUpload from "../../../components/imageUpload/ImageUpload";
@@ -47,10 +44,6 @@ export default function UploadProduct() {
     const navigate = useNavigate();
     const data = useAuth();
     const toastRef = useRef(null);
-
-    useEffect(() => {
-        productPrice.toLocaleString()
-    })
 
     // 화면 사이즈 변경 훅
     const { width } = useWindowSizeCustom();
@@ -129,7 +122,6 @@ export default function UploadProduct() {
                     setTimeout(function(){
                         navigate("../../account/profile/" + data.accountname);
                     }, 1500)
-                    
                 }
             }());
         } catch (err) {
